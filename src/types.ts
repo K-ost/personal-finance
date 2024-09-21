@@ -1,3 +1,5 @@
+export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
+
 export type Balance = {
   current: number;
   income: number;
@@ -5,6 +7,7 @@ export type Balance = {
 };
 
 export type Transaction = {
+  id: number;
   avatar: string;
   name: string;
   category: string;

@@ -2,6 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 function App() {
   const theme = useTheme();
+
   return (
     <>
       <Typography variant="h1">Vite + React</Typography>
