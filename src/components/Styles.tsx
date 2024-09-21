@@ -7,6 +7,7 @@ const Styles = (): JSX.Element => {
     <GlobalStyles
       styles={{
         body: {
+          color: theme.palette.custom.grey900,
           fontFamily: theme.typography.fontFamily,
           margin: 0,
         },

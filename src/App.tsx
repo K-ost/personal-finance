@@ -1,15 +1,18 @@
+import { Typography, useTheme } from "@mui/material";
+
 function App() {
+  const theme = useTheme();
   return (
     <>
-      <h1>Vite + React</h1>
+      <Typography variant="h1">Vite + React</Typography>
       <div className="card">
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
+      <Typography color={theme.palette.custom.secondary.green}>
         Click on the Vite and React logos to learn more
-      </p>
+      </Typography>
     </>
   );
 }
