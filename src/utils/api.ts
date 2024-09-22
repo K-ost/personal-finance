@@ -1,10 +1,10 @@
 import { API_Method } from "../types";
 import { API_URL } from "./constants";
 
-export const requestData = async <T>(
+export const requestData = async <T, K>(
   uri: string,
   method: API_Method,
-  body?: T
+  body?: K
 ): Promise<T> => {
   try {
     const response = await fetch(`${API_URL}${uri}`, {

@@ -8,11 +8,11 @@ type useMutateDataProps = {
   uri: string;
 };
 
-const useMutateData = <T,>(props: useMutateDataProps) => {
+const useMutateData = <T, K>(props: useMutateDataProps) => {
   const { key, method, uri } = props;
   return useMutation({
     mutationKey: key,
-    mutationFn: (data: T) => requestData<T>(uri, method, data),
+    mutationFn: (data: K) => requestData<T, K>(uri, method, data),
   });
 };
 

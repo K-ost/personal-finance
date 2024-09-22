@@ -34,6 +34,11 @@ export type User = {
   role: UserRole;
 };
 
+export type AuthType = {
+  accessToken: string;
+  user: Omit<User, "password">;
+};
+
 export type CustomPalette = {
   beige500: string;
   beige100: string;

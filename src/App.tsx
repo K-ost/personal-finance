@@ -5,9 +5,11 @@ import LoginPage from "./pages/LoginPage";
 import SignUp from "./pages/SignUp";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Home from "./pages/Home";
+import { useAuthStore } from "./store/useAuthStore";
 
 function App() {
-  const isAuth = false;
+  const { auth } = useAuthStore();
+  const isAuth = !!auth?.accessToken;
 
   return (
     <div>
