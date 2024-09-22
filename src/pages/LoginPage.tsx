@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import PassInput from "../ui/PassInput";
 import { useForm } from "react-hook-form";
 import useMutateData from "../hooks/useMutateData";
-import { AuthType, User } from "../types";
+import { AuthType } from "../types";
 import { useAuthStore } from "../store/useAuthStore";
 import { useEffect } from "react";
+import { useNotificationStore } from "../store/useNotificationStore";
 
 type FormData = {
   email: string;
@@ -18,12 +19,12 @@ type FormData = {
 
 const LoginPage = (): JSX.Element => {
   const { setAuth } = useAuthStore();
+  const { setNotification } = useNotificationStore();
 
   const {
     formState: { errors },
     handleSubmit,
     register,
-    reset,
   } = useForm<FormData>();
 
   const { data, mutate, isPending } = useMutateData<AuthType, FormData>({
@@ -36,20 +37,16 @@ const LoginPage = (): JSX.Element => {
     if (data && data.accessToken) {
       setAuth(data);
     }
+    setNotification(
+      data?.accessToken ? "You've been logged successfully" : data?.message
+    );
   }, [data]);
 
   const loginHandler = (formData: FormData) => {
-    mutate(
-      {
-        email: formData.email,
-        password: formData.password,
-      },
-      {
-        onSuccess: () => {
-          reset();
-        },
-      }
-    );
+    mutate({
+      email: formData.email,
+      password: formData.password,
+    });
   };
 
   return (

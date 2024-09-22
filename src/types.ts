@@ -35,8 +35,9 @@ export type User = {
 };
 
 export type AuthType = {
-  accessToken: string;
-  user: Omit<User, "password">;
+  accessToken?: string;
+  message?: string;
+  user?: Omit<User, "password">;
 };
 
 export type CustomPalette = {

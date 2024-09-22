@@ -12,7 +12,10 @@ export const requestData = async <T, K>(
       headers: { "Content-Type": "application/json" },
       body: body ? JSON.stringify(body) : null,
     });
-    const data = await response.json();
+    let data = await response.json();
+    if (response.status === 400) {
+      data = { message: data };
+    }
     return data;
   } catch (error) {
     throw error;

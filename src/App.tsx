@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Home from "./pages/Home";
 import { useAuthStore } from "./store/useAuthStore";
+import Notification from "./ui/Notification";
 
 function App() {
   const { auth } = useAuthStore();
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" index element={<Home />} />
         </Route>
       </Routes>
+      <Notification />
     </div>
   );
 }
