@@ -18,12 +18,13 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
     },
   },
   "& .MuiInputBase-root": {
-    display: "block",
+    display: "flex",
   },
   "& .MuiOutlinedInput-input": {
     boxSizing: "border-box",
     color: theme.palette.custom.grey900,
     fontSize: theme.typography.body1.fontSize,
+    fontFamily: theme.typography.fontFamily,
     lineHeight: theme.typography.body1.lineHeight,
     height: 45,
     padding: "8px 20px",
@@ -55,6 +56,9 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
     fontSize: theme.typography.body2.fontSize,
     lineHeight: theme.typography.body2.lineHeight,
     textAlign: "right",
+  },
+  "& .MuiInputAdornment-root": {
+    marginRight: theme.spacing(1),
   },
 }));
 

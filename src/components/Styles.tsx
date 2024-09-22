@@ -6,6 +6,9 @@ const Styles = (): JSX.Element => {
   return (
     <GlobalStyles
       styles={{
+        "*": {
+          boxSizing: "border-box",
+        },
         body: {
           color: theme.palette.custom.grey900,
           fontFamily: theme.typography.fontFamily,
