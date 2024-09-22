@@ -12,6 +12,26 @@ declare module "@mui/material/styles" {
 
 export const theme = createTheme({
   palette: {
+    primary: {
+      main: "#201F24",
+      light: "#696868",
+      contrastText: "#ffffff",
+      dark: "#696868",
+    },
+    secondary: {
+      main: "#F8F4F0",
+      contrastText: "#201F24",
+      dark: "#ffffff",
+    },
+    text: {
+      primary: "#201F24",
+      secondary: "#98908B",
+    },
+    error: {
+      main: "#C94736",
+      contrastText: "#fff",
+      dark: "#D46C5E",
+    },
     custom: {
       beige500: "#98908B",
       beige100: "#F8F4F0",
@@ -24,7 +44,6 @@ export const theme = createTheme({
         yellow: "#F2CDAC",
         cyan: "#82C9D7",
         navy: "#626070",
-        red: "#C94736",
         purple: "#826CB0",
       },
       other: {
@@ -46,6 +65,7 @@ export const theme = createTheme({
       fontSize: 32,
       fontWeight: 700,
       lineHeight: "120%",
+      marginBottom: 32,
     },
     h2: {
       fontSize: 20,

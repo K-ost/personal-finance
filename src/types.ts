@@ -26,7 +26,7 @@ export type Pot = {
 export type UserRole = "admin" | "user";
 
 export type User = {
-  id: number;
+  id?: number;
   email: string;
   password: string;
   name: string;
@@ -46,7 +46,6 @@ export type CustomPalette = {
     yellow: string;
     cyan: string;
     navy: string;
-    red: string;
     purple: string;
   };
   other: {

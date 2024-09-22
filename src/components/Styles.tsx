@@ -11,6 +11,13 @@ const Styles = (): JSX.Element => {
           fontFamily: theme.typography.fontFamily,
           margin: 0,
         },
+        a: {
+          color: theme.palette.primary.main,
+          textDecoration: "underline",
+          "&:hover": {
+            textDecoration: "none",
+          },
+        },
       }}
     />
   );

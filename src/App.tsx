@@ -1,20 +1,27 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import Styles from "./components/Styles";
+import PublicRoutes from "./components/PublicRoutes";
+import LoginPage from "./pages/LoginPage";
+import SignUp from "./pages/SignUp";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import Home from "./pages/Home";
 
 function App() {
-  const theme = useTheme();
+  const isAuth = false;
 
   return (
-    <>
-      <Typography variant="h1">Vite + React</Typography>
-      <Box className="card">
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </Box>
-      <Typography color={theme.palette.custom.secondary.green}>
-        Click on the Vite and React logos to learn more
-      </Typography>
-    </>
+    <div>
+      <Styles />
+      <Routes>
+        <Route element={<PublicRoutes isAuth={isAuth} />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
+        <Route element={<ProtectedRoutes isAuth={isAuth} />}>
+          <Route path="/" index element={<Home />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 
