@@ -22,7 +22,7 @@ import {
 } from "./Icons";
 import { useAppStore } from "../../store/useAppStore";
 
-type SidebarProps = BoxProps & {
+type SidebarProps = {
   open: boolean;
 };
 
@@ -69,14 +69,14 @@ const AsideLogo = styled(Box)<BoxProps>(({ theme }) => ({
   padding: `${theme.spacing(10)} ${theme.spacing(8)}`,
 }));
 
-const Sidebar = (props: BoxProps) => {
+const Sidebar = () => {
   const { sidebar, setSidebar } = useAppStore();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <Aside open={sidebar} {...props}>
+    <Aside open={sidebar}>
       <AsideInner>
         <Box sx={{ flex: 1 }}>
           {isDesktop && (
