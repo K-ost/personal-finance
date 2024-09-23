@@ -1,5 +1,5 @@
 import { Box, BoxProps, styled } from "@mui/material";
-import Sidebar from "./Sidebar/Sidebar";
+import Sidebar from "./Sidebar";
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -14,14 +14,24 @@ const Layout = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }));
 
+const LayoutContent = styled(Box)<BoxProps>(({ theme }) => ({
+  flexGrow: 1,
+  overflow: "auto",
+  padding: "32px 40px",
+  [theme.breakpoints.down("lg")]: {
+    order: 1,
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: "24px 16px",
+  },
+}));
+
 const MainLayout = (props: MainLayoutProps) => {
   const { children } = props;
   return (
     <Layout>
       <Sidebar />
-      <Box component="main" sx={{ flexGrow: 1, p: "32px 40px" }}>
-        {children}
-      </Box>
+      <LayoutContent role="main">{children}</LayoutContent>
     </Layout>
   );
 };

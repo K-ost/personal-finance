@@ -24,14 +24,20 @@ const AsideButton = styled(Button)<ButtonProps>(({ theme }) => ({
   lineHeight: theme.typography.h3.lineHeight,
   paddingTop: 0,
   height: 56,
+  minWidth: 0,
   paddingBottom: 0,
   paddingRight: theme.spacing(4),
   paddingLeft: theme.spacing(8),
   position: "relative",
   textTransform: "none",
   transition: "none",
-  "& svg": {
+  "& .iconBox": {
     marginRight: theme.spacing(4),
+    width: 24,
+    height: 24,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   "& svg.rotated": {
     transform: "matrix(-1,0,0,1,0,0)",
@@ -65,6 +71,27 @@ const AsideButton = styled(Button)<ButtonProps>(({ theme }) => ({
   "&.opened": {
     "& svg.rotated": {
       transform: "matrix(1,0,0,1,0,0)",
+    },
+  },
+  [theme.breakpoints.down("lg")]: {
+    borderRadius: "8px 8px 0 0",
+    display: "block",
+    fontSize: theme.typography.body2.fontSize,
+    lineHeight: theme.typography.body2.lineHeight,
+    height: "auto",
+    padding: "8px 8px 12px",
+    textAlign: "center",
+    "& .iconBox": {
+      margin: "0 auto",
+    },
+    "& .btnTitle": {
+      display: "block",
+      marginTop: theme.spacing(1),
+    },
+    "&::before": {
+      height: 4,
+      top: "auto",
+      width: "100%",
     },
   },
 }));

@@ -8,6 +8,9 @@ import Home from "./pages/Home";
 import { useAuthStore } from "./store/useAuthStore";
 import Notification from "./ui/Notification";
 import Transactions from "./pages/Transactions";
+import Budgets from "./pages/Budgets";
+import Pots from "./pages/Pots";
+import Bills from "./pages/Bills";
 
 function App() {
   const { auth } = useAuthStore();
@@ -23,7 +26,10 @@ function App() {
         </Route>
         <Route element={<ProtectedRoutes isAuth={isAuth} />}>
           <Route path="/" index element={<Home />} />
-          <Route path="/transactions" index element={<Transactions />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/budgets" element={<Budgets />} />
+          <Route path="/pots" element={<Pots />} />
+          <Route path="/bills" element={<Bills />} />
         </Route>
       </Routes>
       <Notification />

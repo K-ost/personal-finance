@@ -1,4 +1,4 @@
-import { Box, List, ListProps, styled } from "@mui/material";
+import { List, ListProps, styled } from "@mui/material";
 
 type NavMenuProps = {
   children: React.ReactNode;
@@ -15,6 +15,9 @@ const Nav = styled(List)<ListProps>(({ theme }) => ({
   },
   [theme.breakpoints.down("lg")]: {
     display: "flex",
+    "& li": {
+      margin: 0,
+    },
   },
 }));
 

@@ -39,6 +39,8 @@ const Aside = styled(Box)<SidebarProps>(({ theme, open }) => ({
   [theme.breakpoints.down("lg")]: {
     borderRadius: "8px 8px 0 0",
     minWidth: 0,
+    maxWidth: "none",
+    overflow: "visible",
     order: 2,
     transition: "none",
   },
@@ -52,7 +54,13 @@ const AsideInner = styled(Box)<BoxProps>(({ theme }) => ({
   paddingRight: theme.spacing(6),
   width: sideWidth,
   [theme.breakpoints.down("lg")]: {
-    padding: "8px 40px",
+    display: "block",
+    height: "auto",
+    padding: "8px 40px 0",
+    width: "auto",
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: "8px 16px 0",
   },
 }));
 
@@ -65,6 +73,7 @@ const Sidebar = (props: BoxProps) => {
   const { sidebar, setSidebar } = useAppStore();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+  const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
     <Aside open={sidebar} {...props}>
@@ -84,12 +93,16 @@ const Sidebar = (props: BoxProps) => {
                   component={NavLink}
                   to={item.link}
                 >
-                  {item.icon === "overview" && <IconOverview />}
-                  {item.icon === "transactions" && <IconTransactions />}
-                  {item.icon === "budgets" && <IconBudgets />}
-                  {item.icon === "pots" && <IconPots />}
-                  {item.icon === "bills" && <IconBills />}
-                  {sidebar && <span>{item.title}</span>}
+                  <span className="iconBox">
+                    {item.icon === "overview" && <IconOverview />}
+                    {item.icon === "transactions" && <IconTransactions />}
+                    {item.icon === "budgets" && <IconBudgets />}
+                    {item.icon === "pots" && <IconPots />}
+                    {item.icon === "bills" && <IconBills />}
+                  </span>
+                  {sidebar && isTablet && (
+                    <span className="btnTitle">{item.title}</span>
+                  )}
                 </AsideBtn>
               </ListItem>
             ))}
@@ -101,8 +114,10 @@ const Sidebar = (props: BoxProps) => {
             className={sidebar ? "opened" : ""}
             onClick={() => setSidebar(!sidebar)}
           >
-            <IconMin />
-            {sidebar && <span>Minimize Menu</span>}
+            <span className="iconBox">
+              <IconMin />
+            </span>
+            {sidebar && <span className="btnTitle">Minimize Menu</span>}
           </AsideBtn>
         )}
       </AsideInner>
