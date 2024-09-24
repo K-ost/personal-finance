@@ -60,6 +60,19 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
   "& .MuiInputAdornment-root": {
     marginRight: theme.spacing(1),
   },
+  "& .MuiOutlinedInput-input.MuiInputBase-input.MuiSelect-select": {
+    height: 45,
+    lineHeight: "45px",
+    minHeight: 0,
+    paddingTop: 0,
+    paddingRight: 46,
+    paddingBottom: 0,
+  },
+  "& .MuiSelect-icon": {
+    fill: theme.palette.primary.main,
+    fontSize: "1.8rem",
+    right: 10,
+  },
 }));
 
 const CustomInput = (props: TextFieldProps): JSX.Element => {

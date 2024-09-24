@@ -4,24 +4,24 @@ type selectArray = {
 };
 
 export const sortOptions: selectArray[] = [
-  { title: "Latest", value: "latest" },
-  { title: "Oldest", value: "oldest" },
-  { title: "A to Z", value: "asc" },
-  { title: "Z to A", value: "desc" },
-  { title: "Highest", value: "highest" },
-  { title: "Lowest", value: "lowest" },
+  { title: "Latest", value: "date,asc" },
+  { title: "Oldest", value: "date,desc" },
+  { title: "A to Z", value: "name,asc" },
+  { title: "Z to A", value: "name,desc" },
+  { title: "Highest", value: "amount,asc" },
+  { title: "Lowest", value: "amount,desc" },
 ];
 
 export const transactionsOptions: selectArray[] = [
   { title: "All Transactions", value: "all" },
-  { title: "Entertainment", value: "entertainment" },
-  { title: "Bills", value: "bills" },
-  { title: "Groceries", value: "groceries" },
-  { title: "Dining Out", value: "dining-out" },
-  { title: "Transportation", value: "transportation" },
-  { title: "Personal Care", value: "personal-care" },
-  { title: "Education", value: "education" },
-  { title: "Lifestyle", value: "lifestyle" },
-  { title: "Shopping", value: "shopping" },
-  { title: "General", value: "general" },
+  { title: "Entertainment", value: "Entertainment" },
+  { title: "Bills", value: "Bills" },
+  { title: "Groceries", value: "Groceries" },
+  { title: "Dining Out", value: "Dining Out" },
+  { title: "Transportation", value: "Transportation" },
+  { title: "Personal Care", value: "Personal-care" },
+  { title: "Education", value: "Education" },
+  { title: "Lifestyle", value: "Lifestyle" },
+  { title: "Shopping", value: "Shopping" },
+  { title: "General", value: "General" },
 ];
