@@ -11,7 +11,15 @@ import {
 import CustomInput from "../../ui/CustomInput";
 import searchIcon from "../../assets/icon-search.svg";
 import { sortOptions, transactionsOptions } from "./constants";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useDebounce from "../../hooks/useDebounce";
+import { SetURLSearchParams } from "react-router-dom";
+import { getCategoryValue, getSortValue } from "../../utils/utils";
+
+type SortingProps = {
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
+};
 
 const SortBody = styled(Box)<BoxProps>(({ theme }) => ({
   alignItems: "center",
@@ -22,20 +30,27 @@ const SortBody = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }));
 
-type SortingProps = {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-};
-
 const Sorting = (props: SortingProps): JSX.Element => {
-  const { setSearch } = props;
+  const { searchParams, setSearchParams } = props;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    searchParams.set("q", debouncedSearch);
+    setSearchParams(searchParams);
+  }, [debouncedSearch]);
+
+  const searchValue = searchParams.get("q");
+  const sortValue = getSortValue(searchParams);
+  const categoryValue = getCategoryValue(searchParams);
 
   return (
     <SortBody>
       <CustomInput
         placeholder="Search transaction"
+        defaultValue={searchValue}
         slotProps={{
           input: {
             endAdornment: (
@@ -67,7 +82,7 @@ const Sorting = (props: SortingProps): JSX.Element => {
       )}
 
       <CustomInput
-        defaultValue="date,asc"
+        defaultValue={sortValue}
         select
         sx={{
           m: 0,
@@ -75,8 +90,8 @@ const Sorting = (props: SortingProps): JSX.Element => {
           mb: isMobile ? theme.spacing(4) : 0,
         }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          searchParams.set("sort", e.target.value.split(",")[0]);
-          searchParams.set("order", e.target.value.split(",")[1]);
+          searchParams.set("_sort", e.target.value.split(",")[0]);
+          searchParams.set("_order", e.target.value.split(",")[1]);
           setSearchParams(searchParams);
         }}
       >
@@ -98,7 +113,7 @@ const Sorting = (props: SortingProps): JSX.Element => {
       )}
 
       <CustomInput
-        defaultValue="all"
+        defaultValue={categoryValue}
         select
         sx={{ m: 0 }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

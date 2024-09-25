@@ -4,12 +4,12 @@ type selectArray = {
 };
 
 export const sortOptions: selectArray[] = [
-  { title: "Latest", value: "date,asc" },
-  { title: "Oldest", value: "date,desc" },
+  { title: "Latest", value: "date,desc" },
+  { title: "Oldest", value: "date,asc" },
   { title: "A to Z", value: "name,asc" },
   { title: "Z to A", value: "name,desc" },
-  { title: "Highest", value: "amount,asc" },
-  { title: "Lowest", value: "amount,desc" },
+  { title: "Highest", value: "amount,desc" },
+  { title: "Lowest", value: "amount,asc" },
 ];
 
 export const transactionsOptions: selectArray[] = [

@@ -34,6 +34,10 @@ const Pager = (props: PaginationProps): JSX.Element => {
             backgroundColor: theme.palette.custom.grey900,
             borderColor: theme.palette.custom.grey900,
             color: theme.palette.primary.contrastText,
+            "&:hover": {
+              backgroundColor: theme.palette.custom.grey900,
+              color: theme.palette.primary.contrastText,
+            },
           },
           "&.MuiPaginationItem-previousNext": {
             pl: theme.spacing(4),

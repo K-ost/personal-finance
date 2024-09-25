@@ -32,3 +32,17 @@ export const createDate = (date: Date | string): string => {
   const year = new Date(date).getFullYear();
   return `${day} ${month} ${year}`;
 };
+
+export const getSortValue = (params: URLSearchParams): string => {
+  if (params.get("_sort") && params.get("_order")) {
+    return `${params.get("_sort")},${params.get("_order")}`;
+  }
+  return "date,desc";
+};
+
+export const getCategoryValue = (params: URLSearchParams): string => {
+  if (params.get("category")) {
+    return `${params.get("category")}`;
+  }
+  return "all";
+};
