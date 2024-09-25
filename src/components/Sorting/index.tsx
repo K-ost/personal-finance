@@ -16,12 +16,18 @@ import { useSearchParams } from "react-router-dom";
 const SortBody = styled(Box)<BoxProps>(({ theme }) => ({
   alignItems: "center",
   display: "flex",
+  marginBottom: theme.spacing(6),
   [theme.breakpoints.down("sm")]: {
     display: "block",
   },
 }));
 
-const Sorting = (): JSX.Element => {
+type SortingProps = {
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Sorting = (props: SortingProps): JSX.Element => {
+  const { setSearch } = props;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   let [searchParams, setSearchParams] = useSearchParams();
@@ -45,7 +51,7 @@ const Sorting = (): JSX.Element => {
           mb: isMobile ? theme.spacing(4) : 0,
         }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          console.log(e.target.value)
+          setSearch(e.target.value)
         }
       />
 

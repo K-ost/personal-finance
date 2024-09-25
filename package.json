@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "concurrently \"npm run dev\" \"json-server-auth -p 8000 db.json\"",
+    "server": "concurrently \"npm run dev\" \"json-server-auth -p 8000 -d 300 db.json\"",
     "test": "vitest"
   },
   "dependencies": {

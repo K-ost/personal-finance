@@ -1,15 +1,7 @@
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import { createDate } from "../../utils/utils";
+import { Table, TableBody, TableContainer } from "@mui/material";
 import { Transaction } from "../../types";
+import Head from "./Head";
+import Row from "./Row";
 
 type TransactionsTableProps = {
   list: Transaction[];
@@ -19,24 +11,12 @@ const TransactionsTable = (props: TransactionsTableProps): JSX.Element => {
   const { list } = props;
 
   return (
-    <TableContainer>
+    <TableContainer sx={{ mb: 12 }}>
       <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Recipient / Sender</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Transaction Date</TableCell>
-            <TableCell align="right">Amount</TableCell>
-          </TableRow>
-        </TableHead>
+        <Head />
         <TableBody>
-          {list.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.category}</TableCell>
-              <TableCell>{createDate(row.date)}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
-            </TableRow>
+          {list.map((transaction) => (
+            <Row key={transaction.id} transaction={transaction} />
           ))}
         </TableBody>
       </Table>
