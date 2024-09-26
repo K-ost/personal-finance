@@ -19,7 +19,7 @@ export const transactionsOptions: selectArray[] = [
   { title: "Groceries", value: "Groceries" },
   { title: "Dining Out", value: "Dining Out" },
   { title: "Transportation", value: "Transportation" },
-  { title: "Personal Care", value: "Personal-care" },
+  { title: "Personal Care", value: "Personal Care" },
   { title: "Education", value: "Education" },
   { title: "Lifestyle", value: "Lifestyle" },
   { title: "Shopping", value: "Shopping" },
