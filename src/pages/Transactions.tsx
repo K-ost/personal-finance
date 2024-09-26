@@ -51,7 +51,7 @@ const Transactions = (): JSX.Element => {
         {isSuccess && <TransactionsTable list={data.data} />}
         {isLoading && <TransactionsLoading count={pageCount} />}
 
-        {isSuccess && (
+        {isSuccess && data.count > pageCount && (
           <Pager
             count={Math.ceil(data.count / pageCount)}
             page={currentPage}
