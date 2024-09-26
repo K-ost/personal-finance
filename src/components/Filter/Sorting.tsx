@@ -34,6 +34,7 @@ const Sorting = (props: StackProps): JSX.Element => {
       <CustomInput
         value={sortValue}
         select
+        fullWidth
         sx={{
           m: 0,
           mr: isMobile ? 0 : theme.spacing(6),

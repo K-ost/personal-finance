@@ -16,7 +16,7 @@ const Amount = (props: AmountProps): JSX.Element => {
       sx={{
         color: isPositive
           ? theme.palette.custom.secondary.green
-          : theme.palette.primary.main,
+          : theme.palette.error.main,
         display: "inline",
       }}
     >

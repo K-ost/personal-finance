@@ -33,6 +33,7 @@ const FilterCategory = (props: StackProps): JSX.Element => {
       <CustomInput
         value={currentValue}
         select
+        fullWidth
         sx={{ m: 0 }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           if (e.target.value !== "all") {

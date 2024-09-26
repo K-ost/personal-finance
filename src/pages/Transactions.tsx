@@ -10,6 +10,7 @@ import Filter from "../components/Filter";
 import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
 import FilterCategory from "../components/Filter/FilterCategory";
+import TransactionsLoading from "../components/TransactionsTable/Loading";
 
 const pageCount = 10;
 
@@ -48,7 +49,7 @@ const Transactions = (): JSX.Element => {
         </Filter>
 
         {isSuccess && <TransactionsTable list={data.data} />}
-        {isLoading && "Loading..."}
+        {isLoading && <TransactionsLoading count={pageCount} />}
 
         {isSuccess && (
           <Pager
