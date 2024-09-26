@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { transactionPrice } from "../utils/utils";
 
 type AmountProps = {
@@ -8,17 +8,16 @@ type AmountProps = {
 const Amount = (props: AmountProps): JSX.Element => {
   const { amount } = props;
   const isPositive = amount > 0;
-  const theme = useTheme();
   const result = transactionPrice(amount);
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         color: isPositive
           ? theme.palette.custom.secondary.green
           : theme.palette.error.main,
         display: "inline",
-      }}
+      })}
     >
       {result}
     </Box>

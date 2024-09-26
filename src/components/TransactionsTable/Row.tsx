@@ -1,4 +1,4 @@
-import { styled, TableCell, TableRow, useTheme } from "@mui/material";
+import { styled, TableCell, TableRow } from "@mui/material";
 import { Transaction } from "../../types";
 import { createDate } from "../../utils/utils";
 import Amount from "../../ui/Amount";
@@ -19,7 +19,6 @@ const Cell = styled(TableCell)(({ theme }) => ({
 
 const Row = (props: RowProps): JSX.Element => {
   const { transaction } = props;
-  const theme = useTheme();
 
   return (
     <TableRow>
@@ -30,12 +29,12 @@ const Row = (props: RowProps): JSX.Element => {
       <Cell>{createDate(transaction.date)}</Cell>
       <Cell
         align="right"
-        sx={{
+        sx={(theme) => ({
           color: theme.palette.primary.main,
           fontSize: theme.typography.body1.fontSize,
           lineHeight: theme.typography.body1.lineHeight,
           fontWeight: 700,
-        }}
+        })}
       >
         <Amount amount={transaction.amount} />
       </Cell>

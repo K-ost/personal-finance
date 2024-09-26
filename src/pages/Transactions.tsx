@@ -1,4 +1,10 @@
-import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import MainLayout from "../components/MainLayout";
 import Wrap from "../ui/Wrap";
@@ -25,7 +31,7 @@ const Transactions = (): JSX.Element => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { data, isLoading, isSuccess } = useGetData<Transaction[]>({
+  const { data, isLoading, isSuccess, isError } = useGetData<Transaction[]>({
     key: ["transactions", params, currentPage.toString()],
     uri: `/transactions?_start=${from}&_end=${to}${
       params.length ? "&" + params : ""
@@ -50,6 +56,12 @@ const Transactions = (): JSX.Element => {
 
         {isSuccess && <TransactionsTable list={data.data} />}
         {isLoading && <TransactionsLoading count={pageCount} />}
+        {isError && (
+          <Alert variant="filled" severity="error" color="error">
+            <AlertTitle>500 - Server error.</AlertTitle>
+            Try to visit this page little later
+          </Alert>
+        )}
 
         {isSuccess && data.count > pageCount && (
           <Pager
