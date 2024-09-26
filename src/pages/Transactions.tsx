@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import MainLayout from "../components/MainLayout";
@@ -15,16 +14,18 @@ import FilterCategory from "../components/Filter/FilterCategory";
 const pageCount = 10;
 
 const Transactions = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1);
-  const [searchparams] = useSearchParams();
-  const to = page * pageCount;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = searchParams.get("page")
+    ? Number(searchParams.get("page"))
+    : 1;
+  const to = currentPage * pageCount;
   const from = to - pageCount;
-  const params = searchparams.toString();
+  const params = searchParams.toString();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { data, isLoading, isSuccess } = useGetData<Transaction[]>({
-    key: ["transactions", params],
+    key: ["transactions", params, currentPage.toString()],
     uri: `/transactions?_start=${from}&_end=${to}${
       params.length ? "&" + params : ""
     }`,
@@ -52,7 +53,15 @@ const Transactions = (): JSX.Element => {
         {isSuccess && (
           <Pager
             count={Math.ceil(data.count / pageCount)}
-            onChange={(__, page: number) => setPage(page)}
+            page={currentPage}
+            onChange={(__, page: number) => {
+              if (page > 1) {
+                searchParams.set("page", page.toString());
+              } else {
+                searchParams.delete("page");
+              }
+              setSearchParams(searchParams);
+            }}
           />
         )}
       </Wrap>
