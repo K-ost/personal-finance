@@ -1,14 +1,20 @@
 import { describe, expect, it } from "vitest";
-import { getLocalPrice, transactionPrice } from "../utils/utils";
+import {
+  getLocalPrice,
+  getProgressValue,
+  transactionPrice,
+} from "../utils/utils";
 
 describe("Utils", () => {
   it("getLocalPrice", () => {
     const result = getLocalPrice(100);
     const result2 = getLocalPrice(1000.45);
     const result3 = getLocalPrice(500000.1);
+    const result4 = getLocalPrice(100, true);
     expect(result).toStrictEqual("$100.00");
     expect(result2).toStrictEqual("$1,000.45");
     expect(result3).toStrictEqual("$500,000.10");
+    expect(result4).toStrictEqual("$100");
   });
 
   it("transactionPrice", () => {
@@ -22,5 +28,10 @@ describe("Utils", () => {
     expect(result3).toStrictEqual("-$65.00");
     expect(result4).toStrictEqual("-$5.00");
     expect(result5).toStrictEqual("+$3,358.00");
+  });
+
+  it("getProgressValue", () => {
+    const result = getProgressValue(50, 1000);
+    expect(result).toStrictEqual(5);
   });
 });

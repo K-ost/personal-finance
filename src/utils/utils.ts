@@ -1,5 +1,10 @@
-export const getLocalPrice = (num: number): string => {
-  return "$" + num.toLocaleString("en-US", { minimumFractionDigits: 2 });
+export const getLocalPrice = (num: number, nodigits?: boolean): string => {
+  return (
+    "$" +
+    num.toLocaleString("en-US", {
+      minimumFractionDigits: nodigits ? undefined : 2,
+    })
+  );
 };
 
 export const transactionPrice = (num: number): string => {
@@ -31,6 +36,13 @@ export const createDate = (date: Date | string): string => {
   const day = new Date(date).getDate();
   const year = new Date(date).getFullYear();
   return `${day} ${month} ${year}`;
+};
+
+export const getProgressValue = (total: number, target: number): number => {
+  const output = ((total * 100) / target).toLocaleString("en-US", {
+    maximumFractionDigits: 2,
+  });
+  return Number(output);
 };
 
 export const getSortValue = (params: URLSearchParams): string => {
