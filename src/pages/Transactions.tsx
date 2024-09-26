@@ -34,29 +34,26 @@ const Transactions = (): JSX.Element => {
     <MainLayout>
       <Typography variant="h1">Transactions</Typography>
       <Wrap>
+        <Filter>
+          <Search
+            sx={{
+              m: 0,
+              mr: isMobile ? 0 : theme.spacing(6),
+              mb: isMobile ? theme.spacing(4) : 0,
+            }}
+          />
+          <Sorting sx={{ ml: "auto" }} />
+          <FilterCategory />
+        </Filter>
+
+        {isSuccess && <TransactionsTable list={data.data} />}
         {isLoading && "Loading..."}
 
         {isSuccess && (
-          <>
-            <Filter>
-              <Search
-                sx={{
-                  m: 0,
-                  mr: isMobile ? 0 : theme.spacing(6),
-                  mb: isMobile ? theme.spacing(4) : 0,
-                }}
-              />
-              <Sorting sx={{ ml: "auto" }} />
-              <FilterCategory />
-            </Filter>
-
-            <TransactionsTable list={data.data} />
-
-            <Pager
-              count={Math.ceil(data.count / pageCount)}
-              onChange={(__, page: number) => setPage(page)}
-            />
-          </>
+          <Pager
+            count={Math.ceil(data.count / pageCount)}
+            onChange={(__, page: number) => setPage(page)}
+          />
         )}
       </Wrap>
     </MainLayout>
