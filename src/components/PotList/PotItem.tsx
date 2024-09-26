@@ -4,6 +4,8 @@ import {
   IconButton,
   LinearProgress,
   LinearProgressProps,
+  Menu,
+  MenuItem,
   Stack,
   styled,
   Typography,
@@ -11,9 +13,12 @@ import {
 } from "@mui/material";
 import Btn from "../../ui/Btn";
 import ellipsis from "../../assets/icon-ellipsis.svg";
+import { useState } from "react";
+import { getLocalPrice } from "../../utils/utils";
+import { Pot } from "../../types";
 
-type PotProps = {
-  color: string;
+type PotItemProps = {
+  pot: Pot;
 };
 
 const PotBox = styled(Box)<BoxProps>(({ theme }) => ({
@@ -48,21 +53,58 @@ const Progress = styled(LinearProgress)<
   },
 }));
 
-const Pot = (props: PotProps): JSX.Element => {
-  const { color } = props;
+const PotItem = (props: PotItemProps): JSX.Element => {
+  const { pot } = props;
   const theme = useTheme();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <PotBox>
       <Stack direction="row" alignItems="center" mb={8}>
-        <Circle color={color} />
+        <Circle color={pot.theme} />
         <Typography variant="h2" component="div" m={0}>
           Title
         </Typography>
 
-        <IconButton sx={{ ml: "auto", width: 32, padding: 0, height: 32 }}>
+        <IconButton
+          sx={{ ml: "auto", width: 32, padding: 0, height: 32 }}
+          onClick={handleClick}
+        >
           <img src={ellipsis} alt="" />
         </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleClose}>Edit Pot</MenuItem>
+          <MenuItem
+            sx={{ color: theme.palette.error.main }}
+            onClick={handleClose}
+          >
+            Delete Pot
+          </MenuItem>
+        </Menu>
       </Stack>
 
       <Stack
@@ -75,11 +117,11 @@ const Pot = (props: PotProps): JSX.Element => {
           Total Saved
         </Typography>
         <Typography variant="h1" m={0} component="div">
-          $Amount
+          {getLocalPrice(100)}
         </Typography>
       </Stack>
 
-      <Progress variant="determinate" value={50} range={color} />
+      <Progress variant="determinate" value={50} range={pot.theme} />
 
       <Stack
         color={theme.palette.custom.grey500}
@@ -92,7 +134,7 @@ const Pot = (props: PotProps): JSX.Element => {
           50%
         </Typography>
         <Typography variant="body2" component="div">
-          Target of $2,000
+          Target of {getLocalPrice(1000)}
         </Typography>
       </Stack>
 
@@ -108,4 +150,4 @@ const Pot = (props: PotProps): JSX.Element => {
   );
 };
 
-export default Pot;
+export default PotItem;

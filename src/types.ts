@@ -21,6 +21,7 @@ export type Pot = {
   target: number;
   total: number;
   theme: string;
+  id: number;
 };
 
 export type UserRole = "admin" | "user";
