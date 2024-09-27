@@ -1,10 +1,10 @@
 import MainLayout from "../components/MainLayout";
-import { Typography } from "@mui/material";
+import PageHeader from "../ui/PageHeader";
 
 const Bills = (): JSX.Element => {
   return (
     <MainLayout>
-      <Typography variant="h1">Recurring Bills</Typography>
+      <PageHeader title="Recurring Bills" />
     </MainLayout>
   );
 };

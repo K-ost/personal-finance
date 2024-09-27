@@ -1,10 +1,4 @@
-import {
-  Alert,
-  AlertTitle,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Alert, AlertTitle, useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import MainLayout from "../components/MainLayout";
 import Wrap from "../ui/Wrap";
@@ -17,6 +11,7 @@ import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
 import FilterCategory from "../components/Filter/FilterCategory";
 import TransactionsLoading from "../components/TransactionsTable/Loading";
+import PageHeader from "../ui/PageHeader";
 
 const pageCount = 10;
 
@@ -40,7 +35,7 @@ const Transactions = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <Typography variant="h1">Transactions</Typography>
+      <PageHeader title="Transactions" />
       <Wrap>
         <Filter>
           <Search

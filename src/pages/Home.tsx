@@ -1,8 +1,9 @@
-import { Grid2, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Grid2, useMediaQuery, useTheme } from "@mui/material";
 import Btn from "../ui/Btn";
 import { useAuthStore } from "../store/useAuthStore";
 import MainLayout from "../components/MainLayout";
 import Balance from "../ui/Balance";
+import PageHeader from "../ui/PageHeader";
 
 const Home = (): JSX.Element => {
   const { setLogout } = useAuthStore();
@@ -11,7 +12,7 @@ const Home = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <Typography variant="h1">Home</Typography>
+      <PageHeader title="Home Page" />
 
       <Grid2 container spacing={isMobile ? 3 : 6}>
         <Grid2 size={{ xs: 12, sm: 4 }}>

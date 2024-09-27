@@ -1,10 +1,13 @@
 import MainLayout from "../components/MainLayout";
-import { Typography } from "@mui/material";
+import Btn from "../ui/Btn";
+import PageHeader from "../ui/PageHeader";
 
 const Budgets = (): JSX.Element => {
   return (
     <MainLayout>
-      <Typography variant="h1">Budgets</Typography>
+      <PageHeader title="Budgets">
+        <Btn>+ Add New Budget</Btn>
+      </PageHeader>
     </MainLayout>
   );
 };

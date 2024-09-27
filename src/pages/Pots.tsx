@@ -1,9 +1,11 @@
 import MainLayout from "../components/MainLayout";
-import { Alert, AlertTitle, Typography } from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 import useGetData from "../hooks/useGetData";
 import PotsList from "../components/Pots";
 import PotLoading from "../components/Pots/PotLoading";
 import { Pot } from "../types";
+import PageHeader from "../ui/PageHeader";
+import Btn from "../ui/Btn";
 
 const Pots = (): JSX.Element => {
   const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
@@ -13,7 +15,9 @@ const Pots = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <Typography variant="h1">Pots</Typography>
+      <PageHeader title="Pots">
+        <Btn>+ Add New Pot</Btn>
+      </PageHeader>
 
       {isSuccess && <PotsList data={data.data} />}
       {isLoading && <PotLoading />}
