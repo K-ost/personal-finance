@@ -24,6 +24,7 @@ const Progress = styled(LinearProgress)<
   "& .MuiLinearProgress-bar": {
     backgroundColor: range,
     borderRadius: 8,
+    overflow: "hidden",
   },
 }));
 
@@ -44,8 +45,13 @@ const PotProgress = (props: PotProgressProps): JSX.Element => {
         justifyContent="space-between"
         mb={10}
       >
-        <Typography variant="body2" component="div" fontWeight={700}>
-          ${progressValue}
+        <Typography
+          variant="body2"
+          component="div"
+          fontWeight={700}
+          color={color}
+        >
+          {progressValue}%
         </Typography>
         <Typography variant="body2" component="div">
           Target of {getLocalPrice(target, true)}

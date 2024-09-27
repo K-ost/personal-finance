@@ -17,6 +17,8 @@ const Pots = (): JSX.Element => {
     uri: "/pots",
   });
 
+  const usedPotsThemes = data?.data.map((el) => el.theme);
+
   return (
     <MainLayout>
       <PageHeader title="Pots">
@@ -32,7 +34,11 @@ const Pots = (): JSX.Element => {
         </Alert>
       )}
 
-      <AddPot close={() => setAddDialog(false)} open={addDialog} />
+      <AddPot
+        close={() => setAddDialog(false)}
+        open={addDialog}
+        usedThemes={usedPotsThemes ?? []}
+      />
     </MainLayout>
   );
 };

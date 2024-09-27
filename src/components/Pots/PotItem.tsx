@@ -14,6 +14,8 @@ import PotPrice from "./PotPrice";
 import MenuIcon from "../../ui/MenuIcon";
 import EditPot from "./EditPot";
 import DeletePot from "./DeletePot";
+import Withdraw from "./Withdraw";
+import TopUp from "./TopUp";
 
 type PotItemProps = {
   pot: Pot;
@@ -43,6 +45,8 @@ const PotItem = (props: PotItemProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [editDialog, setEditDialog] = useState<boolean>(false);
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
+  const [topUpDialog, setTopUpDialog] = useState<boolean>(false);
+  const [withdrawDialog, setWithdrawDialog] = useState<boolean>(false);
 
   const editHandler = () => {
     setAnchorEl(null);
@@ -75,7 +79,6 @@ const PotItem = (props: PotItemProps): JSX.Element => {
         </Stack>
 
         <PotPrice total={pot.total} />
-
         <PotProgress color={pot.theme} target={pot.target} total={pot.total} />
 
         <Stack direction="row">
@@ -83,19 +86,33 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             color="secondary"
             fullWidth
             sx={(theme) => ({ mr: theme.spacing(4) })}
+            onClick={() => setTopUpDialog(true)}
           >
             + Add Money
           </Btn>
-          <Btn color="secondary" fullWidth>
+          <Btn
+            color="secondary"
+            fullWidth
+            onClick={() => setWithdrawDialog(true)}
+          >
             Withdraw
           </Btn>
         </Stack>
       </PotBox>
 
       <EditPot close={() => setEditDialog(false)} open={editDialog} pot={pot} />
+
       <DeletePot
         close={() => setDeleteDialog(false)}
         open={deleteDialog}
+        pot={pot}
+      />
+
+      <TopUp close={() => setTopUpDialog(false)} open={topUpDialog} pot={pot} />
+
+      <Withdraw
+        close={() => setWithdrawDialog(false)}
+        open={withdrawDialog}
         pot={pot}
       />
     </>

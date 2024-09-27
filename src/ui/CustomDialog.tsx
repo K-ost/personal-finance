@@ -38,7 +38,9 @@ const CustomDialog = (props: CustomDialogProps): JSX.Element => {
         },
       })}
     >
-      <Typography variant={isMobile ? "h2" : "h1"}>{title}</Typography>
+      <Typography sx={{ mr: 2 }} variant={isMobile ? "h2" : "h1"}>
+        {title}
+      </Typography>
       <IconButton
         onClick={close}
         sx={(theme) => ({
