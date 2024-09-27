@@ -6,7 +6,7 @@ type PotListProps = {
   data: Pot[];
 };
 
-const PotList = (props: PotListProps): JSX.Element => {
+const PotsList = (props: PotListProps): JSX.Element => {
   const { data } = props;
 
   return (
@@ -20,4 +20,4 @@ const PotList = (props: PotListProps): JSX.Element => {
   );
 };
 
-export default PotList;
+export default PotsList;

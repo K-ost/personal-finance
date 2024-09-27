@@ -1,7 +1,7 @@
+import { useState } from "react";
 import {
   Box,
   BoxProps,
-  InputAdornment,
   MenuItem,
   Stack,
   styled,
@@ -12,9 +12,8 @@ import { Pot } from "../../types";
 import PotProgress from "./PotProgress";
 import PotPrice from "./PotPrice";
 import MenuIcon from "../../ui/MenuIcon";
-import { useState } from "react";
-import CustomDialog from "../../ui/CustomDialog";
-import CustomInput from "../../ui/CustomInput";
+import EditPot from "./EditPot";
+import DeletePot from "./DeletePot";
 
 type PotItemProps = {
   pot: Pot;
@@ -29,7 +28,7 @@ const PotBox = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }));
 
-const Circle = styled(Box)<BoxProps & { color: string }>(
+export const Circle = styled(Box)<BoxProps & { color: string }>(
   ({ theme, color }) => ({
     backgroundColor: color,
     borderRadius: "50%",
@@ -43,10 +42,16 @@ const PotItem = (props: PotItemProps): JSX.Element => {
   const { pot } = props;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [editDialog, setEditDialog] = useState<boolean>(false);
+  const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
 
   const editHandler = () => {
     setAnchorEl(null);
     setEditDialog(true);
+  };
+
+  const deleteHandler = () => {
+    setAnchorEl(null);
+    setDeleteDialog(true);
   };
 
   return (
@@ -62,7 +67,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             <MenuItem onClick={editHandler}>Edit Pot</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
-              onClick={() => setAnchorEl(null)}
+              onClick={deleteHandler}
             >
               Delete Pot
             </MenuItem>
@@ -87,32 +92,12 @@ const PotItem = (props: PotItemProps): JSX.Element => {
         </Stack>
       </PotBox>
 
-      <CustomDialog
-        open={editDialog}
-        title="Edit Pot"
-        close={() => setEditDialog(false)}
-      >
-        <Typography variant="body1">
-          If your saving targets change, feel free to update your pots.
-        </Typography>
-        <CustomInput
-          label="Pot Name"
-          helperText="16 characters left"
-          defaultValue={pot.name}
-        />
-        <CustomInput
-          label="Target"
-          defaultValue={pot.target}
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">$</InputAdornment>
-              ),
-            },
-          }}
-        />
-        <Btn fullWidth>Save Changes</Btn>
-      </CustomDialog>
+      <EditPot close={() => setEditDialog(false)} open={editDialog} pot={pot} />
+      <DeletePot
+        close={() => setDeleteDialog(false)}
+        open={deleteDialog}
+        pot={pot}
+      />
     </>
   );
 };

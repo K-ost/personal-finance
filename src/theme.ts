@@ -80,6 +80,7 @@ export const theme = createTheme({
       fontSize: 20,
       fontWeight: 700,
       lineHeight: "120%",
+      marginBottom: 20,
     },
     h3: {
       fontSize: 16,

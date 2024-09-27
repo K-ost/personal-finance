@@ -27,7 +27,7 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
     fontFamily: theme.typography.fontFamily,
     lineHeight: theme.typography.body1.lineHeight,
     height: 45,
-    padding: "8px 20px",
+    padding: "8px 18px",
     width: "100%",
     "&:placeholder": {
       color: theme.palette.custom.beige500,
@@ -58,7 +58,10 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
     textAlign: "right",
   },
   "& .MuiInputAdornment-root": {
-    marginRight: theme.spacing(1),
+    margin: theme.spacing(1),
+    "&:first-of-type": {
+      marginRight: 0,
+    },
   },
   "& .MuiOutlinedInput-input.MuiInputBase-input.MuiSelect-select": {
     height: 45,
@@ -67,6 +70,8 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
     paddingTop: 0,
     paddingRight: 46,
     paddingBottom: 0,
+    display: "flex",
+    alignItems: "center",
   },
   "& .MuiSelect-icon": {
     fill: theme.palette.primary.main,

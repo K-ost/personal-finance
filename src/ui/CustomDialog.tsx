@@ -1,4 +1,10 @@
-import { Dialog, IconButton, Typography } from "@mui/material";
+import {
+  Dialog,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import iconClose from "../assets/icon-close-modal.svg";
 
 type CustomDialogProps = {
@@ -10,6 +16,8 @@ type CustomDialogProps = {
 
 const CustomDialog = (props: CustomDialogProps): JSX.Element => {
   const { children, close, open, title } = props;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Dialog
@@ -30,7 +38,7 @@ const CustomDialog = (props: CustomDialogProps): JSX.Element => {
         },
       })}
     >
-      <Typography variant="h1">{title}</Typography>
+      <Typography variant={isMobile ? "h2" : "h1"}>{title}</Typography>
       <IconButton
         onClick={close}
         sx={(theme) => ({
