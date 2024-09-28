@@ -1,5 +1,5 @@
 import CustomDialog from "../../ui/CustomDialog";
-import { InputAdornment, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
 import Btn from "../../ui/Btn";
 import { Pot } from "../../types";
@@ -32,12 +32,9 @@ const Withdraw = (props: WithdrawProps): JSX.Element => {
       <PotProgress color={pot.theme} target={pot.target} total={amount} />
 
       <CustomInput
+        type="number"
         label="Amount to Withdraw"
-        slotProps={{
-          input: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          },
-        }}
+        adornment="$"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setAmount(pot.total - Number(e.target.value))
         }

@@ -80,6 +80,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
           error={errors.name ? true : false}
         />
         <CustomInput
+          type="number"
           label="Target"
           adornment="$"
           inputProps={{ ...register("target", FORM_SETTINGS.target) }}

@@ -71,6 +71,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         />
 
         <CustomInput
+          type="number"
           label="Target"
           adornment="$"
           inputProps={{

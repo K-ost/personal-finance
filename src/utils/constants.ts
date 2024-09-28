@@ -22,6 +22,12 @@ export const FORM_SETTINGS = {
   },
   target: {
     required: "Required field",
-    pattern: { message: "Numbers only", value: /^\d+$/ },
+  },
+  totalTopUp: {
+    required: "Required field",
+    min: {
+      value: 10,
+      message: "It can't be less than $10",
+    },
   },
 };

@@ -1,11 +1,16 @@
 import CustomDialog from "../../ui/CustomDialog";
-import { InputAdornment, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
 import Btn from "../../ui/Btn";
 import { Pot } from "../../types";
 import PotPrice from "./PotPrice";
 import PotProgress from "./PotProgress";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { FORM_SETTINGS } from "../../utils/constants";
+import useMutateData from "../../hooks/useMutateData";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNotificationStore } from "../../store/useNotificationStore";
 
 type TopUpProps = {
   close: () => void;
@@ -15,7 +20,51 @@ type TopUpProps = {
 
 const TopUp = (props: TopUpProps): JSX.Element => {
   const { close, open, pot } = props;
-  const [amount, setAmount] = useState<number>(pot.total);
+  const [amount, setAmount] = useState<number>(0);
+  const queryClient = useQueryClient();
+  const { setNotification } = useNotificationStore();
+
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+    watch,
+  } = useForm<Pick<Pot, "total">>();
+
+  const total = watch("total") || "";
+
+  useEffect(() => {
+    setAmount(pot.total + Number(total));
+  }, [total]);
+
+  useEffect(() => {
+    setAmount(pot.total);
+  }, [pot]);
+
+  const { mutate, isPending } = useMutateData<Pot, Pick<Pot, "total">>({
+    key: ["pots"],
+    method: "PATCH",
+    uri: `/pots/${pot.id}`,
+  });
+
+  const topUpHandler = () => {
+    mutate(
+      {
+        total: amount,
+      },
+      {
+        onSuccess: () => {
+          reset(),
+            close(),
+            queryClient.invalidateQueries({
+              queryKey: ["pots"],
+            });
+          setNotification(`You've added money to your target for ${pot.name}`);
+        },
+      }
+    );
+  };
 
   return (
     <CustomDialog open={open} title={`Add to "${pot.name}"`} close={close}>
@@ -27,18 +76,27 @@ const TopUp = (props: TopUpProps): JSX.Element => {
       <PotPrice title="New Amount" total={amount} />
       <PotProgress color={pot.theme} target={pot.target} total={amount} />
 
-      <CustomInput
-        label="Amount to Withdraw"
-        slotProps={{
-          input: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          },
-        }}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setAmount(pot.total + Number(e.target.value))
-        }
-      />
-      <Btn fullWidth>Confirm Addition</Btn>
+      <form onSubmit={handleSubmit(topUpHandler)}>
+        <CustomInput
+          type="number"
+          label="Amount to Add"
+          adornment="$"
+          inputProps={{
+            ...register("total", {
+              ...FORM_SETTINGS.totalTopUp,
+              max: {
+                value: pot.target - pot.total,
+                message: "It can't be more than target",
+              },
+            }),
+          }}
+          error={errors.total ? true : false}
+          helperText={errors.total && errors.total.message}
+        />
+        <Btn type="submit" fullWidth>
+          {isPending ? "Loading..." : "Confirm Addition"}
+        </Btn>
+      </form>
     </CustomDialog>
   );
 };
