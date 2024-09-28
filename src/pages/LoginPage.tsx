@@ -11,6 +11,7 @@ import { AuthType } from "../types";
 import { useAuthStore } from "../store/useAuthStore";
 import { useEffect } from "react";
 import { useNotificationStore } from "../store/useNotificationStore";
+import { FORM_SETTINGS } from "../utils/constants";
 
 type FormData = {
   email: string;
@@ -58,13 +59,7 @@ const LoginPage = (): JSX.Element => {
             label="Email"
             type="email"
             inputProps={{
-              ...register("email", {
-                required: "Required field",
-                pattern: {
-                  message: "Incorrect Email",
-                  value: /^\S+@\S+$/i,
-                },
-              }),
+              ...register("email", FORM_SETTINGS.email),
             }}
             error={errors.email ? true : false}
             helperText={errors.email?.message}
@@ -74,13 +69,7 @@ const LoginPage = (): JSX.Element => {
             label="Password"
             sx={{ mb: "32px" }}
             inputProps={{
-              ...register("password", {
-                required: "Required field",
-                minLength: {
-                  value: 6,
-                  message: "Should have 6 or more characters",
-                },
-              }),
+              ...register("password", FORM_SETTINGS.password),
             }}
             error={errors.password ? true : false}
             helperText={errors.password?.message}

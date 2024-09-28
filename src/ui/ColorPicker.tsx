@@ -4,16 +4,20 @@ import { Circle } from "../components/Pots/PotItem";
 import { potsColorOptions } from "../components/Pots/constants";
 import { usePotsStore } from "../store/usePotsStore";
 
-const ColorPicker = (props: TextFieldProps): JSX.Element => {
+type ColorPickerProps = TextFieldProps & {
+  defaultval?: string;
+};
+
+const ColorPicker = (props: ColorPickerProps): JSX.Element => {
+  const { defaultval } = props;
   const { usedThemes } = usePotsStore();
 
+  const defaultValue = defaultval
+    ? defaultval
+    : potsColorOptions.filter((el) => !usedThemes.includes(el.value))[0].value;
+
   return (
-    <CustomInput
-      label="Theme"
-      defaultValue={potsColorOptions[0].value}
-      select
-      {...props}
-    >
+    <CustomInput label="Theme" defaultValue={defaultValue} select {...props}>
       {potsColorOptions.map((option) => {
         const isUsed = usedThemes.some((el) => el === option.value);
         return (
