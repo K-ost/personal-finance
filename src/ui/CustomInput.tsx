@@ -1,4 +1,13 @@
-import { styled, TextField, TextFieldProps } from "@mui/material";
+import {
+  InputAdornment,
+  styled,
+  TextField,
+  TextFieldProps,
+} from "@mui/material";
+
+type CustomInputProps = TextFieldProps & {
+  adornment?: string;
+};
 
 const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
   display: "block",
@@ -80,9 +89,25 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
   },
 }));
 
-const CustomInput = (props: TextFieldProps): JSX.Element => {
+const CustomInput = (props: CustomInputProps): JSX.Element => {
+  const { adornment } = props;
   return (
-    <Input variant="outlined" InputLabelProps={{ shrink: true }} {...props} />
+    <Input
+      variant="outlined"
+      InputLabelProps={{ shrink: true }}
+      slotProps={
+        adornment
+          ? {
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">{adornment}</InputAdornment>
+                ),
+              },
+            }
+          : undefined
+      }
+      {...props}
+    />
   );
 };
 

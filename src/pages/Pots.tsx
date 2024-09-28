@@ -7,17 +7,26 @@ import { Pot } from "../types";
 import PageHeader from "../ui/PageHeader";
 import Btn from "../ui/Btn";
 import AddPot from "../components/Pots/AddPot";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePotsStore } from "../store/usePotsStore";
 
 const Pots = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
+  const { setUsedThemes } = usePotsStore();
 
   const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
     key: ["pots"],
     uri: "/pots",
   });
 
-  const usedPotsThemes = data?.data.map((el) => el.theme);
+  useEffect(() => {
+    if (isSuccess) {
+      setUsedThemes(data.data.map((el) => el.theme));
+    }
+    return () => {
+      setUsedThemes([]);
+    };
+  }, [data, isSuccess]);
 
   return (
     <MainLayout>
@@ -34,11 +43,7 @@ const Pots = (): JSX.Element => {
         </Alert>
       )}
 
-      <AddPot
-        close={() => setAddDialog(false)}
-        open={addDialog}
-        usedThemes={usedPotsThemes ?? []}
-      />
+      <AddPot close={() => setAddDialog(false)} open={addDialog} />
     </MainLayout>
   );
 };

@@ -1,10 +1,9 @@
 import CustomDialog from "../../ui/CustomDialog";
-import { InputAdornment, MenuItem, Typography } from "@mui/material";
+import { InputAdornment, Typography } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
 import Btn from "../../ui/Btn";
-import { potsOptions } from "./constants";
 import { Pot } from "../../types";
-import { Circle } from "./PotItem";
+import ColorPicker from "../../ui/ColorPicker";
 
 type EditPotProps = {
   close: () => void;
@@ -24,23 +23,8 @@ const EditPot = (props: EditPotProps): JSX.Element => {
         helperText="16 characters left"
         defaultValue={pot.name}
       />
-      <CustomInput
-        label="Target"
-        defaultValue={pot.target}
-        slotProps={{
-          input: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          },
-        }}
-      />
-      <CustomInput label="Theme" defaultValue={pot.theme} select>
-        {potsOptions.map((option) => (
-          <MenuItem key={option.name} value={option.value}>
-            <Circle color={option.value} />
-            {option.name}
-          </MenuItem>
-        ))}
-      </CustomInput>
+      <CustomInput label="Target" defaultValue={pot.target} adornment="$" />
+      <ColorPicker />
       <Btn fullWidth>Save Changes</Btn>
     </CustomDialog>
   );
