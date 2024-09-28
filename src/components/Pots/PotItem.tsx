@@ -14,8 +14,7 @@ import PotPrice from "./PotPrice";
 import MenuIcon from "../../ui/MenuIcon";
 import EditPot from "./EditPot";
 import DeletePot from "./DeletePot";
-import Withdraw from "./Withdraw";
-import TopUp from "./TopUp";
+import ChangeBalance from "./ChangeBalance";
 
 type PotItemProps = {
   pot: Pot;
@@ -87,6 +86,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             fullWidth
             sx={(theme) => ({ mr: theme.spacing(4) })}
             onClick={() => setTopUpDialog(true)}
+            disabled={pot.total > pot.target - 10}
           >
             + Add Money
           </Btn>
@@ -94,6 +94,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             color="secondary"
             fullWidth
             onClick={() => setWithdrawDialog(true)}
+            disabled={pot.total < 10}
           >
             Withdraw
           </Btn>
@@ -108,12 +109,18 @@ const PotItem = (props: PotItemProps): JSX.Element => {
         pot={pot}
       />
 
-      <TopUp close={() => setTopUpDialog(false)} open={topUpDialog} pot={pot} />
+      <ChangeBalance
+        close={() => setTopUpDialog(false)}
+        open={topUpDialog}
+        pot={pot}
+        type="topup"
+      />
 
-      <Withdraw
+      <ChangeBalance
         close={() => setWithdrawDialog(false)}
         open={withdrawDialog}
         pot={pot}
+        type="withdrawal"
       />
     </>
   );

@@ -11,15 +11,17 @@ import { FORM_SETTINGS } from "../../utils/constants";
 import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
+import { getLocalPrice } from "../../utils/utils";
 
-type TopUpProps = {
+type ChangeBalanceProps = {
   close: () => void;
   open: boolean;
   pot: Pot;
+  type: "topup" | "withdrawal";
 };
 
-const TopUp = (props: TopUpProps): JSX.Element => {
-  const { close, open, pot } = props;
+const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
+  const { close, open, pot, type } = props;
   const [amount, setAmount] = useState<number>(0);
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
@@ -35,7 +37,12 @@ const TopUp = (props: TopUpProps): JSX.Element => {
   const total = watch("total") || "";
 
   useEffect(() => {
-    setAmount(pot.total + Number(total));
+    if (type === "topup") {
+      setAmount(pot.total + Number(total));
+    }
+    if (type === "withdrawal") {
+      setAmount(pot.total - Number(total));
+    }
   }, [total]);
 
   useEffect(() => {
@@ -60,14 +67,26 @@ const TopUp = (props: TopUpProps): JSX.Element => {
             queryClient.invalidateQueries({
               queryKey: ["pots"],
             });
-          setNotification(`You've added money to your target for ${pot.name}`);
+          setNotification(
+            `You've ${
+              type === "topup" ? "added" : "withdrawn"
+            } money to your target for ${pot.name}`
+          );
         },
       }
     );
   };
 
+  const title = `${type === "topup" ? "Add to" : "Withdraw from"} ${pot.name}`;
+  const btnText = type === "topup" ? "Confirm Addition" : "Confirm Withdrawal";
+  const labelText = type === "topup" ? "Amount to Add" : "Amount to Withdraw";
+  const errorText =
+    type === "topup"
+      ? `It can't be more than ${getLocalPrice(pot.target - pot.total, true)}`
+      : `It can't be more than ${getLocalPrice(pot.total, true)}`;
+
   return (
-    <CustomDialog open={open} title={`Add to "${pot.name}"`} close={close}>
+    <CustomDialog open={open} title={title} close={close}>
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
         hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.
@@ -79,14 +98,14 @@ const TopUp = (props: TopUpProps): JSX.Element => {
       <form onSubmit={handleSubmit(topUpHandler)}>
         <CustomInput
           type="number"
-          label="Amount to Add"
+          label={labelText}
           adornment="$"
           inputProps={{
             ...register("total", {
-              ...FORM_SETTINGS.totalTopUp,
+              ...FORM_SETTINGS.totalChange,
               max: {
-                value: pot.target - pot.total,
-                message: "It can't be more than target",
+                value: type === "topup" ? pot.target - pot.total : pot.total,
+                message: errorText,
               },
             }),
           }}
@@ -94,11 +113,11 @@ const TopUp = (props: TopUpProps): JSX.Element => {
           helperText={errors.total && errors.total.message}
         />
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : "Confirm Addition"}
+          {isPending ? "Loading..." : btnText}
         </Btn>
       </form>
     </CustomDialog>
   );
 };
 
-export default TopUp;
+export default ChangeBalance;

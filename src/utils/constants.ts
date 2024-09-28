@@ -23,7 +23,7 @@ export const FORM_SETTINGS = {
   target: {
     required: "Required field",
   },
-  totalTopUp: {
+  totalChange: {
     required: "Required field",
     min: {
       value: 10,

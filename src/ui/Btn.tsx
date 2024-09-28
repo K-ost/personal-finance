@@ -12,6 +12,9 @@ const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
   "&.MuiButton-colorSecondary:hover": {
     boxShadow: `inset 0 0 0 1px ${theme.palette.custom.beige500} !important`,
   },
+  "&:disabled": {
+    backgroundColor: theme.palette.custom.grey100,
+  },
 }));
 
 const Btn = (props: ButtonProps): JSX.Element => {
