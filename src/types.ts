@@ -1,3 +1,6 @@
+import { PieValueType } from "@mui/x-charts";
+import { MakeOptional } from "@mui/x-charts/internals";
+
 export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
 export type Balance = {
@@ -15,6 +18,15 @@ export type Transaction = {
   amount: number;
   recurring: boolean;
 };
+
+export type Budget = {
+  category: string;
+  maximum: number;
+  theme: string;
+  id: number;
+};
+
+export type ChartBudget = MakeOptional<PieValueType, "id">;
 
 export type Pot = {
   name: string;
