@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  BoxProps,
-  MenuItem,
-  Stack,
-  styled,
-  Typography,
-} from "@mui/material";
+import { Box, BoxProps, MenuItem, Stack, styled } from "@mui/material";
 import Btn from "../../ui/Btn";
 import { Pot } from "../../types";
 import PotProgress from "./PotProgress";
@@ -15,6 +8,7 @@ import MenuIcon from "../../ui/MenuIcon";
 import EditPot from "./EditPot";
 import DeletePot from "./DeletePot";
 import ChangeBalance from "./ChangeBalance";
+import IconTitle from "../../ui/IconTitle";
 
 type PotItemProps = {
   pot: Pot;
@@ -28,16 +22,6 @@ const PotBox = styled(Box)<BoxProps>(({ theme }) => ({
     padding: theme.spacing(5),
   },
 }));
-
-export const Circle = styled(Box)<BoxProps & { color: string }>(
-  ({ theme, color }) => ({
-    backgroundColor: color,
-    borderRadius: "50%",
-    height: 16,
-    marginRight: theme.spacing(4),
-    width: 16,
-  })
-);
 
 const PotItem = (props: PotItemProps): JSX.Element => {
   const { pot } = props;
@@ -61,10 +45,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
     <>
       <PotBox>
         <Stack direction="row" alignItems="center" mb={8}>
-          <Circle color={pot.theme} />
-          <Typography variant="h2" component="div" m={0}>
-            {pot.name}
-          </Typography>
+          <IconTitle color={pot.theme} title={pot.name} />
 
           <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
             <MenuItem onClick={editHandler}>Edit Pot</MenuItem>

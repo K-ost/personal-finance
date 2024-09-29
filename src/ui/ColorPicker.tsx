@@ -1,8 +1,8 @@
 import { MenuItem, TextFieldProps, Typography } from "@mui/material";
 import CustomInput from "./CustomInput";
-import { Circle } from "../components/Pots/PotItem";
 import { potsColorOptions } from "../components/Pots/constants";
 import { usePotsStore } from "../store/usePotsStore";
+import { Circle } from "./IconTitle";
 
 type ColorPickerProps = TextFieldProps & {
   defaultval?: string;
