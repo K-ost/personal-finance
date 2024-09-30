@@ -1,12 +1,15 @@
-import { Stack, Typography } from "@mui/material";
+import { CircularProgress, MenuItem, Stack, Typography } from "@mui/material";
 import IconTitle from "../../ui/IconTitle";
 import Wrap from "../../ui/Wrap";
 import BudgetAmount from "./BudgetAmount";
 import BudgetProgress from "./BudgetProgress";
-import { Budget } from "../../types";
+import { Budget, Transaction } from "../../types";
 import { getLocalPrice } from "../../utils/utils";
 import BudgetLatest from "./BudgetLatest";
 import useGetData from "../../hooks/useGetData";
+import TransactionItem from "../TransactionsTable/TransactionItem";
+import MenuIcon from "../../ui/MenuIcon";
+import { useState } from "react";
 
 type BudgetItemProps = {
   budget: Budget;
@@ -14,15 +17,32 @@ type BudgetItemProps = {
 
 const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const { budget } = props;
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const { data, isSuccess } = useGetData({
-    key: ["last_transactions"],
-    uri: `/transactions?_limit=3&category=${budget.category}`,
+  const { data, isSuccess, isLoading } = useGetData<Transaction[]>({
+    key: ["last_transactions", budget.category],
+    uri: `/transactions?_limit=3&category=${budget.category}&amount_lte=0`,
   });
 
   return (
     <Wrap sx={{ mb: 6 }}>
-      <IconTitle color={budget.theme} title={budget.category} sx={{ mb: 4 }} />
+      <Stack direction="row" alignItems="center">
+        <IconTitle
+          color={budget.theme}
+          title={budget.category}
+          sx={{ mb: 4 }}
+        />
+        <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
+          <MenuItem onClick={() => {}}>Edit Budget</MenuItem>
+          <MenuItem
+            sx={(theme) => ({ color: theme.palette.error.main })}
+            onClick={() => {}}
+          >
+            Delete Budget
+          </MenuItem>
+        </MenuIcon>
+      </Stack>
+
       <Typography
         variant="body1"
         color="textSecondary"
@@ -36,9 +56,20 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
         <BudgetAmount amount={30} title="Spent" color={budget.theme} />
         <BudgetAmount amount={20} title="Remaining" />
       </Stack>
-      <BudgetLatest>
-        {isSuccess && <pre>{JSON.stringify(data.data, null, 2)}</pre>}
-      </BudgetLatest>
+      {isLoading && (
+        <Stack direction="row" justifyContent="center">
+          <CircularProgress size={30} color="primary" />
+        </Stack>
+      )}
+      {isSuccess && (
+        <BudgetLatest category={budget.category}>
+          <div>
+            {data.data.map((item) => (
+              <TransactionItem key={item.id} transaction={item} />
+            ))}
+          </div>
+        </BudgetLatest>
+      )}
     </Wrap>
   );
 };

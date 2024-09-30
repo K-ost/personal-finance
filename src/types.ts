@@ -55,6 +55,7 @@ export type AuthType = {
 
 export type CustomPalette = {
   beige500: string;
+  beige300: string;
   beige100: string;
   grey900: string;
   grey500: string;

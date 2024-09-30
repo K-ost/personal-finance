@@ -43,6 +43,7 @@ export const theme = createTheme({
     },
     custom: {
       beige500: "#98908B",
+      beige300: "#E5D1DE",
       beige100: "#F8F4F0",
       grey900: "#201F24",
       grey500: "#696868",

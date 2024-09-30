@@ -16,6 +16,8 @@ const BudgetWidget = (props: BudgetWidgetProps): JSX.Element => {
       sx={(theme) => ({
         display: "flex",
         flexDirection: "column",
+        position: "sticky",
+        top: 0,
         pt: 13,
         [theme.breakpoints.down("md")]: {
           flexDirection: "row",
