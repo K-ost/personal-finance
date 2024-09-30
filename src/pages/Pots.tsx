@@ -1,5 +1,4 @@
 import MainLayout from "../components/MainLayout";
-import { Alert, AlertTitle } from "@mui/material";
 import useGetData from "../hooks/useGetData";
 import PotsList from "../components/Pots";
 import PotLoading from "../components/Pots/PotLoading";
@@ -9,6 +8,7 @@ import Btn from "../ui/Btn";
 import AddPot from "../components/Pots/AddPot";
 import { useEffect, useState } from "react";
 import { usePotsStore } from "../store/usePotsStore";
+import AlertBox from "../ui/AlertBox";
 
 const Pots = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
@@ -37,10 +37,9 @@ const Pots = (): JSX.Element => {
       {isSuccess && <PotsList data={data.data} />}
       {isLoading && <PotLoading />}
       {isError && (
-        <Alert variant="filled" severity="error" color="error">
-          <AlertTitle>500 - Server error.</AlertTitle>
+        <AlertBox severity="error" color="error" title="Server error">
           Try to visit this page little later
-        </Alert>
+        </AlertBox>
       )}
 
       <AddPot close={() => setAddDialog(false)} open={addDialog} />

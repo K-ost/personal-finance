@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import MainLayout from "../components/MainLayout";
 import Wrap from "../ui/Wrap";
@@ -12,6 +12,7 @@ import Sorting from "../components/Filter/Sorting";
 import FilterCategory from "../components/Filter/FilterCategory";
 import TransactionsLoading from "../components/TransactionsTable/Loading";
 import PageHeader from "../ui/PageHeader";
+import AlertBox from "../ui/AlertBox";
 
 const pageCount = 10;
 
@@ -37,25 +38,26 @@ const Transactions = (): JSX.Element => {
     <MainLayout>
       <PageHeader title="Transactions" />
       <Wrap>
-        <Filter>
-          <Search
-            sx={{
-              m: 0,
-              mr: isMobile ? 0 : theme.spacing(6),
-              mb: isMobile ? theme.spacing(4) : 0,
-            }}
-          />
-          <Sorting sx={{ ml: "auto" }} />
-          <FilterCategory />
-        </Filter>
+        {!isError && (
+          <Filter>
+            <Search
+              sx={{
+                m: 0,
+                mr: isMobile ? 0 : theme.spacing(6),
+                mb: isMobile ? theme.spacing(4) : 0,
+              }}
+            />
+            <Sorting sx={{ ml: "auto" }} />
+            <FilterCategory />
+          </Filter>
+        )}
 
         {isSuccess && <TransactionsTable list={data.data} />}
         {isLoading && <TransactionsLoading count={pageCount} />}
         {isError && (
-          <Alert variant="filled" severity="error" color="error">
-            <AlertTitle>500 - Server error.</AlertTitle>
+          <AlertBox severity="error" color="error" title="Server error">
             Try to visit this page little later
-          </Alert>
+          </AlertBox>
         )}
 
         {isSuccess && data.count > pageCount && (
