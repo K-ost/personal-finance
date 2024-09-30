@@ -6,6 +6,7 @@ import BudgetProgress from "./BudgetProgress";
 import { Budget } from "../../types";
 import { getLocalPrice } from "../../utils/utils";
 import BudgetLatest from "./BudgetLatest";
+import useGetData from "../../hooks/useGetData";
 
 type BudgetItemProps = {
   budget: Budget;
@@ -13,6 +14,11 @@ type BudgetItemProps = {
 
 const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const { budget } = props;
+
+  const { data, isSuccess } = useGetData({
+    key: ["last_transactions"],
+    uri: `/transactions?_limit=3&category=${budget.category}`,
+  });
 
   return (
     <Wrap sx={{ mb: 6 }}>
@@ -31,7 +37,7 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
         <BudgetAmount amount={20} title="Remaining" />
       </Stack>
       <BudgetLatest>
-        Latest 3 transactions of this category are going to be here soon...
+        {isSuccess && <pre>{JSON.stringify(data.data, null, 2)}</pre>}
       </BudgetLatest>
     </Wrap>
   );

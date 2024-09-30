@@ -1,5 +1,5 @@
 import { Box, Stack, styled, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import BtnMore from "../../ui/BtnMore";
 
 type BudgetLatestProps = {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ const BudgetLatest = (props: BudgetLatestProps): JSX.Element => {
         <Typography color="primary" variant="h3" sx={{ m: 0 }}>
           Latest Spending
         </Typography>
-        <Link to="/transactions">See All</Link>
+        <BtnMore to="/transactions" />
       </Stack>
       {children}
     </Wrapper>

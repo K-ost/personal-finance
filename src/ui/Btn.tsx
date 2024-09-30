@@ -1,6 +1,6 @@
 import { Button, ButtonProps, styled } from "@mui/material";
 
-const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
+const CustomButton = styled(Button)(({ theme }) => ({
   borderRadius: 8,
   boxShadow: "none !important",
   fontFamily: theme.typography.fontFamily,
