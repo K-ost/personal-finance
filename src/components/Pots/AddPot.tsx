@@ -9,6 +9,7 @@ import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { FORM_SETTINGS } from "../../utils/constants";
+import { useThemesStore } from "../../store/useThemesStore";
 
 type AddPotProps = {
   close: () => void;
@@ -21,6 +22,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
   const { close, open } = props;
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
+  const { usedThemes } = useThemesStore();
 
   const {
     formState: { errors },
@@ -29,7 +31,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
     reset,
   } = useForm<FormData>();
 
-  const { data, isPending, mutate } = useMutateData<Pot, Omit<Pot, "id">>({
+  const { isPending, mutate } = useMutateData<Pot, Omit<Pot, "id">>({
     key: ["pots"],
     method: "POST",
     uri: "/pots",
@@ -81,7 +83,10 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           helperText={errors.target && errors.target.message}
         />
 
-        <ColorPicker inputProps={{ ...register("theme") }} />
+        <ColorPicker
+          inputProps={{ ...register("theme") }}
+          usedthemes={usedThemes}
+        />
         <Btn type="submit" fullWidth>
           {isPending ? "Loading..." : "Add Pot"}
         </Btn>

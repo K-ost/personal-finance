@@ -8,17 +8,30 @@ import BudgetWidget from "../components/BudgetWidget";
 import BudgetsList from "../components/Budgets";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import AlertBox from "../ui/AlertBox";
+import { useEffect, useState } from "react";
+import AddBudget from "../components/Budgets/AddBudget";
+import { useThemesStore } from "../store/useThemesStore";
 
 const Budgets = (): JSX.Element => {
+  const [addDialog, setAddDialog] = useState<boolean>(false);
+  const { setUsedThemes } = useThemesStore();
+
   const { data, isLoading, isSuccess, isError } = useGetData<Budget[]>({
     key: ["budgets"],
     uri: "/budgets",
   });
 
+  useEffect(() => {
+    if (isSuccess) {
+      setUsedThemes(data.data.map((el) => el.theme));
+    }
+    return () => setUsedThemes([]);
+  }, [data, isSuccess]);
+
   return (
     <MainLayout>
       <PageHeader title="Budgets">
-        <Btn>+ Add New Budget</Btn>
+        <Btn onClick={() => setAddDialog(true)}>+ Add New Budget</Btn>
       </PageHeader>
 
       {isLoading && <BudgetsLoading />}
@@ -40,6 +53,8 @@ const Budgets = (): JSX.Element => {
           Try to visit this page little later
         </AlertBox>
       )}
+
+      <AddBudget close={() => setAddDialog(false)} open={addDialog} />
     </MainLayout>
   );
 };

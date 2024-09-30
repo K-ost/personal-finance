@@ -10,6 +10,7 @@ import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useEffect } from "react";
+import { useThemesStore } from "../../store/useThemesStore";
 
 type EditPotProps = {
   close: () => void;
@@ -23,6 +24,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
   const { close, open, pot } = props;
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
+  const { usedThemes } = useThemesStore();
 
   const {
     formState: { errors },
@@ -90,6 +92,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
         <ColorPicker
           defaultValue={pot.theme}
           inputProps={{ ...register("theme") }}
+          usedthemes={usedThemes}
         />
         <Btn type="submit" fullWidth>
           {isPending ? "Loading..." : "Save Changes"}

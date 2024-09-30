@@ -1,6 +1,11 @@
 import { PieValueType } from "@mui/x-charts";
 import { MakeOptional } from "@mui/x-charts/internals";
 
+export type SelectOption = {
+  name: string;
+  value: string;
+};
+
 export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
 export type Balance = {

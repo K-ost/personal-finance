@@ -7,12 +7,12 @@ import PageHeader from "../ui/PageHeader";
 import Btn from "../ui/Btn";
 import AddPot from "../components/Pots/AddPot";
 import { useEffect, useState } from "react";
-import { usePotsStore } from "../store/usePotsStore";
+import { useThemesStore } from "../store/useThemesStore";
 import AlertBox from "../ui/AlertBox";
 
 const Pots = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
-  const { setUsedThemes } = usePotsStore();
+  const { setUsedThemes } = useThemesStore();
 
   const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
     key: ["pots"],
@@ -23,9 +23,7 @@ const Pots = (): JSX.Element => {
     if (isSuccess) {
       setUsedThemes(data.data.map((el) => el.theme));
     }
-    return () => {
-      setUsedThemes([]);
-    };
+    return () => setUsedThemes([]);
   }, [data, isSuccess]);
 
   return (

@@ -1,9 +1,6 @@
-type PotsColorOption = {
-  name: string;
-  value: string;
-};
+import { SelectOption } from "../../types";
 
-export const potsColorOptions: PotsColorOption[] = [
+export const potsColorOptions: SelectOption[] = [
   { name: "Green", value: "#277C78" },
   { name: "Yellow", value: "#F2CDAC" },
   { name: "Cyan", value: "#82C9D7" },

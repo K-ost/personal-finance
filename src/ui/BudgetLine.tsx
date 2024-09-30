@@ -37,6 +37,7 @@ const Item = styled(Box)<BoxProps & { bg: string }>(({ theme, bg }) => ({
 
 const BudgetLine = (props: BudgetLineProps): JSX.Element => {
   const { budget } = props;
+
   return (
     <Item bg={budget.theme}>
       <Typography variant="body1" color="textSecondary">
