@@ -29,6 +29,7 @@ export type Budget = {
   maximum: number;
   theme: string;
   id: number;
+  latest: Transaction[];
 };
 
 export type ChartBudget = MakeOptional<PieValueType, "id">;

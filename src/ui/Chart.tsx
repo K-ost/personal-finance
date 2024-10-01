@@ -1,7 +1,8 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
 import { PieChart } from "@mui/x-charts";
 import { Budget } from "../types";
-import { changeBudgetData, getChartLimit } from "../utils/utils";
+import { getChartLimit, getLocalPrice } from "../utils/utils";
+import useBudgetHook from "../hooks/useBudgetHook";
 
 type ChartProps = BoxProps & {
   data: Budget[];
@@ -43,8 +44,8 @@ const ChartText = styled(Box)<BoxProps>(() => ({
 
 const Chart = (props: ChartProps): JSX.Element => {
   const { data } = props;
-  const chartData = changeBudgetData(data);
   const limitAmount = getChartLimit(data);
+  const { chartData, spentAll } = useBudgetHook({ data });
 
   return (
     <ChartContainer {...props}>
@@ -66,7 +67,7 @@ const Chart = (props: ChartProps): JSX.Element => {
         />
         <ChartText>
           <Typography variant="h1" component="div" sx={{ mb: 2 }}>
-            $338
+            {getLocalPrice(spentAll, true)}
           </Typography>
           <Typography variant="body2" color="textSecondary">
             of {limitAmount} limit

@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { CircularProgress, MenuItem, Stack, Typography } from "@mui/material";
+import { MenuItem, Stack, Typography } from "@mui/material";
 import IconTitle from "../../ui/IconTitle";
 import Wrap from "../../ui/Wrap";
 import BudgetAmount from "./BudgetAmount";
 import BudgetProgress from "./BudgetProgress";
-import { Budget, Transaction } from "../../types";
+import { Budget } from "../../types";
 import { getLocalPrice } from "../../utils/utils";
 import BudgetLatest from "./BudgetLatest";
-import useGetData from "../../hooks/useGetData";
 import TransactionItem from "../TransactionsTable/TransactionItem";
 import MenuIcon from "../../ui/MenuIcon";
 import useBudgetHook from "../../hooks/useBudgetHook";
@@ -20,12 +19,7 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const { budget } = props;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const { data, isSuccess, isLoading } = useGetData<Transaction[]>({
-    key: ["last_transactions", budget.category],
-    uri: `/transactions?_limit=3&category=${budget.category}&amount_lte=0`,
-  });
-
-  const { percent, remaining, spent } = useBudgetHook(budget, data?.data || []);
+  const { percent, remaining, spent } = useBudgetHook({ budget });
 
   return (
     <Wrap sx={{ mb: 6 }}>
@@ -56,27 +50,17 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
       </Typography>
       <BudgetProgress value={percent} range={budget.theme} sx={{ mb: 4 }} />
 
-      {isLoading && (
-        <Stack direction="row" justifyContent="center">
-          <CircularProgress size={30} color="primary" />
-        </Stack>
-      )}
-
-      {isSuccess && (
-        <>
-          <Stack direction="row" sx={{ mb: 5 }}>
-            <BudgetAmount amount={spent} title="Spent" color={budget.theme} />
-            <BudgetAmount amount={remaining} title="Remaining" />
-          </Stack>
-          <BudgetLatest category={budget.category}>
-            <div>
-              {data.data.map((item) => (
-                <TransactionItem key={item.id} transaction={item} />
-              ))}
-            </div>
-          </BudgetLatest>
-        </>
-      )}
+      <Stack direction="row" sx={{ mb: 5 }}>
+        <BudgetAmount amount={spent} title="Spent" color={budget.theme} />
+        <BudgetAmount amount={remaining} title="Remaining" />
+      </Stack>
+      <BudgetLatest category={budget.category}>
+        <div>
+          {budget.latest.map((item) => (
+            <TransactionItem key={item.id} transaction={item} />
+          ))}
+        </div>
+      </BudgetLatest>
     </Wrap>
   );
 };

@@ -29,8 +29,6 @@ const Budgets = (): JSX.Element => {
     return () => setUsedThemes([]);
   }, [data, isSuccess]);
 
-  console.log(data?.data);
-
   return (
     <MainLayout>
       <PageHeader title="Budgets">

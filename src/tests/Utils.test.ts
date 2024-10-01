@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
-  changeBudgetData,
   getChartLimit,
   getLocalPrice,
   getProgressValue,
   transactionPrice,
 } from "../utils/utils";
-import { ChartBudget } from "../types";
 
 describe("Utils", () => {
   it("getLocalPrice", () => {
@@ -38,35 +36,19 @@ describe("Utils", () => {
     expect(result).toStrictEqual(5);
   });
 
-  it("changeBudgetData", () => {
-    const result = changeBudgetData([
-      {
-        category: "category",
-        maximum: 1000,
-        theme: "#d1d1d1",
-      },
-    ]);
-    const expectedResult: ChartBudget[] = [
-      {
-        value: 1000,
-        color: "#d1d1d1",
-        label: "category",
-      },
-    ];
-    expect(result).toStrictEqual(expectedResult);
-  });
-
   it("getChartLimit", () => {
     const result = getChartLimit([
       {
         category: "category1",
         maximum: 1000,
         theme: "#d1d1d1",
+        latest: [],
       },
       {
         category: "category2",
         maximum: 500,
         theme: "#a1a1a1",
+        latest: [],
       },
     ]);
     expect(result).toStrictEqual("$1,500");
