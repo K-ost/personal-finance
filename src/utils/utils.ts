@@ -63,5 +63,6 @@ export const getCategoryValue = (params: URLSearchParams): string => {
 
 export const getChartLimit = (data: Omit<Budget, "id">[]): string => {
   const output = data.reduce((acum, el) => (acum += el.maximum), 0);
+
   return getLocalPrice(output, true);
 };

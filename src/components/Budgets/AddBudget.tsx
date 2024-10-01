@@ -46,7 +46,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
     mutate(
       {
         category: data.category,
-        maximum: data.maximum,
+        maximum: Number(data.maximum),
         theme: data.theme,
       },
       {
