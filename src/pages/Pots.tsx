@@ -9,6 +9,7 @@ import AddPot from "../components/Pots/AddPot";
 import { useEffect, useState } from "react";
 import { useThemesStore } from "../store/useThemesStore";
 import AlertBox from "../ui/AlertBox";
+import { POTS_URI } from "../utils/constants";
 
 const Pots = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
@@ -16,7 +17,7 @@ const Pots = (): JSX.Element => {
 
   const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
     key: ["pots"],
-    uri: "/pots",
+    uri: POTS_URI,
   });
 
   useEffect(() => {

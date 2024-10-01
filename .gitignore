@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 db.json
+server
 README-template.md
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo

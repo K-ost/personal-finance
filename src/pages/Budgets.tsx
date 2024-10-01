@@ -11,6 +11,7 @@ import AlertBox from "../ui/AlertBox";
 import { useEffect, useState } from "react";
 import AddBudget from "../components/Budgets/AddBudget";
 import { useThemesStore } from "../store/useThemesStore";
+import { BUDGETS_URI } from "../utils/constants";
 
 const Budgets = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
@@ -18,7 +19,7 @@ const Budgets = (): JSX.Element => {
 
   const { data, isLoading, isSuccess, isError } = useGetData<Budget[]>({
     key: ["budgets"],
-    uri: "/budgets",
+    uri: BUDGETS_URI,
   });
 
   useEffect(() => {
@@ -27,6 +28,8 @@ const Budgets = (): JSX.Element => {
     }
     return () => setUsedThemes([]);
   }, [data, isSuccess]);
+
+  console.log(data?.data);
 
   return (
     <MainLayout>

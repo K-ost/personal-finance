@@ -13,6 +13,7 @@ import FilterCategory from "../components/Filter/FilterCategory";
 import TransactionsLoading from "../components/TransactionsTable/Loading";
 import PageHeader from "../ui/PageHeader";
 import AlertBox from "../ui/AlertBox";
+import { TRANSACTIONS_URI } from "../utils/constants";
 
 const pageCount = 10;
 
@@ -29,7 +30,7 @@ const Transactions = (): JSX.Element => {
 
   const { data, isLoading, isSuccess, isError } = useGetData<Transaction[]>({
     key: ["transactions", params, currentPage.toString()],
-    uri: `/transactions?_start=${from}&_end=${to}${
+    uri: `/${TRANSACTIONS_URI}?_start=${from}&_end=${to}${
       params.length ? "&" + params : ""
     }`,
   });

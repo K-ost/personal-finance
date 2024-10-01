@@ -1,5 +1,10 @@
-export const API_URL = "http://localhost:8000";
+export const API_URL = "https://personal-finance-server.onrender.com/api";
+export const BALANCE_URI = "/balance";
+export const TRANSACTIONS_URI = "/transactions";
+export const BUDGETS_URI = "/budgets/transactions";
+export const POTS_URI = "/pots";
 
+// Settings for form fields
 export const FORM_SETTINGS = {
   email: {
     required: "Required field",
