@@ -3,7 +3,6 @@ import { Typography } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
 import Btn from "../../ui/Btn";
 import { Pot } from "../../types";
-import ColorPicker from "../../ui/ColorPicker";
 import { useForm } from "react-hook-form";
 import { FORM_SETTINGS } from "../../utils/constants";
 import useMutateData from "../../hooks/useMutateData";
@@ -11,6 +10,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useEffect } from "react";
 import { useThemesStore } from "../../store/useThemesStore";
+import CustomSelect from "../../ui/CustomSelect";
+import { potsColorOptions } from "./constants";
 
 type EditPotProps = {
   close: () => void;
@@ -89,10 +90,13 @@ const EditPot = (props: EditPotProps): JSX.Element => {
           error={errors.target ? true : false}
           helperText={errors.target && errors.target.message}
         />
-        <ColorPicker
-          defaultValue={pot.theme}
+        <CustomSelect
+          label="Theme"
           inputProps={{ ...register("theme") }}
-          usedthemes={usedThemes}
+          options={potsColorOptions}
+          usedoptions={usedThemes}
+          defaultValue={pot.theme}
+          colorpicker="true"
         />
         <Btn type="submit" fullWidth>
           {isPending ? "Loading..." : "Save Changes"}

@@ -1,7 +1,6 @@
-import { MenuItem, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import CustomDialog from "../../ui/CustomDialog";
 import CustomInput from "../../ui/CustomInput";
-import ColorPicker from "../../ui/ColorPicker";
 import { CategoriesOptions } from "./constants";
 import { useThemesStore } from "../../store/useThemesStore";
 import { useForm } from "react-hook-form";
@@ -11,6 +10,8 @@ import useMutateData from "../../hooks/useMutateData";
 import { Budget } from "../../types";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
+import CustomSelect from "../../ui/CustomSelect";
+import { potsColorOptions } from "../Pots/constants";
 
 type AddBudgetProps = {
   close: () => void;
@@ -25,7 +26,7 @@ type FormData = {
 
 const AddBudget = (props: AddBudgetProps): JSX.Element => {
   const { close, open } = props;
-  const { usedThemes } = useThemesStore();
+  const { usedCategories, usedThemes } = useThemesStore();
   const { setNotification } = useNotificationStore();
   const queryClient = useQueryClient();
 
@@ -69,18 +70,13 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
         hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.
       </Typography>
       <form onSubmit={handleSubmit(addHandler)}>
-        <CustomInput
+        <CustomSelect
           label="Budget Category"
-          select
-          defaultValue={CategoriesOptions[0].value}
+          options={CategoriesOptions}
+          usedoptions={usedCategories}
           inputProps={{ ...register("category") }}
-        >
-          {CategoriesOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.name}
-            </MenuItem>
-          ))}
-        </CustomInput>
+        />
+
         <CustomInput
           label="Maximum Spending"
           adornment="$"
@@ -88,10 +84,15 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           error={errors.maximum ? true : false}
           helperText={errors.maximum && errors.maximum.message}
         />
-        <ColorPicker
-          usedthemes={usedThemes}
+
+        <CustomSelect
+          label="Theme"
+          options={potsColorOptions}
+          usedoptions={usedThemes}
+          colorpicker="true"
           inputProps={{ ...register("theme") }}
         />
+
         <Btn type="submit" fullWidth>
           {isPending ? "Loading..." : "Add Budget"}
         </Btn>

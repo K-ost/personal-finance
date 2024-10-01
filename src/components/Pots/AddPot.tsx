@@ -2,7 +2,6 @@ import CustomDialog from "../../ui/CustomDialog";
 import { Typography } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
 import Btn from "../../ui/Btn";
-import ColorPicker from "../../ui/ColorPicker";
 import { useForm } from "react-hook-form";
 import { Pot } from "../../types";
 import useMutateData from "../../hooks/useMutateData";
@@ -10,6 +9,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { FORM_SETTINGS } from "../../utils/constants";
 import { useThemesStore } from "../../store/useThemesStore";
+import CustomSelect from "../../ui/CustomSelect";
+import { potsColorOptions } from "./constants";
 
 type AddPotProps = {
   close: () => void;
@@ -83,10 +84,18 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           helperText={errors.target && errors.target.message}
         />
 
-        <ColorPicker
+        <CustomSelect
+          label="Theme"
+          inputProps={{ ...register("theme") }}
+          options={potsColorOptions}
+          usedoptions={usedThemes}
+          colorpicker="true"
+        />
+
+        {/* <ColorPicker
           inputProps={{ ...register("theme") }}
           usedthemes={usedThemes}
-        />
+        /> */}
         <Btn type="submit" fullWidth>
           {isPending ? "Loading..." : "Add Pot"}
         </Btn>

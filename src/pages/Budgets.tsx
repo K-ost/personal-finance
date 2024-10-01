@@ -15,7 +15,7 @@ import { BUDGETS_URI } from "../utils/constants";
 
 const Budgets = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
-  const { setUsedThemes } = useThemesStore();
+  const { setUsedCategories, setUsedThemes } = useThemesStore();
 
   const { data, isLoading, isSuccess, isError } = useGetData<Budget[]>({
     key: ["budgets"],
@@ -24,9 +24,13 @@ const Budgets = (): JSX.Element => {
 
   useEffect(() => {
     if (isSuccess) {
+      setUsedCategories(data.data.map((el) => el.category));
       setUsedThemes(data.data.map((el) => el.theme));
     }
-    return () => setUsedThemes([]);
+    return () => {
+      setUsedCategories([]);
+      setUsedThemes([]);
+    };
   }, [data, isSuccess]);
 
   return (
