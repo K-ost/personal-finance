@@ -12,6 +12,7 @@ import MenuIcon from "../../ui/MenuIcon";
 import useBudgetHook from "../../hooks/useBudgetHook";
 import DeleteBudget from "./DeleteBudget";
 import { useTranslation } from "react-i18next";
+import EditBudget from "./EditBudget";
 
 type BudgetItemProps = {
   budget: Budget;
@@ -20,10 +21,16 @@ type BudgetItemProps = {
 const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const { budget } = props;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [editDialog, setEditDialog] = useState<boolean>(false);
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
   const { t } = useTranslation();
 
   const { percent, remaining, spent } = useBudgetHook({ budget });
+
+  const editHandler = () => {
+    setAnchorEl(null);
+    setEditDialog(true);
+  };
 
   const deleteHandler = () => {
     setAnchorEl(null);
@@ -40,7 +47,7 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
             sx={{ mb: 4 }}
           />
           <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <MenuItem onClick={() => {}}>{t("budgets.edit")}</MenuItem>
+            <MenuItem onClick={editHandler}>{t("budgets.edit")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
               onClick={deleteHandler}
@@ -76,6 +83,12 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
           </div>
         </BudgetLatest>
       </Wrap>
+
+      <EditBudget
+        budget={budget}
+        close={() => setEditDialog(false)}
+        open={editDialog}
+      />
 
       <DeleteBudget
         budget={budget}
