@@ -4,7 +4,7 @@ import { getLocalPrice } from "../../utils/utils";
 type BudgetAmountProps = {
   amount: number;
   color?: string;
-  title: "Spent" | "Remaining";
+  title: string;
 };
 
 const Div = styled(Box)<BoxProps & { color?: string }>(({ theme, color }) => ({

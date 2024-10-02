@@ -16,5 +16,5 @@ export const navMenuList: NavMenuList[] = [
   { id: 2, title: "Transactions", icon: "transactions", link: "/transactions" },
   { id: 3, title: "Budgets", icon: "budgets", link: "/budgets" },
   { id: 4, title: "Pots", icon: "pots", link: "/pots" },
-  { id: 5, title: "Recurring bills", icon: "bills", link: "/bills" },
+  { id: 5, title: "Recurring bills", icon: "recurringBills", link: "/bills" },
 ];

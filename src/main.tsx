@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme.ts";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "./i18n/index.ts";
 
 const queryClient = new QueryClient();
 

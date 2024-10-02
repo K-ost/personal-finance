@@ -2,12 +2,12 @@ import { Stack, Typography } from "@mui/material";
 import { getLocalPrice } from "../../utils/utils";
 
 type PotPriceProps = {
-  title?: string;
+  title: string;
   total: number;
 };
 
 const PotPrice = (props: PotPriceProps): JSX.Element => {
-  const { total, title = "Total Saved" } = props;
+  const { total, title } = props;
 
   return (
     <Stack

@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "overview": "Overview",
+    "transactions": "Transactions",
+    "budgets": "Budgets",
+    "pots": "Pots",
+    "recurringBills": "Recurring Bills"
+  },
+  "settings": {
+    "hideMenu": "Minimize Menu"
+  },
+  "alerts": {
+    "serverError": {
+      "title": "Server Error",
+      "text": "Try to visit this page little later"
+    },
+    "inDev": {
+      "title": "in development",
+      "text": "Currently this page is being developed."
+    }
+  },
+  "budgets": {
+    "addnew": "Add New Budget",
+    "edit": "Edit Budget",
+    "delete": "Delete Budget",
+    "summary": "Spending Summary",
+    "maximum": "Maximum of {{ amount }}",
+    "spent": "Spent",
+    "remaining": "Remaining",
+    "latestTitle": "Latest Spending",
+    "seeAll": "See All",
+    "limit": "of {{ amount }} limit"
+  },
+  "pots": {
+    "addmoney": "Add Money",
+    "withdraw": "Withdraw",
+    "addnew": "Add New Pot",
+    "edit": "Edit Pot",
+    "delete": "Delete Pot",
+    "total": "Total Saved",
+    "target": "Target of {{ amount }}"
+  }
+}

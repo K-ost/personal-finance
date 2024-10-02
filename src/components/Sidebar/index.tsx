@@ -21,6 +21,7 @@ import {
   IconTransactions,
 } from "./Icons";
 import { useAppStore } from "../../store/useAppStore";
+import { useTranslation } from "react-i18next";
 
 type SidebarProps = {
   open: boolean;
@@ -71,6 +72,7 @@ const AsideLogo = styled(Box)<BoxProps>(({ theme }) => ({
 
 const Sidebar = () => {
   const { sidebar, setSidebar } = useAppStore();
+  const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
@@ -98,10 +100,10 @@ const Sidebar = () => {
                     {item.icon === "transactions" && <IconTransactions />}
                     {item.icon === "budgets" && <IconBudgets />}
                     {item.icon === "pots" && <IconPots />}
-                    {item.icon === "bills" && <IconBills />}
+                    {item.icon === "recurringBills" && <IconBills />}
                   </span>
                   {sidebar && isTablet && (
-                    <span className="btnTitle">{item.title}</span>
+                    <span className="btnTitle">{t(`nav.${item.icon}`)}</span>
                   )}
                 </AsideBtn>
               </ListItem>
@@ -117,7 +119,9 @@ const Sidebar = () => {
             <span className="iconBox">
               <IconMin />
             </span>
-            {sidebar && <span className="btnTitle">Minimize Menu</span>}
+            {sidebar && (
+              <span className="btnTitle">{t("settings.hideMenu")}</span>
+            )}
           </AsideBtn>
         )}
       </AsideInner>

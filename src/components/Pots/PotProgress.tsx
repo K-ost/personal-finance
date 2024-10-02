@@ -6,12 +6,13 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { getLocalPrice, getProgressValue } from "../../utils/utils";
+import { getProgressValue } from "../../utils/utils";
 
 type PotProgressProps = {
   color: string;
   target: number;
   total: number;
+  targetTitle: string;
 };
 
 const Progress = styled(LinearProgress)<
@@ -29,7 +30,7 @@ const Progress = styled(LinearProgress)<
 }));
 
 const PotProgress = (props: PotProgressProps): JSX.Element => {
-  const { color, target, total } = props;
+  const { color, target, targetTitle, total } = props;
   const theme = useTheme();
 
   const progressValue = getProgressValue(total, target);
@@ -54,7 +55,7 @@ const PotProgress = (props: PotProgressProps): JSX.Element => {
           {progressValue}%
         </Typography>
         <Typography variant="body2" component="div">
-          Target of {getLocalPrice(target, true)}
+          {targetTitle}
         </Typography>
       </Stack>
     </>

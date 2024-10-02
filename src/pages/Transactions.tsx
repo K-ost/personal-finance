@@ -14,10 +14,12 @@ import TransactionsLoading from "../components/TransactionsTable/Loading";
 import PageHeader from "../ui/PageHeader";
 import AlertBox from "../ui/AlertBox";
 import { TRANSACTIONS_URI } from "../utils/constants";
+import { useTranslation } from "react-i18next";
 
 const pageCount = 10;
 
 const Transactions = (): JSX.Element => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
@@ -37,7 +39,7 @@ const Transactions = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <PageHeader title="Transactions" />
+      <PageHeader title={t("nav.transactions")} />
       <Wrap>
         {!isError && (
           <Filter>
@@ -56,8 +58,12 @@ const Transactions = (): JSX.Element => {
         {isSuccess && <TransactionsTable list={data.data} />}
         {isLoading && <TransactionsLoading count={pageCount} />}
         {isError && (
-          <AlertBox severity="error" color="error" title="Server error">
-            Try to visit this page little later
+          <AlertBox
+            severity="error"
+            color="error"
+            title={t("alerts.serverError.title")}
+          >
+            {t("alerts.serverError.text")}
           </AlertBox>
         )}
 

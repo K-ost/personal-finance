@@ -11,6 +11,7 @@ import TransactionItem from "../TransactionsTable/TransactionItem";
 import MenuIcon from "../../ui/MenuIcon";
 import useBudgetHook from "../../hooks/useBudgetHook";
 import DeleteBudget from "./DeleteBudget";
+import { useTranslation } from "react-i18next";
 
 type BudgetItemProps = {
   budget: Budget;
@@ -20,6 +21,7 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const { budget } = props;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const { percent, remaining, spent } = useBudgetHook({ budget });
 
@@ -38,12 +40,12 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
             sx={{ mb: 4 }}
           />
           <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <MenuItem onClick={() => {}}>Edit Budget</MenuItem>
+            <MenuItem onClick={() => {}}>{t("budgets.edit")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
               onClick={deleteHandler}
             >
-              Delete Budget
+              {t("budgets.delete")}
             </MenuItem>
           </MenuIcon>
         </Stack>
@@ -54,13 +56,17 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
           component="div"
           sx={{ mb: 4 }}
         >
-          Maximum of {getLocalPrice(budget.maximum)}
+          {t("budgets.maximum", { amount: getLocalPrice(budget.maximum) })}
         </Typography>
         <BudgetProgress value={percent} range={budget.theme} sx={{ mb: 4 }} />
 
         <Stack direction="row" sx={{ mb: 5 }}>
-          <BudgetAmount amount={spent} title="Spent" color={budget.theme} />
-          <BudgetAmount amount={remaining} title="Remaining" />
+          <BudgetAmount
+            amount={spent}
+            title={t("budgets.spent")}
+            color={budget.theme}
+          />
+          <BudgetAmount amount={remaining} title={t("budgets.remaining")} />
         </Stack>
         <BudgetLatest category={budget.category}>
           <div>

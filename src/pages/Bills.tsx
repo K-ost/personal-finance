@@ -1,13 +1,16 @@
 import MainLayout from "../components/MainLayout";
 import PageHeader from "../ui/PageHeader";
 import AlertBox from "../ui/AlertBox";
+import { useTranslation } from "react-i18next";
 
 const Bills = (): JSX.Element => {
+  const { t } = useTranslation();
+
   return (
     <MainLayout>
-      <PageHeader title="Recurring Bills" />
-      <AlertBox title="in development" color="info" severity="info">
-        Currently this page is being developed.
+      <PageHeader title={t("nav.recurringBills")} />
+      <AlertBox title={t("alerts.inDev.title")} color="info" severity="info">
+        {t("alerts.inDev.text")}
       </AlertBox>
     </MainLayout>
   );

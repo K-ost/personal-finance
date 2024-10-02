@@ -3,6 +3,7 @@ import Chart from "../ui/Chart";
 import { Box, Typography } from "@mui/material";
 import BudgetLine from "../ui/BudgetLine";
 import { Budget } from "../types";
+import { useTranslation } from "react-i18next";
 
 type BudgetWidgetProps = {
   data: Budget[];
@@ -10,6 +11,7 @@ type BudgetWidgetProps = {
 
 const BudgetWidget = (props: BudgetWidgetProps): JSX.Element => {
   const { data } = props;
+  const { t } = useTranslation();
 
   return (
     <Wrap
@@ -46,7 +48,7 @@ const BudgetWidget = (props: BudgetWidgetProps): JSX.Element => {
       />
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant="h2" sx={{ mb: 6 }}>
-          Spending Summary
+          {t("budgets.summary")}
         </Typography>
         <div>
           {data.map((budget) => (

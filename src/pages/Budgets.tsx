@@ -12,8 +12,10 @@ import { useEffect, useState } from "react";
 import AddBudget from "../components/Budgets/AddBudget";
 import { useThemesStore } from "../store/useThemesStore";
 import { BUDGETS_URI } from "../utils/constants";
+import { useTranslation } from "react-i18next";
 
 const Budgets = (): JSX.Element => {
+  const { t } = useTranslation();
   const [addDialog, setAddDialog] = useState<boolean>(false);
   const { setUsedCategories, setUsedThemes } = useThemesStore();
 
@@ -35,8 +37,10 @@ const Budgets = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <PageHeader title="Budgets">
-        <Btn onClick={() => setAddDialog(true)}>+ Add New Budget</Btn>
+      <PageHeader title={t("nav.budgets")}>
+        {isSuccess && (
+          <Btn onClick={() => setAddDialog(true)}>+ {t("budgets.addnew")}</Btn>
+        )}
       </PageHeader>
 
       {isLoading && <BudgetsLoading />}
@@ -54,8 +58,12 @@ const Budgets = (): JSX.Element => {
       )}
 
       {isError && (
-        <AlertBox severity="error" color="error" title="Server error">
-          Try to visit this page little later
+        <AlertBox
+          severity="error"
+          color="error"
+          title={t("alerts.serverError.title")}
+        >
+          {t("alerts.serverError.text")}
         </AlertBox>
       )}
 

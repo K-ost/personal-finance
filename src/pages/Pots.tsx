@@ -10,8 +10,10 @@ import { useEffect, useState } from "react";
 import { useThemesStore } from "../store/useThemesStore";
 import AlertBox from "../ui/AlertBox";
 import { POTS_URI } from "../utils/constants";
+import { useTranslation } from "react-i18next";
 
 const Pots = (): JSX.Element => {
+  const { t } = useTranslation();
   const [addDialog, setAddDialog] = useState<boolean>(false);
   const { setUsedThemes } = useThemesStore();
 
@@ -29,15 +31,21 @@ const Pots = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <PageHeader title="Pots">
-        <Btn onClick={() => setAddDialog(true)}>+ Add New Pot</Btn>
+      <PageHeader title={t("nav.pots")}>
+        {isSuccess && (
+          <Btn onClick={() => setAddDialog(true)}>+ {t("pots.addnew")}</Btn>
+        )}
       </PageHeader>
 
       {isSuccess && <PotsList data={data.data} />}
       {isLoading && <PotLoading />}
       {isError && (
-        <AlertBox severity="error" color="error" title="Server error">
-          Try to visit this page little later
+        <AlertBox
+          severity="error"
+          color="error"
+          title={t("alerts.serverError.title")}
+        >
+          {t("alerts.serverError.text")}
         </AlertBox>
       )}
 

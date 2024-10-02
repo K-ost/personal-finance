@@ -2,7 +2,7 @@ import { Button, ButtonProps, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 
 type BtnMoreProps = ButtonProps & {
-  title?: string;
+  title: string;
   to: string;
 };
 
@@ -26,7 +26,7 @@ const More = styled(Button)(({ theme }) => ({
 }));
 
 const BtnMore = (props: BtnMoreProps): JSX.Element => {
-  const { title = "See All" } = props;
+  const { title } = props;
   return (
     <More variant="text" component={Link} disableRipple {...props}>
       {title}

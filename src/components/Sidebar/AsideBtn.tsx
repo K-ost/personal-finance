@@ -6,7 +6,7 @@ export type AsideIconType =
   | "transactions"
   | "budgets"
   | "pots"
-  | "bills";
+  | "recurringBills";
 
 type MinimizeBtnProps = ButtonProps & {
   to?: string;

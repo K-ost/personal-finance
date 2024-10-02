@@ -5,15 +5,22 @@ import MainLayout from "../components/MainLayout";
 import Balance from "../ui/Balance";
 import PageHeader from "../ui/PageHeader";
 import AlertBox from "../ui/AlertBox";
+import CustomSelect from "../ui/CustomSelect";
+import { useTranslation } from "react-i18next";
 
 const Home = (): JSX.Element => {
   const { setLogout } = useAuthStore();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const changeLanguageHandler = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <MainLayout>
-      <PageHeader title="Home Page" />
+      <PageHeader title={t("nav.overview")} />
 
       <Grid2 container spacing={isMobile ? 3 : 6}>
         <Grid2 size={{ xs: 12, sm: 4 }}>
@@ -28,13 +35,23 @@ const Home = (): JSX.Element => {
       </Grid2>
 
       <AlertBox
-        title="in development"
+        title={t("alerts.inDev.title")}
         color="info"
         severity="info"
         sx={{ mt: 6, mb: 6 }}
       >
-        Currently this page is being developed.
+        {t("alerts.inDev.text")}
       </AlertBox>
+
+      <CustomSelect
+        label="Language"
+        options={[
+          { name: "En", value: "en" },
+          { name: "Ru", value: "ru" },
+        ]}
+        usedoptions={[]}
+        onChange={(e) => changeLanguageHandler(e.target.value)}
+      />
 
       <Btn onClick={() => setLogout()}>Logout</Btn>
     </MainLayout>

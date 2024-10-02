@@ -9,6 +9,8 @@ import EditPot from "./EditPot";
 import DeletePot from "./DeletePot";
 import ChangeBalance from "./ChangeBalance";
 import IconTitle from "../../ui/IconTitle";
+import { useTranslation } from "react-i18next";
+import { getLocalPrice } from "../../utils/utils";
 
 type PotItemProps = {
   pot: Pot;
@@ -30,6 +32,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
   const [topUpDialog, setTopUpDialog] = useState<boolean>(false);
   const [withdrawDialog, setWithdrawDialog] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const editHandler = () => {
     setAnchorEl(null);
@@ -48,18 +51,25 @@ const PotItem = (props: PotItemProps): JSX.Element => {
           <IconTitle color={pot.theme} title={pot.name} />
 
           <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <MenuItem onClick={editHandler}>Edit Pot</MenuItem>
+            <MenuItem onClick={editHandler}>{t("pots.edit")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
               onClick={deleteHandler}
             >
-              Delete Pot
+              {t("pots.delete")}
             </MenuItem>
           </MenuIcon>
         </Stack>
 
-        <PotPrice total={pot.total} />
-        <PotProgress color={pot.theme} target={pot.target} total={pot.total} />
+        <PotPrice title={t("pots.total")} total={pot.total} />
+        <PotProgress
+          color={pot.theme}
+          target={pot.target}
+          total={pot.total}
+          targetTitle={t("pots.target", {
+            amount: getLocalPrice(pot.target, true),
+          })}
+        />
 
         <Stack direction="row">
           <Btn
@@ -69,7 +79,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             onClick={() => setTopUpDialog(true)}
             disabled={pot.total > pot.target - 10}
           >
-            + Add Money
+            + {t("pots.addmoney")}
           </Btn>
           <Btn
             color="secondary"
@@ -77,7 +87,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             onClick={() => setWithdrawDialog(true)}
             disabled={pot.total < 10}
           >
-            Withdraw
+            {t("pots.withdraw")}
           </Btn>
         </Stack>
       </PotBox>
