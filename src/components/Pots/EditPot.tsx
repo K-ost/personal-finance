@@ -42,7 +42,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
 
   useEffect(() => {
     reset(pot);
-  }, [pot]);
+  }, [pot, reset]);
 
   const { mutate, isPending } = useMutateData<Pot, Omit<Pot, "id" | "total">>({
     key: ["pots"],

@@ -27,7 +27,7 @@ const Pots = (): JSX.Element => {
       setUsedThemes(data.data.map((el) => el.theme));
     }
     return () => setUsedThemes([]);
-  }, [data, isSuccess]);
+  }, [data, isSuccess, setUsedThemes]);
 
   return (
     <MainLayout>

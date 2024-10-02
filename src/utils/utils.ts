@@ -1,4 +1,4 @@
-import { Budget, ChartBudget } from "../types";
+import { Budget } from "../types";
 
 export const getLocalPrice = (num: number, nodigits?: boolean): string => {
   return (

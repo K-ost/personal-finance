@@ -12,6 +12,7 @@ import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { getLocalPrice } from "../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 type ChangeBalanceProps = {
   close: () => void;
@@ -25,6 +26,7 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
   const [amount, setAmount] = useState<number>(0);
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
+  const { t } = useTranslation();
 
   const {
     formState: { errors },
@@ -43,7 +45,7 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
     if (type === "withdrawal") {
       setAmount(pot.total - Number(total));
     }
-  }, [total]);
+  }, [total, pot.total, type]);
 
   useEffect(() => {
     setAmount(pot.total);
@@ -62,28 +64,37 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
       },
       {
         onSuccess: () => {
-          reset(),
-            close(),
-            queryClient.invalidateQueries({
-              queryKey: ["pots"],
-            });
+          reset();
+          close();
+          queryClient.invalidateQueries({
+            queryKey: ["pots"],
+          });
           setNotification(
-            `You've ${
-              type === "topup" ? "added" : "withdrawn"
-            } money to your target for ${pot.name}`
+            t(
+              `pots.${type === "topup" ? "addmoney" : "withdraw"}.notification`,
+              { title: pot.name }
+            )
           );
         },
       }
     );
   };
 
-  const title = `${type === "topup" ? "Add to" : "Withdraw from"} ${pot.name}`;
-  const btnText = type === "topup" ? "Confirm Addition" : "Confirm Withdrawal";
-  const labelText = type === "topup" ? "Amount to Add" : "Amount to Withdraw";
+  const title = t(`pots.${type === "topup" ? "addmoney" : "withdraw"}.title`, {
+    title: pot.name,
+  });
+  const btnText = t(`pots.${type === "topup" ? "addmoney" : "withdraw"}.btn`);
+  const labelText = t(
+    `pots.${type === "topup" ? "addmoney" : "withdraw"}.label`
+  );
   const errorText =
     type === "topup"
-      ? `It can't be more than ${getLocalPrice(pot.target - pot.total, true)}`
-      : `It can't be more than ${getLocalPrice(pot.total, true)}`;
+      ? t("pots.addmoney.errorText", {
+          amount: getLocalPrice(pot.target - pot.total, true),
+        })
+      : t("pots.withdraw.errorText", {
+          amount: getLocalPrice(pot.total, true),
+        });
 
   return (
     <CustomDialog open={open} title={title} close={close}>
@@ -93,7 +104,12 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
       </Typography>
 
       <PotPrice title="New Amount" total={amount} />
-      <PotProgress color={pot.theme} target={pot.target} total={amount} />
+      <PotProgress
+        targetTitle={title}
+        color={pot.theme}
+        target={pot.target}
+        total={amount}
+      />
 
       <form onSubmit={handleSubmit(topUpHandler)}>
         <CustomInput

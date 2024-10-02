@@ -19,7 +19,7 @@ const Search = (props: SearchProps): JSX.Element => {
       searchParams.delete("q");
     }
     setSearchParams(searchParams);
-  }, [debouncedSearch]);
+  }, [debouncedSearch, searchParams, setSearchParams]);
 
   const paramValue = searchParams.get("q");
 

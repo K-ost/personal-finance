@@ -32,8 +32,22 @@
     "limit": "of {{ amount }} limit"
   },
   "pots": {
-    "addmoney": "Add Money",
-    "withdraw": "Withdraw",
+    "addmoney": {
+      "btnTitle": "Add Money",
+      "title": "Add to '{{ title }}'",
+      "btn": "Confirm Addition",
+      "label": "Amount to Add",
+      "errorText": "It can't be more than {{ amount }}",
+      "notification": "You've added money to your target for '{{ title }}'"
+    },
+    "withdraw": {
+      "btnTitle": "Withdraw",
+      "title": "Withdraw from '{{ title }}'",
+      "btn": "Confirm Withdrawal",
+      "label": "Amount to Withdraw",
+      "errorText": "It can't be more than {{ amount }}",
+      "notification": "You've withdrawn money from your target for '{{ title }}'"
+    },
     "addnew": "Add New Pot",
     "edit": "Edit Pot",
     "delete": "Delete Pot",

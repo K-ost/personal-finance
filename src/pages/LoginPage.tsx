@@ -41,7 +41,7 @@ const LoginPage = (): JSX.Element => {
     setNotification(
       data?.accessToken ? "You've been logged successfully" : data?.message
     );
-  }, [data]);
+  }, [data, setAuth, setNotification]);
 
   const loginHandler = (formData: FormData) => {
     mutate({

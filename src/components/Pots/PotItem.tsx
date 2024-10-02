@@ -79,7 +79,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             onClick={() => setTopUpDialog(true)}
             disabled={pot.total > pot.target - 10}
           >
-            + {t("pots.addmoney")}
+            + {t("pots.addmoney.btnTitle")}
           </Btn>
           <Btn
             color="secondary"
@@ -87,7 +87,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
             onClick={() => setWithdrawDialog(true)}
             disabled={pot.total < 10}
           >
-            {t("pots.withdraw")}
+            {t("pots.withdraw.btnTitle")}
           </Btn>
         </Stack>
       </PotBox>

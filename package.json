@@ -1,5 +1,6 @@
 {
   "name": "personal-finance",
+  "homepage": "https://K-ost.github.io/personal-finance",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -16,6 +18,7 @@
     "@mui/material": "^6.1.1",
     "@mui/x-charts": "^7.18.0",
     "@tanstack/react-query": "^5.56.2",
+    "gh-pages": "^6.1.1",
     "i18next": "^23.15.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -31,6 +34,8 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",

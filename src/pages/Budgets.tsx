@@ -33,7 +33,7 @@ const Budgets = (): JSX.Element => {
       setUsedCategories([]);
       setUsedThemes([]);
     };
-  }, [data, isSuccess]);
+  }, [data, isSuccess, setUsedCategories, setUsedThemes]);
 
   return (
     <MainLayout>
