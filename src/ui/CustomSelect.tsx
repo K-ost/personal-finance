@@ -5,7 +5,7 @@ import { Circle } from "./IconTitle";
 
 type CustomSelectProps = TextFieldProps & {
   defaultval?: string;
-  usedoptions: string[];
+  usedoptions?: string[];
   options: SelectOption[];
   colorpicker?: "true" | "false";
 };
@@ -15,12 +15,14 @@ const CustomSelect = (props: CustomSelectProps): JSX.Element => {
 
   const defaultValue = defaultval
     ? defaultval
-    : options.filter((el) => !usedoptions.includes(el.value))[0].value;
+    : usedoptions &&
+      options.filter((el) => !usedoptions.includes(el.value))[0].value;
 
   return (
     <CustomInput defaultValue={defaultValue} select {...props}>
       {options.map((option) => {
-        const isUsed = usedoptions.some((el) => el === option.value);
+        const isUsed =
+          usedoptions && usedoptions.some((el) => el === option.value);
         return (
           <MenuItem key={option.name} value={option.value} disabled={isUsed}>
             {colorpicker === "true" && <Circle color={option.value} />}

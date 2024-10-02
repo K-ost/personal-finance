@@ -11,10 +11,19 @@ import Transactions from "./pages/Transactions";
 import Budgets from "./pages/Budgets";
 import Pots from "./pages/Pots";
 import Bills from "./pages/Bills";
+import { useAppStore } from "./store/useAppStore";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { lang } = useAppStore();
   const { auth } = useAuthStore();
   const isAuth = !!auth?.accessToken;
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
 
   return (
     <div>

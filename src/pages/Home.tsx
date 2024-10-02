@@ -7,16 +7,14 @@ import PageHeader from "../ui/PageHeader";
 import AlertBox from "../ui/AlertBox";
 import CustomSelect from "../ui/CustomSelect";
 import { useTranslation } from "react-i18next";
+import { useAppStore } from "../store/useAppStore";
 
 const Home = (): JSX.Element => {
+  const { lang, setLang } = useAppStore();
   const { setLogout } = useAuthStore();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const changeLanguageHandler = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
 
   return (
     <MainLayout>
@@ -49,8 +47,10 @@ const Home = (): JSX.Element => {
           { name: "En", value: "en" },
           { name: "Ru", value: "ru" },
         ]}
-        usedoptions={[]}
-        onChange={(e) => changeLanguageHandler(e.target.value)}
+        value={lang}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setLang(e.target.value)
+        }
       />
 
       <Btn onClick={() => setLogout()}>Logout</Btn>
