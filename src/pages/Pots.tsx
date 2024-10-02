@@ -33,7 +33,9 @@ const Pots = (): JSX.Element => {
     <MainLayout>
       <PageHeader title={t("nav.pots")}>
         {isSuccess && (
-          <Btn onClick={() => setAddDialog(true)}>+ {t("pots.addnew")}</Btn>
+          <Btn onClick={() => setAddDialog(true)}>
+            + {t("pots.addnew.title")}
+          </Btn>
         )}
       </PageHeader>
 

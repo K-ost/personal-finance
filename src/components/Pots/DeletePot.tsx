@@ -5,6 +5,7 @@ import { Pot } from "../../types";
 import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
+import { useTranslation } from "react-i18next";
 
 type DeletePotProps = {
   close: () => void;
@@ -16,6 +17,7 @@ const DeletePot = (props: DeletePotProps): JSX.Element => {
   const { close, open, pot } = props;
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
+  const { t } = useTranslation();
 
   const { mutate, isPending } = useMutateData({
     key: ["pots"],
@@ -41,16 +43,19 @@ const DeletePot = (props: DeletePotProps): JSX.Element => {
   };
 
   return (
-    <CustomDialog open={open} title={`Delete "${pot.name}"?`} close={close}>
+    <CustomDialog
+      open={open}
+      title={t("pots.delete.title", { title: pot.name })}
+      close={close}
+    >
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
-        Are you sure you want to delete this pot? This action cannot be
-        reversed, and all the data inside it will be removed forever.
+        {t("pots.delete.text")}
       </Typography>
       <Btn color="error" fullWidth sx={{ mb: 2 }} onClick={deleteHandler}>
-        {isPending ? "Loading..." : "Yes, Confirm Deletion"}
+        {isPending ? "Loading..." : t("pots.delete.btn")}
       </Btn>
       <Btn variant="text" fullWidth onClick={close}>
-        No, Go Back
+        {t("pots.delete.cancel")}
       </Btn>
     </CustomDialog>
   );

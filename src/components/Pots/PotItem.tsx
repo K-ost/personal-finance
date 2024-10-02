@@ -56,7 +56,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
               sx={(theme) => ({ color: theme.palette.error.main })}
               onClick={deleteHandler}
             >
-              {t("pots.delete")}
+              {t("pots.delete.menuBtn")}
             </MenuItem>
           </MenuIcon>
         </Stack>

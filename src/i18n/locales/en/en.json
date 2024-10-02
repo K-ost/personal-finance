@@ -48,9 +48,23 @@
       "errorText": "It can't be more than {{ amount }}",
       "notification": "You've withdrawn money from your target for '{{ title }}'"
     },
-    "addnew": "Add New Pot",
+    "addnew": {
+      "title": "Add New Pot",
+      "text": "Create a pot to set savings targets. These can help keep you on track as you save for special purchases.",
+      "name": "Pot Name",
+      "target": "Target",
+      "theme": "Theme",
+      "btn": "Add Pot",
+      "notification": "Pot '{{ title }}' has been added to the database"
+    },
     "edit": "Edit Pot",
-    "delete": "Delete Pot",
+    "delete": {
+      "menuBtn": "Delete Pot",
+      "title": "Delete '{{ title }}'?",
+      "text": "Are you sure you want to delete this pot? This action cannot be reversed, and all the data inside it will be removed forever.",
+      "btn": "Yes, Confirm Deletion",
+      "cancel": "No, Go Back"
+    },
     "total": "Total Saved",
     "target": "Target of {{ amount }}"
   }

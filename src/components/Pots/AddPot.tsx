@@ -11,6 +11,7 @@ import { FORM_SETTINGS } from "../../utils/constants";
 import { useThemesStore } from "../../store/useThemesStore";
 import CustomSelect from "../../ui/CustomSelect";
 import { potsColorOptions } from "./constants";
+import { useTranslation } from "react-i18next";
 
 type AddPotProps = {
   close: () => void;
@@ -24,6 +25,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
   const { usedThemes } = useThemesStore();
+  const { t } = useTranslation();
 
   const {
     formState: { errors },
@@ -53,21 +55,20 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["pots"],
           });
-          setNotification(`Pot "${data.name}" has been added to the database`);
+          setNotification(t("pots.addnew.notification", { title: data.name }));
         },
       }
     );
   };
 
   return (
-    <CustomDialog open={open} title="Add New Pot" close={close}>
+    <CustomDialog open={open} title={t("pots.addnew.title")} close={close}>
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
-        Create a pot to set savings targets. These can help keep you on track as
-        you save for special purchases.
+        {t("pots.addnew.text")}
       </Typography>
       <form onSubmit={handleSubmit(addHandler)}>
         <CustomInput
-          label="Pot Name"
+          label={t("pots.addnew.name")}
           helperText={errors.name ? errors.name.message : "30 characters left"}
           inputProps={{ ...register("name", FORM_SETTINGS.name) }}
           error={errors.name ? true : false}
@@ -75,7 +76,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
 
         <CustomInput
           type="number"
-          label="Target"
+          label={t("pots.addnew.target")}
           adornment="$"
           inputProps={{
             ...register("target", FORM_SETTINGS.target),
@@ -85,19 +86,15 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         />
 
         <CustomSelect
-          label="Theme"
+          label={t("pots.addnew.theme")}
           inputProps={{ ...register("theme") }}
           options={potsColorOptions}
           usedoptions={usedThemes}
           colorpicker="true"
         />
 
-        {/* <ColorPicker
-          inputProps={{ ...register("theme") }}
-          usedthemes={usedThemes}
-        /> */}
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : "Add Pot"}
+          {isPending ? "Loading..." : t("pots.addnew.btn")}
         </Btn>
       </form>
     </CustomDialog>
