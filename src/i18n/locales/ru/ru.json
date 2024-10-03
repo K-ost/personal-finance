@@ -7,7 +7,8 @@
     "recurringBills": "Повторяющиеся счета"
   },
   "settings": {
-    "hideMenu": "Свернуть меню"
+    "hideMenu": "Свернуть меню",
+    "logout": "Выйти"
   },
   "alerts": {
     "serverError": {

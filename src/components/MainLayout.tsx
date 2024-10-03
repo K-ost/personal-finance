@@ -1,5 +1,6 @@
 import { Box, BoxProps, styled } from "@mui/material";
 import Sidebar from "./Sidebar";
+import LangSwitcher from "./LangSwitcher";
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -31,7 +32,10 @@ const MainLayout = (props: MainLayoutProps) => {
   return (
     <Layout>
       <Sidebar />
-      <LayoutContent role="main">{children}</LayoutContent>
+      <LayoutContent role="main">
+        <LangSwitcher sx={{ mb: 4 }} />
+        {children}
+      </LayoutContent>
     </Layout>
   );
 };

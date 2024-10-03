@@ -7,7 +7,8 @@
     "recurringBills": "Recurring Bills"
   },
   "settings": {
-    "hideMenu": "Minimize Menu"
+    "hideMenu": "Minimize Menu",
+    "logout": "Logout"
   },
   "alerts": {
     "serverError": {
