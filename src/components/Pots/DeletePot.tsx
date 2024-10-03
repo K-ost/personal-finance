@@ -34,9 +34,7 @@ const DeletePot = (props: DeletePotProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["pots"],
           });
-          setNotification(
-            `Pot "${pot.name}" has been deleted from the database`
-          );
+          setNotification(t("pots.delete.notification", { title: pot.name }));
         },
       }
     );

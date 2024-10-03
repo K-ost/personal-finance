@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useThemesStore } from "../../store/useThemesStore";
 import CustomSelect from "../../ui/CustomSelect";
 import { potsColorOptions } from "./constants";
+import { useTranslation } from "react-i18next";
 
 type EditPotProps = {
   close: () => void;
@@ -26,6 +27,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
   const queryClient = useQueryClient();
   const { setNotification } = useNotificationStore();
   const { usedThemes } = useThemesStore();
+  const { t } = useTranslation();
 
   const {
     formState: { errors },
@@ -64,34 +66,34 @@ const EditPot = (props: EditPotProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["pots"],
           });
-          setNotification(`Pot "${pot.name}" has been edited`);
+          setNotification(t("pots.edit.notification", { title: pot.name }));
         },
       }
     );
   };
 
   return (
-    <CustomDialog open={open} title="Edit Pot" close={close}>
+    <CustomDialog open={open} title={t("pots.edit.title")} close={close}>
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
-        If your saving targets change, feel free to update your pots.
+        {t("pots.edit.text")}
       </Typography>
       <form onSubmit={handleSubmit(editHandler)}>
         <CustomInput
-          label="Pot Name"
+          label={t("pots.addnew.name")}
           helperText={errors.name ? errors.name.message : "30 characters left"}
           inputProps={{ ...register("name", FORM_SETTINGS.name) }}
           error={errors.name ? true : false}
         />
         <CustomInput
           type="number"
-          label="Target"
+          label={t("pots.addnew.target")}
           adornment="$"
           inputProps={{ ...register("target", FORM_SETTINGS.target) }}
           error={errors.target ? true : false}
           helperText={errors.target && errors.target.message}
         />
         <CustomSelect
-          label="Theme"
+          label={t("pots.addnew.theme")}
           inputProps={{ ...register("theme") }}
           options={potsColorOptions}
           usedoptions={usedThemes}
@@ -99,7 +101,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
           colorpicker="true"
         />
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : "Save Changes"}
+          {isPending ? "Loading..." : t("pots.edit.btn")}
         </Btn>
       </form>
     </CustomDialog>

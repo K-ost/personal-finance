@@ -51,7 +51,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
           <IconTitle color={pot.theme} title={pot.name} />
 
           <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <MenuItem onClick={editHandler}>{t("pots.edit")}</MenuItem>
+            <MenuItem onClick={editHandler}>{t("pots.edit.title")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
               onClick={deleteHandler}

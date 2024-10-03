@@ -57,13 +57,19 @@
       "btn": "Add Pot",
       "notification": "Pot '{{ title }}' has been added to the database"
     },
-    "edit": "Edit Pot",
+    "edit": {
+      "title": "Edit Pot",
+      "text": "If your saving targets change, feel free to update your pots.",
+      "btn": "Save Changes",
+      "notification": "Pot '{{ title }}' has been changed"
+    },
     "delete": {
       "menuBtn": "Delete Pot",
       "title": "Delete '{{ title }}'?",
       "text": "Are you sure you want to delete this pot? This action cannot be reversed, and all the data inside it will be removed forever.",
       "btn": "Yes, Confirm Deletion",
-      "cancel": "No, Go Back"
+      "cancel": "No, Go Back",
+      "notification": "Pot '{{ title }}' has been deleted from the database"
     },
     "total": "Total Saved",
     "target": "Target of {{ amount }}"
