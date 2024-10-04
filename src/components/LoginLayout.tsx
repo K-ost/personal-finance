@@ -90,8 +90,8 @@ const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
         <LangSwitcher
           sx={(theme) => ({
             position: "absolute",
-            right: theme.spacing(2),
-            top: theme.spacing(2),
+            right: theme.spacing(4),
+            top: theme.spacing(4),
           })}
         />
         {children}

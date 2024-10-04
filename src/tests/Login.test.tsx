@@ -2,15 +2,10 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { APINock, createUser, Wrapper } from "./testUtils";
-import App from "../App";
 
 describe("Login Page", () => {
   beforeEach(() => {
-    render(
-      <Wrapper initialEntries={["/login"]}>
-        <App />
-      </Wrapper>
-    );
+    render(<Wrapper initialEntries={["/login"]} />);
   });
 
   it("Login - Form validation", async () => {
@@ -56,5 +51,11 @@ describe("Login Page", () => {
     await waitFor(() => {
       expect(screen.getByText("You've been logged successfully"));
     });
+  });
+
+  it("Logout", async () => {
+    expect(screen.getByText("Overview")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Logout" }));
+    expect(screen.getByText(/Keep track of/)).toBeInTheDocument();
   });
 });
