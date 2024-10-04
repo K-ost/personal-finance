@@ -50,7 +50,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
         <Stack direction="row" alignItems="center" mb={8}>
           <IconTitle color={pot.theme} title={pot.name} />
 
-          <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
+          <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl} id={pot.id}>
             <MenuItem onClick={editHandler}>{t("pots.edit.title")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}

@@ -2,13 +2,14 @@ import { IconButton, Menu } from "@mui/material";
 import ellipsis from "../assets/icon-ellipsis.svg";
 
 type MenuIconProps = {
+  id: number;
   children: React.ReactNode;
   anchorEl: HTMLElement | null;
   setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
 };
 
 const MenuIcon = (props: MenuIconProps): JSX.Element => {
-  const { children, anchorEl, setAnchorEl } = props;
+  const { children, id, anchorEl, setAnchorEl } = props;
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,6 +21,7 @@ const MenuIcon = (props: MenuIconProps): JSX.Element => {
       <IconButton
         sx={{ ml: "auto", width: 32, padding: 0, height: 32 }}
         onClick={handleClick}
+        aria-label={`pot-menu-${id}`}
       >
         <img src={ellipsis} alt="" />
       </IconButton>

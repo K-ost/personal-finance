@@ -85,7 +85,6 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           adornment="$"
           inputProps={{
             ...register("target", FORM_SETTINGS.target),
-            "data-testid": "target",
           }}
           error={errors.target ? true : false}
           helperText={errors.target && errors.target.message}
@@ -95,7 +94,6 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           label={t("form.theme.label")}
           inputProps={{
             ...register("theme"),
-            "data-testid": "theme",
           }}
           options={potsColorOptions}
           usedoptions={usedThemes}

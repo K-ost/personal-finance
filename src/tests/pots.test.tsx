@@ -7,19 +7,29 @@ import { useAppStore } from "../store/useAppStore";
 import { PotFactory } from "./factories";
 
 const mockedData = PotFactory.buildList(3);
-const mockedPotBody = {
+const mockedNewPotBody = {
   name: "New Pot",
   target: 1000,
-  theme: "#277C78",
+  theme: "#626070",
   total: 0,
 };
 
 describe("Pots Page", () => {
   beforeAll(() => {
     APINock.get("/pots").reply(200, mockedData);
-    APINock.post("/pots", mockedPotBody).reply(200, {
-      ...mockedPotBody,
-      id: 5,
+
+    APINock.post("/pots", mockedNewPotBody).reply(200, {
+      ...mockedNewPotBody,
+      id: 4,
+    });
+
+    APINock.patch("/pots/1", {
+      name: "Edited",
+      target: 1000,
+      theme: "#277C78",
+    }).reply(200, {
+      ...mockedData,
+      name: "Edited",
     });
   });
 
@@ -63,12 +73,41 @@ describe("Pots Page", () => {
     expect(screen.getByText("Add New Pot")).toBeInTheDocument();
     const btn = screen.getByRole("button", { name: "Add Pot" });
 
-    await userEvent.type(screen.getByTestId("name"), "New Pot");
-    await userEvent.type(screen.getByTestId("target"), "1000");
+    await userEvent.type(
+      screen.getByRole("textbox", { name: "Pot Name" }),
+      "New Pot"
+    );
+    await userEvent.type(
+      screen.getByRole("spinbutton", { name: "Target" }),
+      "1000"
+    );
     await userEvent.click(btn);
 
     await waitFor(() => {
       expect(screen.getByText(/'New Pot' has been added/)).toBeInTheDocument();
     });
   });
+
+  // it("Edit pot", async () => {
+  //   const potMenu = screen.getByRole("button", {
+  //     name: "pot-menu-1",
+  //   });
+  //   await userEvent.click(potMenu);
+  //   await userEvent.click(screen.getByRole("menuitem", { name: "Edit Pot" }));
+  //   expect(
+  //     screen.getByRole("heading", { name: "Edit Pot" })
+  //   ).toBeInTheDocument();
+  //   expect(screen.getByText(/feel free to update/)).toBeInTheDocument();
+
+  //   await userEvent.type(
+  //     screen.getByRole("textbox", { name: "Pot Name" }),
+  //     "Edited"
+  //   );
+  //   await userEvent.click(screen.getByText("Save Changes"));
+
+  //   await waitFor(() => {
+  //     // expect(screen.getByText(/has been changed/)).toBeInTheDocument();
+  //     // screen.debug(undefined, 100000);
+  //   });
+  // });
 });
