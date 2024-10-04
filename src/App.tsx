@@ -41,7 +41,9 @@ function App() {
           <Route path="/bills" element={<Bills />} />
         </Route>
       </Routes>
-      <Notification />
+      <div data-testid="not">
+        <Notification />
+      </div>
     </div>
   );
 }

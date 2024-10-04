@@ -79,21 +79,23 @@ const EditPot = (props: EditPotProps): JSX.Element => {
       </Typography>
       <form onSubmit={handleSubmit(editHandler)}>
         <CustomInput
-          label={t("pots.addnew.name")}
-          helperText={errors.name ? errors.name.message : "30 characters left"}
+          label={t("form.potname.label")}
+          helperText={
+            errors.name ? errors.name.message : t("form.potname.helper")
+          }
           inputProps={{ ...register("name", FORM_SETTINGS.name) }}
           error={errors.name ? true : false}
         />
         <CustomInput
           type="number"
-          label={t("pots.addnew.target")}
+          label={t("form.target.label")}
           adornment="$"
           inputProps={{ ...register("target", FORM_SETTINGS.target) }}
           error={errors.target ? true : false}
           helperText={errors.target && errors.target.message}
         />
         <CustomSelect
-          label={t("pots.addnew.theme")}
+          label={t("form.theme.label")}
           inputProps={{ ...register("theme") }}
           options={potsColorOptions}
           usedoptions={usedThemes}

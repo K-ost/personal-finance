@@ -44,7 +44,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
     mutate(
       {
         name: data.name,
-        target: data.target,
+        target: Number(data.target),
         theme: data.theme,
         total: 0,
       },
@@ -66,34 +66,43 @@ const AddPot = (props: AddPotProps): JSX.Element => {
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
         {t("pots.addnew.text")}
       </Typography>
-      <form onSubmit={handleSubmit(addHandler)}>
+      <form onSubmit={handleSubmit(addHandler)} data-testid="form1">
         <CustomInput
-          label={t("pots.addnew.name")}
-          helperText={errors.name ? errors.name.message : "30 characters left"}
-          inputProps={{ ...register("name", FORM_SETTINGS.name) }}
+          label={t("form.potname.label")}
+          helperText={
+            errors.name ? errors.name.message : t("form.potname.helper")
+          }
+          inputProps={{
+            ...register("name", FORM_SETTINGS.name),
+            "data-testid": "name",
+          }}
           error={errors.name ? true : false}
         />
 
         <CustomInput
           type="number"
-          label={t("pots.addnew.target")}
+          label={t("form.target.label")}
           adornment="$"
           inputProps={{
             ...register("target", FORM_SETTINGS.target),
+            "data-testid": "target",
           }}
           error={errors.target ? true : false}
           helperText={errors.target && errors.target.message}
         />
 
         <CustomSelect
-          label={t("pots.addnew.theme")}
-          inputProps={{ ...register("theme") }}
+          label={t("form.theme.label")}
+          inputProps={{
+            ...register("theme"),
+            "data-testid": "theme",
+          }}
           options={potsColorOptions}
           usedoptions={usedThemes}
           colorpicker="true"
         />
 
-        <Btn type="submit" fullWidth>
+        <Btn type="submit" fullWidth data-test="submitNewPot">
           {isPending ? "Loading..." : t("pots.addnew.btn")}
         </Btn>
       </form>

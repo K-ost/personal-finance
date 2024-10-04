@@ -1,7 +1,7 @@
 import * as Factory from "factory.ts";
 import { Pot } from "../types";
 
-export const PotFactory = Factory.Sync.makeFactory<Pot>({
+export const PotFactory = Factory.Sync.makeFactory<Partial<Pot>>({
   id: Factory.each((i) => i + 1),
   name: Factory.each((i) => `Custom Pot ${i + 1}`),
   target: Factory.each((i) => (i + 1) * 1000),

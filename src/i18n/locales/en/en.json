@@ -20,6 +20,46 @@
       "text": "Currently this page is being developed."
     }
   },
+  "notifications": {
+    "lang": "Language has been changed to {{ lang }}"
+  },
+  "form": {
+    "email": {
+      "label": "Email"
+    },
+    "name": {
+      "label": "Name"
+    },
+    "password": {
+      "label": "Password"
+    },
+    "createPassword": {
+      "label": "Create Password",
+      "helper": "Passwords must be at least 8 characters"
+    },
+    "target": {
+      "label": "Target"
+    },
+    "theme": {
+      "label": "Theme"
+    },
+    "potname": {
+      "label": "Pot Name",
+      "helper": "30 characters left"
+    },
+    "addmoney": {
+      "label": "Amount to Add"
+    },
+    "withdraw": {
+      "label": "Amount to Withdraw"
+    }
+  },
+  "loginPage": {
+    "title": "Login",
+    "text": "Keep track of your money and save for your future",
+    "subtext": "Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.",
+    "btn": "Login"
+  },
   "budgets": {
     "addnew": "Add New Budget",
     "edit": "Edit Budget",
@@ -37,7 +77,6 @@
       "btnTitle": "Add Money",
       "title": "Add to '{{ title }}'",
       "btn": "Confirm Addition",
-      "label": "Amount to Add",
       "errorText": "It can't be more than {{ amount }}",
       "notification": "You've added money to your target for '{{ title }}'"
     },
@@ -45,16 +84,12 @@
       "btnTitle": "Withdraw",
       "title": "Withdraw from '{{ title }}'",
       "btn": "Confirm Withdrawal",
-      "label": "Amount to Withdraw",
       "errorText": "It can't be more than {{ amount }}",
       "notification": "You've withdrawn money from your target for '{{ title }}'"
     },
     "addnew": {
       "title": "Add New Pot",
       "text": "Create a pot to set savings targets. These can help keep you on track as you save for special purchases.",
-      "name": "Pot Name",
-      "target": "Target",
-      "theme": "Theme",
       "btn": "Add Pot",
       "notification": "Pot '{{ title }}' has been added to the database"
     },

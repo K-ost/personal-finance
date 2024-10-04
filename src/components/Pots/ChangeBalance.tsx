@@ -85,7 +85,7 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
   });
   const btnText = t(`pots.${type === "topup" ? "addmoney" : "withdraw"}.btn`);
   const labelText = t(
-    `pots.${type === "topup" ? "addmoney" : "withdraw"}.label`
+    `form.${type === "topup" ? "addmoney" : "withdraw"}.label`
   );
   const errorText =
     type === "topup"

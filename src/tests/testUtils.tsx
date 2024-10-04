@@ -5,16 +5,17 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "../theme";
 import "../i18n/index";
 import { API_URL } from "../utils/constants";
+import App from "../App";
 
 const queryClient = new QueryClient();
 
 export const APINock = nock(API_URL);
 
 export const Wrapper = ({
-  children,
+  children = <App />,
   initialEntries,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   initialEntries?: string[];
 }): JSX.Element => (
   <MemoryRouter initialEntries={initialEntries}>

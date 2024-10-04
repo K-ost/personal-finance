@@ -1,6 +1,8 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
 import bg from "../assets/illustration-authentication.svg";
 import logo from "../assets/logo-large.svg";
+import LangSwitcher from "./LangSwitcher";
+import { useTranslation } from "react-i18next";
 
 type LoginLayoutProps = {
   children: React.ReactNode;
@@ -70,6 +72,7 @@ const RightCol = styled(Box)<BoxProps>(({ theme }) => ({
 
 const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
   const { children } = props;
+  const { t } = useTranslation();
 
   return (
     <Layout>
@@ -79,16 +82,20 @@ const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
           <img src={logo} alt="" />
         </Box>
         <LeftColText>
-          <Typography variant="h1">
-            Keep track of your money and save for your future
-          </Typography>
-          <Typography variant="body1">
-            Personal finance app puts you in control of your spending. Track
-            transactions, set budgets, and add to savings pots easily.
-          </Typography>
+          <Typography variant="h1">{t("loginPage.text")}</Typography>
+          <Typography variant="body1">{t("loginPage.subtext")}</Typography>
         </LeftColText>
       </LeftCol>
-      <RightCol>{children}</RightCol>
+      <RightCol>
+        <LangSwitcher
+          sx={(theme) => ({
+            position: "absolute",
+            right: theme.spacing(2),
+            top: theme.spacing(2),
+          })}
+        />
+        {children}
+      </RightCol>
     </Layout>
   );
 };

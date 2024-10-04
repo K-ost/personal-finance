@@ -18,6 +18,7 @@ const LangBtn = styled(Button)(({ theme }) => ({
 
 const LangSwitcher = (props: StackProps): JSX.Element => {
   const { lang, setLang } = useAppStore();
+  const { auth } = useAuthStore();
   const { setLogout } = useAuthStore();
   const { t } = useTranslation();
 
@@ -26,7 +27,7 @@ const LangSwitcher = (props: StackProps): JSX.Element => {
       <LangBtn
         variant={lang === "en" ? "contained" : "outlined"}
         onClick={() => setLang("en")}
-        sx={{ mr: 1 }}
+        sx={{ mr: 2 }}
       >
         En
       </LangBtn>
@@ -36,13 +37,15 @@ const LangSwitcher = (props: StackProps): JSX.Element => {
       >
         Ru
       </LangBtn>
-      <LangBtn
-        variant="outlined"
-        onClick={() => setLogout()}
-        sx={{ ml: "auto" }}
-      >
-        {t("settings.logout")}
-      </LangBtn>
+      {auth && (
+        <LangBtn
+          variant="outlined"
+          onClick={() => setLogout()}
+          sx={{ ml: "auto" }}
+        >
+          {t("settings.logout")}
+        </LangBtn>
+      )}
     </Stack>
   );
 };

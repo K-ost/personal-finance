@@ -12,6 +12,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { useEffect } from "react";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { FORM_SETTINGS } from "../utils/constants";
+import { useTranslation } from "react-i18next";
 
 type FormData = {
   email: string;
@@ -21,6 +22,7 @@ type FormData = {
 const LoginPage = (): JSX.Element => {
   const { setAuth } = useAuthStore();
   const { setNotification } = useNotificationStore();
+  const { t } = useTranslation();
 
   const {
     formState: { errors },
@@ -53,23 +55,25 @@ const LoginPage = (): JSX.Element => {
   return (
     <LoginLayout>
       <FormBody>
-        <Typography variant="h1">Login</Typography>
+        <Typography variant="h1">{t("loginPage.title")}</Typography>
         <form onSubmit={handleSubmit(loginHandler)} noValidate>
           <CustomInput
-            label="Email"
+            label={t("form.email.label")}
             type="email"
             inputProps={{
               ...register("email", FORM_SETTINGS.email),
+              "data-testid": "email",
             }}
             error={errors.email ? true : false}
             helperText={errors.email?.message}
           />
 
           <PassInput
-            label="Password"
+            label={t("form.password.label")}
             sx={{ mb: "32px" }}
             inputProps={{
               ...register("password", FORM_SETTINGS.password),
+              "data-testid": "password",
             }}
             error={errors.password ? true : false}
             helperText={errors.password?.message}
@@ -77,7 +81,7 @@ const LoginPage = (): JSX.Element => {
 
           <Box sx={{ mb: "32px" }}>
             <Btn type="submit" color="primary" fullWidth>
-              {isPending ? "Loading..." : "Login"}
+              {isPending ? "Loading..." : t("loginPage.btn")}
             </Btn>
           </Box>
         </form>
