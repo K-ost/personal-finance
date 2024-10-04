@@ -1,18 +1,20 @@
 import { beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { render, renderHook, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { APINock, createUser, Wrapper, WrapperHook } from "./testUtils";
+import {
+  APINock,
+  createUser,
+  mockedEditPotBody,
+  mockedNewPotBody,
+  Wrapper,
+  WrapperHook,
+} from "./testUtils";
 import { useAuthStore } from "../store/useAuthStore";
 import { useAppStore } from "../store/useAppStore";
 import { PotFactory } from "./factories";
 
 const mockedData = PotFactory.buildList(3);
-const mockedNewPotBody = {
-  name: "New Pot",
-  target: 1000,
-  theme: "#626070",
-  total: 0,
-};
+const editedTitle = "New title";
 
 describe("Pots Page", () => {
   beforeAll(() => {
@@ -23,14 +25,12 @@ describe("Pots Page", () => {
       id: 4,
     });
 
-    APINock.patch("/pots/1", {
-      name: "Edited",
-      target: 1000,
-      theme: "#277C78",
-    }).reply(200, {
-      ...mockedData,
-      name: "Edited",
-    });
+    APINock.patch("/pots/1", mockedEditPotBody(editedTitle)).reply(
+      200,
+      mockedEditPotBody(editedTitle, true)
+    );
+
+    APINock.delete("/pots/3").reply(200, { message: "Ok" });
   });
 
   beforeEach(() => {
@@ -67,7 +67,7 @@ describe("Pots Page", () => {
     expect(screen.getByText("Добавить Копилку")).toBeInTheDocument();
   });
 
-  it("Create new pot", async () => {
+  it("Create New Pot", async () => {
     const addNewPot = await screen.findByText("+ Add New Pot");
     await userEvent.click(addNewPot);
     expect(screen.getByText("Add New Pot")).toBeInTheDocument();
@@ -88,26 +88,41 @@ describe("Pots Page", () => {
     });
   });
 
-  // it("Edit pot", async () => {
-  //   const potMenu = screen.getByRole("button", {
-  //     name: "pot-menu-1",
-  //   });
-  //   await userEvent.click(potMenu);
-  //   await userEvent.click(screen.getByRole("menuitem", { name: "Edit Pot" }));
-  //   expect(
-  //     screen.getByRole("heading", { name: "Edit Pot" })
-  //   ).toBeInTheDocument();
-  //   expect(screen.getByText(/feel free to update/)).toBeInTheDocument();
+  it("Edit Pot", async () => {
+    const potMenu = screen.getByRole("button", {
+      name: "pot-menu-1",
+    });
+    await userEvent.click(potMenu);
+    await userEvent.click(screen.getByRole("menuitem", { name: "Edit Pot" }));
+    expect(
+      screen.getByRole("heading", { name: "Edit Pot" })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/feel free to update/)).toBeInTheDocument();
 
-  //   await userEvent.type(
-  //     screen.getByRole("textbox", { name: "Pot Name" }),
-  //     "Edited"
-  //   );
-  //   await userEvent.click(screen.getByText("Save Changes"));
+    const nameInput = screen.getByRole("textbox", { name: "Pot Name" });
 
-  //   await waitFor(() => {
-  //     // expect(screen.getByText(/has been changed/)).toBeInTheDocument();
-  //     // screen.debug(undefined, 100000);
-  //   });
-  // });
+    await userEvent.clear(nameInput);
+    await userEvent.type(nameInput, editedTitle);
+    await userEvent.click(screen.getByRole("button", { name: "Save Changes" }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/'New title' has been changed/i)
+      ).toBeInTheDocument();
+    });
+  });
+
+  it("Delete Pot", async () => {
+    await userEvent.click(screen.getByRole("button", { name: "pot-menu-3" }));
+    await userEvent.click(screen.getByText("Delete Pot"));
+    expect(screen.getByText("Delete 'Custom Pot 3'?")).toBeInTheDocument();
+    await userEvent.click(
+      screen.getByRole("button", { name: "Yes, Confirm Deletion" })
+    );
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Pot 'Custom Pot 3' has been deleted/)
+      ).toBeInTheDocument();
+    });
+  });
 });

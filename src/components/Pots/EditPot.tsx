@@ -66,7 +66,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["pots"],
           });
-          setNotification(t("pots.edit.notification", { title: pot.name }));
+          setNotification(t("pots.edit.notification", { title: data.name }));
         },
       }
     );
