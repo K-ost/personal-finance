@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import CustomDialog from "../../ui/CustomDialog";
 import CustomInput from "../../ui/CustomInput";
 import { CategoriesOptions } from "./constants";

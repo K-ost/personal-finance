@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { APINock, WrapperHook } from "../../tests/testUtils";
-import { BudgetFactory } from "../../tests/factories";
+import { budgetFactory } from "../../tests/factories";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import useMutateData from "../useMutateData";
 import { Budget } from "../../types";
 
-const mockedBudget = BudgetFactory.build();
-const bodyBudget = { ...mockedBudget };
+const mockedBudget = budgetFactory.build({ latest: [] });
+const bodyBudget: Partial<Budget> = { ...mockedBudget };
 delete bodyBudget.id;
 delete bodyBudget.latest;
 const patchedData = {

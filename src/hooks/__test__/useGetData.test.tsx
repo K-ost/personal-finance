@@ -3,9 +3,9 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { APINock, WrapperHook } from "../../tests/testUtils";
 import useGetData from "../useGetData";
 import { Transaction } from "../../types";
-import { TransactionFactory } from "../../tests/factories";
+import { transactionFactory } from "../../tests/factories";
 
-const mockedData = TransactionFactory.buildList(3);
+const mockedData = transactionFactory.buildList(3);
 
 describe("useGetData", () => {
   beforeEach(() => {
