@@ -50,7 +50,7 @@ const DeletePot = (props: DeletePotProps): JSX.Element => {
         {t("pots.delete.text")}
       </Typography>
       <Btn color="error" fullWidth sx={{ mb: 2 }} onClick={deleteHandler}>
-        {isPending ? "Loading..." : t("pots.delete.btn")}
+        {isPending ? t("settings.loading") : t("pots.delete.btn")}
       </Btn>
       <Btn variant="text" fullWidth onClick={close}>
         {t("pots.delete.cancel")}

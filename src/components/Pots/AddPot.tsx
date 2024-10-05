@@ -101,7 +101,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         />
 
         <Btn type="submit" fullWidth data-test="submitNewPot">
-          {isPending ? "Loading..." : t("pots.addnew.btn")}
+          {isPending ? t("settings.loading") : t("pots.addnew.btn")}
         </Btn>
       </form>
     </CustomDialog>

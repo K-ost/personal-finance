@@ -103,7 +103,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
           colorpicker="true"
         />
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : t("pots.edit.btn")}
+          {isPending ? t("settings.loading") : t("pots.edit.btn")}
         </Btn>
       </form>
     </CustomDialog>

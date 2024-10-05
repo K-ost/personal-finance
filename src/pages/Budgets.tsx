@@ -39,7 +39,9 @@ const Budgets = (): JSX.Element => {
     <MainLayout>
       <PageHeader title={t("nav.budgets")}>
         {isSuccess && (
-          <Btn onClick={() => setAddDialog(true)}>+ {t("budgets.addnew")}</Btn>
+          <Btn onClick={() => setAddDialog(true)}>
+            + {t("budgets.addnew.title")}
+          </Btn>
         )}
       </PageHeader>
 

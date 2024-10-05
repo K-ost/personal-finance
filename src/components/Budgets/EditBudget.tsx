@@ -13,6 +13,7 @@ import { useNotificationStore } from "../../store/useNotificationStore";
 import CustomSelect from "../../ui/CustomSelect";
 import { potsColorOptions } from "../Pots/constants";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 type EditBudgetProps = {
   budget: Budget;
@@ -31,6 +32,7 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
   const { usedCategories, usedThemes } = useThemesStore();
   const { setNotification } = useNotificationStore();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const {
     formState: { errors },
@@ -69,21 +71,19 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["budgets"],
           });
-          setNotification("Your budget has been edited");
+          setNotification(
+            t("budgets.edit.notification", { title: data.category })
+          );
         },
       }
     );
   };
 
   return (
-    <CustomDialog close={close} open={open} title="Edit Budget">
-      <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-        hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.
-      </Typography>
+    <CustomDialog close={close} open={open} title={t("budgets.edit.title")}>
       <form onSubmit={handleSubmit(editHandler)}>
         <CustomSelect
-          label="Budget Category"
+          label={t("form.budgetCategory.label")}
           options={CategoriesOptions}
           usedoptions={usedCategories}
           inputProps={{ ...register("category") }}
@@ -91,7 +91,7 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
         />
 
         <CustomInput
-          label="Maximum Spending"
+          label={t("form.maxSpend.label")}
           adornment="$"
           inputProps={{ ...register("maximum", FORM_SETTINGS.target) }}
           error={errors.maximum ? true : false}
@@ -99,7 +99,7 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
         />
 
         <CustomSelect
-          label="Theme"
+          label={t("form.theme.label")}
           options={potsColorOptions}
           usedoptions={usedThemes}
           colorpicker="true"
@@ -108,7 +108,7 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
         />
 
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : "Save Changes"}
+          {isPending ? t("settings.loading") : t("budgets.edit.btn")}
         </Btn>
       </form>
     </CustomDialog>

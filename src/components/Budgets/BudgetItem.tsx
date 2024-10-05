@@ -46,13 +46,17 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
             title={budget.category}
             sx={{ mb: 4 }}
           />
-          <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <MenuItem onClick={editHandler}>{t("budgets.edit")}</MenuItem>
+          <MenuIcon
+            id={budget.id}
+            anchorEl={anchorEl}
+            setAnchorEl={setAnchorEl}
+          >
+            <MenuItem onClick={editHandler}>{t("budgets.edit.title")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
               onClick={deleteHandler}
             >
-              {t("budgets.delete")}
+              {t("budgets.delete.item")}
             </MenuItem>
           </MenuIcon>
         </Stack>

@@ -12,6 +12,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import CustomSelect from "../../ui/CustomSelect";
 import { potsColorOptions } from "../Pots/constants";
+import { useTranslation } from "react-i18next";
 
 type AddBudgetProps = {
   close: () => void;
@@ -29,6 +30,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
   const { usedCategories, usedThemes } = useThemesStore();
   const { setNotification } = useNotificationStore();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const {
     formState: { errors },
@@ -57,36 +59,35 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["budgets"],
           });
-          setNotification("Your budget has been added");
+          setNotification(
+            t("budgets.addnew.notification", { title: data.category })
+          );
         },
       }
     );
   };
 
   return (
-    <CustomDialog close={close} open={open} title="Add New Budget">
-      <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-        hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.
-      </Typography>
+    <CustomDialog close={close} open={open} title={t("budgets.addnew.title")}>
       <form onSubmit={handleSubmit(addHandler)}>
         <CustomSelect
-          label="Budget Category"
+          label={t("form.budgetCategory.label")}
           options={CategoriesOptions}
           usedoptions={usedCategories}
           inputProps={{ ...register("category") }}
         />
 
         <CustomInput
-          label="Maximum Spending"
+          label={t("form.maxSpend.label")}
           adornment="$"
+          type="number"
           inputProps={{ ...register("maximum", FORM_SETTINGS.target) }}
           error={errors.maximum ? true : false}
           helperText={errors.maximum && errors.maximum.message}
         />
 
         <CustomSelect
-          label="Theme"
+          label={t("form.theme.label")}
           options={potsColorOptions}
           usedoptions={usedThemes}
           colorpicker="true"
@@ -94,7 +95,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
         />
 
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : "Add Budget"}
+          {isPending ? t("settings.loading") : t("budgets.addnew.btn")}
         </Btn>
       </form>
     </CustomDialog>

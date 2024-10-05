@@ -129,7 +129,7 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
           helperText={errors.total && errors.total.message}
         />
         <Btn type="submit" fullWidth>
-          {isPending ? "Loading..." : btnText}
+          {isPending ? t("settings.loading") : btnText}
         </Btn>
       </form>
     </CustomDialog>
