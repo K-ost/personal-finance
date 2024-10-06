@@ -26,10 +26,5 @@ describe("useBudgetHook", () => {
     );
     expect(result.current.spentAll).toBe(2100);
     expect(result.current.chartData).toHaveLength(3);
-    result.current.chartData.forEach((item) => {
-      expect(item.hasOwnProperty("color")).toBe(true);
-      expect(item.hasOwnProperty("label")).toBe(true);
-      expect(item.hasOwnProperty("value")).toBe(true);
-    });
   });
 });

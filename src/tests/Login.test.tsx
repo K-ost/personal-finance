@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { APINock, createUser, Wrapper } from "./testUtils";
+import { APINock, Wrapper } from "./testUtils";
+import { createUser } from "./constants";
 
 describe("Login Page", () => {
   beforeEach(() => {

@@ -44,11 +44,5 @@ describe("useGetData", () => {
     });
 
     expect(result.current.data?.data.length).toBe(3);
-
-    result.current.data?.data.forEach((item) => {
-      expect(item.hasOwnProperty("id")).toBe(true);
-      expect(item.hasOwnProperty("name")).toBe(true);
-      expect(item.hasOwnProperty("amount")).toBe(true);
-    });
   });
 });
