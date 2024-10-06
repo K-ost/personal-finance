@@ -12,9 +12,9 @@ import Sorting from "../components/Filter/Sorting";
 import FilterCategory from "../components/Filter/FilterCategory";
 import TransactionsLoading from "../components/TransactionsTable/Loading";
 import PageHeader from "../ui/PageHeader";
-import AlertBox from "../ui/AlertBox";
 import { TRANSACTIONS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
+import Error from "../components/Error";
 
 const pageCount = 10;
 
@@ -55,17 +55,10 @@ const Transactions = (): JSX.Element => {
           </Filter>
         )}
 
-        {isSuccess && <TransactionsTable list={data.data} />}
         {isLoading && <TransactionsLoading count={pageCount} />}
-        {isError && (
-          <AlertBox
-            severity="error"
-            color="error"
-            title={t("alerts.serverError.title")}
-          >
-            {t("alerts.serverError.text")}
-          </AlertBox>
-        )}
+        {isError && <Error />}
+
+        {isSuccess && <TransactionsTable list={data.data} />}
 
         {isSuccess && data.count > pageCount && (
           <Pager

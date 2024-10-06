@@ -6,8 +6,9 @@ const CustomButton = styled(Button)(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.body1.fontSize,
   fontWeight: 700,
+  minHeight: 52,
   lineHeight: theme.typography.body1.lineHeight,
-  padding: theme.spacing(4),
+  padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
   textTransform: "none",
   "&.MuiButton-colorSecondary:hover": {
     boxShadow: `inset 0 0 0 1px ${theme.palette.custom.beige500} !important`,

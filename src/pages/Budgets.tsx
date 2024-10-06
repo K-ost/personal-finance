@@ -7,12 +7,12 @@ import { Grid2 } from "@mui/material";
 import BudgetWidget from "../components/BudgetWidget";
 import BudgetsList from "../components/Budgets";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
-import AlertBox from "../ui/AlertBox";
 import { useEffect, useState } from "react";
 import AddBudget from "../components/Budgets/AddBudget";
 import { useThemesStore } from "../store/useThemesStore";
 import { BUDGETS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
+import Error from "../components/Error";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();
@@ -46,6 +46,7 @@ const Budgets = (): JSX.Element => {
       </PageHeader>
 
       {isLoading && <BudgetsLoading />}
+      {isError && <Error />}
 
       {isSuccess && (
         <Grid2 container spacing={6}>
@@ -57,16 +58,6 @@ const Budgets = (): JSX.Element => {
             <BudgetsList data={data.data} />
           </Grid2>
         </Grid2>
-      )}
-
-      {isError && (
-        <AlertBox
-          severity="error"
-          color="error"
-          title={t("alerts.serverError.title")}
-        >
-          {t("alerts.serverError.text")}
-        </AlertBox>
       )}
 
       <AddBudget close={() => setAddDialog(false)} open={addDialog} />

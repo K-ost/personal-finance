@@ -65,7 +65,8 @@
     "title": "Login",
     "text": "Keep track of your money and save for your future",
     "subtext": "Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.",
-    "btn": "Login"
+    "btn": "Login",
+    "footerText": "Need to create an account? <2><3>Sign Up</3></2>"
   },
   "budgets": {
     "addnew": {

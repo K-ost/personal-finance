@@ -14,6 +14,13 @@ const LangBtn = styled(Button)(({ theme }) => ({
   minWidth: 0,
   paddingLeft: theme.spacing(2),
   paddingRight: theme.spacing(2),
+  [theme.breakpoints.down("md")]: {
+    color: theme.palette.common.white,
+    "&.active": {
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.primary.main,
+    },
+  },
 }));
 
 const LangSwitcher = (props: StackProps): JSX.Element => {
@@ -26,6 +33,7 @@ const LangSwitcher = (props: StackProps): JSX.Element => {
     <Stack direction="row" {...props}>
       <LangBtn
         variant={lang === "en" ? "contained" : "outlined"}
+        className={lang === "en" ? "active" : ""}
         onClick={() => setLang("en")}
         sx={{ mr: 2 }}
       >
@@ -33,6 +41,7 @@ const LangSwitcher = (props: StackProps): JSX.Element => {
       </LangBtn>
       <LangBtn
         variant={lang === "ru" ? "contained" : "outlined"}
+        className={lang === "ru" ? "active" : ""}
         onClick={() => setLang("ru")}
       >
         Ru

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import LoginLayout from "../components/LoginLayout";
 import FormBody from "../ui/FormBody";
 import CustomInput from "../ui/CustomInput";
@@ -12,7 +12,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { useEffect } from "react";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { FORM_SETTINGS } from "../utils/constants";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 type FormData = {
   email: string;
@@ -81,15 +81,20 @@ const LoginPage = (): JSX.Element => {
 
           <Box sx={{ mb: "32px" }}>
             <Btn type="submit" color="primary" fullWidth>
-              {isPending ? "Loading..." : t("loginPage.btn")}
+              {t("loginPage.btn")}
+              {isPending && (
+                <CircularProgress size={24} color="secondary" sx={{ ml: 4 }} />
+              )}
             </Btn>
           </Box>
         </form>
         <Typography variant="body1" color="textSecondary" textAlign="center">
-          Need to create an account?{" "}
-          <Link to="/signup">
-            <b>Sign Up</b>
-          </Link>
+          <Trans i18nKey="loginPage.footerText">
+            Need to create an account?{" "}
+            <Link to="/signup" style={{ fontWeight: 700 }}>
+              Sign Up
+            </Link>
+          </Trans>
         </Typography>
       </FormBody>
     </LoginLayout>

@@ -8,9 +8,9 @@ import Btn from "../ui/Btn";
 import AddPot from "../components/Pots/AddPot";
 import { useEffect, useState } from "react";
 import { useThemesStore } from "../store/useThemesStore";
-import AlertBox from "../ui/AlertBox";
 import { POTS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
+import Error from "../components/Error";
 
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();
@@ -39,17 +39,9 @@ const Pots = (): JSX.Element => {
         )}
       </PageHeader>
 
-      {isSuccess && <PotsList data={data.data} />}
       {isLoading && <PotLoading />}
-      {isError && (
-        <AlertBox
-          severity="error"
-          color="error"
-          title={t("alerts.serverError.title")}
-        >
-          {t("alerts.serverError.text")}
-        </AlertBox>
-      )}
+      {isError && <Error />}
+      {isSuccess && <PotsList data={data.data} />}
 
       <AddPot close={() => setAddDialog(false)} open={addDialog} />
     </MainLayout>

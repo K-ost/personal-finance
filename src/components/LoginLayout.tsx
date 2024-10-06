@@ -92,6 +92,9 @@ const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
             position: "absolute",
             right: theme.spacing(4),
             top: theme.spacing(4),
+            [theme.breakpoints.down("md")]: {
+              top: theme.spacing(5),
+            },
           })}
         />
         {children}
