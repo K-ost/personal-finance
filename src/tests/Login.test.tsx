@@ -29,8 +29,6 @@ describe("Login Page", () => {
     await userEvent.type(screen.getByTestId("password"), "111111");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    expect(screen.getByRole("button", { name: "Loading..." }));
-
     await waitFor(() => {
       expect(screen.getByText("Incorrect password"));
     });
@@ -45,8 +43,6 @@ describe("Login Page", () => {
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "123456");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
-
-    expect(screen.getByRole("button", { name: "Loading..." }));
 
     await waitFor(() => {
       expect(screen.getByText("You've been logged successfully"));

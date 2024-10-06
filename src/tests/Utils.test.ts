@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  createBillsDate,
   getChartLimit,
   getLocalPrice,
   getProgressValue,
@@ -52,5 +53,31 @@ describe("Utils", () => {
       },
     ]);
     expect(result).toStrictEqual("$1,500");
+  });
+
+  it("createBillsDate", () => {
+    const result = createBillsDate("2024-08-18T09:45:32Z");
+    const result2 = createBillsDate("2024-08-11T09:45:32Z");
+    const result3 = createBillsDate("2024-08-12T09:45:32Z");
+    const result4 = createBillsDate("2024-08-13T09:45:32Z");
+    const resultFirst = createBillsDate("2024-08-01T09:45:32Z");
+    const resultFirst2 = createBillsDate("2024-08-21T09:45:32Z");
+    const resultFirst3 = createBillsDate("2024-08-31T09:45:32Z");
+    const resultSecond = createBillsDate("2024-08-02T09:45:32Z");
+    const resultSecond2 = createBillsDate("2024-08-22T09:45:32Z");
+    const resultThird = createBillsDate("2024-08-03T09:45:32Z");
+    const resultThird2 = createBillsDate("2024-08-23T09:45:32Z");
+
+    expect(result).toBe("Monthly - 18th");
+    expect(result2).toBe("Monthly - 11th");
+    expect(result3).toBe("Monthly - 12th");
+    expect(result4).toBe("Monthly - 13th");
+    expect(resultFirst).toBe("Monthly - 1st");
+    expect(resultFirst2).toBe("Monthly - 21st");
+    expect(resultFirst3).toBe("Monthly - 31st");
+    expect(resultSecond).toBe("Monthly - 2nd");
+    expect(resultSecond2).toBe("Monthly - 22nd");
+    expect(resultThird).toBe("Monthly - 3rd");
+    expect(resultThird2).toBe("Monthly - 23rd");
   });
 });
