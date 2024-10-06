@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   createBillsDate,
+  createDate,
   getChartLimit,
   getLocalPrice,
   getProgressValue,
@@ -53,6 +54,11 @@ describe("Utils", () => {
       },
     ]);
     expect(result).toStrictEqual("$1,500");
+  });
+
+  it("createDate", () => {
+    const result = createDate("2024-10-01T09:45:32Z");
+    expect(result).toBe("1 Oct 2024");
   });
 
   it("createBillsDate", () => {
