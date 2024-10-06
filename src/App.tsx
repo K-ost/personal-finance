@@ -26,7 +26,7 @@ function App() {
   }, [lang, i18n]);
 
   return (
-    <div>
+    <>
       <Styles />
       <Routes>
         <Route element={<PublicRoutes isAuth={isAuth} />}>
@@ -44,7 +44,7 @@ function App() {
       <div data-testid="not">
         <Notification />
       </div>
-    </div>
+    </>
   );
 }
 

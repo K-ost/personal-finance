@@ -9,7 +9,7 @@ type MainLayoutProps = {
 const Layout = styled(Box)<BoxProps>(({ theme }) => ({
   backgroundColor: theme.palette.custom.beige100,
   display: "flex",
-  height: "100vh",
+  height: "100%",
   [theme.breakpoints.down("lg")]: {
     flexDirection: "column",
   },

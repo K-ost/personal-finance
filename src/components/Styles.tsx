@@ -9,10 +9,17 @@ const Styles = (): JSX.Element => {
         "*": {
           boxSizing: "border-box",
         },
+        html: {
+          height: "100%",
+        },
         body: {
           color: theme.palette.custom.grey900,
           fontFamily: theme.typography.fontFamily,
           margin: 0,
+          height: "100%",
+        },
+        "#root": {
+          height: "100%",
         },
         a: {
           color: theme.palette.primary.main,
