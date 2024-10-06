@@ -17,6 +17,9 @@ const Amount = (props: AmountProps): JSX.Element => {
           ? theme.palette.custom.secondary.green
           : theme.palette.error.main,
         display: "inline",
+        fontSize: theme.typography.body1.fontSize,
+        lineHeight: theme.typography.body1.lineHeight,
+        fontWeight: 700,
       })}
     >
       {result}

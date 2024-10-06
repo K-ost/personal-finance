@@ -5,9 +5,8 @@ const Head = (): JSX.Element => {
   return (
     <TableHead>
       <TableRow>
-        <Cell sm="true">Recipient / Sender</Cell>
-        <Cell sm="true">Category</Cell>
-        <Cell sm="true">Transaction Date</Cell>
+        <Cell sm="true">Bill Title</Cell>
+        <Cell sm="true">Due Date</Cell>
         <Cell sm="true" align="right">
           Amount
         </Cell>
