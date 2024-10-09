@@ -4,6 +4,7 @@ import { InputAdornment, TextFieldProps } from "@mui/material";
 import searchIcon from "../../assets/icon-search.svg";
 import { useSearchParams } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
+import { useTranslation } from "react-i18next";
 
 type SearchProps = TextFieldProps & {};
 
@@ -11,6 +12,7 @@ const Search = (props: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<string>("");
   const [searchParams, setSearchParams] = useSearchParams();
   const debouncedSearch = useDebounce(search, 500);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (debouncedSearch.length) {
@@ -25,7 +27,7 @@ const Search = (props: SearchProps): JSX.Element => {
 
   return (
     <CustomInput
-      placeholder="Search transaction"
+      placeholder={t("filter.searchPlace")}
       defaultValue={paramValue}
       slotProps={{
         input: {

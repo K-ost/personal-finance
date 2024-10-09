@@ -19,6 +19,10 @@
     "inDev": {
       "title": "in development",
       "text": "Currently this page is being developed."
+    },
+    "notfound": {
+      "title": "Nothing found",
+      "text": "There are no matches for your search query."
     }
   },
   "notifications": {
@@ -61,12 +65,27 @@
       "label": "Maximum Spending"
     }
   },
+  "filter": {
+    "sortby": "Sort by",
+    "category": "Category",
+    "searchPlace": "Search transaction",
+    "prev": "Prev",
+    "next": "Next"
+  },
   "loginPage": {
     "title": "Login",
     "text": "Keep track of your money and save for your future",
     "subtext": "Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.",
     "btn": "Login",
     "footerText": "Need to create an account? <2><3>Sign Up</3></2>"
+  },
+  "transactionsPage": {
+    "table": {
+      "recipient": "Recipient / Sender",
+      "category": "Category",
+      "date": "Transaction Date",
+      "amount": "Amount"
+    }
   },
   "budgets": {
     "addnew": {

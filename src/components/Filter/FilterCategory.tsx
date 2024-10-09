@@ -10,9 +10,11 @@ import CustomInput from "../../ui/CustomInput";
 import { transactionsOptions } from "./constants";
 import { useSearchParams } from "react-router-dom";
 import { getCategoryValue } from "../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 const FilterCategory = (props: StackProps): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -26,7 +28,7 @@ const FilterCategory = (props: StackProps): JSX.Element => {
           color="textSecondary"
           sx={{ mr: theme.spacing(3) }}
         >
-          Category
+          {t("filter.category")}
         </Typography>
       )}
 

@@ -6,10 +6,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { IconNext, IconPrev } from "./Icons";
+import { useTranslation } from "react-i18next";
 
 const Pager = (props: PaginationProps): JSX.Element => {
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+  const { t } = useTranslation();
 
   return (
     <Pagination
@@ -59,14 +61,18 @@ const Pager = (props: PaginationProps): JSX.Element => {
               <>
                 <IconPrev color={theme.palette.primary.main} />
                 {isTablet && (
-                  <span style={{ marginLeft: theme.spacing(4) }}>Prev</span>
+                  <span style={{ marginLeft: theme.spacing(4) }}>
+                    {t("filter.prev")}
+                  </span>
                 )}
               </>
             ),
             next: () => (
               <>
                 {isTablet && (
-                  <span style={{ marginRight: theme.spacing(4) }}>Next</span>
+                  <span style={{ marginRight: theme.spacing(4) }}>
+                    {t("filter.next")}
+                  </span>
                 )}
                 <IconNext color={theme.palette.primary.main} />
               </>

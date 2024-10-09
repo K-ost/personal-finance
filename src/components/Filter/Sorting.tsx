@@ -10,11 +10,13 @@ import CustomInput from "../../ui/CustomInput";
 import { sortOptions } from "./constants";
 import { useSearchParams } from "react-router-dom";
 import { getSortValue } from "../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 const Sorting = (props: StackProps): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { t } = useTranslation();
 
   const sortValue = getSortValue(searchParams);
 
@@ -27,7 +29,7 @@ const Sorting = (props: StackProps): JSX.Element => {
           whiteSpace="nowrap"
           sx={{ mr: theme.spacing(3) }}
         >
-          Sort by
+          {t("filter.sortby")}
         </Typography>
       )}
 

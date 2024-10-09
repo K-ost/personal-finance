@@ -1,6 +1,5 @@
 import MainLayout from "../components/MainLayout";
 import PageHeader from "../ui/PageHeader";
-import AlertBox from "../ui/AlertBox";
 import { useTranslation } from "react-i18next";
 import useGetData from "../hooks/useGetData";
 import { Transaction } from "../types";
@@ -21,10 +20,6 @@ const Bills = (): JSX.Element => {
     <MainLayout>
       <PageHeader title={t("nav.recurringBills")} />
       <Wrap>
-        <AlertBox title={t("alerts.inDev.title")} color="info" severity="info">
-          {t("alerts.inDev.text")}
-        </AlertBox>
-
         {isLoading && <TransactionsLoading count={7} />}
         {isError && <Error />}
         {isSuccess && <BillsTable list={data.data} />}
