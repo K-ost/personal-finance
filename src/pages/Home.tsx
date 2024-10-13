@@ -4,7 +4,7 @@ import Balance from "../ui/Balance";
 import PageHeader from "../ui/PageHeader";
 import AlertBox from "../ui/AlertBox";
 import { useTranslation } from "react-i18next";
-import Wrap from "../ui/Wrap";
+import PotsWidjet from "../components/Pots/PotsWidjet";
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -36,9 +36,7 @@ const Home = (): JSX.Element => {
         {t("alerts.inDev.text")}
       </AlertBox>
 
-      <Wrap title="Pots" allLink="/pots">
-        sdada
-      </Wrap>
+      <PotsWidjet />
     </MainLayout>
   );
 };
