@@ -1,10 +1,12 @@
 import Wrap from "../../ui/Wrap";
 import useGetData from "../../hooks/useGetData";
 import Error from "../Error";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Table, TableBody, TableContainer } from "@mui/material";
+import Row from "./Row";
+import { Transaction } from "../../types";
 
 const TransActionsWidjet = (): JSX.Element => {
-  const { data, isError, isLoading, isSuccess } = useGetData({
+  const { data, isError, isLoading, isSuccess } = useGetData<Transaction[]>({
     key: ["transactions"],
     uri: "/transactions?_limit=5",
   });
@@ -14,7 +16,16 @@ const TransActionsWidjet = (): JSX.Element => {
 
   return (
     <Wrap title="Transactions" alllink="/transactions" all="View All">
-      data
+      <TableContainer>
+        <Table>
+          <TableBody>
+            {isSuccess &&
+              data.data.map((row) => (
+                <Row key={row.id} min transaction={row} />
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Wrap>
   );
 };

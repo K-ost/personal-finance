@@ -4,6 +4,7 @@ import { getImageLink } from "../utils/utils";
 type UserCardProps = {
   avatar: string;
   name: string;
+  category?: string;
 };
 
 const Card = styled(Box)<BoxProps>(({ theme }) => ({
@@ -20,13 +21,20 @@ const Card = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 const UserCard = (props: UserCardProps) => {
-  const { avatar, name } = props;
+  const { avatar, name, category } = props;
   return (
     <Card>
       <img src={getImageLink(avatar)} alt="" />
-      <Typography variant="body1" sx={{ fontWeight: 700 }}>
-        {name}
-      </Typography>
+      <Box>
+        <Typography variant="body1" sx={{ fontWeight: 700 }}>
+          {name}
+        </Typography>
+        {category && (
+          <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+            {category}
+          </Typography>
+        )}
+      </Box>
     </Card>
   );
 };
