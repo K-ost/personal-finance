@@ -16,10 +16,6 @@
       "title": "Server Error",
       "text": "Try to visit this page little later"
     },
-    "inDev": {
-      "title": "in development",
-      "text": "Currently this page is being developed."
-    },
     "notfound": {
       "title": "Nothing found",
       "text": "There are no matches for your search query."

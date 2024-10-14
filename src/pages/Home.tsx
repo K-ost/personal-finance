@@ -2,9 +2,9 @@ import { Grid2, useMediaQuery, useTheme } from "@mui/material";
 import MainLayout from "../components/MainLayout";
 import Balance from "../ui/Balance";
 import PageHeader from "../ui/PageHeader";
-import AlertBox from "../ui/AlertBox";
 import { useTranslation } from "react-i18next";
 import PotsWidjet from "../components/Pots/PotsWidjet";
+import TransActionsWidjet from "../components/Transactions/TransActWidjet";
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -27,16 +27,8 @@ const Home = (): JSX.Element => {
         </Grid2>
       </Grid2>
 
-      <AlertBox
-        title={t("alerts.inDev.title")}
-        color="info"
-        severity="info"
-        sx={{ mt: 6, mb: 6 }}
-      >
-        {t("alerts.inDev.text")}
-      </AlertBox>
-
       <PotsWidjet />
+      <TransActionsWidjet />
     </MainLayout>
   );
 };

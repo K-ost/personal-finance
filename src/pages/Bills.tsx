@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import useGetData from "../hooks/useGetData";
 import { Transaction } from "../types";
 import Error from "../components/Error";
-import TransactionsLoading from "../components/TransactionsTable/Loading";
+import TransactionsLoading from "../components/Transactions/Loading";
 import BillsTable from "../components/BillsTable";
 import Wrap from "../ui/Wrap";
 

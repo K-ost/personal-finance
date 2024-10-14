@@ -1,12 +1,11 @@
 import { Box, BoxProps, Stack, styled, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import BtnMore from "./BtnMore";
 
 type WrapProps = {
   children: React.ReactNode;
   title?: string;
   all?: string;
-  allLink?: string;
+  alllink?: string;
 };
 
 const WrapBox = styled(Box)<BoxProps>(({ theme }) => ({
@@ -19,7 +18,7 @@ const WrapBox = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 const Wrap = (props: WrapProps & BoxProps): JSX.Element => {
-  const { children, title, all = "See Details", allLink } = props;
+  const { children, title, all = "See Details", alllink } = props;
   return (
     <WrapBox {...props}>
       {title && (
@@ -32,7 +31,7 @@ const Wrap = (props: WrapProps & BoxProps): JSX.Element => {
           <Typography variant="h2" sx={{ m: 0 }}>
             {title}
           </Typography>
-          {all && allLink && <BtnMore title={all} to={allLink} />}
+          {all && alllink && <BtnMore title={all} to={alllink} />}
         </Stack>
       )}
       {children}
