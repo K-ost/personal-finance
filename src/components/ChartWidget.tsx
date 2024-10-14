@@ -1,35 +1,19 @@
-import Wrap from "../ui/Wrap";
 import Chart from "../ui/Chart";
 import { Box, Typography } from "@mui/material";
 import BudgetLine from "../ui/BudgetLine";
 import { Budget } from "../types";
 import { useTranslation } from "react-i18next";
 
-type BudgetWidgetProps = {
+type ChartWidgetProps = {
   data: Budget[];
 };
 
-const BudgetWidget = (props: BudgetWidgetProps): JSX.Element => {
+const ChartWidget = (props: ChartWidgetProps): JSX.Element => {
   const { data } = props;
   const { t } = useTranslation();
 
   return (
-    <Wrap
-      sx={(theme) => ({
-        display: "flex",
-        flexDirection: "column",
-        position: "sticky",
-        top: 0,
-        pt: 13,
-        [theme.breakpoints.down("md")]: {
-          flexDirection: "row",
-        },
-        [theme.breakpoints.down("sm")]: {
-          pt: 10,
-          flexDirection: "column",
-        },
-      })}
-    >
+    <>
       <Chart
         data={data}
         sx={(theme) => ({
@@ -56,8 +40,8 @@ const BudgetWidget = (props: BudgetWidgetProps): JSX.Element => {
           ))}
         </div>
       </Box>
-    </Wrap>
+    </>
   );
 };
 
-export default BudgetWidget;
+export default ChartWidget;

@@ -5,6 +5,7 @@ import PageHeader from "../ui/PageHeader";
 import { useTranslation } from "react-i18next";
 import PotsWidjet from "../components/Pots/PotsWidjet";
 import TransActionsWidjet from "../components/Transactions/TransActWidjet";
+import BudgetsWidget from "../components/Budgets/BudgetsWidget";
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ const Home = (): JSX.Element => {
 
       <PotsWidjet />
       <TransActionsWidjet />
+      <BudgetsWidget />
     </MainLayout>
   );
 };

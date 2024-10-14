@@ -4,7 +4,6 @@ import PageHeader from "../ui/PageHeader";
 import useGetData from "../hooks/useGetData";
 import { Budget } from "../types";
 import { Grid2 } from "@mui/material";
-import BudgetWidget from "../components/BudgetWidget";
 import BudgetsList from "../components/Budgets";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import { useEffect, useState } from "react";
@@ -13,6 +12,8 @@ import { useThemesStore } from "../store/useThemesStore";
 import { BUDGETS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
+import Wrap from "../ui/Wrap";
+import ChartWidget from "../components/ChartWidget";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();
@@ -51,7 +52,24 @@ const Budgets = (): JSX.Element => {
       {isSuccess && (
         <Grid2 container spacing={6}>
           <Grid2 size={{ xs: 12, md: 5 }}>
-            <BudgetWidget data={data.data} />
+            <Wrap
+              sx={(theme) => ({
+                display: "flex",
+                flexDirection: "column",
+                position: "sticky",
+                top: 0,
+                pt: 13,
+                [theme.breakpoints.down("md")]: {
+                  flexDirection: "row",
+                },
+                [theme.breakpoints.down("sm")]: {
+                  pt: 10,
+                  flexDirection: "column",
+                },
+              })}
+            >
+              <ChartWidget data={data.data} />
+            </Wrap>
           </Grid2>
 
           <Grid2 size={{ xs: 12, md: 7 }}>
