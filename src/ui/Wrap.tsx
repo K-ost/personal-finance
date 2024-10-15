@@ -1,5 +1,6 @@
 import { Box, BoxProps, Stack, styled, Typography } from "@mui/material";
 import BtnMore from "./BtnMore";
+import { useTranslation } from "react-i18next";
 
 type WrapProps = {
   children: React.ReactNode;
@@ -18,7 +19,9 @@ const WrapBox = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 const Wrap = (props: WrapProps & BoxProps): JSX.Element => {
-  const { children, title, all = "See Details", alllink } = props;
+  const { t } = useTranslation();
+  const { children, title, all = t("links.seeDetails"), alllink } = props;
+
   return (
     <WrapBox {...props}>
       {title && (

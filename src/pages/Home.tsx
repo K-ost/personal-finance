@@ -16,7 +16,7 @@ const Home = (): JSX.Element => {
     <MainLayout>
       <PageHeader title={t("nav.overview")} />
 
-      <Grid2 container spacing={isMobile ? 3 : 6}>
+      <Grid2 container spacing={isMobile ? 3 : 6} sx={{ mb: 6 }}>
         <Grid2 size={{ xs: 12, sm: 4 }}>
           <Balance title="Current Balance" amount={4836} dark />
         </Grid2>
@@ -28,9 +28,15 @@ const Home = (): JSX.Element => {
         </Grid2>
       </Grid2>
 
-      <PotsWidjet />
-      <TransActionsWidjet />
-      <BudgetsWidget />
+      <Grid2 container spacing={6}>
+        <Grid2 size={{ xs: 12, xl: 7 }}>
+          <PotsWidjet sx={{ mb: 6 }} />
+          <TransActionsWidjet />
+        </Grid2>
+        <Grid2 size={{ xs: 12, xl: 5 }}>
+          <BudgetsWidget sx={{ mb: 6 }} />
+        </Grid2>
+      </Grid2>
     </MainLayout>
   );
 };

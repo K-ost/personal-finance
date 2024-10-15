@@ -6,6 +6,10 @@
     "pots": "Копилки",
     "recurringBills": "Повторяющиеся счета"
   },
+  "links": {
+    "seeDetails": "Подробнее",
+    "viewAll": "Смотреть все"
+  },
   "settings": {
     "hideMenu": "Свернуть меню",
     "logout": "Выйти",

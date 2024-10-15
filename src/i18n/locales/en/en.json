@@ -6,6 +6,10 @@
     "pots": "Pots",
     "recurringBills": "Recurring Bills"
   },
+  "links": {
+    "seeDetails": "See Details",
+    "viewAll": "View All"
+  },
   "settings": {
     "hideMenu": "Minimize Menu",
     "logout": "Logout",

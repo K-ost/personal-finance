@@ -1,11 +1,19 @@
 import Wrap from "../../ui/Wrap";
 import useGetData from "../../hooks/useGetData";
 import Error from "../Error";
-import { Skeleton, Table, TableBody, TableContainer } from "@mui/material";
+import {
+  BoxProps,
+  Skeleton,
+  Table,
+  TableBody,
+  TableContainer,
+} from "@mui/material";
 import Row from "./Row";
 import { Transaction } from "../../types";
+import { useTranslation } from "react-i18next";
 
-const TransActionsWidjet = (): JSX.Element => {
+const TransActionsWidjet = (props: BoxProps): JSX.Element => {
+  const { t } = useTranslation();
   const { data, isError, isLoading, isSuccess } = useGetData<Transaction[]>({
     key: ["transactions"],
     uri: "/transactions?_limit=5",
@@ -15,7 +23,12 @@ const TransActionsWidjet = (): JSX.Element => {
   if (isError) return <Error />;
 
   return (
-    <Wrap title="Transactions" alllink="/transactions" all="View All">
+    <Wrap
+      title={t("nav.transactions")}
+      alllink="/transactions"
+      all={t("links.viewAll")}
+      {...props}
+    >
       <TableContainer>
         <Table>
           <TableBody>
