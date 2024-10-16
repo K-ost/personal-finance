@@ -13,7 +13,8 @@ const PotsWidjet = (props: BoxProps): JSX.Element => {
     uri: "/pots",
   });
 
-  if (isLoading) return <Skeleton height={215} variant="rounded" />;
+  if (isLoading)
+    return <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />;
   if (isError) return <Error />;
 
   const totalSaved = data!.data.reduce((acum, el) => (acum += el.total), 0);

@@ -8,7 +8,7 @@ export type SelectOption = {
 
 export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
-export type Balance = {
+export type BalanceType = {
   current: number;
   income: number;
   expenses: number;

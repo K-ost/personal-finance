@@ -72,6 +72,11 @@
     "prev": "Prev",
     "next": "Next"
   },
+  "balances": {
+    "current": "Current Balance",
+    "income": "Income",
+    "expenses": "Expenses"
+  },
   "loginPage": {
     "title": "Login",
     "text": "Keep track of your money and save for your future",

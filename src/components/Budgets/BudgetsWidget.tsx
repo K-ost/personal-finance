@@ -15,7 +15,7 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
     uri: BUDGETS_URI,
   });
 
-  if (isLoading) return <Skeleton height={215} variant="rounded" />;
+  if (isLoading) return <Skeleton height={350} variant="rounded" />;
   if (isError) return <Error />;
 
   return (
