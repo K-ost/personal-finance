@@ -12,7 +12,7 @@ import { useAppStore } from "../store/useAppStore";
 import { useAuthStore } from "../store/useAuthStore";
 
 type LangSwitcher = StackProps & {
-  title: string;
+  title?: string;
 };
 
 const LangBtn = styled(Button)<ButtonProps & { isauth?: "true" | "false" }>(
@@ -79,7 +79,12 @@ const LangSwitcher = (props: LangSwitcher): JSX.Element => {
         Ru
       </LangBtn>
       {auth && (
-        <LangBtn variant="outlined" onClick={() => setLogout()} isauth={isAuth}>
+        <LangBtn
+          variant="outlined"
+          onClick={() => setLogout()}
+          aria-label="Logout"
+          isauth={isAuth}
+        >
           <svg
             width="20px"
             height="20px"
