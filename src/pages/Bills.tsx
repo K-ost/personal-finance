@@ -1,5 +1,4 @@
 import MainLayout from "../components/MainLayout";
-import PageHeader from "../ui/PageHeader";
 import { useTranslation } from "react-i18next";
 import useGetData from "../hooks/useGetData";
 import { Transaction } from "../types";
@@ -17,8 +16,7 @@ const Bills = (): JSX.Element => {
   });
 
   return (
-    <MainLayout>
-      <PageHeader title={t("nav.recurringBills")} />
+    <MainLayout title={t("nav.recurringBills")}>
       <Wrap>
         {isLoading && <TransactionsLoading count={7} />}
         {isError && <Error />}

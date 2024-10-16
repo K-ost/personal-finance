@@ -38,8 +38,7 @@ const Transactions = (): JSX.Element => {
   });
 
   return (
-    <MainLayout>
-      <PageHeader title={t("nav.transactions")} />
+    <MainLayout title={t("nav.transactions")}>
       <Wrap>
         {!isError && (
           <Filter>

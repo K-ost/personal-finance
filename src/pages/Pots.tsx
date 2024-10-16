@@ -11,6 +11,7 @@ import { useThemesStore } from "../store/useThemesStore";
 import { POTS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
+import { Box } from "@mui/material";
 
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();
@@ -30,14 +31,14 @@ const Pots = (): JSX.Element => {
   }, [data, isSuccess, setUsedThemes]);
 
   return (
-    <MainLayout>
-      <PageHeader title={t("nav.pots")}>
-        {isSuccess && (
+    <MainLayout title={t("nav.pots")}>
+      {isSuccess && (
+        <Box textAlign="right" sx={{ mb: 6 }}>
           <Btn onClick={() => setAddDialog(true)}>
             + {t("pots.addnew.title")}
           </Btn>
-        )}
-      </PageHeader>
+        </Box>
+      )}
 
       {isLoading && <PotLoading />}
       {isError && <Error />}

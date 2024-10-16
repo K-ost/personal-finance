@@ -1,6 +1,5 @@
 import { Grid2 } from "@mui/material";
 import MainLayout from "../components/MainLayout";
-import PageHeader from "../ui/PageHeader";
 import { useTranslation } from "react-i18next";
 import PotsWidjet from "../components/Pots/PotsWidjet";
 import TransActionsWidjet from "../components/Transactions/TransActWidjet";
@@ -11,9 +10,7 @@ const Home = (): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <MainLayout>
-      <PageHeader title={t("nav.overview")} />
-
+    <MainLayout title={t("nav.overview")}>
       <Grid2 container spacing={6}>
         <Grid2 size={12}>
           <BalanceWidget />

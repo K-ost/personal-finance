@@ -3,7 +3,7 @@ import Btn from "../ui/Btn";
 import PageHeader from "../ui/PageHeader";
 import useGetData from "../hooks/useGetData";
 import { Budget } from "../types";
-import { Grid2 } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import BudgetsList from "../components/Budgets";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import { useEffect, useState } from "react";
@@ -37,14 +37,14 @@ const Budgets = (): JSX.Element => {
   }, [data, isSuccess, setUsedCategories, setUsedThemes]);
 
   return (
-    <MainLayout>
-      <PageHeader title={t("nav.budgets")}>
-        {isSuccess && (
+    <MainLayout title={t("nav.budgets")}>
+      {isSuccess && (
+        <Box textAlign="right" sx={{ mb: 6 }}>
           <Btn onClick={() => setAddDialog(true)}>
             + {t("budgets.addnew.title")}
           </Btn>
-        )}
-      </PageHeader>
+        </Box>
+      )}
 
       {isLoading && <BudgetsLoading />}
       {isError && <Error />}
