@@ -1,9 +1,7 @@
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
-  TableRow,
   useMediaQuery,
   useTheme,
 } from "@mui/material";

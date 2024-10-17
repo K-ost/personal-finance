@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import useGetData from "../hooks/useGetData";
 import { BalanceType } from "../types";
 import Error from "./Error";
-import { getLocalPrice } from "../utils/utils";
 
 const BalanceWidget = (): JSX.Element => {
   const theme = useTheme();

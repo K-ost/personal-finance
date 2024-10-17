@@ -3,7 +3,6 @@ import useGetData from "../hooks/useGetData";
 import PotsList from "../components/Pots";
 import PotLoading from "../components/Pots/PotLoading";
 import { Pot } from "../types";
-import PageHeader from "../ui/PageHeader";
 import Btn from "../ui/Btn";
 import AddPot from "../components/Pots/AddPot";
 import { useEffect, useState } from "react";
