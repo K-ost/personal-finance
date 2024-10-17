@@ -14,6 +14,13 @@ const CustomCell = styled(TableCell)<CellProps>(({ theme, sm }) => ({
   paddingRight: theme.spacing(4),
   paddingTop: sm ? theme.spacing(2) : theme.spacing(4),
   paddingBottom: sm ? theme.spacing(2) : theme.spacing(4),
+  [theme.breakpoints.down("sm")]: {
+    paddingLeft: 0,
+    paddingRight: theme.spacing(4),
+    "last-of-child": {
+      paddingRight: 0,
+    },
+  },
 }));
 
 const Cell = (props: CellProps): JSX.Element => {

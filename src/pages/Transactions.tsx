@@ -11,7 +11,6 @@ import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
 import FilterCategory from "../components/Filter/FilterCategory";
 import TransactionsLoading from "../components/Transactions/Loading";
-import PageHeader from "../ui/PageHeader";
 import { TRANSACTIONS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import Error from "../components/Error";

@@ -21,10 +21,13 @@ const Pager = (props: PaginationProps): JSX.Element => {
           borderRadius: "8px",
           color: theme.palette.primary.main,
           fontSize: theme.typography.body1.fontSize,
-          height: 40,
+          height: isTablet ? 40 : 30,
+          width: isTablet ? 40 : 30,
           lineHeight: theme.typography.body1.lineHeight,
-          margin: `0 ${theme.spacing(1)}`,
-          width: 40,
+          marginTop: 0,
+          marginBottom: 0,
+          marginLeft: theme.spacing(isTablet ? 1 : 1 / 2),
+          marginRight: theme.spacing(isTablet ? 1 : 1 / 2),
           "&:hover": {
             backgroundColor: theme.palette.custom.beige500,
             color: theme.palette.primary.contrastText,
@@ -42,8 +45,8 @@ const Pager = (props: PaginationProps): JSX.Element => {
             },
           },
           "&.MuiPaginationItem-previousNext": {
-            pl: theme.spacing(4),
-            pr: theme.spacing(4),
+            pl: theme.spacing(isTablet ? 4 : 1),
+            pr: theme.spacing(isTablet ? 4 : 1),
             width: "auto",
           },
         },
@@ -61,7 +64,7 @@ const Pager = (props: PaginationProps): JSX.Element => {
               <>
                 <IconPrev color={theme.palette.primary.main} />
                 {isTablet && (
-                  <span style={{ marginLeft: theme.spacing(4) }}>
+                  <span style={{ marginLeft: theme.spacing(isTablet ? 4 : 1) }}>
                     {t("filter.prev")}
                   </span>
                 )}
@@ -70,7 +73,9 @@ const Pager = (props: PaginationProps): JSX.Element => {
             next: () => (
               <>
                 {isTablet && (
-                  <span style={{ marginRight: theme.spacing(4) }}>
+                  <span
+                    style={{ marginRight: theme.spacing(isTablet ? 4 : 1) }}
+                  >
                     {t("filter.next")}
                   </span>
                 )}
