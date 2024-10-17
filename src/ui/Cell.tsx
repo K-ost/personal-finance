@@ -17,7 +17,7 @@ const CustomCell = styled(TableCell)<CellProps>(({ theme, sm }) => ({
   [theme.breakpoints.down("sm")]: {
     paddingLeft: 0,
     paddingRight: theme.spacing(4),
-    "last-of-child": {
+    "&:last-child": {
       paddingRight: 0,
     },
   },

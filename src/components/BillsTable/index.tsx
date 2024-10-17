@@ -1,4 +1,10 @@
-import { Table, TableBody, TableContainer } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableContainer,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Transaction } from "../../types";
 import Row from "./Row";
 import Head from "./Head";
@@ -9,10 +15,13 @@ type BillsTableProps = {
 
 const BillsTable = (props: BillsTableProps): JSX.Element => {
   const { list } = props;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <TableContainer sx={{ mb: 12 }}>
       <Table>
-        <Head />
+        {!isMobile && <Head />}
         <TableBody>
           {list.map((transaction) => (
             <Row key={transaction.id} transaction={transaction} />
