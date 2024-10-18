@@ -4,7 +4,8 @@
     "transactions": "Транзакции",
     "budgets": "Бюджеты",
     "pots": "Копилки",
-    "recurringBills": "Повторяющиеся счета"
+    "recurringBills": "Повторяющиеся счета",
+    "logout": "Выйти"
   },
   "links": {
     "seeDetails": "Подробнее",
@@ -12,7 +13,6 @@
   },
   "settings": {
     "hideMenu": "Свернуть меню",
-    "logout": "Выйти",
     "loading": "Загрузка..."
   },
   "alerts": {
@@ -94,7 +94,7 @@
   },
   "budgets": {
     "addnew": {
-      "title": "Добавить Новый Бюджет",
+      "title": "Новый Бюджет",
       "btn": "Добавить Бюджет",
       "notification": "Бюджет '{{ title }}' был добавлен в базу данных"
     },

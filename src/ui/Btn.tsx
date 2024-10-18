@@ -10,6 +10,10 @@ const CustomButton = styled(Button)(({ theme }) => ({
   lineHeight: theme.typography.body1.lineHeight,
   padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
   textTransform: "none",
+  "&.MuiButton-sizeSmall": {
+    borderRadius: 4,
+    minHeight: 32,
+  },
   "&.MuiButton-colorSecondary:hover": {
     boxShadow: `inset 0 0 0 1px ${theme.palette.custom.beige500} !important`,
   },

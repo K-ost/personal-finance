@@ -1,6 +1,5 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import MainLayout from "../components/MainLayout";
 import Wrap from "../ui/Wrap";
 import useGetData from "../hooks/useGetData";
 import { Transaction } from "../types";
@@ -14,6 +13,7 @@ import TransactionsLoading from "../components/Transactions/Loading";
 import { TRANSACTIONS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
+import MainLayout from "../components/MainLayout";
 
 const pageCount = 10;
 

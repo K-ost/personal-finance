@@ -1,4 +1,3 @@
-import MainLayout from "../components/MainLayout";
 import useGetData from "../hooks/useGetData";
 import PotsList from "../components/Pots";
 import PotLoading from "../components/Pots/PotLoading";
@@ -10,7 +9,7 @@ import { useThemesStore } from "../store/useThemesStore";
 import { POTS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
-import { Box } from "@mui/material";
+import MainLayout from "../components/MainLayout";
 
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();
@@ -30,15 +29,16 @@ const Pots = (): JSX.Element => {
   }, [data, isSuccess, setUsedThemes]);
 
   return (
-    <MainLayout title={t("nav.pots")}>
-      {isSuccess && (
-        <Box textAlign="right" sx={{ mb: 6 }}>
-          <Btn onClick={() => setAddDialog(true)}>
+    <MainLayout
+      title={t("nav.pots")}
+      btn={
+        isSuccess && (
+          <Btn onClick={() => setAddDialog(true)} size="small">
             + {t("pots.addnew.title")}
           </Btn>
-        </Box>
-      )}
-
+        )
+      }
+    >
       {isLoading && <PotLoading />}
       {isError && <Error />}
       {isSuccess && <PotsList data={data.data} />}

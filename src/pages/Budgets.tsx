@@ -1,8 +1,7 @@
-import MainLayout from "../components/MainLayout";
 import Btn from "../ui/Btn";
 import useGetData from "../hooks/useGetData";
 import { Budget } from "../types";
-import { Box, Grid2 } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import BudgetsList from "../components/Budgets";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import { useEffect, useState } from "react";
@@ -13,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
 import Wrap from "../ui/Wrap";
 import ChartWidget from "../components/ChartWidget";
+import MainLayout from "../components/MainLayout";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();
@@ -36,15 +36,16 @@ const Budgets = (): JSX.Element => {
   }, [data, isSuccess, setUsedCategories, setUsedThemes]);
 
   return (
-    <MainLayout title={t("nav.budgets")}>
-      {isSuccess && (
-        <Box textAlign="right" sx={{ mb: 6 }}>
-          <Btn onClick={() => setAddDialog(true)}>
+    <MainLayout
+      title={t("nav.budgets")}
+      btn={
+        isSuccess && (
+          <Btn onClick={() => setAddDialog(true)} size="small">
             + {t("budgets.addnew.title")}
           </Btn>
-        </Box>
-      )}
-
+        )
+      }
+    >
       {isLoading && <BudgetsLoading />}
       {isError && <Error />}
 

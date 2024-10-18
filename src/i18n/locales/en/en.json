@@ -4,7 +4,8 @@
     "transactions": "Transactions",
     "budgets": "Budgets",
     "pots": "Pots",
-    "recurringBills": "Recurring Bills"
+    "recurringBills": "Recurring Bills",
+    "logout": "Logout"
   },
   "links": {
     "seeDetails": "See Details",
@@ -12,7 +13,6 @@
   },
   "settings": {
     "hideMenu": "Minimize Menu",
-    "logout": "Logout",
     "loading": "Loading..."
   },
   "alerts": {

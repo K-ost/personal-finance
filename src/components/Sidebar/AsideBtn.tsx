@@ -6,7 +6,8 @@ export type AsideIconType =
   | "transactions"
   | "budgets"
   | "pots"
-  | "recurringBills";
+  | "recurringBills"
+  | "logout";
 
 type MinimizeBtnProps = ButtonProps & {
   to?: string;
@@ -44,8 +45,11 @@ const AsideButton = styled(Button)<ButtonProps>(({ theme }) => ({
   },
   "&:hover": {
     color: theme.palette.common.white,
-    "& svg path": {
+    "& svg:not(.stroked) path": {
       fill: theme.palette.common.white,
+    },
+    "& svg.stroked path": {
+      stroke: theme.palette.common.white,
     },
   },
   "&::before": {
@@ -64,7 +68,7 @@ const AsideButton = styled(Button)<ButtonProps>(({ theme }) => ({
     "&::before": {
       display: "block",
     },
-    "& svg path": {
+    "& svg:not(.stroked) path": {
       fill: theme.palette.custom.secondary.green,
     },
   },
