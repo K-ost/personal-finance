@@ -24,6 +24,11 @@ export const Aside = styled(Box)<SidebarProps>(({ theme, open }) => ({
   },
 }));
 
+export const AsideLogo = styled(Box)<BoxProps>(({ theme }) => ({
+  marginBottom: theme.spacing(6),
+  padding: `${theme.spacing(10)} ${theme.spacing(8)}`,
+}));
+
 export const AsideInner = styled(Box)<BoxProps>(({ theme }) => ({
   display: "flex",
   flexDirection: "column",

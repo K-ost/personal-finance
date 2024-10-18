@@ -1,11 +1,4 @@
-import {
-  Box,
-  BoxProps,
-  ListItem,
-  styled,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, ListItem, useMediaQuery, useTheme } from "@mui/material";
 import logo from "../../assets/logo-large.svg";
 import logoSmall from "../../assets/logo-small.svg";
 import { navMenuList } from "./constants";
@@ -23,13 +16,8 @@ import {
 } from "./Icons";
 import { useAppStore } from "../../store/useAppStore";
 import { useTranslation } from "react-i18next";
-import { Aside, AsideInner } from "./styles";
+import { Aside, AsideInner, AsideLogo } from "./styles";
 import { useAuthStore } from "../../store/useAuthStore";
-
-const AsideLogo = styled(Box)<BoxProps>(({ theme }) => ({
-  marginBottom: theme.spacing(6),
-  padding: `${theme.spacing(10)} ${theme.spacing(8)}`,
-}));
 
 const Sidebar = () => {
   const { sidebar, setSidebar } = useAppStore();
@@ -71,7 +59,7 @@ const Sidebar = () => {
               </ListItem>
             ))}
             <ListItem>
-              <AsideBtn onClick={() => setLogout()}>
+              <AsideBtn onClick={() => setLogout()} data-testid="logoutBtn">
                 <span className="iconBox">
                   <IconLogout />
                 </span>
