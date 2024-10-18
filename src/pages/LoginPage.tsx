@@ -1,5 +1,4 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
-import LoginLayout from "../components/LoginLayout";
 import FormBody from "../ui/FormBody";
 import CustomInput from "../ui/CustomInput";
 import Btn from "../ui/Btn";
@@ -13,6 +12,7 @@ import { useEffect } from "react";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { FORM_SETTINGS } from "../utils/constants";
 import { Trans, useTranslation } from "react-i18next";
+import LoginLayout from "../components/LoginLayout";
 
 type FormData = {
   email: string;

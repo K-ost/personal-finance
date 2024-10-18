@@ -3,8 +3,8 @@ import FormBody from "../ui/FormBody";
 import CustomInput from "../ui/CustomInput";
 import Btn from "../ui/Btn";
 import { Link } from "react-router-dom";
-import LoginLayout from "../components/LoginLayout";
 import PassInput from "../ui/PassInput";
+import LoginLayout from "../components/LoginLayout";
 
 const SignUp = (): JSX.Element => {
   return (
