@@ -9,14 +9,12 @@ import {
   TableContainer,
 } from "@mui/material";
 import Row from "./Row";
-import { ServerResponse, Transaction } from "../../types";
+import { Transaction } from "../../types";
 import { useTranslation } from "react-i18next";
 
 const TransActionsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
-  const { data, isError, isLoading, isSuccess } = useGetData<
-    ServerResponse<Transaction>
-  >({
+  const { data, isError, isLoading, isSuccess } = useGetData<Transaction[]>({
     key: ["transactions"],
     uri: "/transactions?_limit=5",
   });
@@ -35,9 +33,7 @@ const TransActionsWidjet = (props: BoxProps): JSX.Element => {
         <Table>
           <TableBody>
             {isSuccess &&
-              data.data.map((row) => (
-                <Row key={row.id} min transaction={row} />
-              ))}
+              data.map((row) => <Row key={row.id} min transaction={row} />)}
           </TableBody>
         </Table>
       </TableContainer>

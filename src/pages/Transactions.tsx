@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import Wrap from "../ui/Wrap";
 import useGetData from "../hooks/useGetData";
-import { ServerResponse, Transaction } from "../types";
+import { Transaction } from "../types";
 import TransactionsTable from "../components/Transactions";
 import Pager from "../ui/Pager";
 import Filter from "../components/Filter";
@@ -31,13 +31,16 @@ const Transactions = (): JSX.Element => {
   const from = to - pageCount;
   const params = searchParams.toString();
 
-  const { data, isLoading, isSuccess, isError } = useGetData<
-    ServerResponse<Transaction>
-  >({
+  const { data, isLoading, isSuccess, isError } = useGetData<Transaction[]>({
     key: ["transactions", params, currentPage.toString()],
     uri: `${TRANSACTIONS_URI}?_start=${from}&_end=${to}${
       params.length ? "&" + params : ""
     }`,
+  });
+
+  const { data: dataCount, isSuccess: countIsSuccess } = useGetData<number>({
+    key: ["count"],
+    uri: `${TRANSACTIONS_URI}/count`,
   });
 
   return (
@@ -60,11 +63,11 @@ const Transactions = (): JSX.Element => {
         {isLoading && <TransactionsLoading count={pageCount} />}
         {isError && <Error />}
 
-        {isSuccess && <TransactionsTable list={data.data} />}
+        {isSuccess && <TransactionsTable list={data} />}
 
-        {isSuccess && data.count > pageCount && (
+        {countIsSuccess && dataCount > pageCount && (
           <Pager
-            count={Math.ceil(data.count / pageCount)}
+            count={Math.ceil(dataCount / pageCount)}
             page={currentPage}
             onChange={(__, page: number) => {
               if (page > 1) {

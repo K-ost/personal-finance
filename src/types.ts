@@ -14,11 +14,6 @@ export type BalanceType = {
   expenses: number;
 };
 
-export type ServerResponse<T> = {
-  count: number;
-  data: T[];
-};
-
 export type Transaction = {
   id: number;
   avatar: string;

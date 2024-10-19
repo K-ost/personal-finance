@@ -2,22 +2,18 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { APINock, WrapperHook } from "../../tests/testUtils";
 import useGetData from "../useGetData";
-import { ServerResponse, Transaction } from "../../types";
+import { Transaction } from "../../types";
 import { transactionFactory } from "../../tests/factories";
 import { TRANSACTIONS_URI } from "../../utils/constants";
 
 const mockedData = transactionFactory.buildList(3);
-const mockedResponse: ServerResponse<Transaction> = {
-  count: 3,
-  data: mockedData,
-};
 
 describe("useGetData", () => {
   beforeEach(() => {
-    APINock.get("/transactions").reply(200, mockedResponse);
+    APINock.get("/transactions").reply(200, mockedData);
     const { result } = renderHook(
       () =>
-        useGetData<ServerResponse<Transaction>>({
+        useGetData<Transaction[]>({
           key: ["transactions"],
           uri: TRANSACTIONS_URI,
           enabled: false,
@@ -34,7 +30,7 @@ describe("useGetData", () => {
   it("useGetData - enabled", async () => {
     const { result } = renderHook(
       () =>
-        useGetData<ServerResponse<Transaction>>({
+        useGetData<Transaction[]>({
           key: ["transactions"],
           uri: TRANSACTIONS_URI,
         }),
@@ -48,6 +44,6 @@ describe("useGetData", () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(result.current.data?.data.length).toBe(3);
+    expect(result.current.data?.length).toBe(3);
   });
 });
