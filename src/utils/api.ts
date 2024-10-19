@@ -1,13 +1,10 @@
 import { API_Method } from "../types";
 import { API_URL } from "./constants";
 
-export const getData = async <T>(
-  uri: string
-): Promise<{ count: number; data: T }> => {
+export const getData = async <T>(uri: string): Promise<T> => {
   const response = await fetch(`${API_URL}${uri}`);
   const data = await response.json();
-  const all = response.headers.get("X-Total-Count");
-  return { count: Number(all), data };
+  return data;
 };
 
 export const mutateData = async <T, K>(

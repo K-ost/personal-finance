@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import Wrap from "../ui/Wrap";
 import useGetData from "../hooks/useGetData";
-import { Transaction } from "../types";
+import { ServerResponse, Transaction } from "../types";
 import TransactionsTable from "../components/Transactions";
 import Pager from "../ui/Pager";
 import Filter from "../components/Filter";
@@ -18,20 +18,24 @@ import MainLayout from "../components/MainLayout";
 const pageCount = 10;
 
 const Transactions = (): JSX.Element => {
-  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Getting pages
   const currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
     : 1;
   const to = currentPage * pageCount;
   const from = to - pageCount;
   const params = searchParams.toString();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { data, isLoading, isSuccess, isError } = useGetData<Transaction[]>({
+  const { data, isLoading, isSuccess, isError } = useGetData<
+    ServerResponse<Transaction>
+  >({
     key: ["transactions", params, currentPage.toString()],
-    uri: `/${TRANSACTIONS_URI}?_start=${from}&_end=${to}${
+    uri: `${TRANSACTIONS_URI}?_start=${from}&_end=${to}${
       params.length ? "&" + params : ""
     }`,
   });

@@ -26,8 +26,8 @@ const Budgets = (): JSX.Element => {
 
   useEffect(() => {
     if (isSuccess) {
-      setUsedCategories(data.data.map((el) => el.category));
-      setUsedThemes(data.data.map((el) => el.theme));
+      setUsedCategories(data.map((el) => el.category));
+      setUsedThemes(data.map((el) => el.theme));
     }
     return () => {
       setUsedCategories([]);
@@ -68,12 +68,12 @@ const Budgets = (): JSX.Element => {
                 },
               })}
             >
-              <ChartWidget data={data.data} />
+              <ChartWidget data={data} />
             </Wrap>
           </Grid2>
 
           <Grid2 size={{ xs: 12, md: 7 }}>
-            <BudgetsList data={data.data} />
+            <BudgetsList data={data} />
           </Grid2>
         </Grid2>
       )}

@@ -23,7 +23,7 @@ const Pots = (): JSX.Element => {
 
   useEffect(() => {
     if (isSuccess) {
-      setUsedThemes(data.data.map((el) => el.theme));
+      setUsedThemes(data.map((el) => el.theme));
     }
     return () => setUsedThemes([]);
   }, [data, isSuccess, setUsedThemes]);
@@ -41,7 +41,7 @@ const Pots = (): JSX.Element => {
     >
       {isLoading && <PotLoading />}
       {isError && <Error />}
-      {isSuccess && <PotsList data={data.data} />}
+      {isSuccess && <PotsList data={data} />}
 
       <AddPot close={() => setAddDialog(false)} open={addDialog} />
     </MainLayout>

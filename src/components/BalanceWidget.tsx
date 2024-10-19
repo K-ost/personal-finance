@@ -23,20 +23,13 @@ const BalanceWidget = (): JSX.Element => {
       {isSuccess && (
         <Grid2 container spacing={isMobile ? 3 : 6}>
           <Grid2 size={{ xs: 12, sm: 4 }}>
-            <Balance
-              title={t("balances.current")}
-              amount={data.data.current}
-              dark
-            />
+            <Balance title={t("balances.current")} amount={data.current} dark />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 4 }}>
-            <Balance title={t("balances.income")} amount={data.data.income} />
+            <Balance title={t("balances.income")} amount={data.income} />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 4 }}>
-            <Balance
-              title={t("balances.expenses")}
-              amount={data.data.expenses}
-            />
+            <Balance title={t("balances.expenses")} amount={data.expenses} />
           </Grid2>
         </Grid2>
       )}

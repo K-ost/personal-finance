@@ -9,12 +9,14 @@ import {
   TableContainer,
 } from "@mui/material";
 import Row from "./Row";
-import { Transaction } from "../../types";
+import { ServerResponse, Transaction } from "../../types";
 import { useTranslation } from "react-i18next";
 
 const TransActionsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
-  const { data, isError, isLoading, isSuccess } = useGetData<Transaction[]>({
+  const { data, isError, isLoading, isSuccess } = useGetData<
+    ServerResponse<Transaction>
+  >({
     key: ["transactions"],
     uri: "/transactions?_limit=5",
   });

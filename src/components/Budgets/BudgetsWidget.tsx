@@ -23,12 +23,12 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
       {isSuccess && (
         <Grid2 container spacing={5}>
           <Grid2 size={{ xs: 12, sm: 9 }}>
-            <Chart data={data?.data} />
+            <Chart data={data} />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 3 }}>
             <div>
               <Grid2 container spacing={4}>
-                {data.data.map((budget) => (
+                {data.map((budget) => (
                   <Grid2 key={budget.id} size={{ xs: 6, sm: 12 }}>
                     <BudgetAmount
                       amount={budget.maximum}
