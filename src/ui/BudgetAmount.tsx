@@ -1,4 +1,11 @@
-import { Box, BoxProps, styled, Typography } from "@mui/material";
+import {
+  Box,
+  BoxProps,
+  styled,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import icon from "../assets/icon-pot.svg";
 import { getLocalPrice } from "../utils/utils";
 
@@ -26,6 +33,8 @@ const Line = styled(Box)<{ bg?: string }>(({ theme, bg }) => ({
 
 const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
   const { amount, title, color, big } = props;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Div big={big}>
@@ -39,12 +48,12 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
           variant={big ? "body1" : "body2"}
           color="textSecondary"
           component="div"
-          sx={{ mb: big ? 3 : 1 }}
+          sx={{ mb: big && !isMobile ? 3 : isMobile && big ? 1 : 1 }}
         >
           {title}
         </Typography>
         <Typography
-          variant={big ? "h1" : "body1"}
+          variant={big && !isMobile ? "h1" : isMobile && big ? "h2" : "body1"}
           color="primary"
           component="div"
           fontWeight={700}
