@@ -20,7 +20,7 @@ const Bills = (): JSX.Element => {
       <Wrap>
         {isLoading && <TransactionsLoading count={7} />}
         {isError && <Error />}
-        {isSuccess && <BillsTable list={data.data} />}
+        {isSuccess && <BillsTable list={data} />}
       </Wrap>
     </MainLayout>
   );
