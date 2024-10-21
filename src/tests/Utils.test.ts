@@ -74,16 +74,16 @@ describe("Utils", () => {
     const resultThird = createBillsDate("2024-08-03T09:45:32Z");
     const resultThird2 = createBillsDate("2024-08-23T09:45:32Z");
 
-    expect(result).toBe("Monthly - 18th");
-    expect(result2).toBe("Monthly - 11th");
-    expect(result3).toBe("Monthly - 12th");
-    expect(result4).toBe("Monthly - 13th");
-    expect(resultFirst).toBe("Monthly - 1st");
-    expect(resultFirst2).toBe("Monthly - 21st");
-    expect(resultFirst3).toBe("Monthly - 31st");
-    expect(resultSecond).toBe("Monthly - 2nd");
-    expect(resultSecond2).toBe("Monthly - 22nd");
-    expect(resultThird).toBe("Monthly - 3rd");
-    expect(resultThird2).toBe("Monthly - 23rd");
+    expect(result).toBe("18th");
+    expect(result2).toBe("11th");
+    expect(result3).toBe("12th");
+    expect(result4).toBe("13th");
+    expect(resultFirst).toBe("1st");
+    expect(resultFirst2).toBe("21st");
+    expect(resultFirst3).toBe("31st");
+    expect(resultSecond).toBe("2nd");
+    expect(resultSecond2).toBe("22nd");
+    expect(resultThird).toBe("3rd");
+    expect(resultThird2).toBe("23rd");
   });
 });

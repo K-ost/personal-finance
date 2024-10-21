@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import { transactionPrice } from "../utils/utils";
 
 type AmountProps = {
@@ -11,19 +11,13 @@ const Amount = (props: AmountProps): JSX.Element => {
   const result = transactionPrice(amount);
 
   return (
-    <Box
-      sx={(theme) => ({
-        color: isPositive
-          ? theme.palette.custom.secondary.green
-          : theme.palette.error.main,
-        display: "inline",
-        fontSize: theme.typography.body1.fontSize,
-        lineHeight: theme.typography.body1.lineHeight,
-        fontWeight: 700,
-      })}
+    <Typography
+      variant="body1"
+      fontWeight={700}
+      color={isPositive ? "success" : "error"}
     >
       {result}
-    </Box>
+    </Typography>
   );
 };
 

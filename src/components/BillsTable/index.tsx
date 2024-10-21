@@ -5,12 +5,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Transaction } from "../../types";
+import { RecurringBill } from "../../types";
 import Row from "./Row";
 import Head from "./Head";
 
 type BillsTableProps = {
-  list: Transaction[];
+  list: RecurringBill[];
 };
 
 const BillsTable = (props: BillsTableProps): JSX.Element => {

@@ -1,14 +1,18 @@
-import { Box, TableRow, useMediaQuery, useTheme } from "@mui/material";
-import { Transaction } from "../../types";
-import Amount from "../../ui/Amount";
+import {
+  Box,
+  TableRow,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { RecurringBill } from "../../types";
 import UserCard from "../../ui/UserCard";
 import Cell from "../../ui/Cell";
-import { createBillsDate } from "../../utils/utils";
-import paidIcon from "../../assets/icon-bill-paid.svg";
-import dueIcon from "../../assets/icon-bill-due.svg";
+import { getLocalPrice } from "../../utils/utils";
+import BillsDate from "./BillsDate";
 
 type RowProps = {
-  transaction: Transaction;
+  transaction: RecurringBill;
 };
 
 const Row = (props: RowProps): JSX.Element => {
@@ -16,27 +20,37 @@ const Row = (props: RowProps): JSX.Element => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const currentDate = new Date().getDate();
-  const transactionDate = new Date(transaction.date).getDate();
-
   return (
     <TableRow>
       <Cell>
         <UserCard avatar={transaction.avatar} name={transaction.name} />
         {isMobile && (
-          <Box sx={{ mt: 2 }}>{createBillsDate(transaction.date)}</Box>
+          <Box sx={{ mt: 2 }}>
+            <BillsDate
+              date={transaction.date}
+              isPaid={transaction.isPaid}
+              isSoon={transaction.isSoon}
+            />
+          </Box>
         )}
       </Cell>
       {!isMobile && (
         <Cell>
-          {createBillsDate(transaction.date)}
-          {currentDate >= transactionDate && <img src={paidIcon} alt="" />}
-          {transactionDate < currentDate + 5 &&
-            currentDate < transactionDate && <img src={dueIcon} alt="" />}
+          <BillsDate
+            date={transaction.date}
+            isPaid={transaction.isPaid}
+            isSoon={transaction.isSoon}
+          />
         </Cell>
       )}
       <Cell align="right">
-        <Amount amount={transaction.amount} />
+        <Typography
+          variant="body1"
+          fontWeight={700}
+          color={transaction.isSoon ? "error" : "primary"}
+        >
+          {getLocalPrice(Math.abs(transaction.amount))}
+        </Typography>
       </Cell>
     </TableRow>
   );

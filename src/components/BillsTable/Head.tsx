@@ -1,14 +1,17 @@
 import { TableHead, TableRow } from "@mui/material";
 import Cell from "../../ui/Cell";
+import { useTranslation } from "react-i18next";
 
 const Head = (): JSX.Element => {
+  const { t } = useTranslation();
+
   return (
     <TableHead>
       <TableRow>
-        <Cell sm="true">Bill Title</Cell>
-        <Cell sm="true">Due Date</Cell>
+        <Cell sm="true">{t("bills.table.title")}</Cell>
+        <Cell sm="true">{t("bills.table.date")}</Cell>
         <Cell sm="true" align="right">
-          Amount
+          {t("bills.table.amount")}
         </Cell>
       </TableRow>
     </TableHead>

@@ -156,5 +156,18 @@
     },
     "total": "Total Saved",
     "target": "Target of {{ amount }}"
+  },
+  "bills": {
+    "summary": "Summary",
+    "paid": "Paid Bills",
+    "upcoming": "Total Upcoming",
+    "soon": "Due Soon",
+    "total": "Total Bills",
+    "table": {
+      "title": "Bill Title",
+      "date": "Due Date",
+      "amount": "Amount",
+      "monthly": "Monthly"
+    }
   }
 }

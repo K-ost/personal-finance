@@ -24,6 +24,11 @@ export type Transaction = {
   recurring: boolean;
 };
 
+export type RecurringBill = Transaction & {
+  isPaid: boolean;
+  isSoon: boolean;
+};
+
 export type Budget = {
   category: string;
   maximum: number;

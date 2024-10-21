@@ -40,20 +40,6 @@ export const createDate = (date: Date | string): string => {
   return `${day} ${month} ${year}`;
 };
 
-export const createBillsDate = (date: Date | string): string => {
-  const dayDate = new Date(date).getDate();
-  const ending =
-    dayDate === 1 || dayDate === 21 || dayDate === 31
-      ? "st"
-      : dayDate === 2 || dayDate === 22
-      ? "nd"
-      : dayDate === 3 || dayDate === 23
-      ? "rd"
-      : "th";
-
-  return `Monthly - ${dayDate}${ending}`;
-};
-
 export const getProgressValue = (total: number, target: number): number => {
   const output = ((total * 100) / target).toLocaleString("en-US", {
     maximumFractionDigits: 2,
@@ -79,4 +65,18 @@ export const getChartLimit = (data: Omit<Budget, "id">[]): string => {
   const output = data.reduce((acum, el) => (acum += el.maximum), 0);
 
   return getLocalPrice(output, true);
+};
+
+export const createBillsDate = (date: Date | string): string => {
+  const dayDate = new Date(date).getDate();
+  const ending =
+    dayDate === 1 || dayDate === 21 || dayDate === 31
+      ? "st"
+      : dayDate === 2 || dayDate === 22
+      ? "nd"
+      : dayDate === 3 || dayDate === 23
+      ? "rd"
+      : "th";
+
+  return `${dayDate}${ending}`;
 };
