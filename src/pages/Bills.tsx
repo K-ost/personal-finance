@@ -10,6 +10,9 @@ import SummaryBills from "../components/SummaryBills";
 import useRecurringBills from "../hooks/useRecurringBills";
 import { Box, Grid2 } from "@mui/material";
 import TotalBills from "../components/TotalBills";
+import Filter from "../components/Filter";
+import Search from "../components/Filter/Search";
+import Sorting from "../components/Filter/Sorting";
 
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();
@@ -45,6 +48,12 @@ const Bills = (): JSX.Element => {
         </Grid2>
         <Grid2 size={{ xs: 12, md: 8 }}>
           <Wrap>
+            {!isError && (
+              <Filter>
+                <Search />
+                <Sorting sx={{ ml: "auto" }} />
+              </Filter>
+            )}
             {isLoading && <TransactionsLoading count={7} />}
             {isError && <Error />}
             {isSuccess && <BillsTable list={bills} />}

@@ -19,7 +19,7 @@ const TransActionsWidjet = (props: BoxProps): JSX.Element => {
     uri: "/transactions?_limit=5",
   });
 
-  if (isLoading) return <Skeleton height={215} variant="rounded" />;
+  if (isLoading) return <Skeleton height={460} variant="rounded" />;
   if (isError) return <Error />;
 
   return (

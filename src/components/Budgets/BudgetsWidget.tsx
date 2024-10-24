@@ -15,13 +15,14 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
     uri: BUDGETS_URI,
   });
 
-  if (isLoading) return <Skeleton height={350} variant="rounded" />;
+  if (isLoading)
+    return <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />;
   if (isError) return <Error />;
 
   return (
     <Wrap title={t("nav.budgets")} alllink="/budgets" {...props}>
       {isSuccess && (
-        <Grid2 container spacing={5}>
+        <Grid2 container spacing={5} sx={{ mt: 12, mb: 7 }}>
           <Grid2 size={{ xs: 12, sm: 9 }}>
             <Chart data={data} />
           </Grid2>

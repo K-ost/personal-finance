@@ -15,7 +15,16 @@ const BalanceWidget = (): JSX.Element => {
     uri: "/balance",
   });
 
-  if (isLoading) return <Skeleton height={120} variant="rounded" />;
+  if (isLoading)
+    return (
+      <Grid2 container spacing={isMobile ? 3 : 6}>
+        {Array.from(new Array(3)).map((__, index) => (
+          <Grid2 size={{ xs: 12, sm: 4 }} key={index}>
+            <Skeleton height={120} variant="rounded" />
+          </Grid2>
+        ))}
+      </Grid2>
+    );
   if (isError) return <Error />;
 
   return (

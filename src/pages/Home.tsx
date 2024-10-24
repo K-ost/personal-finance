@@ -5,6 +5,7 @@ import TransActionsWidjet from "../components/Transactions/TransActWidjet";
 import BudgetsWidget from "../components/Budgets/BudgetsWidget";
 import BalanceWidget from "../components/BalanceWidget";
 import MainLayout from "../components/MainLayout";
+import BillsWidget from "../components/BillsWidget";
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ const Home = (): JSX.Element => {
         </Grid2>
         <Grid2 size={{ xs: 12, xl: 5 }}>
           <BudgetsWidget sx={{ mb: 6 }} />
+          <BillsWidget />
         </Grid2>
       </Grid2>
     </MainLayout>
