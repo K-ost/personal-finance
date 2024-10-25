@@ -84,6 +84,11 @@
     "btn": "Login",
     "footerText": "Need to create an account? <2><3>Sign Up</3></2>"
   },
+  "signup": {
+    "title": "Sign Up",
+    "btn": "Create Account",
+    "footerText": "Already have an account? <2><3>Login</3></2>"
+  },
   "transactionsPage": {
     "table": {
       "recipient": "Recipient / Sender",
