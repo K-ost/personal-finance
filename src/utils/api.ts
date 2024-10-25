@@ -1,8 +1,7 @@
 import { API_Method } from "../types";
-import { API_URL } from "./constants";
 
 export const getData = async <T>(uri: string): Promise<T> => {
-  const response = await fetch(`${API_URL}${uri}`);
+  const response = await fetch(`${import.meta.env.VITE_API_URL}${uri}`);
   const data = await response.json();
   return data;
 };
@@ -12,7 +11,7 @@ export const mutateData = async <T, K>(
   method: API_Method,
   body?: K
 ): Promise<T> => {
-  const response = await fetch(`${API_URL}${uri}`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}${uri}`, {
     method,
     headers: { "Content-Type": "application/json" },
     body: body ? JSON.stringify(body) : null,

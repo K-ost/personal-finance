@@ -13,9 +13,14 @@ import TotalBills from "../components/TotalBills";
 import Filter from "../components/Filter";
 import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
+import { useSearchParams } from "react-router-dom";
 
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const params = searchParams.toString().length
+    ? "&" + searchParams.toString()
+    : "";
 
   const {
     data: billsData,
@@ -23,8 +28,8 @@ const Bills = (): JSX.Element => {
     isLoading,
     isSuccess,
   } = useGetData<Transaction[]>({
-    key: ["bills"],
-    uri: "/transactions?recurring=true",
+    key: ["bills", params],
+    uri: `/transactions?recurring=true${params}`,
   });
 
   const { bills, info } = useRecurringBills({

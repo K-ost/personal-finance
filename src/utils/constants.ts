@@ -1,4 +1,4 @@
-export const API_URL = "https://personal-finance-server.onrender.com/api";
+// export const API_URL = "https://personal-finance-server.onrender.com/api";
 export const BALANCE_URI = "/balance";
 export const TRANSACTIONS_URI = "/transactions";
 export const BUDGETS_URI = "/budgets/transactions";

@@ -6,9 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
 import { useTranslation } from "react-i18next";
 
-type SearchProps = TextFieldProps & {};
-
-const Search = (props: SearchProps): JSX.Element => {
+const Search = (props: TextFieldProps): JSX.Element => {
   const [search, setSearch] = useState<string>("");
   const [searchParams, setSearchParams] = useSearchParams();
   const debouncedSearch = useDebounce(search, 500);

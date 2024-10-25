@@ -1,4 +1,11 @@
-import { Box, BoxProps, styled, Typography } from "@mui/material";
+import {
+  Box,
+  BoxProps,
+  styled,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { BillInfo } from "../hooks/useRecurringBills";
 import icon from "../assets/icon-recurring-bills.svg";
 import { getLocalPrice } from "../utils/utils";
@@ -19,6 +26,8 @@ const Div = styled(Box)(({ theme }) => ({
 const TotalBills = (props: TotalBillsProps & BoxProps): JSX.Element => {
   const { info } = props;
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Div {...props}>
@@ -26,7 +35,11 @@ const TotalBills = (props: TotalBillsProps & BoxProps): JSX.Element => {
       <Typography variant="body1" component="div" sx={{ mt: 8, mb: 3 }}>
         {t("bills.total")}
       </Typography>
-      <Typography variant="h1" component="div" sx={{ m: 0 }}>
+      <Typography
+        variant={isMobile ? "h2" : "h1"}
+        component="div"
+        sx={{ m: 0 }}
+      >
         {getLocalPrice(
           info.paid.amount + info.upcoming.amount + info.soon.amount
         )}
