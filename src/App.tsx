@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Styles from "./components/Styles";
 import PublicRoutes from "./components/PublicRoutes";
 import LoginPage from "./pages/LoginPage";
@@ -12,8 +14,6 @@ import Budgets from "./pages/Budgets";
 import Pots from "./pages/Pots";
 import Bills from "./pages/Bills";
 import { useAppStore } from "./store/useAppStore";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 
 function App() {
   const { lang } = useAppStore();

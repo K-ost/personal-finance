@@ -10,9 +10,9 @@ import { AuthType } from "../types";
 import { useAuthStore } from "../store/useAuthStore";
 import { useEffect } from "react";
 import { useNotificationStore } from "../store/useNotificationStore";
-import { FORM_SETTINGS } from "../utils/constants";
 import { Trans, useTranslation } from "react-i18next";
 import LoginLayout from "../components/LoginLayout";
+import useFormSettings from "../hooks/useSettings";
 
 type FormData = {
   email: string;
@@ -23,6 +23,7 @@ const LoginPage = (): JSX.Element => {
   const { setAuth } = useAuthStore();
   const { setNotification } = useNotificationStore();
   const { t } = useTranslation();
+  const { settings } = useFormSettings();
 
   const {
     formState: { errors },
@@ -61,7 +62,7 @@ const LoginPage = (): JSX.Element => {
             label={t("form.email.label")}
             type="email"
             inputProps={{
-              ...register("email", FORM_SETTINGS.email),
+              ...register("email", settings.email),
               "data-testid": "email",
             }}
             error={errors.email ? true : false}
@@ -72,7 +73,7 @@ const LoginPage = (): JSX.Element => {
             label={t("form.password.label")}
             sx={{ mb: "32px" }}
             inputProps={{
-              ...register("password", FORM_SETTINGS.password),
+              ...register("password", settings.password),
               "data-testid": "password",
             }}
             error={errors.password ? true : false}

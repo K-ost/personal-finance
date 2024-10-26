@@ -29,6 +29,14 @@
     "lang": "Language has been changed to {{ lang }}"
   },
   "form": {
+    "settings": {
+      "required": "Required field",
+      "incorrect": "Incorrect Email",
+      "min4": "Should be at least 4 characters",
+      "min6": "Should have 6 or more characters",
+      "max30": "Shouldn't be more than 30 characters",
+      "amount": "It can't be less than $10"
+    },
     "email": {
       "label": "Email"
     },

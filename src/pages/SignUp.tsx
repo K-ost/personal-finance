@@ -7,11 +7,11 @@ import PassInput from "../ui/PassInput";
 import LoginLayout from "../components/LoginLayout";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
-import { FORM_SETTINGS } from "../utils/constants";
 import useMutateData from "../hooks/useMutateData";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { User } from "../types";
 import { useAuthStore } from "../store/useAuthStore";
+import useFormSettings from "../hooks/useSettings";
 
 type FormData = {
   name: string;
@@ -29,6 +29,7 @@ const SignUp = (): JSX.Element => {
   const { t } = useTranslation();
   const { setNotification } = useNotificationStore();
   const { setAuth } = useAuthStore();
+  const { settings } = useFormSettings();
 
   const {
     formState: { errors },
@@ -63,7 +64,7 @@ const SignUp = (): JSX.Element => {
           <CustomInput
             label={t("form.name.label")}
             inputProps={{
-              ...register("name", FORM_SETTINGS.name),
+              ...register("name", settings.name),
             }}
             error={errors.name ? true : false}
             helperText={errors.name?.message}
@@ -73,7 +74,7 @@ const SignUp = (): JSX.Element => {
             label={t("form.email.label")}
             type="email"
             inputProps={{
-              ...register("email", FORM_SETTINGS.email),
+              ...register("email", settings.email),
             }}
             error={errors.email ? true : false}
             helperText={errors.email?.message}
@@ -82,7 +83,7 @@ const SignUp = (): JSX.Element => {
           <PassInput
             label={t("form.createPassword.label")}
             inputProps={{
-              ...register("password", FORM_SETTINGS.password),
+              ...register("password", settings.password),
             }}
             error={errors.password ? true : false}
             helperText={
