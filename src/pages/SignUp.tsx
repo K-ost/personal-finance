@@ -8,6 +8,10 @@ import LoginLayout from "../components/LoginLayout";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { FORM_SETTINGS } from "../utils/constants";
+import useMutateData from "../hooks/useMutateData";
+import { useNotificationStore } from "../store/useNotificationStore";
+import { User } from "../types";
+import { useAuthStore } from "../store/useAuthStore";
 
 type FormData = {
   name: string;
@@ -15,17 +19,40 @@ type FormData = {
   password: string;
 };
 
+type Response = {
+  message?: string;
+  accessToken?: string;
+  user?: User;
+};
+
 const SignUp = (): JSX.Element => {
   const { t } = useTranslation();
+  const { setNotification } = useNotificationStore();
+  const { setAuth } = useAuthStore();
+
   const {
     formState: { errors },
     handleSubmit,
     register,
-    reset,
   } = useForm<FormData>();
 
+  const { mutate } = useMutateData<Response, FormData>({
+    key: ["users"],
+    method: "POST",
+    uri: "/register",
+  });
+
   const signUpHandler = (data: FormData) => {
-    console.log(data);
+    mutate(data, {
+      onSuccess: (response) => {
+        if (response.message) {
+          setNotification(response.message);
+        } else {
+          setNotification(`User "${response.user?.email}" has been registered`);
+          setAuth(response);
+        }
+      },
+    });
   };
 
   return (

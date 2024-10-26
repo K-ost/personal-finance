@@ -40,7 +40,7 @@
     },
     "createPassword": {
       "label": "Create Password",
-      "helper": "Passwords must be at least 8 characters"
+      "helper": "Passwords must be at least 6 characters"
     },
     "target": {
       "label": "Target"
