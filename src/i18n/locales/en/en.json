@@ -95,7 +95,11 @@
   "signup": {
     "title": "Sign Up",
     "btn": "Create Account",
-    "footerText": "Already have an account? <2><3>Login</3></2>"
+    "footerText": "Already have an account? <2><3>Login</3></2>",
+    "notification": "User '{{ email }}' has been registered"
+  },
+  "home": {
+    "hello": "Hello, {{ name }}!"
   },
   "transactionsPage": {
     "table": {

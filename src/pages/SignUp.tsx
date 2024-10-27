@@ -49,7 +49,9 @@ const SignUp = (): JSX.Element => {
         if (response.message) {
           setNotification(response.message);
         } else {
-          setNotification(`User "${response.user?.email}" has been registered`);
+          setNotification(
+            t("signup.notification", { email: response.user?.email })
+          );
           setAuth(response);
         }
       },
