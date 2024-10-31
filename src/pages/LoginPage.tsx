@@ -20,7 +20,7 @@ type FormData = {
 };
 
 const LoginPage = (): JSX.Element => {
-  const { setAuth } = useAuthStore();
+  const { setUserId } = useAuthStore();
   const { setNotification } = useNotificationStore();
   const { t } = useTranslation();
   const { settings } = useFormSettings();
@@ -38,13 +38,13 @@ const LoginPage = (): JSX.Element => {
   });
 
   useEffect(() => {
-    if (data && data.accessToken) {
-      setAuth(data);
+    if (data && data.user) {
+      setUserId(data.user.id);
     }
     setNotification(
       data?.accessToken ? "You've been logged successfully" : data?.message
     );
-  }, [data, setAuth, setNotification]);
+  }, [data, setUserId, setNotification]);
 
   const loginHandler = (formData: FormData) => {
     mutate({

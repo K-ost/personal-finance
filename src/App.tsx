@@ -18,8 +18,8 @@ import Profile from "./pages/Profile";
 
 function App() {
   const { lang } = useAppStore();
-  const { auth } = useAuthStore();
-  const isAuth = !!auth?.accessToken;
+  const { userId } = useAuthStore();
+  const isAuth = !!userId;
   const { i18n } = useTranslation();
 
   useEffect(() => {
