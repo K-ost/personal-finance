@@ -12,7 +12,6 @@ import {
   IconMin,
   IconOverview,
   IconPots,
-  IconProfile,
   IconTransactions,
 } from "./Icons";
 import { useAppStore } from "../../store/useAppStore";
@@ -22,7 +21,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 
 const Sidebar = () => {
   const { sidebar, setSidebar } = useAppStore();
-  const { auth, setLogout } = useAuthStore();
+  const { setLogout } = useAuthStore();
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -40,7 +39,6 @@ const Sidebar = () => {
 
           <NavMenu>
             {navMenuList.map((item) => {
-              if (auth?.user?.role === "user") return <></>;
               return (
                 <ListItem key={item.id}>
                   <AsideBtn
@@ -54,7 +52,6 @@ const Sidebar = () => {
                       {item.icon === "budgets" && <IconBudgets />}
                       {item.icon === "pots" && <IconPots />}
                       {item.icon === "recurringBills" && <IconBills />}
-                      {item.icon === "profile" && <IconProfile />}
                     </span>
                     {sidebar && isTablet && (
                       <span className="btnTitle">{t(`nav.${item.icon}`)}</span>
@@ -63,6 +60,7 @@ const Sidebar = () => {
                 </ListItem>
               );
             })}
+
             <ListItem>
               <AsideBtn onClick={() => setLogout()} data-testid="logoutBtn">
                 <span className="iconBox">

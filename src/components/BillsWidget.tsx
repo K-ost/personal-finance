@@ -1,11 +1,4 @@
-import {
-  Box,
-  BoxProps,
-  Skeleton,
-  Stack,
-  styled,
-  Typography,
-} from "@mui/material";
+import { BoxProps, Skeleton, Stack, styled, Typography } from "@mui/material";
 import useGetData from "../hooks/useGetData";
 import { Transaction } from "../types";
 import Error from "./Error";

@@ -2,7 +2,7 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 import FormBody from "../ui/FormBody";
 import CustomInput from "../ui/CustomInput";
 import Btn from "../ui/Btn";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PassInput from "../ui/PassInput";
 import LoginLayout from "../components/LoginLayout";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import useMutateData from "../hooks/useMutateData";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { User } from "../types";
 import useFormSettings from "../hooks/useSettings";
-import { useAuthStore } from "../store/useAuthStore";
 
 type FormData = {
   name: string;
@@ -29,7 +28,7 @@ const SignUp = (): JSX.Element => {
   const { t } = useTranslation();
   const { setNotification } = useNotificationStore();
   const { settings } = useFormSettings();
-  const { setUserId } = useAuthStore();
+  const navigate = useNavigate();
 
   const {
     formState: { errors },
@@ -60,7 +59,7 @@ const SignUp = (): JSX.Element => {
               t("signup.notification", { email: response.user?.email })
             );
             reset();
-            setUserId(response.user?.id);
+            navigate("/login");
           }
         },
       }

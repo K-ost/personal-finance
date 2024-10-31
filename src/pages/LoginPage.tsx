@@ -20,7 +20,7 @@ type FormData = {
 };
 
 const LoginPage = (): JSX.Element => {
-  const { setUserId } = useAuthStore();
+  const { setAuth } = useAuthStore();
   const { setNotification } = useNotificationStore();
   const { t } = useTranslation();
   const { settings } = useFormSettings();
@@ -38,13 +38,13 @@ const LoginPage = (): JSX.Element => {
   });
 
   useEffect(() => {
-    if (data && data.user) {
-      setUserId(data.user.id);
+    if (data && data.accessToken) {
+      setAuth(data);
     }
     setNotification(
       data?.accessToken ? "You've been logged successfully" : data?.message
     );
-  }, [data, setUserId, setNotification]);
+  }, [data, setAuth, setNotification]);
 
   const loginHandler = (formData: FormData) => {
     mutate({
@@ -89,6 +89,7 @@ const LoginPage = (): JSX.Element => {
             </Btn>
           </Box>
         </form>
+
         <Typography variant="body1" color="textSecondary" textAlign="center">
           <Trans i18nKey="loginPage.footerText">
             Need to create an account?{" "}
