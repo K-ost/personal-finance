@@ -39,7 +39,6 @@ const Sorting = (props: StackProps): JSX.Element => {
         fullWidth
         sx={{
           m: 0,
-          mr: isMobile ? 0 : theme.spacing(6),
           mb: isMobile ? theme.spacing(4) : 0,
         }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

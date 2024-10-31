@@ -7,6 +7,7 @@ export type AsideIconType =
   | "budgets"
   | "pots"
   | "recurringBills"
+  | "profile"
   | "logout";
 
 type MinimizeBtnProps = ButtonProps & {

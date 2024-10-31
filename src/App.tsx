@@ -14,6 +14,7 @@ import Budgets from "./pages/Budgets";
 import Pots from "./pages/Pots";
 import Bills from "./pages/Bills";
 import { useAppStore } from "./store/useAppStore";
+import Profile from "./pages/Profile";
 
 function App() {
   const { lang } = useAppStore();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/budgets" element={<Budgets />} />
           <Route path="/pots" element={<Pots />} />
           <Route path="/bills" element={<Bills />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
       <div data-testid="not">

@@ -10,7 +10,6 @@ import { Trans, useTranslation } from "react-i18next";
 import useMutateData from "../hooks/useMutateData";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { User } from "../types";
-import { useAuthStore } from "../store/useAuthStore";
 import useFormSettings from "../hooks/useSettings";
 
 type FormData = {
@@ -28,13 +27,13 @@ type Response = {
 const SignUp = (): JSX.Element => {
   const { t } = useTranslation();
   const { setNotification } = useNotificationStore();
-  const { setAuth } = useAuthStore();
   const { settings } = useFormSettings();
 
   const {
     formState: { errors },
     handleSubmit,
     register,
+    reset,
   } = useForm<FormData>();
 
   const { mutate } = useMutateData<Response, FormData>({
@@ -52,7 +51,7 @@ const SignUp = (): JSX.Element => {
           setNotification(
             t("signup.notification", { email: response.user?.email })
           );
-          setAuth(response);
+          reset();
         }
       },
     });

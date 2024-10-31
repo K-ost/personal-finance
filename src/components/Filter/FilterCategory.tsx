@@ -26,7 +26,7 @@ const FilterCategory = (props: StackProps): JSX.Element => {
         <Typography
           variant="body1"
           color="textSecondary"
-          sx={{ mr: theme.spacing(3) }}
+          sx={{ ml: isMobile ? 4 : 6, mr: 3 }}
         >
           {t("filter.category")}
         </Typography>

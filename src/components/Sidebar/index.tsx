@@ -12,6 +12,7 @@ import {
   IconMin,
   IconOverview,
   IconPots,
+  IconProfile,
   IconTransactions,
 } from "./Icons";
 import { useAppStore } from "../../store/useAppStore";
@@ -21,7 +22,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 
 const Sidebar = () => {
   const { sidebar, setSidebar } = useAppStore();
-  const { setLogout } = useAuthStore();
+  const { auth, setLogout } = useAuthStore();
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -38,26 +39,30 @@ const Sidebar = () => {
           )}
 
           <NavMenu>
-            {navMenuList.map((item) => (
-              <ListItem key={item.id}>
-                <AsideBtn
-                  className={sidebar ? "opened" : ""}
-                  component={NavLink}
-                  to={item.link}
-                >
-                  <span className="iconBox">
-                    {item.icon === "overview" && <IconOverview />}
-                    {item.icon === "transactions" && <IconTransactions />}
-                    {item.icon === "budgets" && <IconBudgets />}
-                    {item.icon === "pots" && <IconPots />}
-                    {item.icon === "recurringBills" && <IconBills />}
-                  </span>
-                  {sidebar && isTablet && (
-                    <span className="btnTitle">{t(`nav.${item.icon}`)}</span>
-                  )}
-                </AsideBtn>
-              </ListItem>
-            ))}
+            {navMenuList.map((item) => {
+              if (auth?.user?.role === "user") return <></>;
+              return (
+                <ListItem key={item.id}>
+                  <AsideBtn
+                    className={sidebar ? "opened" : ""}
+                    component={NavLink}
+                    to={item.link}
+                  >
+                    <span className="iconBox">
+                      {item.icon === "overview" && <IconOverview />}
+                      {item.icon === "transactions" && <IconTransactions />}
+                      {item.icon === "budgets" && <IconBudgets />}
+                      {item.icon === "pots" && <IconPots />}
+                      {item.icon === "recurringBills" && <IconBills />}
+                      {item.icon === "profile" && <IconProfile />}
+                    </span>
+                    {sidebar && isTablet && (
+                      <span className="btnTitle">{t(`nav.${item.icon}`)}</span>
+                    )}
+                  </AsideBtn>
+                </ListItem>
+              );
+            })}
             <ListItem>
               <AsideBtn onClick={() => setLogout()} data-testid="logoutBtn">
                 <span className="iconBox">

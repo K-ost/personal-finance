@@ -18,3 +18,14 @@ Content-Type: application/json
   "password": "091184"
 }
 
+###
+
+POST https://personal-finance-server.onrender.com/api/register
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "test@test.com",
+  "password": "111111"
+}
+
