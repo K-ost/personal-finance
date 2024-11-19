@@ -79,7 +79,28 @@
     "category": "Категория",
     "searchPlace": "Поиск транзакции",
     "prev": "Пред.",
-    "next": "След."
+    "next": "След.",
+    "sort": {
+      "latest": "Новые",
+      "oldest": "Старые",
+      "az": "А до Я",
+      "za": "Я до А",
+      "highest": "Дорогие",
+      "lowest": "Дешевые"
+    },
+    "cats": {
+      "all": "Все транзакции",
+      "entertainment": "Развлечения",
+      "bills": "Счета",
+      "groceries": "Продукты",
+      "dining": "Еда в заведениях",
+      "transportation": "Транспорт",
+      "personal": "Уход за собой",
+      "education": "Образование",
+      "lifestyle": "Образ жизни",
+      "shopping": "Покупки",
+      "general": "Общие"
+    }
   },
   "balances": {
     "current": "Текущий Баланс",

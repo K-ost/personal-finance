@@ -8,7 +8,7 @@ import Wrap from "../ui/Wrap";
 import MainLayout from "../components/MainLayout";
 import SummaryBills from "../components/SummaryBills";
 import useRecurringBills from "../hooks/useRecurringBills";
-import { Box, Grid2 } from "@mui/material";
+import { Box, Grid2, useMediaQuery, useTheme } from "@mui/material";
 import TotalBills from "../components/TotalBills";
 import Filter from "../components/Filter";
 import Search from "../components/Filter/Search";
@@ -17,6 +17,8 @@ import { useSearchParams } from "react-router-dom";
 
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [searchParams] = useSearchParams();
   const params = searchParams.toString().length
     ? "&" + searchParams.toString()
@@ -55,7 +57,7 @@ const Bills = (): JSX.Element => {
           <Wrap>
             {!isError && (
               <Filter>
-                <Search />
+                <Search sx={{ mb: isMobile ? 3 : 0 }} />
                 <Sorting sx={{ ml: "auto" }} />
               </Filter>
             )}

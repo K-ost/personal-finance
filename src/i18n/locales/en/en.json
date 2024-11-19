@@ -79,7 +79,28 @@
     "category": "Category",
     "searchPlace": "Search transaction",
     "prev": "Prev",
-    "next": "Next"
+    "next": "Next",
+    "sort": {
+      "latest": "Latest",
+      "oldest": "Oldest",
+      "az": "A to Z",
+      "za": "Z to A",
+      "highest": "Highest",
+      "lowest": "Lowest"
+    },
+    "cats": {
+      "all": "All Transactions",
+      "entertainment": "Entertainment",
+      "bills": "Bills",
+      "groceries": "Groceries",
+      "dining": "Dining Out",
+      "transportation": "Transportation",
+      "personal": "Personal Care",
+      "education": "Education",
+      "lifestyle": "Lifestyle",
+      "shopping": "Shopping",
+      "general": "General"
+    }
   },
   "balances": {
     "current": "Current Balance",

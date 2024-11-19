@@ -7,16 +7,17 @@ import {
   useTheme,
 } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
-import { sortOptions } from "./constants";
 import { useSearchParams } from "react-router-dom";
 import { getSortValue } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
+import useSortConstants from "./useSortConstants";
 
 const Sorting = (props: StackProps): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { t } = useTranslation();
+  const { sortOptions } = useSortConstants();
 
   const sortValue = getSortValue(searchParams);
 

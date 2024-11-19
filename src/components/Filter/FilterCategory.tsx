@@ -7,16 +7,17 @@ import {
   useTheme,
 } from "@mui/material";
 import CustomInput from "../../ui/CustomInput";
-import { transactionsOptions } from "./constants";
 import { useSearchParams } from "react-router-dom";
 import { getCategoryValue } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
+import useSortConstants from "./useSortConstants";
 
 const FilterCategory = (props: StackProps): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { transactionsOptions } = useSortConstants();
 
   const currentValue = getCategoryValue(searchParams);
 
