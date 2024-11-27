@@ -21,8 +21,6 @@ const TransactionsTable = (props: TransactionsTableProps): JSX.Element => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  console.log(list);
-
   return (
     <TableContainer sx={{ mb: 12 }}>
       {list.length > 0 && (

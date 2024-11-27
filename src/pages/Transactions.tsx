@@ -46,7 +46,7 @@ const Transactions = (): JSX.Element => {
   return (
     <MainLayout title={t("nav.transactions")}>
       <Wrap>
-        {!isError && (
+        {!isError && isSuccess && (
           <Filter>
             <Search
               sx={{

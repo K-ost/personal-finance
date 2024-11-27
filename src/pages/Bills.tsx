@@ -55,7 +55,7 @@ const Bills = (): JSX.Element => {
         </Grid2>
         <Grid2 size={{ xs: 12, md: 8 }}>
           <Wrap>
-            {!isError && (
+            {!isError && isSuccess && (
               <Filter>
                 <Search sx={{ mb: isMobile ? 3 : 0 }} />
                 <Sorting sx={{ ml: "auto" }} />
