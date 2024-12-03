@@ -40,7 +40,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [https://github.com/K-ost/personal-finance](https://github.com/K-ost/personal-finance)
-- Live Site URL: [https://k-ost.github.io/personal-finance/login](https://k-ost.github.io/personal-finance/login)
+- Live Site URL: [https://k-ost.github.io/personal-finance/login](https://k-ost.github.io/personal-finance)
 
 ## My process
 
@@ -54,6 +54,8 @@ Users should be able to:
 - [React MUI](https://mui.com/) - Styling library
 - [Zustand](https://zustand-demo.pmnd.rs/) - State Manager
 - [TanStack Query](https://tanstack.com/query/v3/) - for API server requests
+- [React Hook Form](https://www.react-hook-form.com/) - form validation
+- [react-i18next](https://react.i18next.com/) - for multilingual support
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - for tests along with Vitest
 
 ## Author
