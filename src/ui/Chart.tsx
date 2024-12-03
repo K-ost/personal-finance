@@ -63,7 +63,6 @@ const Chart = (props: ChartProps): JSX.Element => {
             },
           ]}
           slotProps={{ legend: { hidden: true } }}
-          onItemClick={(__, d) => console.log(d)}
           width={240}
           height={240}
         />
