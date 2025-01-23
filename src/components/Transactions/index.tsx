@@ -1,10 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableContainer,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Table, TableBody, TableContainer, useMediaQuery, useTheme } from "@mui/material";
 import { Transaction } from "../../types";
 import Head from "./Head";
 import Row from "./Row";
