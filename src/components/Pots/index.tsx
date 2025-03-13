@@ -12,7 +12,7 @@ const PotsList = (props: PotListProps): JSX.Element => {
   return (
     <Grid2 container spacing={6}>
       {data.map((pot) => (
-        <Grid2 key={pot.id} size={{ xs: 12, sm: 6 }}>
+        <Grid2 key={pot._id} size={{ xs: 12, sm: 6 }}>
           <PotItem pot={pot} />
         </Grid2>
       ))}

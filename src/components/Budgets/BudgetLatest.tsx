@@ -1,8 +1,8 @@
-import { Box, Stack, styled, Typography } from "@mui/material";
+import { Box, BoxProps, Stack, styled, Typography } from "@mui/material";
 import BtnMore from "../../ui/BtnMore";
 import { useTranslation } from "react-i18next";
 
-type BudgetLatestProps = {
+type BudgetLatestProps = BoxProps & {
   category: string;
   children: React.ReactNode;
 };
@@ -23,10 +23,7 @@ const BudgetLatest = (props: BudgetLatestProps): JSX.Element => {
         <Typography color="primary" variant="h3" sx={{ m: 0 }}>
           {t("budgets.latestTitle")}
         </Typography>
-        <BtnMore
-          title={t("budgets.seeAll")}
-          to={`/transactions?category=${category}`}
-        />
+        <BtnMore title={t("budgets.seeAll")} to={`/transactions?category=${category}`} />
       </Stack>
       {children}
     </Wrapper>

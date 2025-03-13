@@ -133,7 +133,7 @@
   },
   "budgets": {
     "addnew": {
-      "title": "Add New Budget",
+      "title": "Add Budget",
       "btn": "Add Budget",
       "notification": "Budget '{{ title }}' has been added to the database"
     },

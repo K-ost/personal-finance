@@ -22,7 +22,7 @@ const TransactionsTable = (props: TransactionsTableProps): JSX.Element => {
           {!isMobile && <Head />}
           <TableBody>
             {list.map((transaction) => (
-              <Row key={transaction.id} transaction={transaction} />
+              <Row key={transaction._id} transaction={transaction} />
             ))}
           </TableBody>
         </Table>

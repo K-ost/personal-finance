@@ -15,7 +15,7 @@ export type BalanceType = {
 };
 
 export type Transaction = {
-  id: number;
+  _id: string;
   avatar: string;
   name: string;
   category: string;
@@ -33,8 +33,9 @@ export type Budget = {
   category: string;
   maximum: number;
   theme: string;
-  id: number;
   latest: Transaction[];
+  userId: string;
+  _id: string;
 };
 
 export type ChartBudget = MakeOptional<PieValueType, "id">;
@@ -44,24 +45,31 @@ export type Pot = {
   target: number;
   total: number;
   theme: string;
-  id: number;
+  userId: string;
+  _id: string;
 };
 
 export type UserRole = "admin" | "user";
 
 export type User = {
-  id?: number;
+  _id?: string;
   email: string;
   password: string;
   name: string;
-  avatar?: string;
+  avatar: string;
   role: UserRole;
 };
 
 export type AuthType = {
-  accessToken?: string;
-  message?: string;
-  user?: Omit<User, "password">;
+  accessToken: string;
+  user: Omit<User, "password">;
+};
+
+export type ServerResponse<T> = {
+  msg: string;
+  data: T[];
+  count?: number;
+  page?: number;
 };
 
 export type CustomPalette = {

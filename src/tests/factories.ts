@@ -12,13 +12,14 @@ export const transactionFactory = Factory.Sync.makeFactory<Transaction>({
   avatar: "http://image.link",
   category: Factory.each((i) => cats[i]),
   date: new Date("2024-07-09T08:55:27Z"),
-  id: Factory.each((i) => i + 1),
+  _id: Factory.each((i) => String(i + 1)),
   name: Factory.each((i) => `Transaction Title ${i + 1}`),
   recurring: false,
 });
 
 export const budgetFactory = Factory.Sync.makeFactory<Budget>({
-  id: Factory.each((i) => i + 1),
+  _id: Factory.each((i) => String(i + 1)),
+  userId: Factory.each((i) => String(i + 1)),
   category: Factory.each((i) => cats[i]),
   maximum: Factory.each((i) => maximums[i]),
   latest: transactionFactory.buildList(3),
@@ -26,7 +27,8 @@ export const budgetFactory = Factory.Sync.makeFactory<Budget>({
 });
 
 export const potFactory = Factory.Sync.makeFactory<Partial<Pot>>({
-  id: Factory.each((i) => i + 1),
+  _id: Factory.each((i) => String(i + 1)),
+  userId: Factory.each((i) => String(i + 1)),
   name: Factory.each((i) => `Custom Pot ${i + 1}`),
   target: Factory.each((i) => (i + 1) * 1000),
   theme: Factory.each((i) => potsColorOptions[i].value),

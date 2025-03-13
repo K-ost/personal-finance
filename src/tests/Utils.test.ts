@@ -45,12 +45,16 @@ describe("Utils", () => {
         maximum: 1000,
         theme: "#d1d1d1",
         latest: [],
+        userId: "1",
+        _id: "1",
       },
       {
         category: "category2",
         maximum: 500,
         theme: "#a1a1a1",
         latest: [],
+        _id: "2",
+        userId: "1",
       },
     ]);
     expect(result).toStrictEqual("$1,500");

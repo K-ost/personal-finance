@@ -29,8 +29,7 @@ const useRecurringBills = (props: RecurringBillsProps): ReqBillsReturn => {
     return {
       ...bill,
       isPaid: currentDate >= transactionDate,
-      isSoon:
-        transactionDate < currentDate + 5 && currentDate < transactionDate,
+      isSoon: transactionDate < currentDate + 5 && currentDate < transactionDate,
     };
   });
 

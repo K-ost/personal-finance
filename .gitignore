@@ -16,6 +16,7 @@ server
 README-template.md
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
+.env
 
 # Editor directories and files
 .vscode/*

@@ -12,6 +12,7 @@ import { useNotificationStore } from "../../store/useNotificationStore";
 import CustomSelect from "../../ui/CustomSelect";
 import { potsColorOptions } from "../Pots/constants";
 import { useTranslation } from "react-i18next";
+import { useAuthStore } from "../../store/useAuthStore";
 
 type AddBudgetProps = {
   close: () => void;
@@ -27,7 +28,8 @@ type FormData = {
 const AddBudget = (props: AddBudgetProps): JSX.Element => {
   const { close, open } = props;
   const { usedCategories, usedThemes } = useThemesStore();
-  const { setNotification } = useNotificationStore();
+  const setNotification = useNotificationStore((state) => state.setNotification);
+  const userId = useAuthStore((state) => state.auth?.user._id);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 
@@ -38,7 +40,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
     reset,
   } = useForm<FormData>();
 
-  const { mutate, isPending } = useMutateData<Budget, FormData>({
+  const { mutate, isPending } = useMutateData<Budget, FormData & { userId: string }>({
     key: ["budgets"],
     method: "POST",
     uri: "/budgets",
@@ -50,6 +52,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
         category: data.category,
         maximum: Number(data.maximum),
         theme: data.theme,
+        userId: userId!,
       },
       {
         onSuccess: () => {
@@ -58,9 +61,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["budgets"],
           });
-          setNotification(
-            t("budgets.addnew.notification", { title: data.category })
-          );
+          setNotification(t("budgets.addnew.notification", { title: data.category }));
         },
       }
     );

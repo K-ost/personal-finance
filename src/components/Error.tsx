@@ -4,11 +4,7 @@ import { useTranslation } from "react-i18next";
 const Error = (): JSX.Element => {
   const { t } = useTranslation();
   return (
-    <AlertBox
-      severity="error"
-      color="error"
-      title={t("alerts.serverError.title")}
-    >
+    <AlertBox severity="error" color="error" title={t("alerts.serverError.title")}>
       {t("alerts.serverError.text")}
     </AlertBox>
   );

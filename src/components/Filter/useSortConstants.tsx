@@ -14,12 +14,12 @@ const useSortConstants = (): useSortConstantsReturn => {
   const { t } = useTranslation();
 
   const sortOptions: selectArray[] = [
-    { title: t("filter.sort.latest"), value: "date,desc" },
-    { title: t("filter.sort.oldest"), value: "date,asc" },
-    { title: t("filter.sort.az"), value: "name,asc" },
-    { title: t("filter.sort.za"), value: "name,desc" },
-    { title: t("filter.sort.highest"), value: "amount,desc" },
-    { title: t("filter.sort.lowest"), value: "amount,asc" },
+    { title: t("filter.sort.latest"), value: "-date" },
+    { title: t("filter.sort.oldest"), value: "date" },
+    { title: t("filter.sort.az"), value: "name" },
+    { title: t("filter.sort.za"), value: "-name" },
+    { title: t("filter.sort.highest"), value: "-amount" },
+    { title: t("filter.sort.lowest"), value: "amount" },
   ];
 
   const transactionsOptions: selectArray[] = [

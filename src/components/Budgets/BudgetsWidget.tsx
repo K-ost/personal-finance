@@ -15,8 +15,7 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
     uri: BUDGETS_URI,
   });
 
-  if (isLoading)
-    return <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />;
+  if (isLoading) return <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />;
   if (isError) return <Error />;
 
   return (
@@ -30,7 +29,7 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
             <div>
               <Grid2 container spacing={4}>
                 {data.map((budget) => (
-                  <Grid2 key={budget.id} size={{ xs: 6, sm: 12 }}>
+                  <Grid2 key={budget._id} size={{ xs: 6, sm: 12 }}>
                     <BudgetAmount
                       amount={budget.maximum}
                       title={budget.category}

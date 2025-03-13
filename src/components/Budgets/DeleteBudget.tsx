@@ -22,7 +22,7 @@ const DeleteBudget = (props: DeleteBudgetProps): JSX.Element => {
   const { mutate, isPending } = useMutateData({
     key: ["budgets"],
     method: "DELETE",
-    uri: `/budgets/${budget.id}`,
+    uri: `/budgets/${budget._id}`,
   });
 
   const deleteHandler = () => {
@@ -32,9 +32,7 @@ const DeleteBudget = (props: DeleteBudgetProps): JSX.Element => {
         queryClient.invalidateQueries({
           queryKey: ["budgets"],
         });
-        setNotification(
-          t("budgets.delete.notification", { title: budget.category })
-        );
+        setNotification(t("budgets.delete.notification", { title: budget.category }));
       },
     });
   };

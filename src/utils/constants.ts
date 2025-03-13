@@ -1,3 +1,4 @@
+export const API_URL = import.meta.env.VITE_API_URL;
 export const BALANCE_URI = "/balance";
 export const TRANSACTIONS_URI = "/transactions";
 export const BUDGETS_URI = "/budgets/transactions";
@@ -34,4 +35,8 @@ export const FORM_SETTINGS = {
       message: "It can't be less than $10",
     },
   },
+};
+
+export const SERVER_MESSAGES = {
+  unauthorized: `Unexpected token 'U', "Unauthorized" is not valid JSON`,
 };

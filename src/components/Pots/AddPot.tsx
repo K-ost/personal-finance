@@ -7,11 +7,12 @@ import { Pot } from "../../types";
 import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotificationStore } from "../../store/useNotificationStore";
-import { FORM_SETTINGS } from "../../utils/constants";
+import { FORM_SETTINGS, POTS_URI } from "../../utils/constants";
 import { useThemesStore } from "../../store/useThemesStore";
 import CustomSelect from "../../ui/CustomSelect";
 import { potsColorOptions } from "./constants";
 import { useTranslation } from "react-i18next";
+import { useAuthStore } from "../../store/useAuthStore";
 
 type AddPotProps = {
   close: () => void;
@@ -23,8 +24,9 @@ type FormData = Omit<Pot, "id" | "total">;
 const AddPot = (props: AddPotProps): JSX.Element => {
   const { close, open } = props;
   const queryClient = useQueryClient();
-  const { setNotification } = useNotificationStore();
-  const { usedThemes } = useThemesStore();
+  const auth = useAuthStore((state) => state.auth);
+  const setNotification = useNotificationStore((state) => state.setNotification);
+  const usedThemes = useThemesStore((state) => state.usedThemes);
   const { t } = useTranslation();
 
   const {
@@ -34,10 +36,10 @@ const AddPot = (props: AddPotProps): JSX.Element => {
     reset,
   } = useForm<FormData>();
 
-  const { isPending, mutate } = useMutateData<Pot, Omit<Pot, "id">>({
+  const { isPending, mutate } = useMutateData<Pot, Omit<Pot, "_id">>({
     key: ["pots"],
     method: "POST",
-    uri: "/pots",
+    uri: POTS_URI,
   });
 
   const addHandler = (data: FormData) => {
@@ -47,6 +49,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         target: Number(data.target),
         theme: data.theme,
         total: 0,
+        userId: auth?.user._id!,
       },
       {
         onSuccess: () => {
@@ -69,9 +72,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
       <form onSubmit={handleSubmit(addHandler)} data-testid="form1">
         <CustomInput
           label={t("form.potname.label")}
-          helperText={
-            errors.name ? errors.name.message : t("form.potname.helper")
-          }
+          helperText={errors.name ? errors.name.message : t("form.potname.helper")}
           inputProps={{
             ...register("name", FORM_SETTINGS.name),
             "data-testid": "name",

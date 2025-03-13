@@ -54,7 +54,7 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
   const { mutate, isPending } = useMutateData<Pot, Pick<Pot, "total">>({
     key: ["pots"],
     method: "PATCH",
-    uri: `/pots/${pot.id}`,
+    uri: `/pots/${pot._id}`,
   });
 
   const topUpHandler = () => {
@@ -70,10 +70,9 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
             queryKey: ["pots"],
           });
           setNotification(
-            t(
-              `pots.${type === "topup" ? "addmoney" : "withdraw"}.notification`,
-              { title: pot.name }
-            )
+            t(`pots.${type === "topup" ? "addmoney" : "withdraw"}.notification`, {
+              title: pot.name,
+            })
           );
         },
       }
@@ -84,9 +83,7 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
     title: pot.name,
   });
   const btnText = t(`pots.${type === "topup" ? "addmoney" : "withdraw"}.btn`);
-  const labelText = t(
-    `form.${type === "topup" ? "addmoney" : "withdraw"}.label`
-  );
+  const labelText = t(`form.${type === "topup" ? "addmoney" : "withdraw"}.label`);
   const errorText =
     type === "topup"
       ? t("pots.addmoney.errorText", {
@@ -99,8 +96,8 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
   return (
     <CustomDialog open={open} title={title} close={close}>
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-        hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.
+        Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.
       </Typography>
 
       <PotPrice title="New Amount" total={amount} />

@@ -1,6 +1,6 @@
 import { BoxProps, Skeleton, Stack, styled, Typography } from "@mui/material";
 import useGetData from "../hooks/useGetData";
-import { Transaction } from "../types";
+import { ServerResponse, Transaction } from "../types";
 import Error from "./Error";
 import Wrap from "../ui/Wrap";
 import { useTranslation } from "react-i18next";
@@ -29,13 +29,15 @@ const Item = styled(Stack)(({ theme }) => ({
 const BillsWidget = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
 
-  const { data, isError, isLoading, isSuccess } = useGetData<Transaction[]>({
-    key: ["bills"],
-    uri: "/transactions?recurring=true",
-  });
+  const { data, isError, isLoading, isSuccess } = useGetData<ServerResponse<Transaction>>(
+    {
+      key: ["bills"],
+      uri: "/transactions?recurring=true",
+    }
+  );
 
   const { info } = useRecurringBills({
-    data: isSuccess ? data : [],
+    data: isSuccess ? data.data : [],
   });
 
   if (isLoading) return <Skeleton height={320} variant="rounded" />;

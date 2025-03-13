@@ -50,7 +50,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
         <Stack direction="row" alignItems="center" mb={8}>
           <IconTitle color={pot.theme} title={pot.name} />
 
-          <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl} id={pot.id}>
+          <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl} id={pot._id}>
             <MenuItem onClick={editHandler}>{t("pots.edit.title")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
@@ -94,11 +94,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
 
       <EditPot close={() => setEditDialog(false)} open={editDialog} pot={pot} />
 
-      <DeletePot
-        close={() => setDeleteDialog(false)}
-        open={deleteDialog}
-        pot={pot}
-      />
+      <DeletePot close={() => setDeleteDialog(false)} open={deleteDialog} pot={pot} />
 
       <ChangeBalance
         close={() => setTopUpDialog(false)}

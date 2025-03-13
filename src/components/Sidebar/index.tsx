@@ -12,6 +12,7 @@ import {
   IconMin,
   IconOverview,
   IconPots,
+  IconProfile,
   IconTransactions,
 } from "./Icons";
 import { useAppStore } from "../../store/useAppStore";
@@ -52,6 +53,7 @@ const Sidebar = () => {
                       {item.icon === "budgets" && <IconBudgets />}
                       {item.icon === "pots" && <IconPots />}
                       {item.icon === "recurringBills" && <IconBills />}
+                      {item.icon === "profile" && <IconProfile />}
                     </span>
                     {sidebar && isTablet && (
                       <span className="btnTitle">{t(`nav.${item.icon}`)}</span>
@@ -82,9 +84,7 @@ const Sidebar = () => {
             <span className="iconBox">
               <IconMin />
             </span>
-            {sidebar && (
-              <span className="btnTitle">{t("settings.hideMenu")}</span>
-            )}
+            {sidebar && <span className="btnTitle">{t("settings.hideMenu")}</span>}
           </AsideBtn>
         )}
       </AsideInner>

@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import Wrap from "../ui/Wrap";
 import useGetData from "../hooks/useGetData";
-import { Transaction } from "../types";
+import { ServerResponse, Transaction } from "../types";
 import TransactionsTable from "../components/Transactions";
 import Pager from "../ui/Pager";
 import Filter from "../components/Filter";
@@ -24,24 +24,15 @@ const Transactions = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Getting pages
-  const currentPage = searchParams.get("page")
-    ? Number(searchParams.get("page"))
-    : 1;
-  const to = currentPage * pageCount;
-  const from = to - pageCount;
+  const currentPage = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
   const params = searchParams.toString();
 
-  const { data, isLoading, isSuccess, isError } = useGetData<Transaction[]>({
-    key: ["transactions", params, currentPage.toString()],
-    uri: `${TRANSACTIONS_URI}?_start=${from}&_end=${to}${
-      params.length ? "&" + params : ""
-    }`,
-  });
-
-  const { data: dataCount, isSuccess: countIsSuccess } = useGetData<number>({
-    key: ["count"],
-    uri: `${TRANSACTIONS_URI}/count`,
-  });
+  const { data, isLoading, isSuccess, isError } = useGetData<ServerResponse<Transaction>>(
+    {
+      key: ["transactions", params, currentPage.toString()],
+      uri: `${TRANSACTIONS_URI}?${params.length ? "&" + params : ""}`,
+    }
+  );
 
   return (
     <MainLayout title={t("nav.transactions")}>
@@ -63,11 +54,11 @@ const Transactions = (): JSX.Element => {
         {isLoading && <TransactionsLoading count={pageCount} />}
         {isError && <Error />}
 
-        {isSuccess && <TransactionsTable list={data} />}
+        {isSuccess && <TransactionsTable list={data.data} />}
 
-        {countIsSuccess && dataCount > pageCount && (
+        {isSuccess && data.count > pageCount && (
           <Pager
-            count={Math.ceil(dataCount / pageCount)}
+            count={Math.ceil(data.count / pageCount)}
             page={currentPage}
             onChange={(__, page: number) => {
               if (page > 1) {

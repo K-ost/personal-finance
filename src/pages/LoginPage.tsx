@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import useMutateData from "../hooks/useMutateData";
 import { AuthType } from "../types";
 import { useAuthStore } from "../store/useAuthStore";
-import { useEffect } from "react";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { Trans, useTranslation } from "react-i18next";
 import LoginLayout from "../components/LoginLayout";
@@ -31,26 +30,29 @@ const LoginPage = (): JSX.Element => {
     register,
   } = useForm<FormData>();
 
-  const { data, mutate, isPending } = useMutateData<AuthType, FormData>({
+  const { mutate, isPending } = useMutateData<AuthType & { msg: string }, FormData>({
     key: ["users"],
     method: "POST",
     uri: "/login",
   });
 
-  useEffect(() => {
-    if (data && data.accessToken) {
-      setAuth(data);
-    }
-    setNotification(
-      data?.accessToken ? "You've been logged successfully" : data?.message
-    );
-  }, [data, setAuth, setNotification]);
-
   const loginHandler = (formData: FormData) => {
-    mutate({
-      email: formData.email,
-      password: formData.password,
-    });
+    mutate(
+      {
+        email: formData.email,
+        password: formData.password,
+      },
+      {
+        onSuccess: (data) => {
+          if (data.msg) {
+            setNotification(data.msg);
+          } else {
+            setAuth(data);
+            setNotification(`You've been logged`);
+          }
+        },
+      }
+    );
   };
 
   return (

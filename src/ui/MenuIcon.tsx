@@ -2,7 +2,7 @@ import { IconButton, Menu } from "@mui/material";
 import ellipsis from "../assets/icon-ellipsis.svg";
 
 type MenuIconProps = {
-  id: number;
+  id: string;
   children: React.ReactNode;
   anchorEl: HTMLElement | null;
   setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>;

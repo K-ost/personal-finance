@@ -10,7 +10,7 @@ const BudgetsList = (props: BudgetsListProps) => {
   return (
     <div>
       {data.map((budget) => (
-        <BudgetItem key={budget.id} budget={budget} />
+        <BudgetItem key={budget._id} budget={budget} />
       ))}
     </div>
   );

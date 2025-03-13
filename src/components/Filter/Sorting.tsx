@@ -44,13 +44,10 @@ const Sorting = (props: StackProps): JSX.Element => {
         }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           const sort = e.target.value.split(",")[0];
-          const order = e.target.value.split(",")[1];
-          if (e.target.value !== "date,desc") {
-            searchParams.set("_sort", sort);
-            searchParams.set("_order", order);
+          if (e.target.value !== "-date") {
+            searchParams.set("sort", sort);
           } else {
-            searchParams.delete("_sort");
-            searchParams.delete("_order");
+            searchParams.delete("sort");
           }
           setSearchParams(searchParams);
         }}

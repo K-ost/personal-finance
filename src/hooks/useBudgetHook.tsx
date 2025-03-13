@@ -22,9 +22,7 @@ const useBudgetHook = (props: UseBudgetProps): UseBudgetReturn => {
   let chartData: ChartBudget[] = [];
 
   const countSpentItem = (budget: Budget) => {
-    return Math.abs(
-      budget.latest.reduce((acum, item) => (acum += item.amount), 0)
-    );
+    return Math.abs(budget.latest.reduce((acum, item) => (acum += item.amount), 0));
   };
 
   if (budget) {

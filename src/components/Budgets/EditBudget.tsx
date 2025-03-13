@@ -53,7 +53,7 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
   const { mutate, isPending } = useMutateData<Budget, FormData>({
     key: ["budgets"],
     method: "PATCH",
-    uri: `/budgets/${budget.id}`,
+    uri: `/budgets/${budget._id}`,
   });
 
   const editHandler = (data: FormData) => {
@@ -70,9 +70,7 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
           queryClient.invalidateQueries({
             queryKey: ["budgets"],
           });
-          setNotification(
-            t("budgets.edit.notification", { title: data.category })
-          );
+          setNotification(t("budgets.edit.notification", { title: data.category }));
         },
       }
     );

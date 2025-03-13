@@ -7,7 +7,7 @@ import { Budget } from "../../types";
 
 const mockedBudget = budgetFactory.build({ latest: [] });
 const bodyBudget: Partial<Budget> = { ...mockedBudget };
-delete bodyBudget.id;
+delete bodyBudget._id;
 delete bodyBudget.latest;
 const patchedData = {
   ...mockedBudget,
@@ -17,10 +17,7 @@ const patchedData = {
 describe("useMutateData", () => {
   beforeAll(() => {
     APINock.post("/budgets", bodyBudget).reply(200, mockedBudget);
-    APINock.patch("/budgets/1", { category: "General" }).reply(
-      200,
-      patchedData
-    );
+    APINock.patch("/budgets/1", { category: "General" }).reply(200, patchedData);
     APINock.delete("/budgets/1").reply(200, {});
   });
 

@@ -10,9 +10,7 @@ export const getLocalPrice = (num: number, nodigits?: boolean): string => {
 };
 
 export const transactionPrice = (num: number): string => {
-  return num > 0
-    ? `+${getLocalPrice(num)}`
-    : `-${getLocalPrice(Math.abs(num))}`;
+  return num > 0 ? `+${getLocalPrice(num)}` : `-${getLocalPrice(Math.abs(num))}`;
 };
 
 export const getImageLink = (url: string): string => {
@@ -48,10 +46,10 @@ export const getProgressValue = (total: number, target: number): number => {
 };
 
 export const getSortValue = (params: URLSearchParams): string => {
-  if (params.get("_sort") && params.get("_order")) {
-    return `${params.get("_sort")},${params.get("_order")}`;
+  if (params.get("sort")) {
+    return `${params.get("sort")}`;
   }
-  return "date,desc";
+  return "-date";
 };
 
 export const getCategoryValue = (params: URLSearchParams): string => {

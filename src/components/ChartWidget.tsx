@@ -36,7 +36,7 @@ const ChartWidget = (props: ChartWidgetProps): JSX.Element => {
         </Typography>
         <div>
           {data.map((budget) => (
-            <BudgetLine key={budget.id} budget={budget} />
+            <BudgetLine key={budget._id} budget={budget} />
           ))}
         </div>
       </Box>

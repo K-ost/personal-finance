@@ -15,16 +15,14 @@ describe("Login Page", () => {
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(screen.getByText("Incorrect Email")).toBeInTheDocument();
-    expect(
-      screen.getByText("Should have 6 or more characters")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Should have 6 or more characters")).toBeInTheDocument();
   });
 
   it("Login - Error message", async () => {
     APINock.post("/login", {
       email: "admin@test.com",
       password: "111111",
-    }).reply(401, { message: "Incorrect password" });
+    }).reply(401, { msg: "Incorrect password" });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "111111");

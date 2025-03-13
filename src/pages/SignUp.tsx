@@ -40,7 +40,7 @@ const SignUp = (): JSX.Element => {
   const { mutate, isPending } = useMutateData<Response, User>({
     key: ["users"],
     method: "POST",
-    uri: "/register",
+    uri: "/signup",
   });
 
   const signUpHandler = (data: FormData) => {
@@ -55,9 +55,7 @@ const SignUp = (): JSX.Element => {
           if (response.message) {
             setNotification(response.message);
           } else {
-            setNotification(
-              t("signup.notification", { email: response.user?.email })
-            );
+            setNotification(t("signup.notification", { email: response.user?.email }));
             reset();
             navigate("/login");
           }
@@ -96,9 +94,7 @@ const SignUp = (): JSX.Element => {
               ...register("password", settings.password),
             }}
             error={errors.password ? true : false}
-            helperText={
-              errors.password?.message ?? t("form.createPassword.helper")
-            }
+            helperText={errors.password?.message ?? t("form.createPassword.helper")}
             sx={{ mb: "32px" }}
           />
 

@@ -41,16 +41,8 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
     <>
       <Wrap sx={{ mb: 6 }}>
         <Stack direction="row" alignItems="center">
-          <IconTitle
-            color={budget.theme}
-            title={budget.category}
-            sx={{ mb: 4 }}
-          />
-          <MenuIcon
-            id={budget.id}
-            anchorEl={anchorEl}
-            setAnchorEl={setAnchorEl}
-          >
+          <IconTitle color={budget.theme} title={budget.category} sx={{ mb: 4 }} />
+          <MenuIcon id={budget._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
             <MenuItem onClick={editHandler}>{t("budgets.edit.title")}</MenuItem>
             <MenuItem
               sx={(theme) => ({ color: theme.palette.error.main })}
@@ -61,38 +53,27 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
           </MenuIcon>
         </Stack>
 
-        <Typography
-          variant="body1"
-          color="textSecondary"
-          component="div"
-          sx={{ mb: 4 }}
-        >
+        <Typography variant="body1" color="textSecondary" component="div" sx={{ mb: 4 }}>
           {t("budgets.maximum", { amount: getLocalPrice(budget.maximum) })}
         </Typography>
         <BudgetProgress value={percent} range={budget.theme} sx={{ mb: 4 }} />
 
-        <Stack direction="row" sx={{ mb: 5 }}>
-          <BudgetAmount
-            amount={spent}
-            title={t("budgets.spent")}
-            color={budget.theme}
-          />
+        <Stack direction="row">
+          <BudgetAmount amount={spent} title={t("budgets.spent")} color={budget.theme} />
           <BudgetAmount amount={remaining} title={t("budgets.remaining")} />
         </Stack>
-        <BudgetLatest category={budget.category}>
-          <div>
-            {budget.latest.map((item) => (
-              <TransactionItem key={item.id} transaction={item} />
-            ))}
-          </div>
-        </BudgetLatest>
+        {budget.latest.length > 0 && (
+          <BudgetLatest category={budget.category} sx={{ mt: 5 }}>
+            <div>
+              {budget.latest.map((item) => (
+                <TransactionItem key={item._id} transaction={item} />
+              ))}
+            </div>
+          </BudgetLatest>
+        )}
       </Wrap>
 
-      <EditBudget
-        budget={budget}
-        close={() => setEditDialog(false)}
-        open={editDialog}
-      />
+      <EditBudget budget={budget} close={() => setEditDialog(false)} open={editDialog} />
 
       <DeleteBudget
         budget={budget}

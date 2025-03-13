@@ -49,7 +49,7 @@ const Budgets = (): JSX.Element => {
       {isLoading && <BudgetsLoading />}
       {isError && <Error />}
 
-      {isSuccess && (
+      {isSuccess && !!data.length && (
         <Grid2 container spacing={6}>
           <Grid2 size={{ xs: 12, md: 5 }}>
             <Wrap

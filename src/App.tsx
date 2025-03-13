@@ -14,16 +14,31 @@ import Budgets from "./pages/Budgets";
 import Pots from "./pages/Pots";
 import Bills from "./pages/Bills";
 import { useAppStore } from "./store/useAppStore";
+import Profile from "./pages/Profile";
+import useGetData from "./hooks/useGetData";
+import { SERVER_MESSAGES } from "./utils/constants";
 
 function App() {
   const { lang } = useAppStore();
-  const { auth } = useAuthStore();
+  const { auth, setLogout } = useAuthStore();
   const isAuth = !!auth;
   const { i18n } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
+
+  const { error } = useGetData({
+    key: ["token"],
+    uri: "/token",
+    enabled: !!auth?.accessToken,
+  });
+
+  useEffect(() => {
+    if (error && error.message && error.message === SERVER_MESSAGES.unauthorized) {
+      setLogout();
+    }
+  }, [error]);
 
   return (
     <>
@@ -39,6 +54,7 @@ function App() {
           <Route path="/budgets" element={<Budgets />} />
           <Route path="/pots" element={<Pots />} />
           <Route path="/bills" element={<Bills />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
       <div data-testid="not">

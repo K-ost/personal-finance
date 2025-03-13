@@ -13,9 +13,7 @@ const Home = (): JSX.Element => {
   return (
     <MainLayout title={t("nav.overview")}>
       <Grid2 container spacing={6}>
-        <Grid2 size={12}>
-          <BalanceWidget />
-        </Grid2>
+        <Grid2 size={12}>{/* <BalanceWidget /> */}</Grid2>
         <Grid2 size={{ xs: 12, xl: 7 }}>
           <PotsWidjet sx={{ mb: 6 }} />
           <TransActionsWidjet />

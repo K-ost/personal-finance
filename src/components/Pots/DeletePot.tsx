@@ -22,7 +22,7 @@ const DeletePot = (props: DeletePotProps): JSX.Element => {
   const { mutate, isPending } = useMutateData({
     key: ["pots"],
     method: "DELETE",
-    uri: `/pots/${pot.id}`,
+    uri: `/pots/${pot._id}`,
   });
 
   const deleteHandler = () => {

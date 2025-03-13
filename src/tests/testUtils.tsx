@@ -5,10 +5,11 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "../theme";
 import "../i18n/index";
 import App from "../App";
+import { API_URL } from "../utils/constants";
 
 const queryClient = new QueryClient();
 
-export const APINock = nock(import.meta.env.VITE_API_URL);
+export const APINock = nock(API_URL);
 
 export const Wrapper = ({
   children = <App />,

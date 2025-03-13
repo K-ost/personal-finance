@@ -25,7 +25,7 @@ export const mockedEditPotBody = (name: string, full?: boolean) => {
   const output: Partial<Pot> = { name, target: 1000, theme: "#277C78" };
   if (full) {
     output.total = 100;
-    output.id = 1;
+    output._id = "1";
   }
   return output;
 };

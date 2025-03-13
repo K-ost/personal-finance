@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useGetData from "../hooks/useGetData";
-import { Transaction } from "../types";
+import { ServerResponse, Transaction } from "../types";
 import Error from "../components/Error";
 import TransactionsLoading from "../components/Transactions/Loading";
 import BillsTable from "../components/BillsTable";
@@ -20,22 +20,17 @@ const Bills = (): JSX.Element => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [searchParams] = useSearchParams();
-  const params = searchParams.toString().length
-    ? "&" + searchParams.toString()
-    : "";
+  const params = searchParams.toString().length ? "&" + searchParams.toString() : "";
 
-  const {
-    data: billsData,
-    isError,
-    isLoading,
-    isSuccess,
-  } = useGetData<Transaction[]>({
-    key: ["bills", params],
-    uri: `/transactions?recurring=true${params}`,
-  });
+  const { data, isError, isLoading, isSuccess } = useGetData<ServerResponse<Transaction>>(
+    {
+      key: ["bills", params],
+      uri: `/transactions?recurring=true${params}`,
+    }
+  );
 
   const { bills, info } = useRecurringBills({
-    data: isSuccess ? billsData : [],
+    data: isSuccess ? data.data : [],
   });
 
   return (

@@ -13,13 +13,10 @@ const PotsWidjet = (props: BoxProps): JSX.Element => {
     uri: "/pots",
   });
 
-  if (isLoading)
-    return <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />;
+  if (isLoading) return <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />;
   if (isError) return <Error />;
 
-  const totalSaved = isSuccess
-    ? data.reduce((acum, el) => (acum += el.total), 0)
-    : 0;
+  const totalSaved = isSuccess ? data.reduce((acum, el) => (acum += el.total), 0) : 0;
 
   return (
     <Wrap title={t("nav.pots")} alllink="/pots" {...props}>
@@ -33,7 +30,7 @@ const PotsWidjet = (props: BoxProps): JSX.Element => {
               {isSuccess &&
                 data
                   .map((pot) => (
-                    <Grid2 size={6} key={pot.id}>
+                    <Grid2 size={6} key={pot._id}>
                       <BudgetAmount
                         amount={pot.total}
                         title={pot.name}
