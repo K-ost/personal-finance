@@ -56,9 +56,9 @@ const Transactions = (): JSX.Element => {
 
         {isSuccess && <TransactionsTable list={data.data} />}
 
-        {isSuccess && data.count > pageCount && (
+        {isSuccess && data.count! > pageCount && (
           <Pager
-            count={Math.ceil(data.count / pageCount)}
+            count={Math.ceil(data.count! / pageCount)}
             page={currentPage}
             onChange={(__, page: number) => {
               if (page > 1) {

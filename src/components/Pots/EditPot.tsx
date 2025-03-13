@@ -46,11 +46,13 @@ const EditPot = (props: EditPotProps): JSX.Element => {
     reset(pot);
   }, [pot, reset]);
 
-  const { mutate, isPending } = useMutateData<Pot, Omit<Pot, "id" | "total">>({
-    key: ["pots"],
-    method: "PATCH",
-    uri: `/pots/${pot.id}`,
-  });
+  const { mutate, isPending } = useMutateData<Pot, Omit<Pot, "_id" | "total" | "userId">>(
+    {
+      key: ["pots"],
+      method: "PATCH",
+      uri: `/pots/${pot._id}`,
+    }
+  );
 
   const editHandler = (data: FormData) => {
     mutate(
@@ -80,9 +82,7 @@ const EditPot = (props: EditPotProps): JSX.Element => {
       <form onSubmit={handleSubmit(editHandler)}>
         <CustomInput
           label={t("form.potname.label")}
-          helperText={
-            errors.name ? errors.name.message : t("form.potname.helper")
-          }
+          helperText={errors.name ? errors.name.message : t("form.potname.helper")}
           inputProps={{ ...register("name", FORM_SETTINGS.name) }}
           error={errors.name ? true : false}
         />
