@@ -37,14 +37,14 @@ describe("Login Page", () => {
     APINock.post("/login", {
       email: "admin@test.com",
       password: "123456",
-    }).reply(200, createUser("admin"));
+    }).reply(201, createUser("admin"));
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "123456");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => {
-      expect(screen.getByText("You've been logged successfully"));
+      expect(screen.getByText("You've been logged"));
     });
   });
 

@@ -1,6 +1,6 @@
-import { Pot } from "../types";
+import { Pot, UserRole } from "../types";
 
-export const createUser = (user: "admin" | "user") => {
+export const createUser = (user: UserRole) => {
   return {
     accessToken: "token",
     message: "",
@@ -9,7 +9,7 @@ export const createUser = (user: "admin" | "user") => {
       name: "Admin",
       role: user,
       avatar: "",
-      id: 1,
+      _id: 1,
     },
   };
 };
