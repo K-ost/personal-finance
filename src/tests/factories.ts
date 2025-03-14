@@ -1,5 +1,5 @@
 import * as Factory from "factory.ts";
-import { Budget, Pot, Transaction } from "../types";
+import { Budget, Pot, Transaction, User } from "../types";
 import { potsColorOptions } from "../components/Pots/constants";
 import { CategoriesOptions } from "../components/Budgets/constants";
 
@@ -33,4 +33,13 @@ export const potFactory = Factory.Sync.makeFactory<Partial<Pot>>({
   target: Factory.each((i) => (i + 1) * 1000),
   theme: Factory.each((i) => potsColorOptions[i].value),
   total: Factory.each((i) => (i + 1) * 100),
+});
+
+export const userFactory = Factory.Sync.makeFactory<User>({
+  _id: Factory.each((i) => String(i + 1)),
+  avatar: "",
+  email: "custom_email@mail.com",
+  name: Factory.each((i) => `User ${i + 1}`),
+  password: "123456",
+  role: "user",
 });

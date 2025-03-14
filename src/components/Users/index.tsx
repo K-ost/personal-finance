@@ -2,11 +2,11 @@ import { Box, Typography } from "@mui/material";
 import useGetData from "../../hooks/useGetData";
 import { User } from "../../types";
 import Btn from "../../ui/Btn";
-import UserItem from "./User";
 import useMutateData from "../../hooks/useMutateData";
 import { useEffect } from "react";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useQueryClient } from "@tanstack/react-query";
+import UsersList from "./UsersList";
 
 const Users = (): JSX.Element => {
   const setNotification = useNotificationStore((state) => state.setNotification);
@@ -44,8 +44,8 @@ const Users = (): JSX.Element => {
   return (
     <div>
       <Typography variant="h2">Users list</Typography>
-      {isLoading && <p>Loading...</p>}
-      {isSuccess && data.map((el) => <UserItem key={el._id} user={el} />)}
+      {isLoading && <p>Loading users...</p>}
+      {isSuccess && <UsersList data={data} />}
       <Box sx={{ mt: 10 }}>
         <Btn color="error" onClick={clearDB}>
           {isPending ? "Loading..." : "Clear database"}
