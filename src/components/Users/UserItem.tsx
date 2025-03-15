@@ -15,10 +15,10 @@ const Item = styled(Box)<BoxProps & { userrole: UserRole }>(({ theme, userrole }
   display: "flex",
   justifyContent: "space-between",
   marginBottom: theme.spacing(2),
-  paddingTop: theme.spacing(2),
-  paddingBottom: theme.spacing(2),
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(1),
   paddingLeft: theme.spacing(4),
-  paddingRight: theme.spacing(2),
+  paddingRight: theme.spacing(1),
 }));
 
 const UserItem = (props: UserProps): JSX.Element => {

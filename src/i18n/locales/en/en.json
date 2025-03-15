@@ -208,5 +208,10 @@
       "amount": "Amount",
       "monthly": "Monthly"
     }
+  },
+  "profile": {
+    "greet": "Hi, {{ name }}",
+    "userlistTitle": "Users list",
+    "clearDB": "Clear database"
   }
 }
