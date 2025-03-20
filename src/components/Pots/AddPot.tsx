@@ -24,7 +24,7 @@ type FormData = Omit<Pot, "id" | "total">;
 const AddPot = (props: AddPotProps): JSX.Element => {
   const { close, open } = props;
   const queryClient = useQueryClient();
-  const auth = useAuthStore((state) => state.auth);
+  const userId = useAuthStore((state) => state.userId);
   const setNotification = useNotificationStore((state) => state.setNotification);
   const usedThemes = useThemesStore((state) => state.usedThemes);
   const { t } = useTranslation();
@@ -49,7 +49,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         target: Number(data.target),
         theme: data.theme,
         total: 0,
-        userId: auth?.user._id!,
+        userId: userId!,
       },
       {
         onSuccess: () => {

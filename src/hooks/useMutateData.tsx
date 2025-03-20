@@ -11,11 +11,11 @@ type useMutateDataProps = {
 
 const useMutateData = <T, K>(props: useMutateDataProps) => {
   const { key, method, uri } = props;
-  const auth = useAuthStore((state) => state.auth);
+  const token = useAuthStore((state) => state.token);
 
   return useMutation({
     mutationKey: key,
-    mutationFn: (data: K) => mutateData<T, K>(uri, method, data, auth?.accessToken),
+    mutationFn: (data: K) => mutateData<T, K>(uri, method, data, token),
   });
 };
 

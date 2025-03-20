@@ -10,11 +10,11 @@ type useGetDataProps = {
 
 const useGetData = <T,>(props: useGetDataProps) => {
   const { enabled, key, uri } = props;
-  const auth = useAuthStore((state) => state.auth);
+  const token = useAuthStore((state) => state.token);
 
   return useQuery({
     queryKey: key,
-    queryFn: () => getData<T>(uri, auth?.accessToken),
+    queryFn: () => getData<T>(uri, token),
     enabled,
   });
 };

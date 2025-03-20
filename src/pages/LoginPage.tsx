@@ -19,7 +19,7 @@ type FormData = {
 };
 
 const LoginPage = (): JSX.Element => {
-  const { setAuth } = useAuthStore();
+  const { setToken, setUser } = useAuthStore();
   const { setNotification } = useNotificationStore();
   const { t } = useTranslation();
   const { settings } = useFormSettings();
@@ -47,7 +47,8 @@ const LoginPage = (): JSX.Element => {
           if (data.msg) {
             setNotification(data.msg);
           } else {
-            setAuth(data);
+            setToken(data.accessToken);
+            setUser(data.user);
             setNotification(`You've been logged`);
           }
         },

@@ -29,7 +29,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
   const { close, open } = props;
   const { usedCategories, usedThemes } = useThemesStore();
   const setNotification = useNotificationStore((state) => state.setNotification);
-  const userId = useAuthStore((state) => state.auth?.user._id);
+  const userId = useAuthStore((state) => state.userId);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 

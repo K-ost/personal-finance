@@ -20,8 +20,8 @@ import { SERVER_MESSAGES } from "./utils/constants";
 
 function App() {
   const { lang } = useAppStore();
-  const { auth, setLogout } = useAuthStore();
-  const isAuth = !!auth;
+  const { token, setLogout } = useAuthStore();
+  const isAuth = !!token;
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function App() {
   const { error } = useGetData({
     key: ["token"],
     uri: "/token",
-    enabled: !!auth?.accessToken,
+    enabled: !!token,
   });
 
   useEffect(() => {

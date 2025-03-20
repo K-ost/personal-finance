@@ -47,6 +47,9 @@
     "password": {
       "label": "Password"
     },
+    "avatar": {
+      "label": "Avatar"
+    },
     "createPassword": {
       "label": "Create Password",
       "helper": "Passwords must be at least 6 characters"
@@ -212,6 +215,7 @@
   "profile": {
     "greet": "Hi, {{ name }}",
     "userlistTitle": "Users list",
-    "clearDB": "Clear database"
+    "clearDB": "Clear database",
+    "editFormTitle": "Edit profile"
   }
 }

@@ -19,16 +19,11 @@ const LangBtn = styled(Button)<ButtonProps & { isauth?: "true" | "false" }>(
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
-      color:
-        isauth === "true"
-          ? theme.palette.primary.main
-          : theme.palette.common.white,
+      color: isauth === "true" ? theme.palette.primary.main : theme.palette.common.white,
       "&.active": {
         backgroundColor: isauth === "true" ? 0 : theme.palette.common.white,
         color:
-          isauth === "true"
-            ? theme.palette.common.white
-            : theme.palette.primary.main,
+          isauth === "true" ? theme.palette.common.white : theme.palette.primary.main,
       },
     },
   })
@@ -36,8 +31,8 @@ const LangBtn = styled(Button)<ButtonProps & { isauth?: "true" | "false" }>(
 
 const LangSwitcher = (props: LangSwitcher): JSX.Element => {
   const { lang, setLang } = useAppStore();
-  const { auth } = useAuthStore();
-  const isAuth = auth ? "true" : "false";
+  const token = useAuthStore((state) => state.token);
+  const isAuth = token ? "true" : "false";
 
   return (
     <Stack direction="row" alignItems="center" {...props}>

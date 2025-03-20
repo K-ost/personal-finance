@@ -8,19 +8,21 @@ import useGetData from "../hooks/useGetData";
 import useMutateData from "../hooks/useMutateData";
 import { User } from "../types";
 import { useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid2, Typography } from "@mui/material";
 import Btn from "../ui/Btn";
+import UserForm from "../components/UserForm";
 
 const Profile = (): JSX.Element => {
   const { t } = useTranslation();
-  const auth = useAuthStore((state) => state.auth);
-  const isAdmin = auth?.user.role === "admin";
+  const { name: userName, role } = useAuthStore();
+  const isAdmin = role === "admin";
   const setNotification = useNotificationStore((state) => state.setNotification);
   const queryClient = useQueryClient();
 
   const { data, isLoading, isSuccess } = useGetData<User[]>({
     key: ["users"],
     uri: "/users",
+    enabled: isAdmin,
   });
 
   const {
@@ -49,18 +51,30 @@ const Profile = (): JSX.Element => {
 
   return (
     <MainLayout title={t("nav.profile")}>
-      <p>{t("profile.greet", { name: auth?.user.name })}</p>
+      <p>{t("profile.greet", { name: userName })}</p>
+
+      <Grid2 container spacing={6}>
+        <Grid2 size={{ xs: 12, lg: 6 }}>
+          <UserForm />
+        </Grid2>
+
+        <Grid2 size={{ xs: 12, lg: 6 }}>
+          {isAdmin && (
+            <>
+              <Typography variant="h2">{t("profile.userlistTitle")}</Typography>
+              {isLoading && <p>{t("settings.loading")}</p>}
+              {isSuccess && <Users data={data} />}
+            </>
+          )}
+        </Grid2>
+      </Grid2>
+
       {isAdmin && (
-        <>
-          <Typography variant="h2">{t("profile.userlistTitle")}</Typography>
-          {isLoading && <p>{t("settings.loading")}</p>}
-          {isSuccess && <Users data={data} />}
-          <Box sx={{ mt: 10 }}>
-            <Btn color="error" onClick={clearDB}>
-              {isPending ? t("settings.loading") : t("profile.clearDB")}
-            </Btn>
-          </Box>
-        </>
+        <Box sx={{ mt: 10 }}>
+          <Btn color="error" onClick={clearDB}>
+            {isPending ? t("settings.loading") : t("profile.clearDB")}
+          </Btn>
+        </Box>
       )}
     </MainLayout>
   );
