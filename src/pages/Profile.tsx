@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { Box, Grid2, Typography } from "@mui/material";
 import Btn from "../ui/Btn";
 import UserForm from "../components/UserForm";
+import ChangePass from "../components/ChangePass";
 
 const Profile = (): JSX.Element => {
   const { t } = useTranslation();
@@ -59,18 +60,15 @@ const Profile = (): JSX.Element => {
         </Grid2>
 
         <Grid2 size={{ xs: 12, lg: 6 }}>
-          {isAdmin && (
-            <>
-              <Typography variant="h2">{t("profile.userlistTitle")}</Typography>
-              {isLoading && <p>{t("settings.loading")}</p>}
-              {isSuccess && <Users data={data} />}
-            </>
-          )}
+          <ChangePass />
         </Grid2>
       </Grid2>
 
       {isAdmin && (
         <Box sx={{ mt: 10 }}>
+          <Typography variant="h2">{t("profile.userlistTitle")}</Typography>
+          {isLoading && <p>{t("settings.loading")}</p>}
+          {isSuccess && <Users data={data} />}
           <Btn color="error" onClick={clearDB}>
             {isPending ? t("settings.loading") : t("profile.clearDB")}
           </Btn>

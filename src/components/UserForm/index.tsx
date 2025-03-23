@@ -10,7 +10,6 @@ import Btn from "../../ui/Btn";
 import Wrap from "../../ui/Wrap";
 import File from "../../ui/File";
 import useMutateData from "../../hooks/useMutateData";
-import ChangePass from "./ChangePass";
 
 type FormData = Omit<User, "_id" | "role"> & {
   password: string;
@@ -28,9 +27,11 @@ const UserForm = (): JSX.Element => {
     formState: { errors, isDirty },
     handleSubmit,
     register,
-  } = useForm<FormData>({
+  } = useForm<FormData & { newPass: string }>({
     defaultValues: {
       name: userName,
+      password: "",
+      newPass: "",
     },
   });
 
@@ -67,7 +68,7 @@ const UserForm = (): JSX.Element => {
   };
 
   return (
-    <Wrap>
+    <Wrap title={t("profile.userinfo.title")}>
       <form onSubmit={handleSubmit(editUser)} noValidate>
         <CustomInput
           label={t("form.email.label")}
@@ -93,9 +94,8 @@ const UserForm = (): JSX.Element => {
           onChange={(e: React.ChangeEvent<any>) => pickFile(e.target.files[0])}
           error={!!avatarError.length}
           helperText={avatarError}
+          ava={avatar}
         />
-
-        <ChangePass />
 
         <Btn
           type="submit"

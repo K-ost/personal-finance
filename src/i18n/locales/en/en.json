@@ -216,6 +216,14 @@
     "greet": "Hi, {{ name }}",
     "userlistTitle": "Users list",
     "clearDB": "Clear database",
-    "editFormTitle": "Edit profile"
+    "editFormTitle": "Edit profile",
+    "userinfo": {
+      "title": "Profile info"
+    },
+    "password": {
+      "title": "Change password",
+      "oldpass": "Old password",
+      "newpass": "New password"
+    }
   }
 }
