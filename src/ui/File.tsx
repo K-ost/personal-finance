@@ -1,18 +1,13 @@
-import {
-  Box,
-  FormHelperText,
-  Input,
-  InputLabel,
-  InputProps,
-  Stack,
-  styled,
-} from "@mui/material";
+import { Box, FormHelperText, Input, InputLabel, Stack, styled } from "@mui/material";
 import Btn from "./Btn";
+import { useTranslation } from "react-i18next";
 
-type FileProps = InputProps & {
+type FileProps = {
   ava: string;
   helpertext: string;
   label: string;
+  pickFn: (e: React.ChangeEvent<any>) => void;
+  removeFn: () => void;
 };
 
 const AVA_SIZE = 52;
@@ -25,8 +20,8 @@ const Ava = styled("img")(({ theme }) => ({
   width: AVA_SIZE,
   height: AVA_SIZE,
   objectFit: "cover",
-  marginRight: theme.spacing(2),
   display: "block",
+  marginRight: theme.spacing(2),
 }));
 
 const Field = styled(Box)({
@@ -46,16 +41,30 @@ const FileInput = styled(Input)({
 });
 
 const File = (props: FileProps): JSX.Element => {
-  const { ava, helpertext, label } = props;
+  const { ava, helpertext, label, pickFn, removeFn } = props;
+  const { t } = useTranslation();
 
   return (
     <Box sx={{ mb: 4 }}>
       <InputLabel shrink={true}>{label}</InputLabel>
       <Stack direction="row">
-        {ava && <Ava src={ava} alt="" />}
+        {ava && (
+          <>
+            <Ava src={ava} alt="" />
+            <Btn
+              type="button"
+              variant="outlined"
+              color="error"
+              sx={{ mr: 2 }}
+              onClick={removeFn}
+            >
+              {t("form.avatar.remove")}
+            </Btn>
+          </>
+        )}
         <Field>
           <Btn type="button" variant="outlined" fullWidth>
-            Upload
+            {t("form.avatar.upload")}
           </Btn>
           <FileInput
             type="file"
@@ -64,7 +73,7 @@ const File = (props: FileProps): JSX.Element => {
                 accept: "image/png, image/jpeg",
               },
             }}
-            {...props}
+            onChange={pickFn}
           />
         </Field>
       </Stack>

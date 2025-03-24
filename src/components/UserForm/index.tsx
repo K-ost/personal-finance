@@ -20,7 +20,7 @@ const UserForm = (): JSX.Element => {
   const { t } = useTranslation();
   const { userId, name: userName, email, setUser, avatar: stateAva } = useAuthStore();
   const queryClient = useQueryClient();
-  const { avatar, avatarError, pickFile } = useFileUpload();
+  const { avatar, avatarError, isDirtyAva, pickFile, removeFile } = useFileUpload();
 
   const {
     formState: { errors, isDirty },
@@ -76,18 +76,13 @@ const UserForm = (): JSX.Element => {
 
         <File
           label={t("form.avatar.label")}
-          onChange={(e: React.ChangeEvent<any>) => pickFile(e.target.files[0])}
-          error={!!avatarError.length}
           helpertext={avatarError}
           ava={avatar}
+          pickFn={(e: React.ChangeEvent<any>) => pickFile(e.target.files[0])}
+          removeFn={removeFile}
         />
 
-        <Btn
-          type="submit"
-          color="warning"
-          fullWidth
-          disabled={!isDirty && (!avatar.length || stateAva === avatar)}
-        >
+        <Btn type="submit" color="warning" fullWidth disabled={!isDirty && !isDirtyAva}>
           {isPending ? "..." : t("profile.editFormTitle")}
         </Btn>
       </form>
