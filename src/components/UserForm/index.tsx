@@ -93,7 +93,7 @@ const UserForm = (): JSX.Element => {
           label={t("form.avatar.label")}
           onChange={(e: React.ChangeEvent<any>) => pickFile(e.target.files[0])}
           error={!!avatarError.length}
-          helperText={avatarError}
+          helpertext={avatarError}
           ava={avatar}
         />
 

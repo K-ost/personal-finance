@@ -1,54 +1,67 @@
 import {
-  FormControl,
+  Box,
   FormHelperText,
   Input,
   InputLabel,
+  InputProps,
   Stack,
   styled,
-  TextField,
-  TextFieldProps,
 } from "@mui/material";
-import CustomInput from "./CustomInput";
+import Btn from "./Btn";
 
-type FileProps = TextFieldProps & {
+type FileProps = InputProps & {
   ava: string;
+  helpertext: string;
+  label: string;
 };
+
+const AVA_SIZE = 52;
 
 const Ava = styled("img")(({ theme }) => ({
   borderWidth: 1,
   borderStyle: "solid",
   borderColor: theme.palette.grey[500],
-  borderRadius: 6,
-  width: 45,
-  height: 45,
+  borderRadius: 8,
+  width: AVA_SIZE,
+  height: AVA_SIZE,
   objectFit: "cover",
-  marginBottom: theme.spacing(1),
-  marginTop: theme.spacing(1),
+  marginRight: theme.spacing(2),
+  display: "block",
 }));
 
+const Field = styled(Box)({
+  position: "relative",
+  flexGrow: 1,
+});
+
+const FileInput = styled(Input)({
+  opacity: 0,
+  position: "absolute",
+  cursor: "pointer",
+  left: 0,
+  top: 0,
+  height: AVA_SIZE,
+  width: "100%",
+  zIndex: 10,
+});
+
 const File = (props: FileProps): JSX.Element => {
-  const { ava } = props;
+  const { ava, helpertext, label } = props;
+
   return (
-    // <CustomInput
-    //   type="file"
-    //   {...props}
-    //   slotProps={{
-    //     htmlInput: {
-    //       accept: "image/png, image/jpeg",
-    //     },
-    //     input: {
-    //       startAdornment: ava && <Ava src={ava} alt="" />,
-    //     },
-    //   }}
-    // />
-    <FormControl>
-      <InputLabel shrink={true}>Email address</InputLabel>
+    <Box sx={{ mb: 4 }}>
+      <InputLabel shrink={true}>{label}</InputLabel>
       <Stack direction="row">
         {ava && <Ava src={ava} alt="" />}
-        <Input type="file" />
+        <Field>
+          <Btn type="button" variant="outlined" fullWidth>
+            Upload
+          </Btn>
+          <FileInput type="file" {...props} />
+        </Field>
       </Stack>
-      <FormHelperText>We'll never share your email.</FormHelperText>
-    </FormControl>
+      {helpertext && <FormHelperText>{helpertext}</FormHelperText>}
+    </Box>
   );
 };
 
