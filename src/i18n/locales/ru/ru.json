@@ -48,7 +48,10 @@
       "label": "Пароль"
     },
     "avatar": {
-      "label": "Аватар"
+      "label": "Аватар",
+      "error": "Аватар не должен быть более {{ size }}KB",
+      "upload": "Загрузить",
+      "remove": "Удалить"
     },
     "createPassword": {
       "label": "Создать Пароль",

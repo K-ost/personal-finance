@@ -1,3 +1,5 @@
+import { useAuthStore } from "../../store/useAuthStore";
+
 export const IconOverview = (): JSX.Element => {
   return (
     <svg
@@ -127,6 +129,21 @@ export const IconLogout = (): JSX.Element => {
 };
 
 export const IconProfile = (): JSX.Element => {
+  const avatar = useAuthStore((state) => state.avatar);
+  if (avatar) {
+    return (
+      <img
+        src={avatar}
+        alt=""
+        style={{
+          width: 20,
+          height: 20,
+          objectFit: "cover",
+          borderRadius: "50%",
+        }}
+      />
+    );
+  }
   return (
     <svg
       width="800px"
