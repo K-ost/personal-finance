@@ -57,10 +57,22 @@ const File = (props: FileProps): JSX.Element => {
           <Btn type="button" variant="outlined" fullWidth>
             Upload
           </Btn>
-          <FileInput type="file" {...props} />
+          <FileInput
+            type="file"
+            slotProps={{
+              input: {
+                accept: "image/png, image/jpeg",
+              },
+            }}
+            {...props}
+          />
         </Field>
       </Stack>
-      {helpertext && <FormHelperText>{helpertext}</FormHelperText>}
+      {helpertext && (
+        <FormHelperText sx={(theme) => ({ color: theme.palette.error.main })}>
+          {helpertext}
+        </FormHelperText>
+      )}
     </Box>
   );
 };

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "@tanstack/react-query";
 import CustomInput from "../../ui/CustomInput";
@@ -10,6 +9,7 @@ import Btn from "../../ui/Btn";
 import Wrap from "../../ui/Wrap";
 import File from "../../ui/File";
 import useMutateData from "../../hooks/useMutateData";
+import useFileUpload from "../../hooks/useFileUpload";
 
 type FormData = Omit<User, "_id" | "role"> & {
   password: string;
@@ -18,10 +18,9 @@ type FormData = Omit<User, "_id" | "role"> & {
 const UserForm = (): JSX.Element => {
   const { settings } = useFormSettings();
   const { t } = useTranslation();
-  const { userId, name: userName, email, setUser } = useAuthStore();
-  const [avatar, setAvatar] = useState<any>("");
-  const [avatarError, setAvatarError] = useState("");
+  const { userId, name: userName, email, setUser, avatar: stateAva } = useAuthStore();
   const queryClient = useQueryClient();
+  const { avatar, avatarError, pickFile } = useFileUpload();
 
   const {
     formState: { errors, isDirty },
@@ -51,18 +50,6 @@ const UserForm = (): JSX.Element => {
         },
       }
     );
-  };
-
-  const pickFile = (file: Blob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (data) => {
-      if (data.loaded < 100000) {
-        setAvatar(reader.result);
-      } else {
-        setAvatarError("Avatar should be no more than 100KB");
-      }
-    };
   };
 
   return (
@@ -99,7 +86,7 @@ const UserForm = (): JSX.Element => {
           type="submit"
           color="warning"
           fullWidth
-          disabled={!isDirty && !avatar.length}
+          disabled={!isDirty && (!avatar.length || stateAva === avatar)}
         >
           {isPending ? "..." : t("profile.editFormTitle")}
         </Btn>

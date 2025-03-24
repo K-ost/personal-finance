@@ -48,7 +48,8 @@
       "label": "Password"
     },
     "avatar": {
-      "label": "Avatar"
+      "label": "Avatar",
+      "error": "Avatar shouldn't be more than {{ size }}KB"
     },
     "createPassword": {
       "label": "Create Password",
