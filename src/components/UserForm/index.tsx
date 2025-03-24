@@ -18,7 +18,7 @@ type FormData = Omit<User, "_id" | "role"> & {
 const UserForm = (): JSX.Element => {
   const { settings } = useFormSettings();
   const { t } = useTranslation();
-  const { userId, name: userName, email, setUser, avatar: stateAva } = useAuthStore();
+  const { userId, name: userName, email, setUser } = useAuthStore();
   const queryClient = useQueryClient();
   const { avatar, avatarError, isDirtyAva, pickFile, removeFile } = useFileUpload();
 
