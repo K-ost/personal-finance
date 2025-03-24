@@ -27,11 +27,9 @@ const UserForm = (): JSX.Element => {
     formState: { errors, isDirty },
     handleSubmit,
     register,
-  } = useForm<FormData & { newPass: string }>({
+  } = useForm<FormData>({
     defaultValues: {
       name: userName,
-      password: "",
-      newPass: "",
     },
   });
 
