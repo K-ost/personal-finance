@@ -11,11 +11,6 @@ function initMockState(link: string = "") {
   resultState.current.avatar = link;
 }
 
-const mockedFile: File = new File([new ArrayBuffer(75551)], "avatar.jpeg", {
-  lastModified: Date.now(),
-  type: "image/jpeg",
-});
-
 describe("useFileUpload", () => {
   it("Avatar doesn't exist changing", () => {
     initMockState();
