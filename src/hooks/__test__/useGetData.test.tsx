@@ -30,8 +30,6 @@ describe("useGetData", () => {
 
     expect(result.current.isLoading).toBe(true);
 
-    console.log(result.current.data);
-
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
     });

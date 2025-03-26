@@ -8,7 +8,7 @@ type UseFileUploadReturn = {
   avatar: any;
   avatarError: string;
   isDirtyAva: boolean;
-  pickFile: (file: Blob) => void;
+  pickFile: (file: File) => void;
   removeFile: () => void;
 };
 
@@ -26,7 +26,7 @@ const useFileUpload = (size: number = FILE_SIZE): UseFileUploadReturn => {
     if (avatar !== userAvatar) setIsDirty(true);
   }, [avatar]);
 
-  const pickFile = (file: Blob) => {
+  const pickFile = (file: File) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (data) => {
