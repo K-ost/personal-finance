@@ -47,6 +47,9 @@
     "password": {
       "label": "Password"
     },
+    "newPass": {
+      "error": "New password should be different"
+    },
     "avatar": {
       "label": "Avatar",
       "error": "Avatar shouldn't be more than {{ size }}KB",

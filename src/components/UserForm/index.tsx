@@ -83,7 +83,7 @@ const UserForm = (): JSX.Element => {
         />
 
         <Btn type="submit" color="warning" fullWidth disabled={!isDirty && !isDirtyAva}>
-          {isPending ? "..." : t("profile.editFormTitle")}
+          {isPending ? "Loading..." : t("profile.editFormTitle")}
         </Btn>
       </form>
     </Wrap>
