@@ -12,10 +12,11 @@ import { Box, Grid2, Typography } from "@mui/material";
 import Btn from "../ui/Btn";
 import UserForm from "../components/UserForm";
 import ChangePass from "../components/ChangePass";
+import ProfileCard from "../ui/ProfileCard";
 
 const Profile = (): JSX.Element => {
   const { t } = useTranslation();
-  const { name: userName, role } = useAuthStore();
+  const { role } = useAuthStore();
   const isAdmin = role === "admin";
   const setNotification = useNotificationStore((state) => state.setNotification);
   const queryClient = useQueryClient();
@@ -52,7 +53,7 @@ const Profile = (): JSX.Element => {
 
   return (
     <MainLayout title={t("nav.profile")}>
-      <p>{t("profile.greet", { name: userName })}</p>
+      <ProfileCard />
 
       <Grid2 container spacing={6}>
         <Grid2 size={{ xs: 12, lg: 6 }}>

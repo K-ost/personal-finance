@@ -7,9 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../../store/useAuthStore";
 import Btn from "../../ui/Btn";
 import Wrap from "../../ui/Wrap";
-import File from "../../ui/File";
 import useMutateData from "../../hooks/useMutateData";
-import useFileUpload from "../../hooks/useFileUpload";
 
 type FormData = Omit<User, "_id" | "role"> & {
   password: string;
@@ -18,9 +16,8 @@ type FormData = Omit<User, "_id" | "role"> & {
 const UserForm = (): JSX.Element => {
   const { settings } = useFormSettings();
   const { t } = useTranslation();
-  const { userId, name: userName, email, setUser } = useAuthStore();
+  const { userId, avatar: userAvatar, name: userName, email, setUser } = useAuthStore();
   const queryClient = useQueryClient();
-  const { avatar, avatarError, isDirtyAva, pickFile, removeFile } = useFileUpload();
 
   const {
     formState: { errors, isDirty },
@@ -28,6 +25,7 @@ const UserForm = (): JSX.Element => {
     register,
   } = useForm<FormData>({
     defaultValues: {
+      avatar: userAvatar,
       name: userName,
     },
   });
@@ -39,17 +37,14 @@ const UserForm = (): JSX.Element => {
   });
 
   const editUser = (data: FormData) => {
-    mutate(
-      { ...data, avatar },
-      {
-        onSuccess: (data) => {
-          queryClient.invalidateQueries({
-            queryKey: ["users"],
-          });
-          setUser(data.data);
-        },
-      }
-    );
+    mutate(data, {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries({
+          queryKey: ["users"],
+        });
+        setUser(data.data);
+      },
+    });
   };
 
   return (
@@ -74,15 +69,18 @@ const UserForm = (): JSX.Element => {
           helperText={errors.name?.message}
         />
 
-        <File
+        <CustomInput
           label={t("form.avatar.label")}
-          helpertext={avatarError}
-          ava={avatar}
-          pickFn={(e: React.ChangeEvent<any>) => pickFile(e.target.files[0])}
-          removeFn={removeFile}
+          type="search"
+          slotProps={{
+            input: {
+              ...register("avatar"),
+            },
+          }}
+          helperText={t("form.avatar.helper")}
         />
 
-        <Btn type="submit" color="warning" fullWidth disabled={!isDirty && !isDirtyAva}>
+        <Btn type="submit" color="warning" fullWidth disabled={!isDirty}>
           {isPending ? "Loading..." : t("profile.editFormTitle")}
         </Btn>
       </form>

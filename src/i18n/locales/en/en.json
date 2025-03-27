@@ -54,7 +54,8 @@
       "label": "Avatar",
       "error": "Avatar shouldn't be more than {{ size }}KB",
       "upload": "Upload",
-      "remove": "Remove"
+      "remove": "Remove",
+      "helper": "External link"
     },
     "createPassword": {
       "label": "Create Password",
