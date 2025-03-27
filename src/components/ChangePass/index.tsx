@@ -56,6 +56,8 @@ const ChangePass = (): JSX.Element => {
           slotProps={{
             input: {
               ...register("oldPass", settings.password),
+              role: "textbox",
+              "aria-label": "Old password",
             },
           }}
           error={errors.oldPass ? true : false}
@@ -75,6 +77,8 @@ const ChangePass = (): JSX.Element => {
                   }
                 },
               }),
+              role: "textbox",
+              "aria-label": "New password",
             },
           }}
           error={errors.newPass ? true : false}
