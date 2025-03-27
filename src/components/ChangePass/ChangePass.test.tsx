@@ -23,6 +23,17 @@ describe("Change Password", () => {
     btn = screen.getByRole("button", { name: "Change password" });
   });
 
+  describe("Form State", () => {
+    it("Default state of button is disabled", () => {
+      expect(btn.disabled).toBe(true);
+    });
+
+    it("Button's state is changed while typing", async () => {
+      await userEvent.type(oldPass, "test");
+      expect(btn.disabled).toBe(false);
+    });
+  });
+
   describe("Form errors", () => {
     it("Short password and empty field", async () => {
       await userEvent.type(oldPass, "111");
@@ -39,7 +50,7 @@ describe("Change Password", () => {
     });
   });
 
-  describe("Server errors", () => {
+  describe("Server responses", () => {
     beforeAll(() => {
       const { result } = renderHook(() => useAuthStore(), {
         wrapper: WrapperHook,
