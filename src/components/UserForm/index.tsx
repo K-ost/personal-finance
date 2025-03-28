@@ -8,6 +8,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 import Btn from "../../ui/Btn";
 import Wrap from "../../ui/Wrap";
 import useMutateData from "../../hooks/useMutateData";
+import { useNotificationStore } from "../../store/useNotificationStore";
 
 type FormData = Omit<User, "_id" | "role"> & {
   password: string;
@@ -16,6 +17,7 @@ type FormData = Omit<User, "_id" | "role"> & {
 const UserForm = (): JSX.Element => {
   const { settings } = useFormSettings();
   const { t } = useTranslation();
+  const setNotification = useNotificationStore((state) => state.setNotification);
   const { userId, avatar: userAvatar, name: userName, email, setUser } = useAuthStore();
   const queryClient = useQueryClient();
 
@@ -42,6 +44,7 @@ const UserForm = (): JSX.Element => {
         queryClient.invalidateQueries({
           queryKey: ["users"],
         });
+        setNotification(data.msg);
         setUser(data.data);
       },
     });
@@ -63,6 +66,7 @@ const UserForm = (): JSX.Element => {
           slotProps={{
             input: {
               ...register("name", settings.name),
+              "aria-label": "Name",
             },
           }}
           error={errors.name ? true : false}
@@ -75,6 +79,7 @@ const UserForm = (): JSX.Element => {
           slotProps={{
             input: {
               ...register("avatar"),
+              "aria-label": "Avatar",
             },
           }}
           helperText={t("form.avatar.helper")}
