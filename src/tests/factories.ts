@@ -26,7 +26,7 @@ export const budgetFactory = Factory.Sync.makeFactory<Budget>({
   theme: "#D1D1D1",
 });
 
-export const potFactory = Factory.Sync.makeFactory<Partial<Pot>>({
+export const potFactory = Factory.Sync.makeFactory<Pot>({
   _id: Factory.each((i) => String(i + 1)),
   userId: Factory.each((i) => String(i + 1)),
   name: Factory.each((i) => `Custom Pot ${i + 1}`),
