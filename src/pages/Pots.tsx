@@ -10,7 +10,6 @@ import { POTS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import Error from "../components/Error";
 import MainLayout from "../components/MainLayout";
-import AlertBox from "../ui/AlertBox";
 
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();
@@ -43,12 +42,6 @@ const Pots = (): JSX.Element => {
       {isLoading && <PotLoading />}
       {isError && <Error />}
       {isSuccess && <PotsList data={data} />}
-
-      {isSuccess && !data.length && (
-        <AlertBox title={t("alerts.noData.title")} color="info" severity="info">
-          {t("alerts.noData.text")}
-        </AlertBox>
-      )}
 
       <AddPot close={() => setAddDialog(false)} open={addDialog} />
     </MainLayout>
