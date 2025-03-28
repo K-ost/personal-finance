@@ -13,6 +13,7 @@ import Error from "../components/Error";
 import Wrap from "../ui/Wrap";
 import ChartWidget from "../components/ChartWidget";
 import MainLayout from "../components/MainLayout";
+import AlertBox from "../ui/AlertBox";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();
@@ -48,7 +49,6 @@ const Budgets = (): JSX.Element => {
     >
       {isLoading && <BudgetsLoading />}
       {isError && <Error />}
-
       {isSuccess && !!data.length && (
         <Grid2 container spacing={6}>
           <Grid2 size={{ xs: 12, md: 5 }}>
@@ -76,6 +76,12 @@ const Budgets = (): JSX.Element => {
             <BudgetsList data={data} />
           </Grid2>
         </Grid2>
+      )}
+
+      {isSuccess && !data.length && (
+        <AlertBox title={t("alerts.noData.title")} color="info" severity="info">
+          {t("alerts.noData.text")}
+        </AlertBox>
       )}
 
       <AddBudget close={() => setAddDialog(false)} open={addDialog} />

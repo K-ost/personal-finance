@@ -24,6 +24,10 @@
     "notfound": {
       "title": "Nothing found",
       "text": "There are no matches for your search query."
+    },
+    "noData": {
+      "title": "No data",
+      "text": "Add data to see this on this page"
     }
   },
   "notifications": {

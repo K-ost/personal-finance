@@ -17,6 +17,7 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
 
   if (isLoading) return <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />;
   if (isError) return <Error />;
+  if (isSuccess && !data.length) return <></>;
 
   return (
     <Wrap title={t("nav.budgets")} alllink="/budgets" {...props}>
