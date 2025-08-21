@@ -21,10 +21,10 @@ const useFileUpload = (size: number = FILE_SIZE): UseFileUploadReturn => {
 
   useEffect(() => {
     if (!avatar.length) setIsDirty(false);
-    if (!!avatar.length) setIsDirty(true);
+    if (avatar.length) setIsDirty(true);
     if (avatar === userAvatar) setIsDirty(false);
     if (avatar !== userAvatar) setIsDirty(true);
-  }, [avatar]);
+  }, [avatar, userAvatar]);
 
   const pickFile = (file: File) => {
     const reader = new FileReader();

@@ -22,6 +22,6 @@ export const mutateData = async <T, K>(
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: body ? JSON.stringify(body) : null,
   });
-  let data = await response.json();
+  const data = await response.json();
   return data;
 };

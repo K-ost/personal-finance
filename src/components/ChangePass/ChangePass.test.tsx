@@ -7,9 +7,9 @@ import Notification from "../../ui/Notification";
 import { useAuthStore } from "../../store/useAuthStore";
 
 describe("Change Password", () => {
-  let oldPass: any;
-  let newPass: any;
-  let btn: any;
+  let oldPass: HTMLInputElement;
+  let newPass: HTMLInputElement;
+  let btn: HTMLButtonElement;
 
   beforeEach(() => {
     render(

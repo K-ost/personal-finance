@@ -38,7 +38,7 @@ function App() {
     if (error && error.message && error.message === SERVER_MESSAGES.unauthorized) {
       setLogout();
     }
-  }, [error]);
+  }, [error, setLogout]);
 
   return (
     <>

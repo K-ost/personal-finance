@@ -32,7 +32,7 @@ const UserForm = (): JSX.Element => {
     },
   });
 
-  const { mutate, isPending } = useMutateData<any, FormData>({
+  const { mutate, isPending } = useMutateData<{ data: User; msg: string }, FormData>({
     key: ["users"],
     method: "PATCH",
     uri: `/users/${userId}`,

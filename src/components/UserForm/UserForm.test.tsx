@@ -7,9 +7,9 @@ import userEvent from "@testing-library/user-event";
 import { useAuthStore } from "../../store/useAuthStore";
 
 describe("Profile detias form", () => {
-  let nameField: any;
-  let avatarField: any;
-  let btn: any;
+  let nameField: HTMLInputElement;
+  let avatarField: HTMLInputElement;
+  let btn: HTMLButtonElement;
 
   beforeEach(() => {
     render(

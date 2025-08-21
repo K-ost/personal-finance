@@ -49,7 +49,7 @@ const Profile = (): JSX.Element => {
 
   useEffect(() => {
     setNotification(dbData?.msg);
-  }, [dbData]);
+  }, [dbData, setNotification]);
 
   return (
     <MainLayout title={t("nav.profile")}>
