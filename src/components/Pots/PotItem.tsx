@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, BoxProps, MenuItem, Stack, styled } from "@mui/material";
+import { Box, BoxProps, MenuItem, Portal, Stack, styled } from "@mui/material";
 import Btn from "../../ui/Btn";
 import { Pot } from "../../types";
 import PotProgress from "./PotProgress";
@@ -92,23 +92,25 @@ const PotItem = (props: PotItemProps): JSX.Element => {
         </Stack>
       </PotBox>
 
-      <EditPot close={() => setEditDialog(false)} open={editDialog} pot={pot} />
+      <Portal>
+        <EditPot close={() => setEditDialog(false)} open={editDialog} pot={pot} />
 
-      <DeletePot close={() => setDeleteDialog(false)} open={deleteDialog} pot={pot} />
+        <DeletePot close={() => setDeleteDialog(false)} open={deleteDialog} pot={pot} />
 
-      <ChangeBalance
-        close={() => setTopUpDialog(false)}
-        open={topUpDialog}
-        pot={pot}
-        type="topup"
-      />
+        <ChangeBalance
+          close={() => setTopUpDialog(false)}
+          open={topUpDialog}
+          pot={pot}
+          type="topup"
+        />
 
-      <ChangeBalance
-        close={() => setWithdrawDialog(false)}
-        open={withdrawDialog}
-        pot={pot}
-        type="withdrawal"
-      />
+        <ChangeBalance
+          close={() => setWithdrawDialog(false)}
+          open={withdrawDialog}
+          pot={pot}
+          type="withdrawal"
+        />
+      </Portal>
     </>
   );
 };

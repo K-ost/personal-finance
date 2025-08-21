@@ -10,6 +10,7 @@ import { BillInfo } from "../hooks/useRecurringBills";
 import icon from "../assets/icon-recurring-bills.svg";
 import { getLocalPrice } from "../utils/utils";
 import { useTranslation } from "react-i18next";
+import { memo } from "react";
 
 type TotalBillsProps = {
   info: BillInfo;
@@ -35,17 +36,11 @@ const TotalBills = (props: TotalBillsProps & BoxProps): JSX.Element => {
       <Typography variant="body1" component="div" sx={{ mt: 8, mb: 3 }}>
         {t("bills.total")}
       </Typography>
-      <Typography
-        variant={isMobile ? "h2" : "h1"}
-        component="div"
-        sx={{ m: 0 }}
-      >
-        {getLocalPrice(
-          info.paid.amount + info.upcoming.amount + info.soon.amount
-        )}
+      <Typography variant={isMobile ? "h2" : "h1"} component="div" sx={{ m: 0 }}>
+        {getLocalPrice(info.paid.amount + info.upcoming.amount + info.soon.amount)}
       </Typography>
     </Div>
   );
 };
 
-export default TotalBills;
+export default memo(TotalBills);

@@ -3,6 +3,7 @@ import { Pot } from "../../types";
 import PotItem from "./PotItem";
 import { useTranslation } from "react-i18next";
 import AlertBox from "../../ui/AlertBox";
+import { memo } from "react";
 
 type PotListProps = {
   data: Pot[];
@@ -30,4 +31,4 @@ const PotsList = (props: PotListProps): JSX.Element => {
   );
 };
 
-export default PotsList;
+export default memo(PotsList);

@@ -37,16 +37,18 @@ const Bills = (): JSX.Element => {
     <MainLayout title={t("nav.recurringBills")}>
       <Grid2 container spacing={6}>
         <Grid2 size={{ xs: 12, md: 4 }}>
-          <Box>
-            <Grid2 container spacing={6}>
-              <Grid2 size={{ xs: 12, sm: 6, md: 12 }}>
-                {isSuccess && <TotalBills info={info} />}
+          {isSuccess && (
+            <Box>
+              <Grid2 container spacing={6}>
+                <Grid2 size={{ xs: 12, sm: 6, md: 12 }}>
+                  <TotalBills info={info} />
+                </Grid2>
+                <Grid2 size={{ xs: 12, sm: 6, md: 12 }}>
+                  <SummaryBills info={info} />
+                </Grid2>
               </Grid2>
-              <Grid2 size={{ xs: 12, sm: 6, md: 12 }}>
-                {isSuccess && <SummaryBills info={info} />}
-              </Grid2>
-            </Grid2>
-          </Box>
+            </Box>
+          )}
         </Grid2>
         <Grid2 size={{ xs: 12, md: 8 }}>
           <Wrap>
