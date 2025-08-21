@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Budget } from "../../types";
 import BudgetItem from "./BudgetItem";
 
@@ -16,4 +17,4 @@ const BudgetsList = (props: BudgetsListProps) => {
   );
 };
 
-export default BudgetsList;
+export default memo(BudgetsList);

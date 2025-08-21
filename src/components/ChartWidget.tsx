@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import BudgetLine from "../ui/BudgetLine";
 import { Budget } from "../types";
 import { useTranslation } from "react-i18next";
+import { memo } from "react";
 
 type ChartWidgetProps = {
   data: Budget[];
@@ -44,4 +45,4 @@ const ChartWidget = (props: ChartWidgetProps): JSX.Element => {
   );
 };
 
-export default ChartWidget;
+export default memo(ChartWidget);
