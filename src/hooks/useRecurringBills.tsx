@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { RecurringBill, Transaction } from "../types";
 
 type RecurringBillsProps = {
@@ -24,14 +25,18 @@ const useRecurringBills = (props: RecurringBillsProps): ReqBillsReturn => {
   const { data } = props;
   const currentDate = new Date().getDate();
 
-  const output: RecurringBill[] = data.map((bill) => {
-    const transactionDate = new Date(bill.date).getDate();
-    return {
-      ...bill,
-      isPaid: currentDate >= transactionDate,
-      isSoon: transactionDate < currentDate + 5 && currentDate < transactionDate,
-    };
-  });
+  const output: RecurringBill[] = useMemo(
+    () =>
+      data.map((bill) => {
+        const transactionDate = new Date(bill.date).getDate();
+        return {
+          ...bill,
+          isPaid: currentDate >= transactionDate,
+          isSoon: transactionDate < currentDate + 5 && currentDate < transactionDate,
+        };
+      }),
+    [data, currentDate]
+  );
 
   const paidBills = output.filter((bill) => bill.isPaid);
   const soonBills = output.filter((bill) => bill.isSoon);
