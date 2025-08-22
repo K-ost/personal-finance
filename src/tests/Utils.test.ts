@@ -62,7 +62,7 @@ describe("Utils", () => {
 
   it("createDate", () => {
     const result = createDate("2024-10-01T09:45:32Z");
-    expect(result).toBe("1 Oct 2024");
+    expect(result).toBe("October 01, 2024");
   });
 
   it("createBillsDate", () => {
