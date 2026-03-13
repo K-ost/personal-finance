@@ -6,8 +6,8 @@ import nock from "nock";
 import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
-import { theme } from "../theme";
 import { API_URL } from "../constants/constants";
+import { theme } from "../theme";
 
 const queryClient = new QueryClient();
 

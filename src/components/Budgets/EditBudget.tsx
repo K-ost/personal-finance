@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+import { FORM_SETTINGS } from "../../constants/constants";
 import useMutateData from "../../hooks/useMutateData";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useThemesStore } from "../../store/useThemesStore";
@@ -11,7 +12,6 @@ import Btn from "../../ui/Btn";
 import CustomDialog from "../../ui/CustomDialog";
 import CustomInput from "../../ui/CustomInput";
 import CustomSelect from "../../ui/CustomSelect";
-import { FORM_SETTINGS } from "../../constants/constants";
 import { potsColorOptions } from "../Pots/constants";
 import { CategoriesOptions } from "./constants";
 

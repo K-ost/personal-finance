@@ -1,10 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 
+import { TRANSACTIONS_URI } from "../../constants/constants";
 import { transactionFactory } from "../../tests/factories";
 import { APINock, WrapperHook } from "../../tests/testUtils";
 import { ServerResponse, Transaction } from "../../types/types";
-import { TRANSACTIONS_URI } from "../../constants/constants";
 import useGetData from "../useGetData";
 
 const mockedData: ServerResponse<Transaction> = {

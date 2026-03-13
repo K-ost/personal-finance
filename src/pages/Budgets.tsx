@@ -8,13 +8,13 @@ import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import ChartWidget from "../components/ChartWidget";
 import Error from "../components/Error";
 import MainLayout from "../components/MainLayout";
+import { BUDGETS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
 import { useThemesStore } from "../store/useThemesStore";
 import { Budget } from "../types/types";
 import AlertBox from "../ui/AlertBox";
 import Btn from "../ui/Btn";
 import Wrap from "../ui/Wrap";
-import { BUDGETS_URI } from "../constants/constants";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();

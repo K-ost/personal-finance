@@ -7,11 +7,11 @@ import MainLayout from "../components/MainLayout";
 import PotsList from "../components/Pots";
 import AddPot from "../components/Pots/AddPot";
 import PotLoading from "../components/Pots/PotLoading";
+import { POTS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
 import { useThemesStore } from "../store/useThemesStore";
 import { Pot } from "../types/types";
 import Btn from "../ui/Btn";
-import { POTS_URI } from "../constants/constants";
 
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();

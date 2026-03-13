@@ -10,11 +10,11 @@ import Sorting from "../components/Filter/Sorting";
 import MainLayout from "../components/MainLayout";
 import TransactionsTable from "../components/Transactions";
 import TransactionsLoading from "../components/Transactions/Loading";
+import { TRANSACTIONS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
 import { ServerResponse, Transaction } from "../types/types";
 import Pager from "../ui/Pager";
 import Wrap from "../ui/Wrap";
-import { TRANSACTIONS_URI } from "../constants/constants";
 
 const pageCount = 10;
 
