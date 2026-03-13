@@ -1,5 +1,5 @@
-import { API_Method } from "../types";
-import { API_URL } from "./constants";
+import { API_Method } from "../types/types";
+import { API_URL } from "../constants/constants";
 
 export const getData = async <T>(uri: string, token?: string): Promise<T> => {
   const response = await fetch(`${API_URL}${uri}`, {
@@ -15,7 +15,7 @@ export const mutateData = async <T, K>(
   uri: string,
   method: API_Method,
   body?: K,
-  token?: string
+  token?: string,
 ): Promise<T> => {
   const response = await fetch(`${API_URL}${uri}`, {
     method,

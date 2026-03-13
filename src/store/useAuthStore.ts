@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { User, UserRole } from "../types";
+import { User, UserRole } from "../types/types";
 
 type AuthState = {
   token: string | undefined;
@@ -48,7 +48,7 @@ export const useAuthStore = create<AuthState>()(
       }),
       {
         name: "auth",
-      }
-    )
-  )
+      },
+    ),
+  ),
 );

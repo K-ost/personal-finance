@@ -16,7 +16,7 @@ import Bills from "./pages/Bills";
 import { useAppStore } from "./store/useAppStore";
 import Profile from "./pages/Profile";
 import useGetData from "./hooks/useGetData";
-import { SERVER_MESSAGES } from "./utils/constants";
+import { SERVER_MESSAGES } from "./constants/constants";
 
 function App() {
   const { lang } = useAppStore();

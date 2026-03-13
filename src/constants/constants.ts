@@ -1,4 +1,4 @@
-export const API_URL = import.meta.env.VITE_API_URL;
+export const API_URL = import.meta.env.VITE_API_TEST_URL;
 export const BALANCE_URI = "/balance";
 export const TRANSACTIONS_URI = "/transactions";
 export const BUDGETS_URI = "/budgets/transactions";

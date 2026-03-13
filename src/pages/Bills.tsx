@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useGetData from "../hooks/useGetData";
-import { ServerResponse, Transaction } from "../types";
+import { ServerResponse, Transaction } from "../types/types";
 import Error from "../components/Error";
 import TransactionsLoading from "../components/Transactions/Loading";
 import BillsTable from "../components/BillsTable";
@@ -26,7 +26,7 @@ const Bills = (): JSX.Element => {
     {
       key: ["bills", params],
       uri: `/transactions?recurring=true${params}`,
-    }
+    },
   );
 
   const { bills, info } = useRecurringBills({
