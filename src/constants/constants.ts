@@ -1,4 +1,4 @@
-export const API_URL = import.meta.env.VITE_API_TEST_URL;
+export const API_URL = import.meta.env.VITE_API_URL;
 export const BALANCE_URI = "/balance";
 export const TRANSACTIONS_URI = "/transactions";
 export const BUDGETS_URI = "/budgets/transactions";
@@ -17,7 +17,7 @@ export const FORM_SETTINGS = {
     required: "Required field",
     minLength: {
       value: 4,
-      message: "Should have 6 or more characters",
+      message: "Should have 4 or more characters",
     },
   },
   name: {

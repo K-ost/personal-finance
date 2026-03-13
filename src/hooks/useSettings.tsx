@@ -14,7 +14,7 @@ const useFormSettings = () => {
       password: {
         required: t("form.settings.required"),
         minLength: {
-          value: 6,
+          value: 4,
           message: t("form.settings.min6"),
         },
       },
