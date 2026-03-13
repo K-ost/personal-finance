@@ -16,7 +16,7 @@ export const FORM_SETTINGS = {
   password: {
     required: "Required field",
     minLength: {
-      value: 6,
+      value: 4,
       message: "Should have 6 or more characters",
     },
   },
