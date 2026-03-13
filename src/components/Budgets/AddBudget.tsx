@@ -1,18 +1,19 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
+import useMutateData from "../../hooks/useMutateData";
+import { useAuthStore } from "../../store/useAuthStore";
+import { useNotificationStore } from "../../store/useNotificationStore";
+import { useThemesStore } from "../../store/useThemesStore";
+import { Budget } from "../../types/types";
+import Btn from "../../ui/Btn";
 import CustomDialog from "../../ui/CustomDialog";
 import CustomInput from "../../ui/CustomInput";
-import { CategoriesOptions } from "./constants";
-import { useThemesStore } from "../../store/useThemesStore";
-import { useForm } from "react-hook-form";
-import Btn from "../../ui/Btn";
-import { FORM_SETTINGS } from "../../utils/constants";
-import useMutateData from "../../hooks/useMutateData";
-import { Budget } from "../../types";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNotificationStore } from "../../store/useNotificationStore";
 import CustomSelect from "../../ui/CustomSelect";
+import { FORM_SETTINGS } from "../../constants/constants";
 import { potsColorOptions } from "../Pots/constants";
-import { useTranslation } from "react-i18next";
-import { useAuthStore } from "../../store/useAuthStore";
+import { CategoriesOptions } from "./constants";
 
 type AddBudgetProps = {
   close: () => void;
@@ -63,7 +64,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           });
           setNotification(t("budgets.addnew.notification", { title: data.category }));
         },
-      }
+      },
     );
   };
 

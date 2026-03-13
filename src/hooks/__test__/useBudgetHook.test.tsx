@@ -1,7 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import useBudgetHook from "../useBudgetHook";
+
 import { budgetFactory } from "../../tests/factories";
+import useBudgetHook from "../useBudgetHook";
 
 const mockedBudgets = budgetFactory.buildList(3);
 

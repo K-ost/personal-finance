@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix",
     "preview": "vite preview",
     "test": "vitest",
     "deploy": "npm run build && gh-pages -d dist"
@@ -40,6 +41,8 @@
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
     "factory.ts": "^1.4.1",
     "globals": "^15.9.0",
     "jsdom": "^25.0.1",

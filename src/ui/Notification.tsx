@@ -1,4 +1,5 @@
 import { Slide, Snackbar } from "@mui/material";
+
 import { useNotificationStore } from "../store/useNotificationStore";
 
 const Notification = (): JSX.Element => {

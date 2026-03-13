@@ -1,16 +1,17 @@
-import { useState } from "react";
 import { Box, BoxProps, MenuItem, Portal, Stack, styled } from "@mui/material";
-import Btn from "../../ui/Btn";
-import { Pot } from "../../types";
-import PotProgress from "./PotProgress";
-import PotPrice from "./PotPrice";
-import MenuIcon from "../../ui/MenuIcon";
-import EditPot from "./EditPot";
-import DeletePot from "./DeletePot";
-import ChangeBalance from "./ChangeBalance";
-import IconTitle from "../../ui/IconTitle";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Pot } from "../../types/types";
+import Btn from "../../ui/Btn";
+import IconTitle from "../../ui/IconTitle";
+import MenuIcon from "../../ui/MenuIcon";
 import { getLocalPrice } from "../../utils/utils";
+import ChangeBalance from "./ChangeBalance";
+import DeletePot from "./DeletePot";
+import EditPot from "./EditPot";
+import PotPrice from "./PotPrice";
+import PotProgress from "./PotProgress";
 
 type PotItemProps = {
   pot: Pot;

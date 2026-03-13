@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { useAuthStore } from "../store/useAuthStore";
 import { useTranslation } from "react-i18next";
+
+import { useAuthStore } from "../store/useAuthStore";
 
 const ProfileCard = (): JSX.Element => {
   const { avatar, email, name } = useAuthStore();

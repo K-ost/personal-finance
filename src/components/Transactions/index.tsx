@@ -1,9 +1,10 @@
 import { Table, TableBody, TableContainer, useMediaQuery, useTheme } from "@mui/material";
-import { Transaction } from "../../types";
+import { useTranslation } from "react-i18next";
+
+import { Transaction } from "../../types/types";
+import AlertBox from "../../ui/AlertBox";
 import Head from "./Head";
 import Row from "./Row";
-import AlertBox from "../../ui/AlertBox";
-import { useTranslation } from "react-i18next";
 
 type TransactionsTableProps = {
   list: Transaction[];

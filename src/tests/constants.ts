@@ -1,4 +1,4 @@
-import { Pot, UserRole } from "../types";
+import { Pot, UserRole } from "../types/types";
 
 export const createUser = (user: UserRole) => {
   return {

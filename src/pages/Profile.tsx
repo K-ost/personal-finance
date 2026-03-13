@@ -1,17 +1,18 @@
-import { useTranslation } from "react-i18next";
-import MainLayout from "../components/MainLayout";
-import { useAuthStore } from "../store/useAuthStore";
-import Users from "../components/Users";
-import { useNotificationStore } from "../store/useNotificationStore";
+import { Box, Grid2, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+import ChangePass from "../components/ChangePass";
+import MainLayout from "../components/MainLayout";
+import UserForm from "../components/UserForm";
+import Users from "../components/Users";
 import useGetData from "../hooks/useGetData";
 import useMutateData from "../hooks/useMutateData";
-import { User } from "../types";
-import { useEffect } from "react";
-import { Box, Grid2, Typography } from "@mui/material";
+import { useAuthStore } from "../store/useAuthStore";
+import { useNotificationStore } from "../store/useNotificationStore";
+import { User } from "../types/types";
 import Btn from "../ui/Btn";
-import UserForm from "../components/UserForm";
-import ChangePass from "../components/ChangePass";
 import ProfileCard from "../ui/ProfileCard";
 
 const Profile = (): JSX.Element => {

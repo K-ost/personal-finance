@@ -1,9 +1,10 @@
 import { Box, TableRow, useMediaQuery, useTheme } from "@mui/material";
-import { Transaction } from "../../types";
-import { createDate } from "../../utils/utils";
+
+import { Transaction } from "../../types/types";
 import Amount from "../../ui/Amount";
-import UserCard from "../../ui/UserCard";
 import Cell from "../../ui/Cell";
+import UserCard from "../../ui/UserCard";
+import { createDate } from "../../utils/utils";
 
 type RowProps = {
   transaction: Transaction;
@@ -32,9 +33,7 @@ const Row = (props: RowProps): JSX.Element => {
       )}
       <Cell align="right">
         <Amount amount={transaction.amount} />
-        {(isMobile || min) && (
-          <Box sx={{ mt: 2 }}>{createDate(transaction.date)}</Box>
-        )}
+        {(isMobile || min) && <Box sx={{ mt: 2 }}>{createDate(transaction.date)}</Box>}
       </Cell>
     </TableRow>
   );

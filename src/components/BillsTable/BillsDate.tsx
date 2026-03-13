@@ -1,8 +1,9 @@
 import { Stack, Typography } from "@mui/material";
-import paidIcon from "../../assets/icon-bill-paid.svg";
-import dueIcon from "../../assets/icon-bill-due.svg";
-import { createBillsDate } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
+
+import dueIcon from "../../assets/icon-bill-due.svg";
+import paidIcon from "../../assets/icon-bill-paid.svg";
+import { createBillsDate } from "../../utils/utils";
 
 type BillsDateProps = {
   date: Date;

@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
-import { Wrapper } from "./testUtils";
 import userEvent from "@testing-library/user-event";
+import { beforeEach, describe, expect, it } from "vitest";
+
+import { Wrapper } from "./testUtils";
 
 describe("Language Switcher", () => {
   beforeEach(() => {

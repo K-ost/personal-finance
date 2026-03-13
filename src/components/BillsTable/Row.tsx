@@ -1,7 +1,8 @@
 import { Box, TableRow, Typography, useMediaQuery, useTheme } from "@mui/material";
+
 import { RecurringBill } from "../../types/types";
-import UserCard from "../../ui/UserCard";
 import Cell from "../../ui/Cell";
+import UserCard from "../../ui/UserCard";
 import { getLocalPrice } from "../../utils/utils";
 import BillsDate from "./BillsDate";
 

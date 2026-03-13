@@ -5,6 +5,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+
 import iconClose from "../assets/icon-close-modal.svg";
 
 type CustomDialogProps = {

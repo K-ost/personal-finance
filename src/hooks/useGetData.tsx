@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getData } from "../utils/api";
+
 import { useAuthStore } from "../store/useAuthStore";
+import { getData } from "../api/api";
 
 type useGetDataProps = {
   key: string[];

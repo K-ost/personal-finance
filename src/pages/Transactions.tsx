@@ -1,19 +1,20 @@
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import Wrap from "../ui/Wrap";
-import useGetData from "../hooks/useGetData";
-import { ServerResponse, Transaction } from "../types";
-import TransactionsTable from "../components/Transactions";
-import Pager from "../ui/Pager";
+
+import Error from "../components/Error";
 import Filter from "../components/Filter";
+import FilterCategory from "../components/Filter/FilterCategory";
 import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
-import FilterCategory from "../components/Filter/FilterCategory";
-import TransactionsLoading from "../components/Transactions/Loading";
-import { TRANSACTIONS_URI } from "../utils/constants";
-import { useTranslation } from "react-i18next";
-import Error from "../components/Error";
 import MainLayout from "../components/MainLayout";
+import TransactionsTable from "../components/Transactions";
+import TransactionsLoading from "../components/Transactions/Loading";
+import useGetData from "../hooks/useGetData";
+import { ServerResponse, Transaction } from "../types/types";
+import Pager from "../ui/Pager";
+import Wrap from "../ui/Wrap";
+import { TRANSACTIONS_URI } from "../constants/constants";
 
 const pageCount = 10;
 
@@ -31,7 +32,7 @@ const Transactions = (): JSX.Element => {
     {
       key: ["transactions", params, currentPage.toString()],
       uri: `${TRANSACTIONS_URI}?${params.length ? "&" + params : ""}`,
-    }
+    },
   );
 
   return (

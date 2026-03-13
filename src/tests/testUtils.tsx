@@ -1,11 +1,13 @@
-import { MemoryRouter } from "react-router-dom";
+import "../i18n/index";
+
+import { ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import nock from "nock";
-import { ThemeProvider } from "@mui/material";
-import { theme } from "../theme";
-import "../i18n/index";
+import { MemoryRouter } from "react-router-dom";
+
 import App from "../App";
-import { API_URL } from "../utils/constants";
+import { theme } from "../theme";
+import { API_URL } from "../constants/constants";
 
 const queryClient = new QueryClient();
 

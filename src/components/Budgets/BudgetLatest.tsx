@@ -1,6 +1,7 @@
 import { Box, BoxProps, Stack, styled, Typography } from "@mui/material";
-import BtnMore from "../../ui/BtnMore";
 import { useTranslation } from "react-i18next";
+
+import BtnMore from "../../ui/BtnMore";
 
 type BudgetLatestProps = BoxProps & {
   category: string;

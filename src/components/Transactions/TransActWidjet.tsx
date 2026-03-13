@@ -1,10 +1,11 @@
-import Wrap from "../../ui/Wrap";
-import useGetData from "../../hooks/useGetData";
-import Error from "../Error";
 import { BoxProps, Skeleton, Table, TableBody, TableContainer } from "@mui/material";
-import Row from "./Row";
-import { ServerResponse, Transaction } from "../../types";
 import { useTranslation } from "react-i18next";
+
+import useGetData from "../../hooks/useGetData";
+import { ServerResponse, Transaction } from "../../types/types";
+import Wrap from "../../ui/Wrap";
+import Error from "../Error";
+import Row from "./Row";
 
 const TransActionsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
@@ -12,7 +13,7 @@ const TransActionsWidjet = (props: BoxProps): JSX.Element => {
     {
       key: ["transactions"],
       uri: "/transactions?limit=5",
-    }
+    },
   );
 
   if (isLoading) return <Skeleton height={460} variant="rounded" />;

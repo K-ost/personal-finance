@@ -6,11 +6,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { BillInfo } from "../hooks/useRecurringBills";
-import icon from "../assets/icon-recurring-bills.svg";
-import { getLocalPrice } from "../utils/utils";
-import { useTranslation } from "react-i18next";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
+
+import icon from "../assets/icon-recurring-bills.svg";
+import { BillInfo } from "../hooks/useRecurringBills";
+import { getLocalPrice } from "../utils/utils";
 
 type TotalBillsProps = {
   info: BillInfo;

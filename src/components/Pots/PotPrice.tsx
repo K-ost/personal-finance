@@ -1,4 +1,5 @@
 import { Stack, Typography } from "@mui/material";
+
 import { getLocalPrice } from "../../utils/utils";
 
 type PotPriceProps = {

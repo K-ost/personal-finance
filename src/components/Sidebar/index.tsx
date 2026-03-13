@@ -1,10 +1,13 @@
 import { Box, ListItem, useMediaQuery, useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
+
 import logo from "../../assets/logo-large.svg";
 import logoSmall from "../../assets/logo-small.svg";
-import { navMenuList } from "./constants";
+import { useAppStore } from "../../store/useAppStore";
+import { useAuthStore } from "../../store/useAuthStore";
 import AsideBtn from "./AsideBtn";
-import NavMenu from "./NavMenu";
-import { NavLink } from "react-router-dom";
+import { navMenuList } from "./constants";
 import {
   IconBills,
   IconBudgets,
@@ -15,10 +18,8 @@ import {
   IconProfile,
   IconTransactions,
 } from "./Icons";
-import { useAppStore } from "../../store/useAppStore";
-import { useTranslation } from "react-i18next";
+import NavMenu from "./NavMenu";
 import { Aside, AsideInner, AsideLogo } from "./styles";
-import { useAuthStore } from "../../store/useAuthStore";
 
 const Sidebar = () => {
   const { sidebar, setSidebar } = useAppStore();

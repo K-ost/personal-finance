@@ -1,5 +1,6 @@
 import { memo } from "react";
-import { Budget } from "../../types";
+
+import { Budget } from "../../types/types";
 import BudgetItem from "./BudgetItem";
 
 type BudgetsListProps = {

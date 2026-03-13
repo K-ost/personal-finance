@@ -1,4 +1,4 @@
-import { Budget, ChartBudget } from "../types";
+import { Budget, ChartBudget } from "../types/types";
 
 type UseBudgetProps = {
   budget?: Budget;

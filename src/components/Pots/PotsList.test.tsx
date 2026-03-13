@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import PotsList from ".";
-import { Wrapper } from "../../tests/testUtils";
+
 import { potFactory } from "../../tests/factories";
+import { Wrapper } from "../../tests/testUtils";
+import PotsList from ".";
 
 const pots = potFactory.buildList(3);
 

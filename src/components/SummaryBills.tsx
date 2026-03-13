@@ -1,8 +1,9 @@
 import { List, ListItem, styled, Typography } from "@mui/material";
-import Wrap from "../ui/Wrap";
-import { BillInfo } from "../hooks/useRecurringBills";
-import { getLocalPrice } from "../utils/utils";
 import { useTranslation } from "react-i18next";
+
+import { BillInfo } from "../hooks/useRecurringBills";
+import Wrap from "../ui/Wrap";
+import { getLocalPrice } from "../utils/utils";
 
 type SummaryBillsProps = {
   info: BillInfo;

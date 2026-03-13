@@ -1,9 +1,10 @@
-import { beforeAll, describe, expect, it } from "vitest";
-import { APINock, WrapperHook } from "../../tests/testUtils";
-import { budgetFactory } from "../../tests/factories";
 import { act, renderHook, waitFor } from "@testing-library/react";
+import { beforeAll, describe, expect, it } from "vitest";
+
+import { budgetFactory } from "../../tests/factories";
+import { APINock, WrapperHook } from "../../tests/testUtils";
+import { Budget } from "../../types/types";
 import useMutateData from "../useMutateData";
-import { Budget } from "../../types";
 
 const mockedBudget = budgetFactory.build({ latest: [] });
 const bodyBudget: Partial<Budget> = { ...mockedBudget };
@@ -29,7 +30,7 @@ describe("useMutateData", () => {
           method: "POST",
           uri: "/budgets",
         }),
-      { wrapper: WrapperHook }
+      { wrapper: WrapperHook },
     );
     act(() => {
       result.current.mutate(bodyBudget);
@@ -48,7 +49,7 @@ describe("useMutateData", () => {
           method: "PATCH",
           uri: "/budgets/1",
         }),
-      { wrapper: WrapperHook }
+      { wrapper: WrapperHook },
     );
     act(() => {
       result.current.mutate({
@@ -69,7 +70,7 @@ describe("useMutateData", () => {
           method: "DELETE",
           uri: "/budgets/1",
         }),
-      { wrapper: WrapperHook }
+      { wrapper: WrapperHook },
     );
     act(() => {
       result.current.mutate(undefined);

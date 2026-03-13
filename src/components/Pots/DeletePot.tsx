@@ -1,11 +1,12 @@
-import CustomDialog from "../../ui/CustomDialog";
 import { Typography } from "@mui/material";
-import Btn from "../../ui/Btn";
-import { Pot } from "../../types";
-import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNotificationStore } from "../../store/useNotificationStore";
 import { useTranslation } from "react-i18next";
+
+import useMutateData from "../../hooks/useMutateData";
+import { useNotificationStore } from "../../store/useNotificationStore";
+import { Pot } from "../../types/types";
+import Btn from "../../ui/Btn";
+import CustomDialog from "../../ui/CustomDialog";
 
 type DeletePotProps = {
   close: () => void;
@@ -36,7 +37,7 @@ const DeletePot = (props: DeletePotProps): JSX.Element => {
           });
           setNotification(t("pots.delete.notification", { title: pot.name }));
         },
-      }
+      },
     );
   };
 

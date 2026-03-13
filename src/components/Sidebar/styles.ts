@@ -1,4 +1,5 @@
 import { Box, BoxProps, duration, styled } from "@mui/material";
+
 import { sideWidth, sideWidthMin } from "./constants";
 
 type SidebarProps = {

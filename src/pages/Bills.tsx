@@ -1,19 +1,20 @@
-import { useTranslation } from "react-i18next";
-import useGetData from "../hooks/useGetData";
-import { ServerResponse, Transaction } from "../types/types";
-import Error from "../components/Error";
-import TransactionsLoading from "../components/Transactions/Loading";
-import BillsTable from "../components/BillsTable";
-import Wrap from "../ui/Wrap";
-import MainLayout from "../components/MainLayout";
-import SummaryBills from "../components/SummaryBills";
-import useRecurringBills from "../hooks/useRecurringBills";
 import { Box, Grid2, useMediaQuery, useTheme } from "@mui/material";
-import TotalBills from "../components/TotalBills";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
+import BillsTable from "../components/BillsTable";
+import Error from "../components/Error";
 import Filter from "../components/Filter";
 import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
-import { useSearchParams } from "react-router-dom";
+import MainLayout from "../components/MainLayout";
+import SummaryBills from "../components/SummaryBills";
+import TotalBills from "../components/TotalBills";
+import TransactionsLoading from "../components/Transactions/Loading";
+import useGetData from "../hooks/useGetData";
+import useRecurringBills from "../hooks/useRecurringBills";
+import { ServerResponse, Transaction } from "../types/types";
+import Wrap from "../ui/Wrap";
 
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();

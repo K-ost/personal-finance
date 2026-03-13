@@ -1,4 +1,4 @@
-import { User } from "../../types";
+import { User } from "../../types/types";
 import UserItem from "./UserItem";
 
 type UserListProps = {

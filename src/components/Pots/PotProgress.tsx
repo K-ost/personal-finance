@@ -6,6 +6,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+
 import { getProgressValue } from "../../utils/utils";
 
 type PotProgressProps = {

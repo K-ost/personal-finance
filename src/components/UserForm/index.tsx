@@ -1,14 +1,15 @@
-import { useForm } from "react-hook-form";
 import { useQueryClient } from "@tanstack/react-query";
-import CustomInput from "../../ui/CustomInput";
-import useFormSettings from "../../hooks/useSettings";
-import { User } from "../../types";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useAuthStore } from "../../store/useAuthStore";
-import Btn from "../../ui/Btn";
-import Wrap from "../../ui/Wrap";
+
 import useMutateData from "../../hooks/useMutateData";
+import useFormSettings from "../../hooks/useSettings";
+import { useAuthStore } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
+import { User } from "../../types/types";
+import Btn from "../../ui/Btn";
+import CustomInput from "../../ui/CustomInput";
+import Wrap from "../../ui/Wrap";
 
 type FormData = Omit<User, "_id" | "role"> & {
   password: string;

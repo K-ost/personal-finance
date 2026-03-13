@@ -1,12 +1,13 @@
 import { BoxProps, Grid2, Skeleton } from "@mui/material";
-import useGetData from "../../hooks/useGetData";
-import { Budget } from "../../types";
-import Wrap from "../../ui/Wrap";
-import { BUDGETS_URI } from "../../utils/constants";
-import Error from "../Error";
-import Chart from "../../ui/Chart";
-import BudgetAmount from "../../ui/BudgetAmount";
 import { useTranslation } from "react-i18next";
+
+import useGetData from "../../hooks/useGetData";
+import { Budget } from "../../types/types";
+import BudgetAmount from "../../ui/BudgetAmount";
+import Chart from "../../ui/Chart";
+import Wrap from "../../ui/Wrap";
+import { BUDGETS_URI } from "../../constants/constants";
+import Error from "../Error";
 
 const BudgetsWidget = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();

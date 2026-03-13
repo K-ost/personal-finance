@@ -1,6 +1,7 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Sidebar from "../Sidebar";
+
 import LangSwitcher from "../LangSwitcher";
+import Sidebar from "../Sidebar";
 import { Layout, LayoutBody, LayoutContent, LayoutTop } from "./styles";
 
 type MainLayoutProps = {

@@ -1,11 +1,12 @@
 import { Grid2 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import PotsWidjet from "../components/Pots/PotsWidjet";
-import TransActionsWidjet from "../components/Transactions/TransActWidjet";
+
+import BalanceWidget from "../components/BalanceWidget";
+import BillsWidget from "../components/BillsWidget";
 import BudgetsWidget from "../components/Budgets/BudgetsWidget";
 import MainLayout from "../components/MainLayout";
-import BillsWidget from "../components/BillsWidget";
-import BalanceWidget from "../components/BalanceWidget";
+import PotsWidjet from "../components/Pots/PotsWidjet";
+import TransActionsWidjet from "../components/Transactions/TransActWidjet";
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

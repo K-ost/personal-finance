@@ -1,7 +1,8 @@
 import { render, renderHook, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import ProfileCard from "../ui/ProfileCard";
+
 import { useAuthStore } from "../store/useAuthStore";
+import ProfileCard from "../ui/ProfileCard";
 import { WrapperHook } from "./testUtils";
 
 describe("Profile Card", () => {

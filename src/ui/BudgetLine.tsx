@@ -1,7 +1,8 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
+
+import useBudgetHook from "../hooks/useBudgetHook";
 import { Budget } from "../types";
 import { getLocalPrice } from "../utils/utils";
-import useBudgetHook from "../hooks/useBudgetHook";
 
 type BudgetLineProps = {
   budget: Budget;

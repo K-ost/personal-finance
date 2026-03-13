@@ -1,11 +1,12 @@
 import { Typography } from "@mui/material";
-import CustomDialog from "../../ui/CustomDialog";
-import Btn from "../../ui/Btn";
-import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNotificationStore } from "../../store/useNotificationStore";
-import { Budget } from "../../types";
 import { useTranslation } from "react-i18next";
+
+import useMutateData from "../../hooks/useMutateData";
+import { useNotificationStore } from "../../store/useNotificationStore";
+import { Budget } from "../../types/types";
+import Btn from "../../ui/Btn";
+import CustomDialog from "../../ui/CustomDialog";
 
 type DeleteBudgetProps = {
   budget: Budget;

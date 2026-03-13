@@ -1,10 +1,11 @@
 import { render, renderHook, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
-import UserForm from ".";
+
+import { useAuthStore } from "../../store/useAuthStore";
 import { APINock, Wrapper, WrapperHook } from "../../tests/testUtils";
 import Notification from "../../ui/Notification";
-import userEvent from "@testing-library/user-event";
-import { useAuthStore } from "../../store/useAuthStore";
+import UserForm from ".";
 
 describe("Profile detias form", () => {
   let nameField: HTMLInputElement;

@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { IconButton, InputAdornment, TextFieldProps } from "@mui/material";
-import CustomInput from "./CustomInput";
+import { useState } from "react";
+
 import VisibilityOff from "../assets/icon-hide-password.svg";
 import Visibility from "../assets/icon-show-password.svg";
+import CustomInput from "./CustomInput";
 
 const PassInput = (props: TextFieldProps): JSX.Element => {
   const [showPass, setShowPass] = useState<boolean>(false);

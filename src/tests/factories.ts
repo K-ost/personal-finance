@@ -1,7 +1,8 @@
 import * as Factory from "factory.ts";
-import { Budget, Pot, Transaction, User } from "../types";
-import { potsColorOptions } from "../components/Pots/constants";
+
 import { CategoriesOptions } from "../components/Budgets/constants";
+import { potsColorOptions } from "../components/Pots/constants";
+import { Budget, Pot, Transaction, User } from "../types/types";
 
 const amounts = [110, 240, 350, 435, 578, 320, 180];
 const cats = CategoriesOptions.map((el) => el.name);

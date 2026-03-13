@@ -6,6 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+
 import icon from "../assets/icon-pot.svg";
 import { getLocalPrice } from "../utils/utils";
 

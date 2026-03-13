@@ -1,9 +1,10 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
 import bg from "../../assets/illustration-authentication.svg";
 import logo from "../../assets/logo-large.svg";
-import { useTranslation } from "react-i18next";
-import { Layout, LeftCol, LeftColText, RightCol } from "./styles";
 import LangSwitcher from "../LangSwitcher";
+import { Layout, LeftCol, LeftColText, RightCol } from "./styles";
 
 type LoginLayoutProps = {
   children: React.ReactNode;

@@ -1,11 +1,12 @@
 import { BoxProps, Skeleton, Stack, styled, Typography } from "@mui/material";
-import useGetData from "../hooks/useGetData";
-import { ServerResponse, Transaction } from "../types";
-import Error from "./Error";
-import Wrap from "../ui/Wrap";
 import { useTranslation } from "react-i18next";
+
+import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
+import { ServerResponse, Transaction } from "../types/types";
+import Wrap from "../ui/Wrap";
 import { getLocalPrice } from "../utils/utils";
+import Error from "./Error";
 
 const Item = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.custom.beige100,
@@ -33,7 +34,7 @@ const BillsWidget = (props: BoxProps): JSX.Element => {
     {
       key: ["bills"],
       uri: "/transactions?recurring=true",
-    }
+    },
   );
 
   const { info } = useRecurringBills({

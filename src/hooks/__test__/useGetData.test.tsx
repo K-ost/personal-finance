@@ -1,10 +1,11 @@
-import { beforeEach, describe, expect, it } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
-import { APINock, WrapperHook } from "../../tests/testUtils";
-import useGetData from "../useGetData";
-import { ServerResponse, Transaction } from "../../types";
+import { beforeEach, describe, expect, it } from "vitest";
+
 import { transactionFactory } from "../../tests/factories";
-import { TRANSACTIONS_URI } from "../../utils/constants";
+import { APINock, WrapperHook } from "../../tests/testUtils";
+import { ServerResponse, Transaction } from "../../types/types";
+import { TRANSACTIONS_URI } from "../../constants/constants";
+import useGetData from "../useGetData";
 
 const mockedData: ServerResponse<Transaction> = {
   data: transactionFactory.buildList(3),
@@ -25,7 +26,7 @@ describe("useGetData", () => {
           key: ["transactions"],
           uri: TRANSACTIONS_URI,
         }),
-      { wrapper: WrapperHook }
+      { wrapper: WrapperHook },
     );
 
     expect(result.current.isLoading).toBe(true);

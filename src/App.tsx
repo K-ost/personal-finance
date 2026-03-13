@@ -1,22 +1,23 @@
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Styles from "./components/Styles";
-import PublicRoutes from "./components/PublicRoutes";
-import LoginPage from "./pages/LoginPage";
-import SignUp from "./pages/SignUp";
+import { Route, Routes } from "react-router-dom";
+
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import PublicRoutes from "./components/PublicRoutes";
+import Styles from "./components/Styles";
+import { SERVER_MESSAGES } from "./constants/constants";
+import useGetData from "./hooks/useGetData";
+import Bills from "./pages/Bills";
+import Budgets from "./pages/Budgets";
 import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
+import Pots from "./pages/Pots";
+import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp";
+import Transactions from "./pages/Transactions";
+import { useAppStore } from "./store/useAppStore";
 import { useAuthStore } from "./store/useAuthStore";
 import Notification from "./ui/Notification";
-import Transactions from "./pages/Transactions";
-import Budgets from "./pages/Budgets";
-import Pots from "./pages/Pots";
-import Bills from "./pages/Bills";
-import { useAppStore } from "./store/useAppStore";
-import Profile from "./pages/Profile";
-import useGetData from "./hooks/useGetData";
-import { SERVER_MESSAGES } from "./constants/constants";
 
 function App() {
   const { lang } = useAppStore();

@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import TransactionsTable from "..";
+
 import { transactionFactory } from "../../../tests/factories";
 import { Wrapper } from "../../../tests/testUtils";
+import TransactionsTable from "..";
 
 const mockedTransactions = transactionFactory.buildList(3);
 

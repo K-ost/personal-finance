@@ -1,10 +1,11 @@
 import { Grid2, Skeleton, useMediaQuery, useTheme } from "@mui/material";
-import Balance from "../ui/Balance";
 import { useTranslation } from "react-i18next";
+
 import useGetData from "../hooks/useGetData";
-import { BalanceType } from "../types";
+import { BalanceType } from "../types/types";
+import Balance from "../ui/Balance";
+import { BALANCE_URI } from "../constants/constants";
 import Error from "./Error";
-import { BALANCE_URI } from "../utils/constants";
 
 const BalanceWidget = (): JSX.Element => {
   const theme = useTheme();

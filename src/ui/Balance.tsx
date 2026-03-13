@@ -5,6 +5,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+
 import { getLocalPrice } from "../utils/utils";
 
 type BalanceProps = {

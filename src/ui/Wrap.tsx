@@ -1,6 +1,7 @@
 import { Box, BoxProps, Stack, styled, Typography } from "@mui/material";
-import BtnMore from "./BtnMore";
 import { useTranslation } from "react-i18next";
+
+import BtnMore from "./BtnMore";
 
 type WrapProps = {
   children: React.ReactNode;

@@ -1,5 +1,6 @@
-import AlertBox from "../ui/AlertBox";
 import { useTranslation } from "react-i18next";
+
+import AlertBox from "../ui/AlertBox";
 
 const Error = (): JSX.Element => {
   const { t } = useTranslation();

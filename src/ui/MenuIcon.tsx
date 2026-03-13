@@ -1,4 +1,5 @@
 import { IconButton, Menu } from "@mui/material";
+
 import ellipsis from "../assets/icon-ellipsis.svg";
 
 type MenuIconProps = {

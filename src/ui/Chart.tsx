@@ -1,9 +1,10 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
 import { PieChart } from "@mui/x-charts";
+import { useTranslation } from "react-i18next";
+
+import useBudgetHook from "../hooks/useBudgetHook";
 import { Budget } from "../types";
 import { getChartLimit, getLocalPrice } from "../utils/utils";
-import useBudgetHook from "../hooks/useBudgetHook";
-import { useTranslation } from "react-i18next";
 
 type ChartProps = BoxProps & {
   data: Budget[];

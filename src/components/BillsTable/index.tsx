@@ -1,7 +1,8 @@
 import { Table, TableBody, TableContainer, useMediaQuery, useTheme } from "@mui/material";
+
 import { RecurringBill } from "../../types/types";
-import Row from "./Row";
 import Head from "./Head";
+import Row from "./Row";
 
 type BillsTableProps = {
   list: RecurringBill[];

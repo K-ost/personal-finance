@@ -1,6 +1,7 @@
 import { TableHead, TableRow } from "@mui/material";
-import Cell from "../../ui/Cell";
 import { useTranslation } from "react-i18next";
+
+import Cell from "../../ui/Cell";
 
 const Head = (): JSX.Element => {
   const { t } = useTranslation();

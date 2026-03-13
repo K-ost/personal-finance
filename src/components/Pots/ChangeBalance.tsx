@@ -1,18 +1,19 @@
-import CustomDialog from "../../ui/CustomDialog";
 import { Typography } from "@mui/material";
-import CustomInput from "../../ui/CustomInput";
-import Btn from "../../ui/Btn";
-import { Pot } from "../../types";
-import PotPrice from "./PotPrice";
-import PotProgress from "./PotProgress";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FORM_SETTINGS } from "../../utils/constants";
-import useMutateData from "../../hooks/useMutateData";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNotificationStore } from "../../store/useNotificationStore";
-import { getLocalPrice } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
+
+import useMutateData from "../../hooks/useMutateData";
+import { useNotificationStore } from "../../store/useNotificationStore";
+import { Pot } from "../../types/types";
+import Btn from "../../ui/Btn";
+import CustomDialog from "../../ui/CustomDialog";
+import CustomInput from "../../ui/CustomInput";
+import { FORM_SETTINGS } from "../../constants/constants";
+import { getLocalPrice } from "../../utils/utils";
+import PotPrice from "./PotPrice";
+import PotProgress from "./PotProgress";
 
 type ChangeBalanceProps = {
   close: () => void;
@@ -72,10 +73,10 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
           setNotification(
             t(`pots.${type === "topup" ? "addmoney" : "withdraw"}.notification`, {
               title: pot.name,
-            })
+            }),
           );
         },
-      }
+      },
     );
   };
 

@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material";
-import { CustomPalette } from "./types";
+
+import { CustomPalette } from "./types/types";
 
 declare module "@mui/material/styles" {
   interface Palette {

@@ -1,9 +1,10 @@
 import { Grid2 } from "@mui/material";
-import { Pot } from "../../types";
-import PotItem from "./PotItem";
-import { useTranslation } from "react-i18next";
-import AlertBox from "../../ui/AlertBox";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
+
+import { Pot } from "../../types/types";
+import AlertBox from "../../ui/AlertBox";
+import PotItem from "./PotItem";
 
 type PotListProps = {
   data: Pot[];

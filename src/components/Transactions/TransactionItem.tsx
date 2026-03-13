@@ -1,5 +1,6 @@
 import { Box, styled, Typography } from "@mui/material";
-import { Transaction } from "../../types";
+
+import { Transaction } from "../../types/types";
 import UserCard from "../../ui/UserCard";
 import { createDate, transactionPrice } from "../../utils/utils";
 
@@ -31,12 +32,7 @@ const TransactionItem = (props: TransactionItemProps): JSX.Element => {
     <Item>
       <UserCard avatar={transaction.avatar} name={transaction.name} />
       <Box textAlign="right">
-        <Typography
-          variant="body2"
-          component="div"
-          fontWeight={700}
-          sx={{ mb: 1 }}
-        >
+        <Typography variant="body2" component="div" fontWeight={700} sx={{ mb: 1 }}>
           {transactionPrice(transaction.amount)}
         </Typography>
         <Typography variant="body2" component="div" color="textSecondary">

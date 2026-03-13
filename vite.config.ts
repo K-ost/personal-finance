@@ -1,14 +1,14 @@
 /// <reference types="vitest/config" />
 
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
   base: "/personal-finance",
   test: {
     environment: "jsdom",
-    setupFiles: ["./tests/setup.ts"],
     globals: true,
+    setupFiles: "./src/tests/setup.ts",
   },
 });

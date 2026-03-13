@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import CustomInput from "../../ui/CustomInput";
 import { IconButton, TextFieldProps } from "@mui/material";
-import searchIcon from "../../assets/icon-search.svg";
-import { useSearchParams } from "react-router-dom";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
+import searchIcon from "../../assets/icon-search.svg";
+import CustomInput from "../../ui/CustomInput";
 
 const Search = (props: TextFieldProps): JSX.Element => {
   const [search, setSearch] = useState<string>("");

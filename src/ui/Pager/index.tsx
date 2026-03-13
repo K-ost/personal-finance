@@ -5,8 +5,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { IconNext, IconPrev } from "./Icons";
 import { useTranslation } from "react-i18next";
+
+import { IconNext, IconPrev } from "./Icons";
 
 const Pager = (props: PaginationProps): JSX.Element => {
   const theme = useTheme();

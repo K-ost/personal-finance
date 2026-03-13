@@ -1,16 +1,17 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
-import FormBody from "../ui/FormBody";
-import CustomInput from "../ui/CustomInput";
-import Btn from "../ui/Btn";
-import { Link, useNavigate } from "react-router-dom";
-import PassInput from "../ui/PassInput";
-import LoginLayout from "../components/LoginLayout";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
+
+import LoginLayout from "../components/LoginLayout";
 import useMutateData from "../hooks/useMutateData";
-import { useNotificationStore } from "../store/useNotificationStore";
-import { User } from "../types";
 import useFormSettings from "../hooks/useSettings";
+import { useNotificationStore } from "../store/useNotificationStore";
+import { User } from "../types/types";
+import Btn from "../ui/Btn";
+import CustomInput from "../ui/CustomInput";
+import FormBody from "../ui/FormBody";
+import PassInput from "../ui/PassInput";
 
 type FormData = {
   name: string;
@@ -60,7 +61,7 @@ const SignUp = (): JSX.Element => {
             navigate("/login");
           }
         },
-      }
+      },
     );
   };
 

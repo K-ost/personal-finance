@@ -1,19 +1,20 @@
-import Btn from "../ui/Btn";
-import useGetData from "../hooks/useGetData";
-import { Budget } from "../types";
 import { Grid2 } from "@mui/material";
-import BudgetsList from "../components/Budgets";
-import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import { useEffect, useState } from "react";
-import AddBudget from "../components/Budgets/AddBudget";
-import { useThemesStore } from "../store/useThemesStore";
-import { BUDGETS_URI } from "../utils/constants";
 import { useTranslation } from "react-i18next";
-import Error from "../components/Error";
-import Wrap from "../ui/Wrap";
+
+import BudgetsList from "../components/Budgets";
+import AddBudget from "../components/Budgets/AddBudget";
+import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import ChartWidget from "../components/ChartWidget";
+import Error from "../components/Error";
 import MainLayout from "../components/MainLayout";
+import useGetData from "../hooks/useGetData";
+import { useThemesStore } from "../store/useThemesStore";
+import { Budget } from "../types/types";
 import AlertBox from "../ui/AlertBox";
+import Btn from "../ui/Btn";
+import Wrap from "../ui/Wrap";
+import { BUDGETS_URI } from "../constants/constants";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();

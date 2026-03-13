@@ -1,5 +1,5 @@
-import { API_Method } from "../types/types";
 import { API_URL } from "../constants/constants";
+import { API_Method } from "../types/types";
 
 export const getData = async <T>(uri: string, token?: string): Promise<T> => {
   const response = await fetch(`${API_URL}${uri}`, {

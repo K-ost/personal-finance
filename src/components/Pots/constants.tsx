@@ -1,4 +1,4 @@
-import { SelectOption } from "../../types";
+import { SelectOption } from "../../types/types";
 
 export const potsColorOptions: SelectOption[] = [
   { name: "Green", value: "#277C78" },

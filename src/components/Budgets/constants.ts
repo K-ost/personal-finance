@@ -1,4 +1,4 @@
-import { SelectOption } from "../../types";
+import { SelectOption } from "../../types/types";
 
 export const CategoriesOptions: SelectOption[] = [
   { name: "Entertainment", value: "Entertainment" },

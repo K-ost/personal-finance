@@ -6,10 +6,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import CustomInput from "../../ui/CustomInput";
-import { useSearchParams } from "react-router-dom";
-import { getCategoryValue } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
+import CustomInput from "../../ui/CustomInput";
+import { getCategoryValue } from "../../utils/utils";
 import useSortConstants from "./useSortConstants";
 
 const FilterCategory = (props: StackProps): JSX.Element => {

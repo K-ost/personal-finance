@@ -1,17 +1,18 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
-import FormBody from "../ui/FormBody";
-import CustomInput from "../ui/CustomInput";
-import Btn from "../ui/Btn";
-import { Link } from "react-router-dom";
-import PassInput from "../ui/PassInput";
 import { useForm } from "react-hook-form";
+import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
+import LoginLayout from "../components/LoginLayout";
 import useMutateData from "../hooks/useMutateData";
-import { AuthType } from "../types";
+import useFormSettings from "../hooks/useSettings";
 import { useAuthStore } from "../store/useAuthStore";
 import { useNotificationStore } from "../store/useNotificationStore";
-import { Trans, useTranslation } from "react-i18next";
-import LoginLayout from "../components/LoginLayout";
-import useFormSettings from "../hooks/useSettings";
+import { AuthType } from "../types/types";
+import Btn from "../ui/Btn";
+import CustomInput from "../ui/CustomInput";
+import FormBody from "../ui/FormBody";
+import PassInput from "../ui/PassInput";
 
 type FormData = {
   email: string;
@@ -52,7 +53,7 @@ const LoginPage = (): JSX.Element => {
             setNotification(`You've been logged`);
           }
         },
-      }
+      },
     );
   };
 

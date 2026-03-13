@@ -1,4 +1,5 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
+
 import { getImageLink } from "../utils/utils";
 
 type UserCardProps = {

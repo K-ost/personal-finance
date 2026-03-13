@@ -1,18 +1,19 @@
-import CustomDialog from "../../ui/CustomDialog";
 import { Typography } from "@mui/material";
-import CustomInput from "../../ui/CustomInput";
-import Btn from "../../ui/Btn";
-import { useForm } from "react-hook-form";
-import { Pot } from "../../types";
-import useMutateData from "../../hooks/useMutateData";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNotificationStore } from "../../store/useNotificationStore";
-import { FORM_SETTINGS, POTS_URI } from "../../utils/constants";
-import { useThemesStore } from "../../store/useThemesStore";
-import CustomSelect from "../../ui/CustomSelect";
-import { potsColorOptions } from "./constants";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+
+import useMutateData from "../../hooks/useMutateData";
 import { useAuthStore } from "../../store/useAuthStore";
+import { useNotificationStore } from "../../store/useNotificationStore";
+import { useThemesStore } from "../../store/useThemesStore";
+import { Pot } from "../../types/types";
+import Btn from "../../ui/Btn";
+import CustomDialog from "../../ui/CustomDialog";
+import CustomInput from "../../ui/CustomInput";
+import CustomSelect from "../../ui/CustomSelect";
+import { FORM_SETTINGS, POTS_URI } from "../../constants/constants";
+import { potsColorOptions } from "./constants";
 
 type AddPotProps = {
   close: () => void;
@@ -60,7 +61,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           });
           setNotification(t("pots.addnew.notification", { title: data.name }));
         },
-      }
+      },
     );
   };
 

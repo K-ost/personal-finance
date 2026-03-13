@@ -1,6 +1,7 @@
 import { MenuItem, TextFieldProps, Typography } from "@mui/material";
-import CustomInput from "./CustomInput";
+
 import { SelectOption } from "../types";
+import CustomInput from "./CustomInput";
 import { Circle } from "./IconTitle";
 
 type CustomSelectProps = TextFieldProps & {

@@ -1,10 +1,11 @@
-import { beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { render, renderHook, screen, waitFor } from "@testing-library/react";
-import { APINock, Wrapper, WrapperHook } from "../../tests/testUtils";
-import ChangePass from ".";
 import userEvent from "@testing-library/user-event";
-import Notification from "../../ui/Notification";
+import { beforeAll, beforeEach, describe, expect, it } from "vitest";
+
 import { useAuthStore } from "../../store/useAuthStore";
+import { APINock, Wrapper, WrapperHook } from "../../tests/testUtils";
+import Notification from "../../ui/Notification";
+import ChangePass from ".";
 
 describe("Change Password", () => {
   let oldPass: HTMLInputElement;

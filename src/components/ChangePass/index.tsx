@@ -1,12 +1,13 @@
-import CustomInput from "../../ui/CustomInput";
-import Wrap from "../../ui/Wrap";
-import Btn from "../../ui/Btn";
-import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import useFormSettings from "../../hooks/useSettings";
+import { useTranslation } from "react-i18next";
+
 import useMutateData from "../../hooks/useMutateData";
+import useFormSettings from "../../hooks/useSettings";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
+import Btn from "../../ui/Btn";
+import CustomInput from "../../ui/CustomInput";
+import Wrap from "../../ui/Wrap";
 
 type FormData = {
   oldPass: string;

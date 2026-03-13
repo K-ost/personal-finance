@@ -1,5 +1,6 @@
 import { Box, BoxProps, Chip, styled, Typography } from "@mui/material";
-import { User, UserRole } from "../../types";
+
+import { User, UserRole } from "../../types/types";
 
 type UserProps = {
   user: User;
