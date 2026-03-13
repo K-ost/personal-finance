@@ -15,7 +15,7 @@ const useFormSettings = () => {
         required: t("form.settings.required"),
         minLength: {
           value: 4,
-          message: t("form.settings.min6"),
+          message: t("form.settings.min4"),
         },
       },
       name: {

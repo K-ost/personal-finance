@@ -12,21 +12,21 @@ describe("Login Page", () => {
 
   it("Login - Form validation", async () => {
     await userEvent.type(screen.getByTestId("email"), "admin");
-    await userEvent.type(screen.getByTestId("password"), "1111");
+    await userEvent.type(screen.getByTestId("password"), "111");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(screen.getByText("Incorrect Email")).toBeInTheDocument();
-    expect(screen.getByText("Should have 6 or more characters")).toBeInTheDocument();
+    expect(screen.getByText("Should be at least 4 characters")).toBeInTheDocument();
   });
 
   it("Login - Error message", async () => {
     APINock.post("/login", {
       email: "admin@test.com",
-      password: "111111",
+      password: "12345",
     }).reply(401, { msg: "Incorrect password" });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
-    await userEvent.type(screen.getByTestId("password"), "111111");
+    await userEvent.type(screen.getByTestId("password"), "12345");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => {
@@ -37,11 +37,11 @@ describe("Login Page", () => {
   it("Login - successfull", async () => {
     APINock.post("/login", {
       email: "admin@test.com",
-      password: "123456",
+      password: "1111",
     }).reply(201, createUser("admin"));
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
-    await userEvent.type(screen.getByTestId("password"), "123456");
+    await userEvent.type(screen.getByTestId("password"), "1111");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => {

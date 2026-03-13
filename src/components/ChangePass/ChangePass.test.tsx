@@ -17,7 +17,7 @@ describe("Change Password", () => {
       <Wrapper>
         <ChangePass />
         <Notification />
-      </Wrapper>
+      </Wrapper>,
     );
     oldPass = screen.getByRole("textbox", { name: "Old password" });
     newPass = screen.getByRole("textbox", { name: "New password" });
@@ -39,7 +39,7 @@ describe("Change Password", () => {
     it("Short password and empty field", async () => {
       await userEvent.type(oldPass, "111");
       await userEvent.click(btn);
-      expect(screen.getByText("Should have 6 or more characters")).toBeDefined();
+      expect(screen.getByText("Should be at least 4 characters")).toBeDefined();
       expect(screen.getByText("Required field")).toBeDefined();
     });
 
