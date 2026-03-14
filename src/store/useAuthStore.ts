@@ -1,17 +1,9 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-import { User, UserRole } from "../types/types";
-
 type AuthState = {
-  token: string | undefined;
-  userId: string | undefined;
-  name: string | undefined;
-  avatar: string | undefined;
-  role: UserRole | undefined;
-  email: string | undefined;
-  setUser: (data: Omit<User, "password">) => void;
-  setToken: (data: string) => void;
+  token: string | null;
+  setToken: (token: string) => void;
   setLogout: () => void;
 };
 
@@ -19,37 +11,30 @@ export const useAuthStore = create<AuthState>()(
   devtools(
     persist(
       (set) => ({
-        token: undefined,
-        avatar: undefined,
-        name: undefined,
-        userId: undefined,
-        email: undefined,
-        role: undefined,
-        setUser: (data) =>
-          set(() => ({
-            avatar: data.avatar,
-            name: data.name,
-            role: data.role,
-            userId: data._id,
-            email: data.email,
-          })),
-        setToken: (data) =>
-          set(() => ({
-            token: data,
-          })),
+        token: null,
+        setToken: (token) =>
+          set(
+            () => ({
+              token,
+            }),
+            false,
+            "useAuthStore/setToken",
+          ),
         setLogout: () =>
-          set(() => ({
-            token: undefined,
-            avatar: undefined,
-            email: undefined,
-            name: undefined,
-            role: undefined,
-            userId: undefined,
-          })),
+          set(
+            () => ({
+              token: null,
+            }),
+            false,
+            "useAuthStore/setLogout",
+          ),
       }),
       {
-        name: "auth",
+        name: "token",
       },
     ),
   ),
 );
+
+export const useToken = () => useAuthStore.getState().token;
+export const useIsLogged = () => !!useAuthStore.getState().token;

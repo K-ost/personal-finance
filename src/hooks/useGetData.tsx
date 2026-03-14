@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getData } from "../api/api";
-import { useAuthStore } from "../store/useAuthStore";
 
 type useGetDataProps = {
   key: string[];
@@ -11,11 +10,10 @@ type useGetDataProps = {
 
 const useGetData = <T,>(props: useGetDataProps) => {
   const { enabled, key, uri } = props;
-  const token = useAuthStore((state) => state.token);
 
   return useQuery({
     queryKey: key,
-    queryFn: () => getData<T>(uri, token),
+    queryFn: () => getData<T>(uri),
     enabled,
   });
 };

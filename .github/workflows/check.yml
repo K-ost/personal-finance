@@ -3,8 +3,6 @@ on: [push]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    env:
-      API_URL: https://api.example.com
     steps:
       - name: Checkout
         uses: actions/checkout@v5.0.0

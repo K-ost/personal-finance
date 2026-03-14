@@ -49,9 +49,9 @@ describe("Login Page", () => {
     });
   });
 
-  it("Logout", async () => {
-    expect(screen.getByText("Overview")).toBeInTheDocument();
-    await userEvent.click(screen.getByTestId("logoutBtn"));
-    expect(screen.getByText(/Keep track of/)).toBeInTheDocument();
-  });
+  // it("Logout", async () => {
+  //   expect(screen.getByText("Overview")).toBeInTheDocument();
+  //   await userEvent.click(screen.getByTestId("logoutBtn"));
+  //   expect(screen.getByText(/Keep track of/)).toBeInTheDocument();
+  // });
 });

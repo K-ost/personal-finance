@@ -34,7 +34,6 @@ export type Budget = {
   maximum: number;
   theme: string;
   latest: Transaction[];
-  userId: string;
   _id: string;
 };
 
@@ -45,24 +44,12 @@ export type Pot = {
   target: number;
   total: number;
   theme: string;
-  userId: string;
   _id: string;
 };
 
-export type UserRole = "admin" | "user";
-
-export type User = {
-  _id?: string;
-  email: string;
-  password: string;
-  name: string;
-  avatar: string;
-  role: UserRole;
-};
-
 export type AuthType = {
-  accessToken: string;
-  user: Omit<User, "password">;
+  accessToken?: string;
+  msg?: string;
 };
 
 export type ServerResponse<T> = {

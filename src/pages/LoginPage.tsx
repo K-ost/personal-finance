@@ -20,7 +20,7 @@ type FormData = {
 };
 
 const LoginPage = (): JSX.Element => {
-  const { setToken, setUser } = useAuthStore();
+  const setToken = useAuthStore((state) => state.setToken);
   const { setNotification } = useNotificationStore();
   const { t } = useTranslation();
   const { settings } = useFormSettings();
@@ -31,7 +31,7 @@ const LoginPage = (): JSX.Element => {
     register,
   } = useForm<FormData>();
 
-  const { mutate, isPending } = useMutateData<AuthType & { msg: string }, FormData>({
+  const { mutate, isPending } = useMutateData<AuthType, FormData>({
     key: ["users"],
     method: "POST",
     uri: "/login",
@@ -47,9 +47,9 @@ const LoginPage = (): JSX.Element => {
         onSuccess: (data) => {
           if (data.msg) {
             setNotification(data.msg);
-          } else {
+          }
+          if (data.accessToken) {
             setToken(data.accessToken);
-            setUser(data.user);
             setNotification(`You've been logged`);
           }
         },

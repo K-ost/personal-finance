@@ -1,7 +1,9 @@
 import { API_URL } from "../constants/constants";
+import { useAuthStore } from "../store/useAuthStore";
 import { API_Method } from "../types/types";
 
-export const getData = async <T>(uri: string, token?: string): Promise<T> => {
+export const getData = async <T>(uri: string): Promise<T> => {
+  const token = useAuthStore.getState().token;
   const response = await fetch(`${API_URL}${uri}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -15,8 +17,8 @@ export const mutateData = async <T, K>(
   uri: string,
   method: API_Method,
   body?: K,
-  token?: string,
 ): Promise<T> => {
+  const token = useAuthStore.getState().token;
   const response = await fetch(`${API_URL}${uri}`, {
     method,
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
