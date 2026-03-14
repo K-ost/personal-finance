@@ -2,7 +2,7 @@ export const API_URL = import.meta.env?.VITE_API_URL || "http://localhost:8000/a
 
 export const BALANCE_URI = "/balance";
 export const TRANSACTIONS_URI = "/transactions";
-export const BUDGETS_URI = "/budgets/transactions";
+export const BUDGETS_URI = "/budgets";
 export const POTS_URI = "/pots";
 
 // Settings for form fields
