@@ -1,10 +1,10 @@
 import { Slide, Snackbar } from "@mui/material";
 
-import { useNotificationStore } from "../store/useNotificationStore";
+import { useNotification, useNotificationStore } from "../store/useNotificationStore";
 
 const Notification = (): JSX.Element => {
-  const { notification, setNotification } = useNotificationStore();
-
+  const setNotification = useNotificationStore((state) => state.setNotification);
+  const notification = useNotification();
   return (
     <Snackbar
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}

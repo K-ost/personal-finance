@@ -1,7 +1,7 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
 
 import useBudgetHook from "../hooks/useBudgetHook";
-import { Budget } from "../types";
+import { Budget } from "../types/types";
 import { getLocalPrice } from "../utils/utils";
 
 type BudgetLineProps = {
@@ -47,12 +47,7 @@ const BudgetLine = (props: BudgetLineProps): JSX.Element => {
       <Typography variant="body1" color="textSecondary">
         {budget.category}
       </Typography>
-      <Typography
-        variant="h3"
-        color="primary"
-        component="b"
-        sx={{ ml: "auto" }}
-      >
+      <Typography variant="h3" color="primary" component="b" sx={{ ml: "auto" }}>
         {getLocalPrice(spent)}
       </Typography>
       <Typography variant="body2" color="textSecondary" sx={{ ml: 2 }}>

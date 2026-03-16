@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/logo-large.svg";
 import logoSmall from "../../assets/logo-small.svg";
-import { useAppStore } from "../../store/useAppStore";
+import { useAppStore, useSidebarStore } from "../../store/useAppStore";
 import { useAuthStore } from "../../store/useAuthStore";
 import AsideBtn from "./AsideBtn";
 import { navMenuList } from "./constants";
@@ -15,15 +15,15 @@ import {
   IconMin,
   IconOverview,
   IconPots,
-  IconProfile,
   IconTransactions,
 } from "./Icons";
 import NavMenu from "./NavMenu";
 import { Aside, AsideInner, AsideLogo } from "./styles";
 
 const Sidebar = () => {
-  const { sidebar, setSidebar } = useAppStore();
-  const { setLogout } = useAuthStore();
+  const setSidebar = useAppStore((state) => state.setSidebar);
+  const sidebar = useSidebarStore();
+  const setLogout = useAuthStore((state) => state.setLogout);
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -54,7 +54,6 @@ const Sidebar = () => {
                       {item.icon === "budgets" && <IconBudgets />}
                       {item.icon === "pots" && <IconPots />}
                       {item.icon === "recurringBills" && <IconBills />}
-                      {item.icon === "profile" && <IconProfile />}
                     </span>
                     {sidebar && isTablet && (
                       <span className="btnTitle">{t(`nav.${item.icon}`)}</span>

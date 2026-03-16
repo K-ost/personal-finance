@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 
 import { FORM_SETTINGS, POTS_URI } from "../../constants/constants";
 import useMutateData from "../../hooks/useMutateData";
-import { useAuthStore } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useThemesStore } from "../../store/useThemesStore";
 import { Pot } from "../../types/types";
@@ -25,7 +24,6 @@ type FormData = Omit<Pot, "id" | "total">;
 const AddPot = (props: AddPotProps): JSX.Element => {
   const { close, open } = props;
   const queryClient = useQueryClient();
-  const userId = useAuthStore((state) => state.userId);
   const setNotification = useNotificationStore((state) => state.setNotification);
   const usedThemes = useThemesStore((state) => state.usedThemes);
   const { t } = useTranslation();
@@ -50,7 +48,6 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         target: Number(data.target),
         theme: data.theme,
         total: 0,
-        userId: userId!,
       },
       {
         onSuccess: () => {

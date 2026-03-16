@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import BtnMore from "./BtnMore";
 
-type WrapProps = {
+type WrapProps = BoxProps & {
   children: React.ReactNode;
   title?: string;
   all?: string;
@@ -19,7 +19,7 @@ const WrapBox = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }));
 
-const Wrap = (props: WrapProps & BoxProps): JSX.Element => {
+const Wrap = (props: WrapProps): JSX.Element => {
   const { t } = useTranslation();
   const { children, title, all = t("links.seeDetails"), alllink } = props;
 

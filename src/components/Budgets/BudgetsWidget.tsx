@@ -1,11 +1,11 @@
 import { BoxProps, Grid2, Skeleton } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+import Chart from "../../components/Chart";
 import { BUDGETS_URI } from "../../constants/constants";
 import useGetData from "../../hooks/useGetData";
 import { Budget } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
-import Chart from "../../ui/Chart";
 import Wrap from "../../ui/Wrap";
 import Error from "../Error";
 

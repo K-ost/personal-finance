@@ -3,7 +3,7 @@ import { PieChart } from "@mui/x-charts";
 import { useTranslation } from "react-i18next";
 
 import useBudgetHook from "../hooks/useBudgetHook";
-import { Budget } from "../types";
+import { Budget } from "../types/types";
 import { getChartLimit, getLocalPrice } from "../utils/utils";
 
 type ChartProps = BoxProps & {

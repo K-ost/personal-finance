@@ -1,13 +1,11 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import LoginLayout from "../components/LoginLayout";
-import useMutateData from "../hooks/useMutateData";
 import useFormSettings from "../hooks/useSettings";
 import { useNotificationStore } from "../store/useNotificationStore";
-import { User } from "../types/types";
 import Btn from "../ui/Btn";
 import CustomInput from "../ui/CustomInput";
 import FormBody from "../ui/FormBody";
@@ -19,17 +17,10 @@ type FormData = {
   password: string;
 };
 
-type Response = {
-  message?: string;
-  accessToken?: string;
-  user?: User;
-};
-
 const SignUp = (): JSX.Element => {
   const { t } = useTranslation();
-  const { setNotification } = useNotificationStore();
   const { settings } = useFormSettings();
-  const navigate = useNavigate();
+  const setNotification = useNotificationStore((state) => state.setNotification);
 
   const {
     formState: { errors },
@@ -38,31 +29,9 @@ const SignUp = (): JSX.Element => {
     reset,
   } = useForm<FormData>();
 
-  const { mutate, isPending } = useMutateData<Response, User>({
-    key: ["users"],
-    method: "POST",
-    uri: "/signup",
-  });
-
   const signUpHandler = (data: FormData) => {
-    mutate(
-      {
-        ...data,
-        role: "user",
-        avatar: "",
-      },
-      {
-        onSuccess: (response) => {
-          if (response.message) {
-            setNotification(response.message);
-          } else {
-            setNotification(t("signup.notification", { email: response.user?.email }));
-            reset();
-            navigate("/login");
-          }
-        },
-      },
-    );
+    setNotification(`User ${data.email} has been registered`);
+    reset();
   };
 
   return (
@@ -102,9 +71,6 @@ const SignUp = (): JSX.Element => {
           <Box sx={{ mb: "32px" }}>
             <Btn color="primary" type="submit" fullWidth>
               {t("signup.btn")}
-              {isPending && (
-                <CircularProgress size={24} color="secondary" sx={{ ml: 4 }} />
-              )}
             </Btn>
           </Box>
         </form>

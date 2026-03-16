@@ -21,7 +21,7 @@ type FormData = {
 
 const LoginPage = (): JSX.Element => {
   const setToken = useAuthStore((state) => state.setToken);
-  const { setNotification } = useNotificationStore();
+  const setNotification = useNotificationStore((state) => state.setNotification);
   const { t } = useTranslation();
   const { settings } = useFormSettings();
 

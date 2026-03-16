@@ -23,13 +23,14 @@ describe("Login Page", () => {
     APINock.post("/login", {
       email: "admin@test.com",
       password: "12345",
-    }).reply(401, { msg: "Incorrect password" });
+    }).reply(403, { msg: "Incorrect password" });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "12345");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => {
+      screen.debug(undefined, 200000);
       expect(screen.getByText("Incorrect password"));
     });
   });

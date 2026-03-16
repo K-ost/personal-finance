@@ -21,7 +21,7 @@ const Card = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }));
 
-const UserCard = (props: UserCardProps) => {
+const UserCard = (props: UserCardProps): JSX.Element => {
   const { avatar, name, category } = props;
   return (
     <Card>

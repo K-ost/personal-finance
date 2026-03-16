@@ -10,5 +10,7 @@ export const useNotificationStore = create<NotifyState>()(
   devtools((set) => ({
     notification: "",
     setNotification: (message) => set(() => ({ notification: message })),
-  }))
+  })),
 );
+
+export const useNotification = () => useNotificationStore((state) => state.notification);

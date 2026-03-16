@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import { FORM_SETTINGS } from "../../constants/constants";
 import useMutateData from "../../hooks/useMutateData";
-import { useAuthStore } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useThemesStore } from "../../store/useThemesStore";
 import { Budget } from "../../types/types";
@@ -30,7 +29,6 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
   const { close, open } = props;
   const { usedCategories, usedThemes } = useThemesStore();
   const setNotification = useNotificationStore((state) => state.setNotification);
-  const userId = useAuthStore((state) => state.userId);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 
@@ -41,7 +39,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
     reset,
   } = useForm<FormData>();
 
-  const { mutate, isPending } = useMutateData<Budget, FormData & { userId: string }>({
+  const { mutate, isPending } = useMutateData<Budget, FormData>({
     key: ["budgets"],
     method: "POST",
     uri: "/budgets",
@@ -53,7 +51,6 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
         category: data.category,
         maximum: Number(data.maximum),
         theme: data.theme,
-        userId: userId!,
       },
       {
         onSuccess: () => {

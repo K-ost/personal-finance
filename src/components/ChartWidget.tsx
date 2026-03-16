@@ -2,9 +2,9 @@ import { Box, Typography } from "@mui/material";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
+import BudgetLine from "../components/BudgetLine";
+import Chart from "../components/Chart";
 import { Budget } from "../types/types";
-import BudgetLine from "../ui/BudgetLine";
-import Chart from "../ui/Chart";
 
 type ChartWidgetProps = {
   data: Budget[];

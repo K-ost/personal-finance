@@ -19,7 +19,10 @@ export const useAppStore = create<AppState>()(
       }),
       {
         name: "app",
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
+
+export const useLanguageStore = () => useAppStore((state) => state.lang);
+export const useSidebarStore = () => useAppStore((state) => state.sidebar);
