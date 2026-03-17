@@ -4,7 +4,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { TRANSACTIONS_URI } from "../../constants/constants";
 import { transactionFactory } from "../../tests/factories";
 import { APINock, WrapperHook } from "../../tests/testUtils";
-import { ServerResponse, Transaction } from "../../types/types";
+import { ServerResponse } from "../../types/apiTypes";
+import { Transaction } from "../../types/types";
 import useGetData from "../useGetData";
 
 const mockedData: ServerResponse<Transaction> = {

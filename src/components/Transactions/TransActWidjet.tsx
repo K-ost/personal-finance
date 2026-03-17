@@ -2,7 +2,8 @@ import { BoxProps, Skeleton, Table, TableBody, TableContainer } from "@mui/mater
 import { useTranslation } from "react-i18next";
 
 import useGetData from "../../hooks/useGetData";
-import { ServerResponse, Transaction } from "../../types/types";
+import { ServerResponse } from "../../types/apiTypes";
+import { Transaction } from "../../types/types";
 import Wrap from "../../ui/Wrap";
 import Error from "../Error";
 import Row from "./Row";

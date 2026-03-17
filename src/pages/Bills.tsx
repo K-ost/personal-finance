@@ -13,7 +13,8 @@ import TotalBills from "../components/TotalBills";
 import TransactionsLoading from "../components/Transactions/Loading";
 import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
-import { ServerResponse, Transaction } from "../types/types";
+import { ServerResponse } from "../types/apiTypes";
+import { Transaction } from "../types/types";
 import Wrap from "../ui/Wrap";
 
 const Bills = (): JSX.Element => {

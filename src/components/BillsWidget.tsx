@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
-import { ServerResponse, Transaction } from "../types/types";
+import { ServerResponse } from "../types/apiTypes";
+import { Transaction } from "../types/types";
 import Wrap from "../ui/Wrap";
 import { getLocalPrice } from "../utils/utils";
 import Error from "./Error";

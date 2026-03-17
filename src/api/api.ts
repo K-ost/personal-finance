@@ -1,6 +1,6 @@
 import { API_URL } from "../constants/constants";
 import { useAuthStore } from "../store/useAuthStore";
-import { API_Method } from "../types/types";
+import { API_Method } from "../types/apiTypes";
 
 export const apiRequest = async <T, K>(
   url: string,

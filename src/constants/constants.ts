@@ -37,7 +37,3 @@ export const FORM_SETTINGS = {
     },
   },
 };
-
-export const SERVER_MESSAGES = {
-  unauthorized: `Unexpected token 'U', "Unauthorized" is not valid JSON`,
-};

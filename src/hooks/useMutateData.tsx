@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { apiRequest } from "../api/api";
-import { API_Method } from "../types/types";
+import { API_Method } from "../types/apiTypes";
 
 type useMutateDataProps = {
   key: string[];

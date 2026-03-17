@@ -8,7 +8,7 @@ import useMutateData from "../hooks/useMutateData";
 import useFormSettings from "../hooks/useSettings";
 import { useAuthStore } from "../store/useAuthStore";
 import { useNotificationStore } from "../store/useNotificationStore";
-import { AuthType } from "../types/types";
+import { AuthType } from "../types/apiTypes";
 import Btn from "../ui/Btn";
 import CustomInput from "../ui/CustomInput";
 import FormBody from "../ui/FormBody";

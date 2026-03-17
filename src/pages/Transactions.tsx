@@ -12,7 +12,8 @@ import TransactionsTable from "../components/Transactions";
 import TransactionsLoading from "../components/Transactions/Loading";
 import { TRANSACTIONS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
-import { ServerResponse, Transaction } from "../types/types";
+import { ServerResponse } from "../types/apiTypes";
+import { Transaction } from "../types/types";
 import Pager from "../ui/Pager";
 import Wrap from "../ui/Wrap";
 

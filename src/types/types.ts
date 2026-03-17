@@ -1,12 +1,9 @@
 import { PieValueType } from "@mui/x-charts";
-import { MakeOptional } from "@mui/x-charts/internals";
 
 export type SelectOption = {
   name: string;
   value: string;
 };
-
-export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
 export type BalanceType = {
   current: number;
@@ -37,8 +34,6 @@ export type Budget = {
   _id: string;
 };
 
-export type ChartBudget = MakeOptional<PieValueType, "id">;
-
 export type Pot = {
   name: string;
   target: number;
@@ -47,42 +42,4 @@ export type Pot = {
   _id: string;
 };
 
-export type AuthType = {
-  accessToken?: string;
-  msg?: string;
-};
-
-export type ServerResponse<T> = {
-  msg: string;
-  data: T[];
-  count?: number;
-  page?: number;
-};
-
-export type CustomPalette = {
-  beige500: string;
-  beige300: string;
-  beige100: string;
-  grey900: string;
-  grey500: string;
-  grey300: string;
-  grey100: string;
-  secondary: {
-    green: string;
-    yellow: string;
-    cyan: string;
-    navy: string;
-    purple: string;
-  };
-  other: {
-    purple: string;
-    turquoise: string;
-    brown: string;
-    magenta: string;
-    blue: string;
-    navy: string;
-    army: string;
-    gold: string;
-    orange: string;
-  };
-};
+export type ChartBudget = Omit<PieValueType, "id">;
