@@ -1,6 +1,6 @@
-import { Button, ButtonProps, styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 
-const CustomButton = styled(Button)(({ theme }) => ({
+export const CustomButton = styled(Button)(({ theme }) => ({
   borderRadius: 8,
   boxShadow: "none !important",
   fontFamily: theme.typography.fontFamily,
@@ -21,9 +21,3 @@ const CustomButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.custom.grey100,
   },
 }));
-
-const Btn = (props: ButtonProps): JSX.Element => {
-  return <CustomButton variant="contained" {...props} />;
-};
-
-export default Btn;

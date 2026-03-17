@@ -1,29 +1,15 @@
-import {
-  Box,
-  BoxProps,
-  styled,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { BoxProps, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
-import icon from "../assets/icon-recurring-bills.svg";
-import { BillInfo } from "../hooks/useRecurringBills";
-import { getLocalPrice } from "../utils/utils";
+import icon from "../../assets/icon-recurring-bills.svg";
+import { BillInfo } from "../../hooks/useRecurringBills";
+import { getLocalPrice } from "../../utils/utils";
+import { Div } from "./styles";
 
 type TotalBillsProps = {
   info: BillInfo;
 };
-
-const Div = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  borderRadius: 12,
-  color: theme.palette.common.white,
-  padding: theme.spacing(6),
-  minHeight: "100%",
-}));
 
 const TotalBills = (props: TotalBillsProps & BoxProps): JSX.Element => {
   const { info } = props;

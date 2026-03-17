@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Dialog, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import iconClose from "../assets/icon-close-modal.svg";
 

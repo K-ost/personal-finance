@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -29,10 +29,7 @@ describe("Login Page", () => {
     await userEvent.type(screen.getByTestId("password"), "12345");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitFor(() => {
-      screen.debug(undefined, 200000);
-      expect(screen.getByText("Incorrect password"));
-    });
+    expect(await screen.findByText("Incorrect password"));
   });
 
   it("Login - successfull", async () => {
@@ -45,9 +42,7 @@ describe("Login Page", () => {
     await userEvent.type(screen.getByTestId("password"), "1111");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitFor(() => {
-      expect(screen.getByText("You've been logged"));
-    });
+    expect(await screen.findByText("You've been logged"));
   });
 
   // it("Logout", async () => {

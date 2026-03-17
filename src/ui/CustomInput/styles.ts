@@ -1,15 +1,6 @@
-import {
-  InputAdornment,
-  styled,
-  TextField,
-  TextFieldProps,
-} from "@mui/material";
+import { styled, TextField, TextFieldProps } from "@mui/material";
 
-type CustomInputProps = TextFieldProps & {
-  adornment?: string;
-};
-
-const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
+export const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
   display: "block",
   marginBottom: theme.spacing(4),
   "& .MuiFormLabel-root": {
@@ -52,10 +43,9 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
       display: "none",
     },
   },
-  "& .MuiInputBase-root:not(.Mui-focused):hover .MuiOutlinedInput-notchedOutline":
-    {
-      borderColor: theme.palette.custom.beige500,
-    },
+  "& .MuiInputBase-root:not(.Mui-focused):hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: theme.palette.custom.beige500,
+  },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     borderColor: theme.palette.custom.grey900,
   },
@@ -88,27 +78,3 @@ const Input = styled(TextField)<TextFieldProps>(({ theme }) => ({
     right: 10,
   },
 }));
-
-const CustomInput = (props: CustomInputProps): JSX.Element => {
-  const { adornment } = props;
-  return (
-    <Input
-      variant="outlined"
-      InputLabelProps={{ shrink: true }}
-      slotProps={
-        adornment
-          ? {
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">{adornment}</InputAdornment>
-                ),
-              },
-            }
-          : undefined
-      }
-      {...props}
-    />
-  );
-};
-
-export default CustomInput;

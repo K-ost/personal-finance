@@ -1,28 +1,13 @@
-import {
-  Box,
-  styled,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 
-import { getLocalPrice } from "../utils/utils";
+import { getLocalPrice } from "../../utils/utils";
+import { Item } from "./styles";
 
 type BalanceProps = {
   title: string;
   amount: number;
   dark?: boolean;
 };
-
-const Item = styled(Box)<{ bg: "true" | undefined }>(({ theme, bg }) => ({
-  backgroundColor: bg ? theme.palette.primary.main : theme.palette.common.white,
-  borderRadius: 12,
-  color: bg ? theme.palette.common.white : theme.palette.primary.main,
-  padding: theme.spacing(6),
-  [theme.breakpoints.down("sm")]: {
-    padding: `${theme.spacing(4)} ${theme.spacing(5)}`,
-  },
-}));
 
 const Balance = (props: BalanceProps): JSX.Element => {
   const { amount, title, dark } = props;

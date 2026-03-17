@@ -1,32 +1,17 @@
-import { Button, ButtonProps, styled } from "@mui/material";
+import { ButtonProps } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
+import { More } from "./styles";
+
 type BtnMoreProps = ButtonProps & {
-  title: string;
   to: string;
+  title?: string;
 };
 
-const More = styled(Button)(({ theme }) => ({
-  color: theme.palette.custom.grey500,
-  padding: 0,
-  textTransform: "none",
-  "& svg": {
-    marginLeft: theme.spacing(3),
-    "& path": {
-      fill: theme.palette.custom.grey500,
-    },
-  },
-  "&:hover": {
-    background: 0,
-    color: theme.palette.primary.main,
-    "& svg path": {
-      fill: theme.palette.primary.main,
-    },
-  },
-}));
-
 const BtnMore = (props: BtnMoreProps): JSX.Element => {
-  const { title } = props;
+  const { t } = useTranslation();
+  const { title = t("links.seeDetails") } = props;
   return (
     <More variant="text" component={Link} disableRipple {...props}>
       {title}
