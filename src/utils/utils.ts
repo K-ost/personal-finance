@@ -1,4 +1,4 @@
-import { Budget } from "../types";
+import { Budget } from "../types/types";
 
 export const getLocalPrice = (num: number, nodigits?: boolean): string => {
   return (
@@ -57,10 +57,10 @@ export const createBillsDate = (date: Date | string): string => {
     dayDate === 1 || dayDate === 21 || dayDate === 31
       ? "st"
       : dayDate === 2 || dayDate === 22
-      ? "nd"
-      : dayDate === 3 || dayDate === 23
-      ? "rd"
-      : "th";
+        ? "nd"
+        : dayDate === 3 || dayDate === 23
+          ? "rd"
+          : "th";
 
   return `${dayDate}${ending}`;
 };
