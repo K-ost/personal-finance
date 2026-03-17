@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { createUser } from "./constants";
 import { APINock, Wrapper } from "./testUtils";
 
 describe("Login Page", () => {
@@ -36,7 +35,7 @@ describe("Login Page", () => {
     APINock.post("/login", {
       email: "admin@test.com",
       password: "1111",
-    }).reply(201, createUser("admin"));
+    }).reply(201, { accessToken: "mocked-token" });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "1111");
