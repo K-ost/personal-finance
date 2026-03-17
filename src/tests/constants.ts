@@ -1,18 +1,4 @@
-import { Pot, UserRole } from "../types/types";
-
-export const createUser = (user: UserRole) => {
-  return {
-    accessToken: "token",
-    message: "",
-    user: {
-      email: "admin@test.com",
-      name: "Admin",
-      role: user,
-      avatar: "",
-      _id: 1,
-    },
-  };
-};
+import { Pot } from "../types/types";
 
 export const mockedNewPotBody = {
   name: "New Pot",
