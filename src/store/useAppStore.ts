@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-type AppState = {
+interface AppState {
   lang: string;
   sidebar: boolean;
   setLang: (lang: string) => void;
   setSidebar: (open: boolean) => void;
-};
+}
 
 export const useAppStore = create<AppState>()(
   devtools(
