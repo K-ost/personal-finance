@@ -1,4 +1,4 @@
-import { Grid2, Skeleton, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, Skeleton, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { BALANCE_URI } from "../constants/constants";
@@ -19,13 +19,13 @@ const BalanceWidget = (): JSX.Element => {
 
   if (isLoading)
     return (
-      <Grid2 container spacing={isMobile ? 3 : 6}>
+      <Grid container spacing={isMobile ? 3 : 6}>
         {Array.from(new Array(3)).map((__, index) => (
-          <Grid2 size={{ xs: 12, sm: 4 }} key={index}>
+          <Grid size={{ xs: 12, sm: 4 }} key={index}>
             <Skeleton height={120} variant="rounded" />
-          </Grid2>
+          </Grid>
         ))}
-      </Grid2>
+      </Grid>
     );
 
   if (isError) return <Error />;
@@ -33,17 +33,17 @@ const BalanceWidget = (): JSX.Element => {
   return (
     <div>
       {isSuccess && (
-        <Grid2 container spacing={isMobile ? 3 : 6}>
-          <Grid2 size={{ xs: 12, sm: 4 }}>
+        <Grid container spacing={isMobile ? 3 : 6}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Balance title={t("balances.current")} amount={data.current} dark />
-          </Grid2>
-          <Grid2 size={{ xs: 12, sm: 4 }}>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Balance title={t("balances.income")} amount={data.income} />
-          </Grid2>
-          <Grid2 size={{ xs: 12, sm: 4 }}>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Balance title={t("balances.expenses")} amount={data.expenses} />
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       )}
     </div>
   );

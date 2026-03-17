@@ -1,4 +1,4 @@
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import BalanceWidget from "../components/BalanceWidget";
@@ -13,19 +13,19 @@ const Home = (): JSX.Element => {
 
   return (
     <MainLayout title={t("nav.overview")}>
-      <Grid2 container spacing={6}>
-        <Grid2 size={12}>
+      <Grid container spacing={6}>
+        <Grid size={12}>
           <BalanceWidget />
-        </Grid2>
-        <Grid2 size={{ xs: 12, xl: 7 }}>
+        </Grid>
+        <Grid size={{ xs: 12, xl: 7 }}>
           <PotsWidjet sx={{ mb: 6 }} />
           <TransActionsWidjet />
-        </Grid2>
-        <Grid2 size={{ xs: 12, xl: 5 }}>
+        </Grid>
+        <Grid size={{ xs: 12, xl: 5 }}>
           <BudgetsWidget sx={{ mb: 6 }} />
           <BillsWidget />
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </MainLayout>
   );
 };

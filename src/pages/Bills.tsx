@@ -1,4 +1,4 @@
-import { Box, Grid2, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
@@ -36,22 +36,22 @@ const Bills = (): JSX.Element => {
 
   return (
     <MainLayout title={t("nav.recurringBills")}>
-      <Grid2 container spacing={6}>
-        <Grid2 size={{ xs: 12, md: 4 }}>
+      <Grid container spacing={6}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {isSuccess && (
             <Box>
-              <Grid2 container spacing={6}>
-                <Grid2 size={{ xs: 12, sm: 6, md: 12 }}>
+              <Grid container spacing={6}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <TotalBills info={info} />
-                </Grid2>
-                <Grid2 size={{ xs: 12, sm: 6, md: 12 }}>
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <SummaryBills info={info} />
-                </Grid2>
-              </Grid2>
+                </Grid>
+              </Grid>
             </Box>
           )}
-        </Grid2>
-        <Grid2 size={{ xs: 12, md: 8 }}>
+        </Grid>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Wrap>
             {!isError && isSuccess && (
               <Filter>
@@ -63,8 +63,8 @@ const Bills = (): JSX.Element => {
             {isError && <Error />}
             {isSuccess && <BillsTable list={bills} />}
           </Wrap>
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </MainLayout>
   );
 };

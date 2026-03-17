@@ -1,4 +1,4 @@
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -51,8 +51,8 @@ const Budgets = (): JSX.Element => {
       {isLoading && <BudgetsLoading />}
       {isError && <Error />}
       {isSuccess && !!data.length && (
-        <Grid2 container spacing={6}>
-          <Grid2 size={{ xs: 12, md: 5 }}>
+        <Grid container spacing={6}>
+          <Grid size={{ xs: 12, md: 5 }}>
             <Wrap
               sx={(theme) => ({
                 display: "flex",
@@ -71,12 +71,12 @@ const Budgets = (): JSX.Element => {
             >
               <ChartWidget data={data} />
             </Wrap>
-          </Grid2>
+          </Grid>
 
-          <Grid2 size={{ xs: 12, md: 7 }}>
+          <Grid size={{ xs: 12, md: 7 }}>
             <BudgetsList data={data} />
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       )}
 
       {isSuccess && !data.length && (

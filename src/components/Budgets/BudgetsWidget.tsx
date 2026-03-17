@@ -1,4 +1,4 @@
-import { BoxProps, Grid2, Skeleton } from "@mui/material";
+import { BoxProps, Grid, Skeleton } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import Chart from "../../components/Chart";
@@ -23,26 +23,26 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
   return (
     <Wrap title={t("nav.budgets")} alllink="/budgets" {...props}>
       {isSuccess && (
-        <Grid2 container spacing={5} sx={{ mt: 12, mb: 7 }}>
-          <Grid2 size={{ xs: 12, sm: 9 }}>
+        <Grid container spacing={5} sx={{ mt: 12, mb: 7 }}>
+          <Grid size={{ xs: 12, sm: 9 }}>
             <Chart data={data} />
-          </Grid2>
-          <Grid2 size={{ xs: 12, sm: 3 }}>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 3 }}>
             <div>
-              <Grid2 container spacing={4}>
+              <Grid container spacing={4}>
                 {data.map((budget) => (
-                  <Grid2 key={budget._id} size={{ xs: 6, sm: 12 }}>
+                  <Grid key={budget._id} size={{ xs: 6, sm: 12 }}>
                     <BudgetAmount
                       amount={budget.maximum}
                       title={budget.category}
                       color={budget.theme}
                     />
-                  </Grid2>
+                  </Grid>
                 ))}
-              </Grid2>
+              </Grid>
             </div>
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       )}
     </Wrap>
   );

@@ -1,4 +1,4 @@
-import { Box, BoxProps, Grid2, Skeleton } from "@mui/material";
+import { Box, BoxProps, Grid, Skeleton } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import useGetData from "../../hooks/useGetData";
@@ -22,29 +22,29 @@ const PotsWidjet = (props: BoxProps): JSX.Element => {
 
   return (
     <Wrap title={t("nav.pots")} alllink="/pots" {...props}>
-      <Grid2 container spacing={5}>
-        <Grid2 size={{ xs: 12, sm: 5 }}>
+      <Grid container spacing={5}>
+        <Grid size={{ xs: 12, sm: 5 }}>
           <BudgetAmount amount={totalSaved} title="Total Saved" big="true" />
-        </Grid2>
-        <Grid2 size={{ xs: 12, sm: 7 }}>
+        </Grid>
+        <Grid size={{ xs: 12, sm: 7 }}>
           <Box>
-            <Grid2 container spacing={4}>
+            <Grid container spacing={4}>
               {isSuccess &&
                 data
                   .map((pot) => (
-                    <Grid2 size={6} key={pot._id}>
+                    <Grid size={6} key={pot._id}>
                       <BudgetAmount
                         amount={pot.total}
                         title={pot.name}
                         color={pot.theme}
                       />
-                    </Grid2>
+                    </Grid>
                   ))
                   .slice(0, 4)}
-            </Grid2>
+            </Grid>
           </Box>
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </Wrap>
   );
 };
