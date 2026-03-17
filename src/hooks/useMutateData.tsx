@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { mutateData } from "../api/api";
+import { apiRequest } from "../api/api";
 import { API_Method } from "../types/types";
 
 type useMutateDataProps = {
@@ -14,7 +14,7 @@ const useMutateData = <T, K>(props: useMutateDataProps) => {
 
   return useMutation({
     mutationKey: key,
-    mutationFn: (data: K) => mutateData<T, K>(uri, method, data),
+    mutationFn: (data: K) => apiRequest<T, K>(uri, method, data),
   });
 };
 
