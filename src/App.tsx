@@ -12,40 +12,26 @@ import LoginPage from "./pages/LoginPage";
 import Pots from "./pages/Pots";
 import SignUp from "./pages/SignUp";
 import Transactions from "./pages/Transactions";
-import { useAppStore } from "./store/useAppStore";
-import { useIsLogged } from "./store/useAuthStore";
+import { useLanguageStore } from "./store/useAppStore";
 import Notification from "./ui/Notification";
 
 function App() {
-  const { lang } = useAppStore();
-  const isLogged = useIsLogged();
+  const lang = useLanguageStore();
   const { i18n } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
 
-  // const { error } = useGetData({
-  //   key: ["token"],
-  //   uri: "/token",
-  //   enabled: isLogged,
-  // });
-
-  // useEffect(() => {
-  //   if (error && error.message && error.message === SERVER_MESSAGES.unauthorized) {
-  //     setLogout();
-  //   }
-  // }, [error, setLogout]);
-
   return (
     <>
       <Styles />
       <Routes>
-        <Route element={<PublicRoutes isAuth={isLogged} />}>
+        <Route element={<PublicRoutes />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route element={<ProtectedRoutes isAuth={isLogged} />}>
+        <Route element={<ProtectedRoutes />}>
           <Route path="/" index element={<Home />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/budgets" element={<Budgets />} />

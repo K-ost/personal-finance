@@ -1,11 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-type PublicRoutesProps = {
-  isAuth: boolean;
-};
+import { useIsLogged } from "../store/useAuthStore";
 
-const PublicRoutes = (props: PublicRoutesProps): JSX.Element => {
-  const { isAuth } = props;
+const PublicRoutes = (): JSX.Element => {
+  const isAuth = useIsLogged();
   return isAuth ? <Navigate to="/" /> : <Outlet />;
 };
 

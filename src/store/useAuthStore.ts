@@ -37,4 +37,4 @@ export const useAuthStore = create<AuthState>()(
 );
 
 export const useToken = () => useAuthStore.getState().token;
-export const useIsLogged = () => !!useAuthStore.getState().token;
+export const useIsLogged = () => !!useAuthStore((state) => state.token);
