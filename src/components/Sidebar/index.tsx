@@ -17,8 +17,7 @@ import {
   IconPots,
   IconTransactions,
 } from "./Icons";
-import NavMenu from "./NavMenu";
-import { Aside, AsideInner, AsideLogo } from "./styles";
+import { Aside, AsideInner, AsideLogo, Nav } from "./styles";
 
 const Sidebar = () => {
   const setSidebar = useAppStore((state) => state.setSidebar);
@@ -39,7 +38,7 @@ const Sidebar = () => {
             </AsideLogo>
           )}
 
-          <NavMenu>
+          <Nav>
             {navMenuList.map((item) => {
               return (
                 <ListItem key={item.id}>
@@ -73,7 +72,7 @@ const Sidebar = () => {
                 )}
               </AsideBtn>
             </ListItem>
-          </NavMenu>
+          </Nav>
         </Box>
 
         {isDesktop && (

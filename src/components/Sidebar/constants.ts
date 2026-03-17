@@ -1,15 +1,15 @@
 import { AsideIconType } from "./AsideBtn";
 
-export const duration = 150;
-export const sideWidth = 300;
-export const sideWidthMin = 88;
-
 type NavMenuList = {
   id: number;
   title: string;
   icon: AsideIconType;
   link: string;
 };
+
+export const duration = 150;
+export const sideWidth = 300;
+export const sideWidthMin = 88;
 
 export const navMenuList: NavMenuList[] = [
   { id: 1, title: "Overview", icon: "overview", link: "/" },

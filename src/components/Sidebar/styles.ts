@@ -1,4 +1,4 @@
-import { Box, BoxProps, duration, styled } from "@mui/material";
+import { Box, BoxProps, duration, List, ListProps, styled } from "@mui/material";
 
 import { sideWidth, sideWidthMin } from "./constants";
 
@@ -45,5 +45,22 @@ export const AsideInner = styled(Box)<BoxProps>(({ theme }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     padding: "8px 16px 0",
+  },
+}));
+
+export const Nav = styled(List)<ListProps>(({ theme }) => ({
+  margin: 0,
+  padding: 0,
+  "& li": {
+    display: "block",
+    listStyle: "none",
+    margin: `0 0 ${theme.spacing(1)}`,
+    padding: 0,
+  },
+  [theme.breakpoints.down("lg")]: {
+    display: "flex",
+    "& li": {
+      margin: 0,
+    },
   },
 }));
