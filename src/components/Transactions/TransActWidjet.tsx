@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import useGetData from "../../hooks/useGetData";
 import { ServerResponse } from "../../types/apiTypes";
 import { Transaction } from "../../types/types";
+import Error from "../../ui/Error";
 import Wrap from "../../ui/Wrap";
-import Error from "../Error";
 import Row from "./Row";
 
 const TransActionsWidjet = (props: BoxProps): JSX.Element => {

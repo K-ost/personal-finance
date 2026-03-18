@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
 import BillsTable from "../components/BillsTable";
-import Error from "../components/Error";
 import Filter from "../components/Filter";
 import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
@@ -15,6 +14,7 @@ import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
+import Error from "../ui/Error";
 import Wrap from "../ui/Wrap";
 
 const Bills = (): JSX.Element => {

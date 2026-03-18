@@ -1,5 +1,6 @@
 import js from "@eslint/js";
 import { defineConfig } from "eslint/config";
+import importPlugin from "eslint-plugin-import";
 import react from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
@@ -25,15 +26,21 @@ export default defineConfig([
       react,
       "unused-imports": unusedImports,
       "simple-import-sort": simpleImportSort,
+      import: importPlugin,
     },
     settings: {
       react: {
         version: "detect",
       },
+      "import/resolver": {
+        typescript: true,
+      },
     },
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/jsx-uses-react": "off",
+
+      "import/no-unresolved": "error",
 
       "no-console": "warn",
       "no-alert": "warn",

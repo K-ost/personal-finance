@@ -5,9 +5,9 @@ import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
+import Error from "../ui/Error";
 import Wrap from "../ui/Wrap";
 import { getLocalPrice } from "../utils/utils";
-import Error from "./Error";
 
 const Item = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.custom.beige100,

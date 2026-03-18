@@ -2,7 +2,6 @@ import { Portal } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import Error from "../components/Error";
 import MainLayout from "../components/MainLayout";
 import PotsList from "../components/Pots";
 import AddPot from "../components/Pots/AddPot";
@@ -12,6 +11,7 @@ import useGetData from "../hooks/useGetData";
 import { useThemesStore } from "../store/useThemesStore";
 import { Pot } from "../types/types";
 import Btn from "../ui/Btn";
+import Error from "../ui/Error";
 
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();

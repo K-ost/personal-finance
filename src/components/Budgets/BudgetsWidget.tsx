@@ -6,8 +6,8 @@ import { BUDGETS_URI } from "../../constants/constants";
 import useGetData from "../../hooks/useGetData";
 import { Budget } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
+import Error from "../../ui/Error";
 import Wrap from "../../ui/Wrap";
-import Error from "../Error";
 
 const BudgetsWidget = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();

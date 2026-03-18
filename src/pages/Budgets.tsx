@@ -6,7 +6,6 @@ import BudgetsList from "../components/Budgets";
 import AddBudget from "../components/Budgets/AddBudget";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import ChartWidget from "../components/ChartWidget";
-import Error from "../components/Error";
 import MainLayout from "../components/MainLayout";
 import { BUDGETS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
@@ -14,6 +13,7 @@ import { useThemesStore } from "../store/useThemesStore";
 import { Budget } from "../types/types";
 import AlertBox from "../ui/AlertBox";
 import Btn from "../ui/Btn";
+import Error from "../ui/Error";
 import Wrap from "../ui/Wrap";
 
 const Budgets = (): JSX.Element => {

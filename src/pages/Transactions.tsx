@@ -2,7 +2,6 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import Error from "../components/Error";
 import Filter from "../components/Filter";
 import FilterCategory from "../components/Filter/FilterCategory";
 import Search from "../components/Filter/Search";
@@ -14,6 +13,7 @@ import { TRANSACTIONS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
+import Error from "../ui/Error";
 import Pager from "../ui/Pager";
 import Wrap from "../ui/Wrap";
 

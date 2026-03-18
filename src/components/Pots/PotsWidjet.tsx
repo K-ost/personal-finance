@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import useGetData from "../../hooks/useGetData";
 import { Pot } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
+import Error from "../../ui/Error";
 import Wrap from "../../ui/Wrap";
-import Error from "../Error";
 
 const PotsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();

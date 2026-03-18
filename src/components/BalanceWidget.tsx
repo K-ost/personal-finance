@@ -5,7 +5,7 @@ import { BALANCE_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
 import { BalanceType } from "../types/types";
 import Balance from "../ui/Balance";
-import Error from "./Error";
+import Error from "../ui/Error";
 
 const BalanceWidget = (): JSX.Element => {
   const theme = useTheme();
