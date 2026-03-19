@@ -26,8 +26,8 @@ type FormData = Omit<Pot, "id" | "total">;
 const EditPot = (props: EditPotProps): JSX.Element => {
   const { close, open, pot } = props;
   const queryClient = useQueryClient();
-  const { setNotification } = useNotificationStore();
-  const { usedThemes } = useThemesStore();
+  const setNotification = useNotificationStore((state) => state.setNotification);
+  const usedThemes = useThemesStore((state) => state.usedThemes);
   const { t } = useTranslation();
 
   const {

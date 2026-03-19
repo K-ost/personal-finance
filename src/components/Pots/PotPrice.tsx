@@ -11,12 +11,7 @@ const PotPrice = (props: PotPriceProps): JSX.Element => {
   const { total, title } = props;
 
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      mb={4}
-    >
+    <Stack direction="row" alignItems="center" justifyContent="space-between" mb={4}>
       <Typography variant="body1" component="div" color="textSecondary">
         {title}
       </Typography>

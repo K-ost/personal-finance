@@ -14,5 +14,5 @@ export const useThemesStore = create<ThemesState>()(
     usedCategories: [],
     setUsedThemes: (list) => set(() => ({ usedThemes: list })),
     setUsedCategories: (list) => set(() => ({ usedCategories: list })),
-  }))
+  })),
 );

@@ -1,4 +1,4 @@
-import { Box, BoxProps, MenuItem, Portal, Stack, styled } from "@mui/material";
+import { MenuItem, Portal, Stack } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -12,19 +12,11 @@ import DeletePot from "./DeletePot";
 import EditPot from "./EditPot";
 import PotPrice from "./PotPrice";
 import PotProgress from "./PotProgress";
+import { PotBox } from "./styles";
 
 type PotItemProps = {
   pot: Pot;
 };
-
-const PotBox = styled(Box)<BoxProps>(({ theme }) => ({
-  backgroundColor: theme.palette.common.white,
-  borderRadius: 12,
-  padding: theme.spacing(6),
-  [theme.breakpoints.down("sm")]: {
-    padding: theme.spacing(5),
-  },
-}));
 
 const PotItem = (props: PotItemProps): JSX.Element => {
   const { pot } = props;

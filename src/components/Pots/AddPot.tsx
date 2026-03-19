@@ -71,9 +71,11 @@ const AddPot = (props: AddPotProps): JSX.Element => {
         <CustomInput
           label={t("form.potname.label")}
           helperText={errors.name ? errors.name.message : t("form.potname.helper")}
-          inputProps={{
-            ...register("name", FORM_SETTINGS.name),
-            "data-testid": "name",
+          slotProps={{
+            input: {
+              ...register("name", FORM_SETTINGS.name),
+              "aria-label": "Add Pot Name",
+            },
           }}
           error={errors.name ? true : false}
         />
@@ -82,8 +84,10 @@ const AddPot = (props: AddPotProps): JSX.Element => {
           type="number"
           label={t("form.target.label")}
           adornment="$"
-          inputProps={{
-            ...register("target", FORM_SETTINGS.target),
+          slotProps={{
+            input: {
+              ...register("target", FORM_SETTINGS.target),
+            },
           }}
           error={errors.target ? true : false}
           helperText={errors.target && errors.target.message}
@@ -91,8 +95,10 @@ const AddPot = (props: AddPotProps): JSX.Element => {
 
         <CustomSelect
           label={t("form.theme.label")}
-          inputProps={{
-            ...register("theme"),
+          slotProps={{
+            input: {
+              ...register("theme"),
+            },
           }}
           options={potsColorOptions}
           usedoptions={usedThemes}

@@ -114,14 +114,16 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
           type="number"
           label={labelText}
           adornment="$"
-          inputProps={{
-            ...register("total", {
-              ...FORM_SETTINGS.totalChange,
-              max: {
-                value: type === "topup" ? pot.target - pot.total : pot.total,
-                message: errorText,
-              },
-            }),
+          slotProps={{
+            input: {
+              ...register("total", {
+                ...FORM_SETTINGS.totalChange,
+                max: {
+                  value: type === "topup" ? pot.target - pot.total : pot.total,
+                  message: errorText,
+                },
+              }),
+            },
           }}
           error={errors.total ? true : false}
           helperText={errors.total && errors.total.message}

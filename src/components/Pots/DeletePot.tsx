@@ -17,7 +17,7 @@ type DeletePotProps = {
 const DeletePot = (props: DeletePotProps): JSX.Element => {
   const { close, open, pot } = props;
   const queryClient = useQueryClient();
-  const { setNotification } = useNotificationStore();
+  const setNotification = useNotificationStore((state) => state.setNotification);
   const { t } = useTranslation();
 
   const { mutate, isPending } = useMutateData({

@@ -1,13 +1,7 @@
-import {
-  LinearProgress,
-  LinearProgressProps,
-  Stack,
-  styled,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 
 import { getProgressValue } from "../../utils/utils";
+import { Progress } from "./styles";
 
 type PotProgressProps = {
   color: string;
@@ -16,24 +10,9 @@ type PotProgressProps = {
   targetTitle: string;
 };
 
-const Progress = styled(LinearProgress)<
-  LinearProgressProps & { range: string }
->(({ theme, range }) => ({
-  backgroundColor: theme.palette.custom.beige100,
-  borderRadius: 8,
-  height: 8,
-  marginBottom: 13,
-  "& .MuiLinearProgress-bar": {
-    backgroundColor: range,
-    borderRadius: 8,
-    overflow: "hidden",
-  },
-}));
-
 const PotProgress = (props: PotProgressProps): JSX.Element => {
   const { color, target, targetTitle, total } = props;
   const theme = useTheme();
-
   const progressValue = getProgressValue(total, target);
 
   return (
@@ -47,12 +26,7 @@ const PotProgress = (props: PotProgressProps): JSX.Element => {
         justifyContent="space-between"
         mb={10}
       >
-        <Typography
-          variant="body2"
-          component="div"
-          fontWeight={700}
-          color={color}
-        >
+        <Typography variant="body2" component="div" fontWeight={700} color={color}>
           {progressValue}%
         </Typography>
         <Typography variant="body2" component="div">
