@@ -6,7 +6,7 @@ import { ServerResponse } from "../../types/apiTypes";
 import { Transaction } from "../../types/types";
 import Error from "../../ui/Error";
 import Wrap from "../../ui/Wrap";
-import Row from "./Row";
+import Row from "../Transactions/Row";
 
 const TransActionsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();

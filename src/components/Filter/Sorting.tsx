@@ -9,9 +9,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import useSortConstants from "../../hooks/useSortConstants";
 import CustomInput from "../../ui/CustomInput";
 import { getSortValue } from "../../utils/utils";
-import useSortConstants from "./useSortConstants";
 
 const Sorting = (props: StackProps): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();

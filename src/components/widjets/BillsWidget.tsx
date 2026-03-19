@@ -1,13 +1,13 @@
 import { BoxProps, Skeleton, Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import useGetData from "../hooks/useGetData";
-import useRecurringBills from "../hooks/useRecurringBills";
-import { ServerResponse } from "../types/apiTypes";
-import { Transaction } from "../types/types";
-import Error from "../ui/Error";
-import Wrap from "../ui/Wrap";
-import { getLocalPrice } from "../utils/utils";
+import useGetData from "../../hooks/useGetData";
+import useRecurringBills from "../../hooks/useRecurringBills";
+import { ServerResponse } from "../../types/apiTypes";
+import { Transaction } from "../../types/types";
+import Error from "../../ui/Error";
+import Wrap from "../../ui/Wrap";
+import { getLocalPrice } from "../../utils/utils";
 
 const Item = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.custom.beige100,
