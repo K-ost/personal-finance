@@ -27,7 +27,8 @@ type FormData = {
 
 const AddBudget = (props: AddBudgetProps): JSX.Element => {
   const { close, open } = props;
-  const { usedCategories, usedThemes } = useThemesStore();
+  const usedCategories = useThemesStore((state) => state.usedCategories);
+  const usedThemes = useThemesStore((state) => state.usedThemes);
   const setNotification = useNotificationStore((state) => state.setNotification);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
@@ -72,14 +73,18 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           label={t("form.budgetCategory.label")}
           options={CategoriesOptions}
           usedoptions={usedCategories}
-          inputProps={{ ...register("category") }}
+          slotProps={{
+            input: { ...register("category") },
+          }}
         />
 
         <CustomInput
           label={t("form.maxSpend.label")}
           adornment="$"
           type="number"
-          inputProps={{ ...register("maximum", FORM_SETTINGS.target) }}
+          slotProps={{
+            input: { ...register("maximum", FORM_SETTINGS.target) },
+          }}
           error={errors.maximum ? true : false}
           helperText={errors.maximum && errors.maximum.message}
         />
@@ -89,7 +94,9 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           options={potsColorOptions}
           usedoptions={usedThemes}
           colorpicker="true"
-          inputProps={{ ...register("theme") }}
+          slotProps={{
+            input: { ...register("theme") },
+          }}
         />
 
         <Btn type="submit" fullWidth>

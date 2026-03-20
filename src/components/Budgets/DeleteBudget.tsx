@@ -16,7 +16,7 @@ type DeleteBudgetProps = {
 
 const DeleteBudget = (props: DeleteBudgetProps): JSX.Element => {
   const { budget, close, open } = props;
-  const { setNotification } = useNotificationStore();
+  const setNotification = useNotificationStore((state) => state.setNotification);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 

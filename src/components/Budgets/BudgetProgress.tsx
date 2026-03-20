@@ -1,18 +1,13 @@
-import { Box, BoxProps, LinearProgress, styled } from "@mui/material";
+import { BoxProps, LinearProgress } from "@mui/material";
+
+import { WrapperProgress } from "./styles";
 
 type BudgetProgressProps = BoxProps & { range: string; value: number };
-
-const Wrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  backgroundColor: theme.palette.custom.beige100,
-  borderRadius: 4,
-  height: 32,
-  padding: theme.spacing(1),
-}));
 
 const BudgetProgress = (props: BudgetProgressProps): JSX.Element => {
   const { range, value } = props;
   return (
-    <Wrapper {...props}>
+    <WrapperProgress {...props}>
       <LinearProgress
         sx={(theme) => ({
           backgroundColor: theme.palette.custom.beige100,
@@ -26,7 +21,7 @@ const BudgetProgress = (props: BudgetProgressProps): JSX.Element => {
         value={value}
         variant="determinate"
       />
-    </Wrapper>
+    </WrapperProgress>
   );
 };
 

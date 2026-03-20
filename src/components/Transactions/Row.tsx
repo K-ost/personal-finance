@@ -1,4 +1,5 @@
 import { Box, TableRow, useMediaQuery, useTheme } from "@mui/material";
+import { memo } from "react";
 
 import { Transaction } from "../../types/types";
 import Amount from "../../ui/Amount";
@@ -39,4 +40,4 @@ const Row = (props: RowProps): JSX.Element => {
   );
 };
 
-export default Row;
+export default memo(Row);

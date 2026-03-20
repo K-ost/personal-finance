@@ -12,11 +12,7 @@ const Amount = (props: AmountProps): JSX.Element => {
   const result = transactionPrice(amount);
 
   return (
-    <Typography
-      variant="body1"
-      fontWeight={700}
-      color={isPositive ? "success" : "error"}
-    >
+    <Typography variant="body1" fontWeight={700} color={isPositive ? "success" : "error"}>
       {result}
     </Typography>
   );

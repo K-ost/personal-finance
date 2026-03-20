@@ -29,8 +29,9 @@ type FormData = {
 
 const EditBudget = (props: EditBudgetProps): JSX.Element => {
   const { budget, close, open } = props;
-  const { usedCategories, usedThemes } = useThemesStore();
-  const { setNotification } = useNotificationStore();
+  const usedCategories = useThemesStore((state) => state.usedCategories);
+  const usedThemes = useThemesStore((state) => state.usedThemes);
+  const setNotification = useNotificationStore((state) => state.setNotification);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 
@@ -84,14 +85,18 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
           label={t("form.budgetCategory.label")}
           options={CategoriesOptions}
           usedoptions={usedCategories}
-          inputProps={{ ...register("category") }}
+          slotProps={{
+            input: { ...register("category") },
+          }}
           defaultValue={budget.category}
         />
 
         <CustomInput
           label={t("form.maxSpend.label")}
           adornment="$"
-          inputProps={{ ...register("maximum", FORM_SETTINGS.target) }}
+          slotProps={{
+            input: { ...register("maximum", FORM_SETTINGS.target) },
+          }}
           error={errors.maximum ? true : false}
           helperText={errors.maximum && errors.maximum.message}
         />
@@ -101,7 +106,9 @@ const EditBudget = (props: EditBudgetProps): JSX.Element => {
           options={potsColorOptions}
           usedoptions={usedThemes}
           colorpicker="true"
-          inputProps={{ ...register("theme") }}
+          slotProps={{
+            input: { ...register("theme") },
+          }}
           defaultValue={budget.theme}
         />
 

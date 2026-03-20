@@ -1,18 +1,13 @@
-import { Box, BoxProps, Stack, styled, Typography } from "@mui/material";
+import { BoxProps, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import BtnMore from "../../ui/BtnMore";
+import { Wrapper } from "./styles";
 
 type BudgetLatestProps = BoxProps & {
   category: string;
   children: React.ReactNode;
 };
-
-const Wrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.custom.beige100,
-  borderRadius: 12,
-  padding: theme.spacing(5),
-}));
 
 const BudgetLatest = (props: BudgetLatestProps): JSX.Element => {
   const { category, children } = props;
