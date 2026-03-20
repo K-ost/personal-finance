@@ -7,7 +7,7 @@ import {
   getLocalPrice,
   getProgressValue,
   transactionPrice,
-} from "../utils/utils";
+} from "../utils";
 
 describe("Utils", () => {
   it("getLocalPrice", () => {

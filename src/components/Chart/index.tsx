@@ -2,8 +2,8 @@ import { BoxProps, Typography } from "@mui/material";
 import { PieChart } from "@mui/x-charts";
 import { useTranslation } from "react-i18next";
 
-import useBudgetHook from "../../hooks/useBudgetHook";
 import { Budget } from "../../types/types";
+import ChartService from "../../utils/ChartService";
 import { getChartLimit, getLocalPrice } from "../../utils/utils";
 import { ChartContainer, ChartInner, ChartText } from "./styles";
 
@@ -11,11 +11,14 @@ type ChartProps = BoxProps & {
   data: Budget[];
 };
 
+const chartService = new ChartService();
+
 const Chart = (props: ChartProps): JSX.Element => {
   const { data } = props;
   const limitAmount = getChartLimit(data);
-  const { chartData, spentAll } = useBudgetHook({ data });
   const { t } = useTranslation();
+  const chartData = chartService.getChartData(data);
+  const allSpent = chartService.getAllSpent(chartData);
 
   return (
     <ChartContainer {...props}>
@@ -36,7 +39,7 @@ const Chart = (props: ChartProps): JSX.Element => {
         />
         <ChartText>
           <Typography variant="h1" component="div" sx={{ mb: 2 }}>
-            {getLocalPrice(spentAll, true)}
+            {getLocalPrice(allSpent)}
           </Typography>
           <Typography variant="body2" color="textSecondary">
             {t("budgets.limit", { amount: limitAmount })}

@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
-import useBudgetHook from "../../hooks/useBudgetHook";
 import { Budget } from "../../types/types";
+import BudgetService from "../../utils/BudgetService";
 import { getLocalPrice } from "../../utils/utils";
 import { Item } from "./styles";
 
@@ -9,10 +9,12 @@ type BudgetLineProps = {
   budget: Budget;
 };
 
+const budgetService = new BudgetService();
+
 const BudgetLine = (props: BudgetLineProps): JSX.Element => {
   const { budget } = props;
 
-  const { spent } = useBudgetHook({ budget });
+  const spent = budgetService.getBudgetSpent(budget);
 
   return (
     <Item bg={budget.theme}>

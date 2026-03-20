@@ -2,12 +2,12 @@ import { MenuItem, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import useBudgetHook from "../../hooks/useBudgetHook";
 import { Budget } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
 import IconTitle from "../../ui/IconTitle";
 import MenuIcon from "../../ui/MenuIcon";
 import Wrap from "../../ui/Wrap";
+import BudgetService from "../../utils/BudgetService";
 import { getLocalPrice } from "../../utils/utils";
 import TransactionItem from "../Transactions/TransactionItem";
 import BudgetLatest from "./BudgetLatest";
@@ -19,6 +19,8 @@ type BudgetItemProps = {
   budget: Budget;
 };
 
+const budgetService = new BudgetService();
+
 const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const { budget } = props;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -26,7 +28,9 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false);
   const { t } = useTranslation();
 
-  const { percent, remaining, spent } = useBudgetHook({ budget });
+  const spent = budgetService.getBudgetSpent(budget);
+  const remaining = budget.maximum - spent;
+  const percent = budgetService.getBudgetPercent(budget.maximum, spent);
 
   const editHandler = () => {
     setAnchorEl(null);
