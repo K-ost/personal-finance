@@ -1,7 +1,11 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const ProtectedRoutes = ({ isAuth }: { isAuth: boolean }): JSX.Element => {
-  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+  const location = useLocation();
+  if (!isAuth && location.pathname !== "/login") {
+    return <Navigate to="/login" replace />;
+  }
+  return <Outlet />;
 };
 
 export default ProtectedRoutes;
