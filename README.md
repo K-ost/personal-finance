@@ -41,7 +41,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [https://github.com/K-ost/personal-finance](https://github.com/K-ost/personal-finance)
-- Live Site URL: [https://k-ost.github.io/personal-finance/login](https://personal-finance-chi-three.vercel.app)
+- Live Site URL: [https://personal-finance-chi-three.vercel.app](https://personal-finance-chi-three.vercel.app)
 
 ## My process
 
