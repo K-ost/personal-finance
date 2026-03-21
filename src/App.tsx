@@ -13,11 +13,13 @@ import Pots from "./pages/Pots";
 import SignUp from "./pages/SignUp";
 import Transactions from "./pages/Transactions";
 import { useLanguageStore } from "./store/useAppStore";
+import { useIsLogged } from "./store/useAuthStore";
 import Notification from "./ui/Notification";
 
 function App() {
   const lang = useLanguageStore();
   const { i18n } = useTranslation();
+  const isAuth = useIsLogged();
 
   useEffect(() => {
     i18n.changeLanguage(lang);
@@ -27,11 +29,11 @@ function App() {
     <>
       <Styles />
       <Routes>
-        <Route element={<PublicRoutes />}>
+        <Route element={<PublicRoutes isAuth={isAuth} />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route element={<ProtectedRoutes />}>
+        <Route element={<ProtectedRoutes isAuth={isAuth} />}>
           <Route path="/" index element={<Home />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/budgets" element={<Budgets />} />
