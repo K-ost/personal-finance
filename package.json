@@ -1,6 +1,6 @@
 {
   "name": "personal-finance",
-  "homepage": "https://K-ost.github.io/personal-finance",
+  "homepage": "https://personal-finance-chi-three.vercel.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "preview": "vite preview",
-    "test": "vitest",
-    "deploy": "npm run build && gh-pages -d dist"
+    "test": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,7 +18,6 @@
     "@mui/material": "^7.3.9",
     "@mui/x-charts": "^8.27.5",
     "@tanstack/react-query": "^5.90.21",
-    "gh-pages": "^6.1.1",
     "i18next": "^25.8.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
