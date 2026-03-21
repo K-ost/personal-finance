@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/personal-finance",
+  base: "/",
   test: {
     environment: "jsdom",
     globals: true,
