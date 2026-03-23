@@ -4,9 +4,9 @@ import { useSearchParams } from "react-router-dom";
 
 import BillsTable from "../components/BillsTable";
 import Filter from "../components/Filter";
-import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
 import MainLayout from "../components/MainLayout";
+import Search from "../components/Search";
 import SummaryBills from "../components/SummaryBills";
 import TotalBills from "../components/TotalBills";
 import TransactionsLoading from "../components/Transactions/Loading";

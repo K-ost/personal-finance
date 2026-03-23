@@ -4,9 +4,9 @@ import { useSearchParams } from "react-router-dom";
 
 import Filter from "../components/Filter";
 import FilterCategory from "../components/Filter/FilterCategory";
-import Search from "../components/Filter/Search";
 import Sorting from "../components/Filter/Sorting";
 import MainLayout from "../components/MainLayout";
+import Search from "../components/Search";
 import TransactionsTable from "../components/Transactions";
 import TransactionsLoading from "../components/Transactions/Loading";
 import { TRANSACTIONS_URI } from "../constants/constants";
