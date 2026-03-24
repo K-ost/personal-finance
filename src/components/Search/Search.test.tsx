@@ -42,4 +42,13 @@ describe("Search component", () => {
       expect(screen.getByTestId("location").textContent).toBe("?q=test");
     });
   });
+
+  it("Removing q if the query is empty", async () => {
+    const { input } = setup(["/?q=test"]);
+    expect(screen.getByTestId("location").textContent).toBe("?q=test");
+    await userEvent.clear(input);
+    await waitFor(() => {
+      expect(screen.getByTestId("location").textContent).toBe("");
+    });
+  });
 });
