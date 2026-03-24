@@ -12,14 +12,14 @@ const LocationDisplay = () => {
 };
 
 function setup(query?: string[]) {
-  render(
+  const result = render(
     <Wrapper initialEntries={query}>
       <Search />
       <LocationDisplay />
     </Wrapper>,
   );
   const input = screen.getByRole("searchbox", { name: "Search" });
-  return { input };
+  return { input, ...result };
 }
 
 describe("Search component", () => {
@@ -49,6 +49,19 @@ describe("Search component", () => {
     await userEvent.clear(input);
     await waitFor(() => {
       expect(screen.getByTestId("location").textContent).toBe("");
+    });
+  });
+
+  it("Doesn't break other query parameters", async () => {
+    const { input } = setup(["/?page=2"]);
+    expect(screen.getByTestId("location").textContent).toBe("?page=2");
+    await userEvent.type(input, "search");
+    await waitFor(() => {
+      expect(screen.getByTestId("location").textContent).toBe("?page=2&q=search");
+    });
+    await userEvent.clear(input);
+    await waitFor(() => {
+      expect(screen.getByTestId("location").textContent).toBe("?page=2");
     });
   });
 });
