@@ -25,8 +25,12 @@ const Search = (props: TextFieldProps): JSX.Element => {
 
   return (
     <CustomInput
+      type="search"
       placeholder={t("filter.searchPlace")}
-      defaultValue={paramValue}
+      value={search}
+      slotProps={{
+        htmlInput: { "aria-label": "Search" },
+      }}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
       {...props}
     />

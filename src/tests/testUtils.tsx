@@ -13,19 +13,21 @@ const queryClient = new QueryClient();
 
 export const APINock = nock(API_URL);
 
-export const Wrapper = ({
-  children = <App />,
-  initialEntries,
-}: {
+type WrapperProps = {
   children?: React.ReactNode;
   initialEntries?: string[];
-}): JSX.Element => (
-  <MemoryRouter initialEntries={initialEntries}>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </QueryClientProvider>
-  </MemoryRouter>
-);
+};
+
+export const Wrapper = (props: WrapperProps): JSX.Element => {
+  const { children = <App />, initialEntries } = props;
+  return (
+    <MemoryRouter initialEntries={initialEntries}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      </QueryClientProvider>
+    </MemoryRouter>
+  );
+};
 
 export const WrapperHook = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
