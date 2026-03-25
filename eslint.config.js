@@ -3,6 +3,7 @@ import { defineConfig } from "eslint/config";
 import importPlugin from "eslint-plugin-import";
 import react from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import storybook from "eslint-plugin-storybook";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -10,7 +11,6 @@ import tseslint from "typescript-eslint";
 export default defineConfig([
   js.configs.recommended,
   ...tseslint.configs.recommended,
-
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
@@ -62,4 +62,5 @@ export default defineConfig([
       "simple-import-sort/exports": "error",
     },
   },
+  ...storybook.configs["flat/recommended"],
 ]);

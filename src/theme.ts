@@ -11,7 +11,7 @@ declare module "@mui/material/styles" {
   }
 }
 
-export const theme = createTheme({
+const customTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -22,6 +22,9 @@ export const theme = createTheme({
     },
   },
   palette: {
+    background: {
+      default: "#F8F4F0",
+    },
     primary: {
       main: "#201F24",
       light: "#696868",
@@ -102,3 +105,5 @@ export const theme = createTheme({
   },
   spacing: 4,
 });
+
+export default customTheme;

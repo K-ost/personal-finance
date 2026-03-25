@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "sb": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -28,6 +30,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@storybook/addon-themes": "^10.3.3",
+    "@storybook/react-vite": "^10.3.3",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
@@ -43,11 +47,13 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-storybook": "^10.3.3",
     "eslint-plugin-unused-imports": "^4.4.1",
     "factory.ts": "^1.4.1",
     "globals": "^15.15.0",
     "jsdom": "^25.0.1",
     "nock": "^14.0.0-beta.14",
+    "storybook": "^10.3.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.57.1",
     "vite": "^8.0.0",
