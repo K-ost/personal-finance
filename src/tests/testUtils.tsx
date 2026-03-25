@@ -7,7 +7,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
 import { API_URL } from "../constants/constants";
-import { theme } from "../theme";
+import customTheme from "../theme";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +23,7 @@ export const Wrapper = (props: WrapperProps): JSX.Element => {
   return (
     <MemoryRouter initialEntries={initialEntries}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={customTheme}>{children}</ThemeProvider>
       </QueryClientProvider>
     </MemoryRouter>
   );
