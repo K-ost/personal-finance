@@ -1,36 +1,15 @@
-import {
-  Box,
-  BoxProps,
-  styled,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, BoxProps, Typography, useMediaQuery, useTheme } from "@mui/material";
 
-import icon from "../assets/icon-pot.svg";
-import { getLocalPrice } from "../utils/utils";
+import icon from "../../assets/icon-pot.svg";
+import { getLocalPrice } from "../../utils/utils";
+import { Div, Line } from "./styles";
 
 type BudgetAmountProps = BoxProps & {
   amount: number;
-  color?: string;
   title: string;
   big?: "true";
+  color?: string;
 };
-
-const Div = styled(Box)<{ big?: string }>(({ theme, big }) => ({
-  backgroundColor: big ? theme.palette.custom.beige100 : "none",
-  borderRadius: 12,
-  display: "flex",
-  flexGrow: 1,
-  padding: big ? `${theme.spacing(4)} ${theme.spacing(6)}` : 0,
-  position: "relative",
-}));
-const Line = styled(Box)<{ bg?: string }>(({ theme, bg }) => ({
-  backgroundColor: bg ? bg : theme.palette.custom.beige100,
-  borderRadius: 4,
-  minWidth: 4,
-  marginRight: theme.spacing(4),
-}));
 
 const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
   const { amount, title, color, big } = props;
@@ -39,11 +18,7 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
 
   return (
     <Div big={big}>
-      {big ? (
-        <img src={icon} alt="" style={{ marginRight: 20 }} />
-      ) : (
-        <Line bg={color} />
-      )}
+      {big ? <img src={icon} alt="" style={{ marginRight: 20 }} /> : <Line bg={color} />}
       <Box>
         <Typography
           variant={big ? "body1" : "body2"}

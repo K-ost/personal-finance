@@ -11,18 +11,16 @@ const CustomInput = (props: CustomInputProps): JSX.Element => {
   return (
     <Input
       variant="outlined"
-      InputLabelProps={{ shrink: true }}
-      slotProps={
-        adornment
-          ? {
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">{adornment}</InputAdornment>
-                ),
-              },
-            }
-          : undefined
-      }
+      slotProps={{
+        input: {
+          startAdornment: adornment ? (
+            <InputAdornment position="start">{adornment}</InputAdornment>
+          ) : undefined,
+        },
+        inputLabel: {
+          shrink: true,
+        },
+      }}
       {...props}
     />
   );
