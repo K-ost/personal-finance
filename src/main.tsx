@@ -7,7 +7,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App.tsx";
-import customTheme from "./theme.ts";
+import customTheme from "./themes/theme.ts";
 
 const queryClient = new QueryClient({
   defaultOptions: {

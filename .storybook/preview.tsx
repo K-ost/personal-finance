@@ -3,7 +3,7 @@ import type { Preview } from "@storybook/react-vite";
 import { BrowserRouter } from "react-router-dom";
 
 import Styles from "../src/components/Styles";
-import customTheme from "../src/theme";
+import customTheme from "../src/themes/theme";
 
 const preview: Preview = {
   parameters: {

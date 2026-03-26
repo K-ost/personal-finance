@@ -7,7 +7,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
 import { API_URL } from "../constants/constants";
-import customTheme from "../theme";
+import customTheme from "../themes/theme";
 
 const queryClient = new QueryClient();
 
