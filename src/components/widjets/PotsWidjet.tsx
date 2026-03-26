@@ -9,6 +9,7 @@ import Wrap from "../../ui/Wrap";
 
 const PotsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
+
   const { data, isError, isLoading, isSuccess } = useGetData<Pot[]>({
     key: ["pots"],
     uri: "/pots",
