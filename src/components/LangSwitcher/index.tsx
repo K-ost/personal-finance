@@ -4,11 +4,7 @@ import { useAppStore, useLanguageStore } from "../../store/useAppStore";
 import { useAuthStore } from "../../store/useAuthStore";
 import { LangBtn } from "./styles";
 
-type LangSwitcher = StackProps & {
-  title?: string;
-};
-
-const LangSwitcher = (props: LangSwitcher): JSX.Element => {
+const LangSwitcher = (props: StackProps): JSX.Element => {
   const lang = useLanguageStore();
   const setLang = useAppStore((state) => state.setLang);
   const token = useAuthStore((state) => state.token);
