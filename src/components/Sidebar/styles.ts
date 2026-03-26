@@ -1,6 +1,6 @@
-import { Box, BoxProps, duration, List, ListProps, styled } from "@mui/material";
+import { Box, BoxProps, List, ListProps, styled } from "@mui/material";
 
-import { sideWidth, sideWidthMin } from "./constants";
+import { duration, sideWidth, sideWidthMin } from "./constants";
 
 type SidebarProps = {
   open: boolean;
