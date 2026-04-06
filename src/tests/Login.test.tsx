@@ -37,7 +37,7 @@ describe("Login Page", () => {
       password: "1111",
     }).reply(201, {
       accessToken: "mocked-token",
-      user: { _id: "1", email: "test@test.com", name: "Test" },
+      user: { id: "1", email: "test@test.com", name: "Test" },
     });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");

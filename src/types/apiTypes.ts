@@ -3,7 +3,7 @@ export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 export type UserType = {
   email: string;
   name: string;
-  _id: string;
+  id: string;
 };
 
 export type AuthType = {
