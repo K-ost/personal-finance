@@ -7,7 +7,7 @@ import { LangBtn } from "./styles";
 const LangSwitcher = (props: StackProps): JSX.Element => {
   const lang = useLanguageStore();
   const setLang = useAppStore((state) => state.setLang);
-  const token = useAuthStore((state) => state.token);
+  const token = useAuthStore((state) => state.accessToken);
   const isAuth = token ? "true" : "false";
 
   return (
