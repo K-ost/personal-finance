@@ -22,7 +22,7 @@ describe("Login Page", () => {
     APINock.post("/login", {
       email: "admin@test.com",
       password: "12345",
-    }).reply(403, { msg: "Incorrect password" });
+    }).reply(401, { msg: "Incorrect password" });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "12345");
@@ -35,7 +35,10 @@ describe("Login Page", () => {
     APINock.post("/login", {
       email: "admin@test.com",
       password: "1111",
-    }).reply(201, { accessToken: "mocked-token" });
+    }).reply(201, {
+      accessToken: "mocked-token",
+      user: { _id: "1", email: "test@test.com", name: "Test" },
+    });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
     await userEvent.type(screen.getByTestId("password"), "1111");
@@ -43,10 +46,4 @@ describe("Login Page", () => {
 
     expect(await screen.findByText("You've been logged"));
   });
-
-  // it("Logout", async () => {
-  //   expect(screen.getByText("Overview")).toBeInTheDocument();
-  //   await userEvent.click(screen.getByTestId("logoutBtn"));
-  //   expect(screen.getByText(/Keep track of/)).toBeInTheDocument();
-  // });
 });

@@ -21,6 +21,7 @@ type FormData = {
 
 const LoginPage = (): JSX.Element => {
   const setToken = useAuthStore((state) => state.setToken);
+  const setUser = useAuthStore((state) => state.setUser);
   const setNotification = useNotificationStore((state) => state.setNotification);
   const { t } = useTranslation();
   const { settings } = useFormSettings();
@@ -48,8 +49,9 @@ const LoginPage = (): JSX.Element => {
           if (data.msg) {
             setNotification(data.msg);
           }
-          if (data.accessToken) {
+          if (data.accessToken && data.user) {
             setToken(data.accessToken);
+            setUser(data.user);
             setNotification(`You've been logged`);
           }
         },
