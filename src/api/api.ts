@@ -7,7 +7,7 @@ export const apiRequest = async <T, K>(
   method: API_Method = "GET",
   body?: K,
 ): Promise<T> => {
-  const token = useAuthStore.getState().token;
+  const token = useAuthStore.getState().accessToken;
   const response = await fetch(`${API_URL}${url}`, {
     headers: {
       "Content-Type": "application/json",
