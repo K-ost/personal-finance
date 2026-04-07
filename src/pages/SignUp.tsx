@@ -1,11 +1,13 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import LoginLayout from "../components/LoginLayout";
+import useMutateData from "../hooks/useMutateData";
 import useFormSettings from "../hooks/useSettings";
 import { useNotificationStore } from "../store/useNotificationStore";
+import { AuthType } from "../types/apiTypes";
 import Btn from "../ui/Btn";
 import CustomInput from "../ui/CustomInput";
 import FormBody from "../ui/FormBody";
@@ -29,9 +31,21 @@ const SignUp = (): JSX.Element => {
     reset,
   } = useForm<FormData>();
 
+  const { mutate, isPending } = useMutateData<AuthType, FormData>({
+    key: ["register"],
+    method: "POST",
+    uri: "/register",
+  });
+
   const signUpHandler = (data: FormData) => {
-    setNotification(`User ${data.email} has been registered`);
-    reset();
+    mutate(data, {
+      onSuccess(data) {
+        if (data.msg) {
+          setNotification(data.msg);
+          reset();
+        }
+      },
+    });
   };
 
   return (
@@ -41,8 +55,8 @@ const SignUp = (): JSX.Element => {
         <form onSubmit={handleSubmit(signUpHandler)}>
           <CustomInput
             label={t("form.name.label")}
-            inputProps={{
-              ...register("name", settings.name),
+            slotProps={{
+              input: { ...register("name", settings.name) },
             }}
             error={errors.name ? true : false}
             helperText={errors.name?.message}
@@ -51,8 +65,8 @@ const SignUp = (): JSX.Element => {
           <CustomInput
             label={t("form.email.label")}
             type="email"
-            inputProps={{
-              ...register("email", settings.email),
+            slotProps={{
+              input: { ...register("email", settings.email) },
             }}
             error={errors.email ? true : false}
             helperText={errors.email?.message}
@@ -60,8 +74,8 @@ const SignUp = (): JSX.Element => {
 
           <PassInput
             label={t("form.createPassword.label")}
-            inputProps={{
-              ...register("password", settings.password),
+            slotProps={{
+              input: { ...register("password", settings.password) },
             }}
             error={errors.password ? true : false}
             helperText={errors.password?.message ?? t("form.createPassword.helper")}
@@ -71,6 +85,9 @@ const SignUp = (): JSX.Element => {
           <Box sx={{ mb: "32px" }}>
             <Btn color="primary" type="submit" fullWidth>
               {t("signup.btn")}
+              {isPending && (
+                <CircularProgress size={24} color="secondary" sx={{ ml: 4 }} />
+              )}
             </Btn>
           </Box>
         </form>
