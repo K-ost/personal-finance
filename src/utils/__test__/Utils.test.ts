@@ -46,6 +46,7 @@ describe("Utils", () => {
         maximum: 1000,
         theme: "#d1d1d1",
         latest: [],
+        userId: "userId1",
         _id: "1",
       },
       {
@@ -53,6 +54,7 @@ describe("Utils", () => {
         maximum: 500,
         theme: "#a1a1a1",
         latest: [],
+        userId: "userId1",
         _id: "2",
       },
     ]);

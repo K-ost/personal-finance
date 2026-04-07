@@ -24,6 +24,7 @@ export const budgetFactory = Factory.Sync.makeFactory<Budget>({
   maximum: Factory.each((i) => maximums[i]),
   latest: transactionFactory.buildList(3),
   theme: "#D1D1D1",
+  userId: "userId1",
 });
 
 export const potFactory = Factory.Sync.makeFactory<Pot>({
@@ -32,4 +33,5 @@ export const potFactory = Factory.Sync.makeFactory<Pot>({
   target: Factory.each((i) => (i + 1) * 1000),
   theme: Factory.each((i) => potsColorOptions[i].value),
   total: Factory.each((i) => (i + 1) * 100),
+  userId: "userId1",
 });
