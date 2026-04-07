@@ -1,9 +1,12 @@
 export type API_Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
+export type UserRole = "admin" | "user";
+
 export type UserType = {
   email: string;
   name: string;
   id: string;
+  role: UserRole;
 };
 
 export type AuthType = {

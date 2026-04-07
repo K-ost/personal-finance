@@ -8,6 +8,7 @@ import AddPot from "../components/Pots/AddPot";
 import PotLoading from "../components/Pots/PotLoading";
 import { POTS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
+import { useUserId } from "../store/useAuthStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Pot } from "../types/types";
 import Btn from "../ui/Btn";
@@ -16,11 +17,12 @@ import Error from "../ui/Error";
 const Pots = (): JSX.Element => {
   const { t } = useTranslation();
   const [addDialog, setAddDialog] = useState<boolean>(false);
-  const { setUsedThemes } = useThemesStore();
+  const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
+  const userId = useUserId();
 
   const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
     key: ["pots"],
-    uri: POTS_URI,
+    uri: POTS_URI + `?userId=${userId}`,
   });
 
   useEffect(() => {

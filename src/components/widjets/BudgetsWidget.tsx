@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Chart from "../../components/Chart";
 import { BUDGETS_URI } from "../../constants/constants";
 import useGetData from "../../hooks/useGetData";
+import { useUserId } from "../../store/useAuthStore";
 import { Budget } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
 import Error from "../../ui/Error";
@@ -11,9 +12,11 @@ import Wrap from "../../ui/Wrap";
 
 const BudgetsWidget = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
+  const userId = useUserId();
+
   const { data, isError, isLoading, isSuccess } = useGetData<Budget[]>({
     key: ["budgets"],
-    uri: BUDGETS_URI,
+    uri: BUDGETS_URI + `?userId=${userId}`,
   });
 
   if (isLoading) return <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />;
@@ -30,16 +33,19 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
           <Grid size={{ xs: 12, sm: 3 }}>
             <div>
               <Grid container spacing={4}>
-                {data.map((budget) => (
-                  <Grid key={budget._id} size={{ xs: 6, sm: 12 }}>
-                    <BudgetAmount
-                      amount={budget.maximum}
-                      title={budget.category}
-                      color={budget.theme}
-                    />
-                  </Grid>
-                ))}
+                {data
+                  .map((budget) => (
+                    <Grid key={budget._id} size={{ xs: 6, sm: 12 }}>
+                      <BudgetAmount
+                        amount={budget.maximum}
+                        title={budget.category}
+                        color={budget.theme}
+                      />
+                    </Grid>
+                  ))
+                  .slice(0, 5)}
               </Grid>
+              {data.length > 5 && <p>...</p>}
             </div>
           </Grid>
         </Grid>

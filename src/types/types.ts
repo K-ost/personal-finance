@@ -31,6 +31,7 @@ export type Budget = {
   maximum: number;
   theme: string;
   latest: Transaction[];
+  userId: string;
   _id: string;
 };
 
@@ -39,6 +40,7 @@ export type Pot = {
   target: number;
   total: number;
   theme: string;
+  userId: string;
   _id: string;
 };
 

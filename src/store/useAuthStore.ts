@@ -45,3 +45,4 @@ export const useAuthStore = create<AuthState>()(
 
 export const useToken = () => useAuthStore.getState().accessToken;
 export const useIsLogged = () => !!useAuthStore((state) => state.accessToken);
+export const useUserId = () => useAuthStore.getState().user?.id;

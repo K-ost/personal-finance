@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { FORM_SETTINGS, POTS_URI } from "../../constants/constants";
 import useMutateData from "../../hooks/useMutateData";
+import { useUserId } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { useThemesStore } from "../../store/useThemesStore";
 import { Pot } from "../../types/types";
@@ -27,6 +28,7 @@ const AddPot = (props: AddPotProps): JSX.Element => {
   const setNotification = useNotificationStore((state) => state.setNotification);
   const usedThemes = useThemesStore((state) => state.usedThemes);
   const { t } = useTranslation();
+  const userId = useUserId();
 
   const {
     formState: { errors },
@@ -42,12 +44,14 @@ const AddPot = (props: AddPotProps): JSX.Element => {
   });
 
   const addHandler = (data: FormData) => {
+    if (!userId) return;
     mutate(
       {
         name: data.name,
         target: Number(data.target),
         theme: data.theme,
         total: 0,
+        userId,
       },
       {
         onSuccess: () => {

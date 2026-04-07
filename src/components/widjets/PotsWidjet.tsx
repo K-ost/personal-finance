@@ -2,6 +2,7 @@ import { Box, BoxProps, Grid, Skeleton } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import useGetData from "../../hooks/useGetData";
+import { useUserId } from "../../store/useAuthStore";
 import { Pot } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
 import Error from "../../ui/Error";
@@ -9,10 +10,11 @@ import Wrap from "../../ui/Wrap";
 
 const PotsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
+  const userId = useUserId();
 
   const { data, isError, isLoading, isSuccess } = useGetData<Pot[]>({
     key: ["pots"],
-    uri: "/pots",
+    uri: `/pots?userId=${userId}`,
   });
 
   if (isLoading) return <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />;

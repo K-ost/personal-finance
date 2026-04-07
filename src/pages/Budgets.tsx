@@ -9,6 +9,7 @@ import MainLayout from "../components/MainLayout";
 import ChartWidget from "../components/widjets/ChartWidget";
 import { BUDGETS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
+import { useUserId } from "../store/useAuthStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Budget } from "../types/types";
 import AlertBox from "../ui/AlertBox";
@@ -19,11 +20,13 @@ import Wrap from "../ui/Wrap";
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();
   const [addDialog, setAddDialog] = useState<boolean>(false);
-  const { setUsedCategories, setUsedThemes } = useThemesStore();
+  const setUsedCategories = useThemesStore((state) => state.setUsedCategories);
+  const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
+  const userId = useUserId();
 
   const { data, isLoading, isSuccess, isError } = useGetData<Budget[]>({
     key: ["budgets"],
-    uri: BUDGETS_URI,
+    uri: BUDGETS_URI + `?userId=${userId}`,
   });
 
   useEffect(() => {
