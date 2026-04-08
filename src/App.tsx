@@ -1,20 +1,21 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
 
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
 import Styles from "./components/Styles";
-import Bills from "./pages/Bills";
-import Budgets from "./pages/Budgets";
-import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
-import Pots from "./pages/Pots";
 import SignUp from "./pages/SignUp";
-import Transactions from "./pages/Transactions";
 import { useLanguageStore } from "./store/useAppStore";
 import { useIsLogged } from "./store/useAuthStore";
 import Notification from "./ui/Notification";
+
+const Home = lazy(() => import("./pages/Home"));
+const Transactions = lazy(() => import("./pages/Transactions"));
+const Budgets = lazy(() => import("./pages/Budgets"));
+const Pots = lazy(() => import("./pages/Pots"));
+const Bills = lazy(() => import("./pages/Bills"));
 
 function App() {
   const lang = useLanguageStore();
@@ -33,7 +34,14 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route element={<ProtectedRoutes isAuth={isAuth} />}>
+
+        <Route
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ProtectedRoutes isAuth={isAuth} />
+            </Suspense>
+          }
+        >
           <Route path="/" index element={<Home />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/budgets" element={<Budgets />} />
