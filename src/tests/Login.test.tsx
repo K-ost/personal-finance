@@ -21,11 +21,11 @@ describe("Login Page", () => {
   it("Login - Error message", async () => {
     APINock.post("/login", {
       email: "admin@test.com",
-      password: "12345",
+      password: "1111",
     }).reply(401, { msg: "Incorrect password" });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
-    await userEvent.type(screen.getByTestId("password"), "12345");
+    await userEvent.type(screen.getByTestId("password"), "1111");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(await screen.findByText("Incorrect password"));
@@ -34,14 +34,14 @@ describe("Login Page", () => {
   it("Login - successfull", async () => {
     APINock.post("/login", {
       email: "admin@test.com",
-      password: "1111",
+      password: "1234567",
     }).reply(201, {
       accessToken: "mocked-token",
-      user: { id: "1", email: "test@test.com", name: "Test" },
+      user: { id: "1", email: "test@test.com", name: "Test", role: "user" },
     });
 
     await userEvent.type(screen.getByTestId("email"), "admin@test.com");
-    await userEvent.type(screen.getByTestId("password"), "1111");
+    await userEvent.type(screen.getByTestId("password"), "1234567");
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(await screen.findByText("You've been logged"));

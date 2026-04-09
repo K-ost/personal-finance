@@ -21,3 +21,8 @@ export type ServerResponse<T> = {
   count?: number;
   page?: number;
 };
+
+export type ErrorResponse = {
+  message: string;
+  status: number;
+};
