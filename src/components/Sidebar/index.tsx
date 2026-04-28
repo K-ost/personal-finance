@@ -4,8 +4,11 @@ import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/logo-large.svg";
 import logoSmall from "../../assets/logo-small.svg";
+import useMutateData from "../../hooks/useMutateData";
 import { useAppStore, useSidebarStore } from "../../store/useAppStore";
 import { useAuthStore } from "../../store/useAuthStore";
+import { useNotificationStore } from "../../store/useNotificationStore";
+import { AuthType } from "../../types/apiTypes";
 import AsideBtn from "./AsideBtn";
 import { navMenuList } from "./constants";
 import {
@@ -20,13 +23,29 @@ import {
 import { Aside, AsideInner, AsideLogo, Nav } from "./styles";
 
 const Sidebar = () => {
-  const setSidebar = useAppStore((state) => state.setSidebar);
-  const sidebar = useSidebarStore();
-  const setLogout = useAuthStore((state) => state.setLogout);
-  const { t } = useTranslation();
   const theme = useTheme();
+  const sidebar = useSidebarStore();
+  const setSidebar = useAppStore((state) => state.setSidebar);
+  const setLogout = useAuthStore((state) => state.setLogout);
+  const setNotification = useNotificationStore((state) => state.setNotification);
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+  const { t } = useTranslation();
+
+  const { mutate, isPending } = useMutateData<AuthType, undefined>({
+    key: ["logout"],
+    method: "POST",
+    uri: "/logout",
+  });
+
+  const logoutHandler = () => {
+    mutate(undefined, {
+      onSuccess(data) {
+        setNotification(data.msg);
+        setLogout();
+      },
+    });
+  };
 
   return (
     <Aside open={sidebar}>
@@ -63,12 +82,14 @@ const Sidebar = () => {
             })}
 
             <ListItem>
-              <AsideBtn onClick={() => setLogout()} data-testid="logoutBtn">
+              <AsideBtn onClick={logoutHandler} data-testid="logoutBtn">
                 <span className="iconBox">
                   <IconLogout />
                 </span>
                 {sidebar && isTablet && (
-                  <span className="btnTitle">{t(`nav.logout`)}</span>
+                  <span className="btnTitle">
+                    {isPending ? "Loading..." : t(`nav.logout`)}
+                  </span>
                 )}
               </AsideBtn>
             </ListItem>

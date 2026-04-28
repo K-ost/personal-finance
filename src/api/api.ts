@@ -16,6 +16,7 @@ export const apiRequest = async <T, K>(
     },
     body: body ? JSON.stringify(body) : undefined,
     method,
+    credentials: "include",
   });
 
   const data = await response.json();
