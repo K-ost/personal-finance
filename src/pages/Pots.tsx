@@ -8,6 +8,7 @@ import AddPot from "../components/Pots/AddPot";
 import PotLoading from "../components/Pots/PotLoading";
 import { POTS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
+import useUpdateRefresh from "../hooks/useUpdateRefresh";
 import { useUserId } from "../store/useAuthStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Pot } from "../types/types";
@@ -20,17 +21,18 @@ const Pots = (): JSX.Element => {
   const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
   const userId = useUserId();
 
-  const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
+  const { data, isLoading, isSuccess, isError, error } = useGetData<Pot[]>({
     key: ["pots"],
     uri: POTS_URI + `?userId=${userId}`,
   });
+
+  useUpdateRefresh({ error: error?.message ?? "", isError, key: ["pots"] });
 
   useEffect(() => {
     if (isSuccess) {
       setUsedThemes(data.map((el) => el.theme));
     }
-    return () => setUsedThemes([]);
-  }, [data, isSuccess, setUsedThemes]);
+  }, [data, isSuccess]);
 
   return (
     <MainLayout

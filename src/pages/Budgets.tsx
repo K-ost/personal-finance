@@ -9,6 +9,7 @@ import MainLayout from "../components/MainLayout";
 import ChartWidget from "../components/widjets/ChartWidget";
 import { BUDGETS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
+import useUpdateRefresh from "../hooks/useUpdateRefresh";
 import { useUserId } from "../store/useAuthStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Budget } from "../types/types";
@@ -24,10 +25,12 @@ const Budgets = (): JSX.Element => {
   const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
   const userId = useUserId();
 
-  const { data, isLoading, isSuccess, isError } = useGetData<Budget[]>({
+  const { data, isLoading, isSuccess, isError, error } = useGetData<Budget[]>({
     key: ["budgets"],
     uri: BUDGETS_URI + `?userId=${userId}`,
   });
+
+  useUpdateRefresh({ error: error?.message ?? "", isError, key: ["budgets"] });
 
   useEffect(() => {
     if (isSuccess) {

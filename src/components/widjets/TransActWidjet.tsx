@@ -12,7 +12,7 @@ const TransActionsWidjet = (props: BoxProps): JSX.Element => {
   const { t } = useTranslation();
   const { data, isError, isLoading, isSuccess } = useGetData<ServerResponse<Transaction>>(
     {
-      key: ["transactions"],
+      key: ["transactionsWidjet"],
       uri: "/transactions?limit=5",
     },
   );

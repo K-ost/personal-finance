@@ -15,7 +15,7 @@ const BillsWidget = (props: BoxProps): JSX.Element => {
 
   const { data, isError, isLoading, isSuccess } = useGetData<ServerResponse<Transaction>>(
     {
-      key: ["bills"],
+      key: ["billsWidjet"],
       uri: "/transactions?recurring=true",
     },
   );

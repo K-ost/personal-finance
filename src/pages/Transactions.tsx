@@ -11,6 +11,7 @@ import TransactionsTable from "../components/Transactions";
 import TransactionsLoading from "../components/Transactions/Loading";
 import { TRANSACTIONS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
+import useUpdateRefresh from "../hooks/useUpdateRefresh";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
 import Error from "../ui/Error";
@@ -29,12 +30,18 @@ const Transactions = (): JSX.Element => {
   const currentPage = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
   const params = searchParams.toString();
 
-  const { data, isLoading, isSuccess, isError } = useGetData<ServerResponse<Transaction>>(
-    {
-      key: ["transactions", params, currentPage.toString()],
-      uri: `${TRANSACTIONS_URI}?${params.length ? "&" + params : ""}`,
-    },
-  );
+  const { data, isLoading, isSuccess, isError, error } = useGetData<
+    ServerResponse<Transaction>
+  >({
+    key: ["transactions", params, currentPage.toString()],
+    uri: `${TRANSACTIONS_URI}?${params.length ? "&" + params : ""}`,
+  });
+
+  useUpdateRefresh({
+    error: error?.message ?? "",
+    isError,
+    key: ["transactions"],
+  });
 
   return (
     <MainLayout title={t("nav.transactions")}>

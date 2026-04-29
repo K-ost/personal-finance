@@ -13,7 +13,7 @@ const PotsWidjet = (props: BoxProps): JSX.Element => {
   const userId = useUserId();
 
   const { data, isError, isLoading, isSuccess } = useGetData<Pot[]>({
-    key: ["pots"],
+    key: ["potsWidjet"],
     uri: `/pots?userId=${userId}`,
   });
 

@@ -15,7 +15,7 @@ const BudgetsWidget = (props: BoxProps): JSX.Element => {
   const userId = useUserId();
 
   const { data, isError, isLoading, isSuccess } = useGetData<Budget[]>({
-    key: ["budgets"],
+    key: ["budgetsWidjet"],
     uri: BUDGETS_URI + `?userId=${userId}`,
   });
 

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { BALANCE_URI } from "../../constants/constants";
 import useGetData from "../../hooks/useGetData";
+import useUpdateRefresh from "../../hooks/useUpdateRefresh";
 import { BalanceType } from "../../types/types";
 import Balance from "../../ui/Balance";
 import Error from "../../ui/Error";
@@ -12,9 +13,15 @@ const BalanceWidget = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { t } = useTranslation();
 
-  const { data, isSuccess, isLoading, isError } = useGetData<BalanceType>({
+  const { data, isSuccess, isLoading, isError, error } = useGetData<BalanceType>({
     key: ["balance"],
     uri: BALANCE_URI,
+  });
+
+  useUpdateRefresh({
+    error: error?.message ?? "",
+    isError,
+    key: ["balance"],
   });
 
   if (isLoading)
