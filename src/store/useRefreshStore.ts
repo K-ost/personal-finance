@@ -20,3 +20,5 @@ export const useRefreshStore = create<AppState>()(
     ),
   ),
 );
+
+export const useIsExpired = () => useRefreshStore.getState().isExpired;

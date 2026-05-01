@@ -2,11 +2,16 @@ import { useTranslation } from "react-i18next";
 
 import AlertBox from "./AlertBox";
 
-const Error = (): JSX.Element => {
+type ErrorProps = {
+  text?: string;
+};
+
+const Error = (props: ErrorProps): JSX.Element => {
   const { t } = useTranslation();
+  const { text = t("alerts.serverError.text") } = props;
   return (
     <AlertBox severity="error" color="error" title={t("alerts.serverError.title")}>
-      {t("alerts.serverError.text")}
+      {text}
     </AlertBox>
   );
 };

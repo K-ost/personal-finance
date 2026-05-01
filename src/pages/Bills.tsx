@@ -13,6 +13,7 @@ import TransactionsLoading from "../components/Transactions/Loading";
 import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
 import useUpdateRefresh from "../hooks/useUpdateRefresh";
+import { useIsExpired } from "../store/useRefreshStore";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
 import Error from "../ui/Error";
@@ -21,6 +22,7 @@ import Wrap from "../ui/Wrap";
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();
   const theme = useTheme();
+  const isExpired = useIsExpired();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [searchParams] = useSearchParams();
   const params = searchParams.toString().length ? "&" + searchParams.toString() : "";
@@ -30,9 +32,10 @@ const Bills = (): JSX.Element => {
   >({
     key: ["bills", params],
     uri: `/transactions?recurring=true${params}`,
+    enabled: !isExpired,
   });
 
-  useUpdateRefresh({ error: error?.message ?? "", isError, key: ["bills"] });
+  useUpdateRefresh({ error: error?.message ?? "", isError });
 
   const { bills, info } = useRecurringBills({
     data: isSuccess ? data.data : [],

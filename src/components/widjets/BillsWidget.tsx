@@ -1,31 +1,20 @@
-import { BoxProps, Skeleton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import useGetData from "../../hooks/useGetData";
 import useRecurringBills from "../../hooks/useRecurringBills";
-import { ServerResponse } from "../../types/apiTypes";
 import { Transaction } from "../../types/types";
-import Error from "../../ui/Error";
 import Wrap from "../../ui/Wrap";
 import { getLocalPrice } from "../../utils/utils";
 import { BillsWidgetItem } from "../BillsTable/styles";
 
-const BillsWidget = (props: BoxProps): JSX.Element => {
+type BillsWidgetProps = {
+  data: Transaction[];
+};
+
+const BillsWidget = (props: BillsWidgetProps): JSX.Element => {
+  const { data } = props;
   const { t } = useTranslation();
-
-  const { data, isError, isLoading, isSuccess } = useGetData<ServerResponse<Transaction>>(
-    {
-      key: ["billsWidjet"],
-      uri: "/transactions?recurring=true",
-    },
-  );
-
-  const { info } = useRecurringBills({
-    data: isSuccess ? data.data : [],
-  });
-
-  if (isLoading) return <Skeleton height={320} variant="rounded" />;
-  if (isError) return <Error />;
+  const { info } = useRecurringBills({ data });
 
   return (
     <Wrap title={t("nav.recurringBills")} alllink="/bills" {...props}>

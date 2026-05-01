@@ -1,4 +1,3 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 import { useRefreshStore } from "../store/useRefreshStore";
@@ -6,14 +5,11 @@ import { useRefreshStore } from "../store/useRefreshStore";
 type Props = {
   isError: boolean;
   error: string;
-  key: string[];
 };
 
 const useUpdateRefresh = (props: Props) => {
-  const { error, isError, key } = props;
-  const isExpired = useRefreshStore((state) => state.isExpired);
+  const { error, isError } = props;
   const setIsExpired = useRefreshStore((state) => state.setIsExpired);
-  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (!isError) return;
@@ -21,13 +17,6 @@ const useUpdateRefresh = (props: Props) => {
       setIsExpired(true);
     }
   }, [error, isError]);
-
-  useEffect(() => {
-    if (isExpired) return;
-    queryClient.invalidateQueries({
-      queryKey: key,
-    });
-  }, [isExpired]);
 };
 
 export default useUpdateRefresh;

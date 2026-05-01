@@ -1,30 +1,22 @@
-import { Box, BoxProps, Grid, Skeleton } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import useGetData from "../../hooks/useGetData";
-import { useUserId } from "../../store/useAuthStore";
 import { Pot } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
-import Error from "../../ui/Error";
 import Wrap from "../../ui/Wrap";
 
-const PotsWidjet = (props: BoxProps): JSX.Element => {
+type PotsWidjetProps = {
+  data: Pot[];
+};
+
+const PotsWidjet = (props: PotsWidjetProps): JSX.Element => {
+  const { data } = props;
   const { t } = useTranslation();
-  const userId = useUserId();
 
-  const { data, isError, isLoading, isSuccess } = useGetData<Pot[]>({
-    key: ["potsWidjet"],
-    uri: `/pots?userId=${userId}`,
-  });
-
-  if (isLoading) return <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />;
-  if (isError) return <Error />;
-  if (isSuccess && !data.length) return <></>;
-
-  const totalSaved = isSuccess ? data.reduce((acum, el) => (acum += el.total), 0) : 0;
+  const totalSaved = data.reduce((acum, el) => (acum += el.total), 0);
 
   return (
-    <Wrap title={t("nav.pots")} alllink="/pots" {...props}>
+    <Wrap title={t("nav.pots")} alllink="/pots">
       <Grid container spacing={5}>
         <Grid size={{ xs: 12, sm: 5 }}>
           <BudgetAmount amount={totalSaved} title="Total Saved" big="true" />
@@ -32,18 +24,13 @@ const PotsWidjet = (props: BoxProps): JSX.Element => {
         <Grid size={{ xs: 12, sm: 7 }}>
           <Box>
             <Grid container spacing={4}>
-              {isSuccess &&
-                data
-                  .map((pot) => (
-                    <Grid size={6} key={pot._id}>
-                      <BudgetAmount
-                        amount={pot.total}
-                        title={pot.name}
-                        color={pot.theme}
-                      />
-                    </Grid>
-                  ))
-                  .slice(0, 4)}
+              {data
+                .map((pot) => (
+                  <Grid size={6} key={pot._id}>
+                    <BudgetAmount amount={pot.total} title={pot.name} color={pot.theme} />
+                  </Grid>
+                ))
+                .slice(0, 4)}
             </Grid>
           </Box>
         </Grid>

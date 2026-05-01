@@ -12,6 +12,7 @@ import TransactionsLoading from "../components/Transactions/Loading";
 import { TRANSACTIONS_URI } from "../constants/constants";
 import useGetData from "../hooks/useGetData";
 import useUpdateRefresh from "../hooks/useUpdateRefresh";
+import { useIsExpired } from "../store/useRefreshStore";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
 import Error from "../ui/Error";
@@ -25,6 +26,7 @@ const Transactions = (): JSX.Element => {
   const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isExpired = useIsExpired();
 
   // Getting pages
   const currentPage = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
@@ -35,12 +37,12 @@ const Transactions = (): JSX.Element => {
   >({
     key: ["transactions", params, currentPage.toString()],
     uri: `${TRANSACTIONS_URI}?${params.length ? "&" + params : ""}`,
+    enabled: !isExpired,
   });
 
   useUpdateRefresh({
     error: error?.message ?? "",
     isError,
-    key: ["transactions"],
   });
 
   return (
