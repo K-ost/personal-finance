@@ -18,6 +18,7 @@ const LangSwitcher = (props: StackProps): JSX.Element => {
         onClick={() => setLang("en")}
         sx={{ mr: 1 }}
         isauth={isAuth}
+        aria-label="English"
       >
         En
       </LangBtn>
@@ -26,6 +27,7 @@ const LangSwitcher = (props: StackProps): JSX.Element => {
         className={lang === "ru" ? "active" : ""}
         onClick={() => setLang("ru")}
         isauth={isAuth}
+        aria-label="Russian"
       >
         Ru
       </LangBtn>

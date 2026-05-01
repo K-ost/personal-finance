@@ -65,6 +65,7 @@ const Sidebar = () => {
                     className={sidebar ? "opened" : ""}
                     component={NavLink}
                     to={item.link}
+                    aria-label={t(`nav.${item.icon}`)}
                   >
                     <span className="iconBox">
                       {item.icon === "overview" && <IconOverview />}
@@ -82,7 +83,11 @@ const Sidebar = () => {
             })}
 
             <ListItem>
-              <AsideBtn onClick={logoutHandler} data-testid="logoutBtn">
+              <AsideBtn
+                onClick={logoutHandler}
+                data-testid="logoutBtn"
+                aria-label={t(`nav.logout`)}
+              >
                 <span className="iconBox">
                   <IconLogout />
                 </span>
