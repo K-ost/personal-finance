@@ -46,7 +46,7 @@ const Budgets = (): JSX.Element => {
   return (
     <MainLayout
       title={t("nav.budgets")}
-      btn={
+      btnSlot={
         isSuccess && (
           <Btn onClick={() => setAddDialog(true)} size="small">
             + {t("budgets.addnew.title")}

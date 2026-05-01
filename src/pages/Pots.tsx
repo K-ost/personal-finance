@@ -37,7 +37,7 @@ const Pots = (): JSX.Element => {
   return (
     <MainLayout
       title={t("nav.pots")}
-      btn={
+      btnSlot={
         isSuccess && (
           <Btn onClick={() => setAddDialog(true)} size="small">
             + {t("pots.addnew.title")}

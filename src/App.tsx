@@ -10,13 +10,13 @@ import LoginPage from "./pages/LoginPage";
 import SignUp from "./pages/SignUp";
 import { useLanguageStore } from "./store/useAppStore";
 import { useIsLogged } from "./store/useAuthStore";
-import Notification from "./ui/Notification";
 
 const Home = lazy(() => import("./pages/Home"));
 const Transactions = lazy(() => import("./pages/Transactions"));
 const Budgets = lazy(() => import("./pages/Budgets"));
 const Pots = lazy(() => import("./pages/Pots"));
 const Bills = lazy(() => import("./pages/Bills"));
+const Notification = lazy(() => import("./ui/Notification"));
 
 function App() {
   const lang = useLanguageStore();
@@ -50,7 +50,9 @@ function App() {
           <Route path="/bills" element={<Bills />} />
         </Route>
       </Routes>
-      <Notification />
+      <Suspense fallback={null}>
+        <Notification />
+      </Suspense>
       <UpdateRefresh />
     </>
   );

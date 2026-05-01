@@ -1,4 +1,5 @@
-import { Slide, Snackbar } from "@mui/material";
+import Slide from "@mui/material/Slide";
+import Snackbar from "@mui/material/Snackbar";
 
 import { useNotification, useNotificationStore } from "../store/useNotificationStore";
 

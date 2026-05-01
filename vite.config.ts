@@ -10,4 +10,21 @@ export default defineConfig({
     globals: true,
     setupFiles: "./src/tests/setup.ts",
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("@mui") || id.includes("@emotion")) {
+              return "mui";
+            }
+            if (id.includes("react")) {
+              return "react-vendor";
+            }
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
 });
