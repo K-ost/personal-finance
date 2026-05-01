@@ -7,11 +7,11 @@ import { Layout, LayoutBody, LayoutContent, LayoutTop } from "./styles";
 type MainLayoutProps = {
   children: React.ReactNode;
   title: string;
-  btn?: React.ReactNode;
+  btnSlot?: React.ReactNode;
 };
 
 const MainLayout = (props: MainLayoutProps) => {
-  const { children, title, btn } = props;
+  const { children, title, btnSlot } = props;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -26,7 +26,7 @@ const MainLayout = (props: MainLayoutProps) => {
           >
             {title}
           </Typography>
-          {btn && <Box sx={{ mr: 4 }}>{btn}</Box>}
+          {btnSlot && <Box sx={{ mr: 4 }}>{btnSlot}</Box>}
           <LangSwitcher />
         </LayoutTop>
         <LayoutBody>{children}</LayoutBody>

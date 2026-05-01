@@ -13,7 +13,7 @@ const UserCard = (props: UserCardProps): JSX.Element => {
   const { avatar, name, category } = props;
   return (
     <Card>
-      <img src={getImageLink(avatar)} alt="" />
+      <img src={getImageLink(avatar)} alt="" loading="lazy" />
       <Box>
         <Typography variant="body1" sx={{ fontWeight: 700 }}>
           {name}
