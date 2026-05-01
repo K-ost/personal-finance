@@ -14,7 +14,7 @@ describe("Language Switcher", () => {
   });
 
   it("Switching to Ru", async () => {
-    await userEvent.click(screen.getByRole("button", { name: "Ru" }));
+    await userEvent.click(screen.getByRole("button", { name: "Russian" }));
     expect(screen.queryByRole("heading", { name: "Login" })).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Авторизация" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Войти" })).toBeInTheDocument();
@@ -22,7 +22,7 @@ describe("Language Switcher", () => {
   });
 
   it("Switching to En", async () => {
-    await userEvent.click(screen.getByRole("button", { name: "En" }));
+    await userEvent.click(screen.getByRole("button", { name: "English" }));
     expect(screen.queryByRole("button", { name: "Войти" })).not.toBeInTheDocument();
     expect(screen.queryByText(/Следите за своими/)).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Login" })).toBeInTheDocument();
