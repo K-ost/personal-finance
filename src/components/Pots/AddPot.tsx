@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { FORM_SETTINGS, POTS_URI } from "../../constants/constants";
+import { FORM_SETTINGS } from "../../constants/constants";
 import useMutateData from "../../hooks/useMutateData";
 import { useUserId } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
@@ -40,30 +40,28 @@ const AddPot = (props: AddPotProps): JSX.Element => {
   const { isPending, mutate } = useMutateData<Pot, Omit<Pot, "_id">>({
     key: ["pots"],
     method: "POST",
-    uri: POTS_URI,
+    uri: "/pots",
   });
 
   const addHandler = (data: FormData) => {
     if (!userId) return;
-    mutate(
-      {
-        name: data.name,
-        target: Number(data.target),
-        theme: data.theme,
-        total: 0,
-        userId,
+    const newPot: Omit<Pot, "_id"> = {
+      name: data.name,
+      target: Number(data.target),
+      theme: data.theme,
+      total: 0,
+      userId,
+    };
+    mutate(newPot, {
+      onSuccess() {
+        close();
+        reset();
+        queryClient.invalidateQueries({
+          queryKey: ["pots"],
+        });
+        setNotification(t("pots.addnew.notification", { title: data.name }));
       },
-      {
-        onSuccess: () => {
-          close();
-          reset();
-          queryClient.invalidateQueries({
-            queryKey: ["pots"],
-          });
-          setNotification(t("pots.addnew.notification", { title: data.name }));
-        },
-      },
-    );
+    });
   };
 
   return (

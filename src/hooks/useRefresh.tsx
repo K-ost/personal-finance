@@ -6,18 +6,17 @@ import useGetData from "./useGetData";
 type UseRefreshProps = {
   key: string[];
   uri: string;
-  method?: "query" | "mutation";
 };
 
 const useRefresh = <T,>(props: UseRefreshProps) => {
-  const { key, uri, method = "query" } = props;
+  const { key, uri } = props;
   const isExpired = useRefreshStore((state) => state.isExpired);
   const setIsExpired = useRefreshStore((state) => state.setIsExpired);
 
   const queryObject = useGetData<T>({
     key,
     uri,
-    enabled: method === "query" && !isExpired,
+    enabled: !isExpired,
   });
 
   useEffect(() => {
