@@ -10,10 +10,8 @@ import Search from "../components/Search";
 import SummaryBills from "../components/SummaryBills";
 import TotalBills from "../components/TotalBills";
 import TransactionsLoading from "../components/Transactions/Loading";
-import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
-import useUpdateRefresh from "../hooks/useUpdateRefresh";
-import { useIsExpired } from "../store/useRefreshStore";
+import useRefresh from "../hooks/useRefresh";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
 import Error from "../ui/Error";
@@ -22,20 +20,16 @@ import Wrap from "../ui/Wrap";
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const isExpired = useIsExpired();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [searchParams] = useSearchParams();
   const params = searchParams.toString().length ? "&" + searchParams.toString() : "";
 
-  const { data, isError, isLoading, isSuccess, error } = useGetData<
-    ServerResponse<Transaction>
-  >({
-    key: ["bills", params],
-    uri: `/transactions?recurring=true${params}`,
-    enabled: !isExpired,
-  });
-
-  useUpdateRefresh({ error: error?.message ?? "", isError });
+  const { data, isError, isLoading, isSuccess } = useRefresh<ServerResponse<Transaction>>(
+    {
+      key: ["bills", params],
+      uri: `/transactions?recurring=true${params}`,
+    },
+  );
 
   const { bills, info } = useRecurringBills({
     data: isSuccess ? data.data : [],

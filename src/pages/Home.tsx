@@ -9,7 +9,7 @@ import BudgetsWidget from "../components/widjets/BudgetsWidget";
 import PotsWidjet from "../components/widjets/PotsWidjet";
 import TransActionsWidjet from "../components/widjets/TransActWidjet";
 import useGetData from "../hooks/useGetData";
-import useUpdateRefresh from "../hooks/useUpdateRefresh";
+import useRefresh from "../hooks/useRefresh";
 import { useAuthStore, useUserId } from "../store/useAuthStore";
 import { useIsExpired } from "../store/useRefreshStore";
 import { ServerResponse } from "../types/apiTypes";
@@ -26,12 +26,10 @@ const Home = (): JSX.Element => {
     data: balanceData,
     isSuccess: balanceIsSuccess,
     isLoading: balanceIsLoading,
-    isError: balanceIsError,
     error: balanceError,
-  } = useGetData<BalanceType>({
+  } = useRefresh<BalanceType>({
     key: ["balance"],
     uri: "/balance",
-    enabled: !isExpired,
   });
 
   const {
@@ -76,11 +74,6 @@ const Home = (): JSX.Element => {
     key: ["billsWidjet"],
     uri: "/transactions?recurring=true",
     enabled: !isExpired,
-  });
-
-  useUpdateRefresh({
-    error: balanceError?.message ?? "",
-    isError: balanceIsError,
   });
 
   return (

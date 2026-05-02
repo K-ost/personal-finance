@@ -6,11 +6,8 @@ import MainLayout from "../components/MainLayout";
 import PotsList from "../components/Pots";
 import AddPot from "../components/Pots/AddPot";
 import PotLoading from "../components/Pots/PotLoading";
-import { POTS_URI } from "../constants/constants";
-import useGetData from "../hooks/useGetData";
-import useUpdateRefresh from "../hooks/useUpdateRefresh";
+import useRefresh from "../hooks/useRefresh";
 import { useUserId } from "../store/useAuthStore";
-import { useIsExpired } from "../store/useRefreshStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Pot } from "../types/types";
 import Btn from "../ui/Btn";
@@ -20,16 +17,12 @@ const Pots = (): JSX.Element => {
   const { t } = useTranslation();
   const [addDialog, setAddDialog] = useState<boolean>(false);
   const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
-  const isExpired = useIsExpired();
   const userId = useUserId();
 
-  const { data, isLoading, isSuccess, isError, error } = useGetData<Pot[]>({
+  const { data, isLoading, isSuccess, isError } = useRefresh<Pot[]>({
     key: ["pots"],
-    uri: POTS_URI + `?userId=${userId}`,
-    enabled: !isExpired,
+    uri: `/pots?userId=${userId}`,
   });
-
-  useUpdateRefresh({ error: error?.message ?? "", isError });
 
   useEffect(() => {
     if (isSuccess) {

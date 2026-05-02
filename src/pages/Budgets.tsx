@@ -7,11 +7,8 @@ import AddBudget from "../components/Budgets/AddBudget";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import MainLayout from "../components/MainLayout";
 import ChartWidget from "../components/widjets/ChartWidget";
-import { BUDGETS_URI } from "../constants/constants";
-import useGetData from "../hooks/useGetData";
-import useUpdateRefresh from "../hooks/useUpdateRefresh";
+import useRefresh from "../hooks/useRefresh";
 import { useUserId } from "../store/useAuthStore";
-import { useIsExpired } from "../store/useRefreshStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Budget } from "../types/types";
 import AlertBox from "../ui/AlertBox";
@@ -24,16 +21,12 @@ const Budgets = (): JSX.Element => {
   const [addDialog, setAddDialog] = useState<boolean>(false);
   const setUsedCategories = useThemesStore((state) => state.setUsedCategories);
   const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
-  const isExpired = useIsExpired();
   const userId = useUserId();
 
-  const { data, isLoading, isSuccess, isError, error } = useGetData<Budget[]>({
+  const { data, isLoading, isSuccess, isError } = useRefresh<Budget[]>({
     key: ["budgets"],
-    uri: BUDGETS_URI + `?userId=${userId}`,
-    enabled: !isExpired,
+    uri: `/budgets?userId=${userId}`,
   });
-
-  useUpdateRefresh({ error: error?.message ?? "", isError });
 
   useEffect(() => {
     if (isSuccess) {
