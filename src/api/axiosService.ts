@@ -1,14 +1,20 @@
 import axios from "axios";
 
 import { API_URL } from "../constants/constants";
+import { useAuthStore, useToken } from "../store/useAuthStore";
 import { API_Method, ErrorResponse } from "../types/apiTypes";
+
+const setToken = useAuthStore.getState().setToken;
 
 const http = axios.create({
   baseURL: API_URL,
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-export const axiosServie = async <T, K>(
+export const axiosService = async <T, K>(
   url: string,
   method: API_Method = "GET",
   body?: K | null,
@@ -30,3 +36,37 @@ export const axiosServie = async <T, K>(
     }
   }
 };
+
+http.interceptors.request.use((config) => {
+  const token = useToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+http.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
+    const initialRequest = error.config;
+    if (
+      error.status === 401 &&
+      error.response?.data.msg === "Invalid token" &&
+      !initialRequest._retry
+    ) {
+      initialRequest._retry = true;
+      try {
+        const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
+        const accessToken = response.data.accessToken;
+        setToken(accessToken);
+        http.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+        return http.request(initialRequest);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  },
+);

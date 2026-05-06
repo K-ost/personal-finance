@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
 import Styles from "./components/Styles";
-import UpdateRefresh from "./components/UpdateRefresh";
 import LoginPage from "./pages/LoginPage";
 import SignUp from "./pages/SignUp";
 import { useLanguageStore } from "./store/useAppStore";
@@ -53,7 +52,6 @@ function App() {
       <Suspense fallback={null}>
         <Notification />
       </Suspense>
-      <UpdateRefresh />
     </>
   );
 }

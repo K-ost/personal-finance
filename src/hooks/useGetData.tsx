@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiRequest } from "../api/api";
+import { axiosService } from "../api/axiosService";
 
 type useGetDataProps = {
   key: string[];
@@ -13,7 +13,7 @@ const useGetData = <T,>(props: useGetDataProps) => {
 
   return useQuery({
     queryKey: key,
-    queryFn: () => apiRequest<T, undefined>(uri),
+    queryFn: () => axiosService<T, undefined>(uri),
     enabled,
   });
 };

@@ -9,9 +9,7 @@ import BudgetsWidget from "../components/widjets/BudgetsWidget";
 import PotsWidjet from "../components/widjets/PotsWidjet";
 import TransActionsWidjet from "../components/widjets/TransActWidjet";
 import useGetData from "../hooks/useGetData";
-import useRefresh from "../hooks/useRefresh";
 import { useAuthStore, useUserId } from "../store/useAuthStore";
-import { useIsExpired } from "../store/useRefreshStore";
 import { ServerResponse } from "../types/apiTypes";
 import { BalanceType, Budget, Pot, Transaction } from "../types/types";
 import Error from "../ui/Error";
@@ -19,7 +17,6 @@ import Error from "../ui/Error";
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
   const user = useAuthStore((state) => state.user);
-  const isExpired = useIsExpired();
   const userId = useUserId();
 
   const {
@@ -27,7 +24,7 @@ const Home = (): JSX.Element => {
     isSuccess: balanceIsSuccess,
     isLoading: balanceIsLoading,
     error: balanceError,
-  } = useRefresh<BalanceType>({
+  } = useGetData<BalanceType>({
     key: ["balance"],
     uri: "/balance",
   });
@@ -40,7 +37,6 @@ const Home = (): JSX.Element => {
   } = useGetData<Pot[]>({
     key: ["potsWidjet"],
     uri: `/pots?userId=${userId}`,
-    enabled: !isExpired,
   });
 
   const {
@@ -51,7 +47,6 @@ const Home = (): JSX.Element => {
   } = useGetData<ServerResponse<Transaction>>({
     key: ["transactionsWidjet"],
     uri: "/transactions?limit=5",
-    enabled: !isExpired,
   });
 
   const {
@@ -62,7 +57,6 @@ const Home = (): JSX.Element => {
   } = useGetData<Budget[]>({
     key: ["budgetsWidjet"],
     uri: `/budgets?userId=${userId}`,
-    enabled: !isExpired,
   });
 
   const {
@@ -73,7 +67,6 @@ const Home = (): JSX.Element => {
   } = useGetData<ServerResponse<Transaction>>({
     key: ["billsWidjet"],
     uri: "/transactions?recurring=true",
-    enabled: !isExpired,
   });
 
   return (

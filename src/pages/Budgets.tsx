@@ -7,7 +7,7 @@ import AddBudget from "../components/Budgets/AddBudget";
 import BudgetsLoading from "../components/Budgets/BudgetsLoading";
 import MainLayout from "../components/MainLayout";
 import ChartWidget from "../components/widjets/ChartWidget";
-import useRefresh from "../hooks/useRefresh";
+import useGetData from "../hooks/useGetData";
 import { useUserId } from "../store/useAuthStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Budget } from "../types/types";
@@ -23,7 +23,7 @@ const Budgets = (): JSX.Element => {
   const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
   const userId = useUserId();
 
-  const { data, isLoading, isSuccess, isError } = useRefresh<Budget[]>({
+  const { data, isLoading, isSuccess, isError } = useGetData<Budget[]>({
     key: ["budgets"],
     uri: `/budgets?userId=${userId}`,
   });

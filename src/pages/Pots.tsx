@@ -6,7 +6,7 @@ import MainLayout from "../components/MainLayout";
 import PotsList from "../components/Pots";
 import AddPot from "../components/Pots/AddPot";
 import PotLoading from "../components/Pots/PotLoading";
-import useRefresh from "../hooks/useRefresh";
+import useGetData from "../hooks/useGetData";
 import { useUserId } from "../store/useAuthStore";
 import { useThemesStore } from "../store/useThemesStore";
 import { Pot } from "../types/types";
@@ -19,7 +19,7 @@ const Pots = (): JSX.Element => {
   const setUsedThemes = useThemesStore((state) => state.setUsedThemes);
   const userId = useUserId();
 
-  const { data, isLoading, isSuccess, isError } = useRefresh<Pot[]>({
+  const { data, isLoading, isSuccess, isError } = useGetData<Pot[]>({
     key: ["pots"],
     uri: `/pots?userId=${userId}`,
   });

@@ -45,10 +45,10 @@ const LoginPage = (): JSX.Element => {
         password: formData.password,
       },
       {
+        onError(error) {
+          setNotification(error.message);
+        },
         onSuccess: (data) => {
-          if (data.msg) {
-            setNotification(data.msg);
-          }
           if (data.accessToken && data.user) {
             setToken(data.accessToken);
             setUser(data.user);
