@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { apiRequest } from "../api/api";
+import { axiosServie } from "../api/axiosService";
 import { API_Method } from "../types/apiTypes";
 
 type useMutateDataProps = {
@@ -14,7 +14,7 @@ const useMutateData = <T, K>(props: useMutateDataProps) => {
 
   return useMutation({
     mutationKey: key,
-    mutationFn: (data: K) => apiRequest<T, K>(uri, method, data),
+    mutationFn: (data: K) => axiosServie<T, K>(uri, method, data),
   });
 };
 
