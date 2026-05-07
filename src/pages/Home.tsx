@@ -37,6 +37,7 @@ const Home = (): JSX.Element => {
   } = useGetData<Pot[]>({
     key: ["potsWidjet"],
     uri: `/pots?userId=${userId}`,
+    enabled: balanceIsSuccess,
   });
 
   const {
@@ -47,6 +48,7 @@ const Home = (): JSX.Element => {
   } = useGetData<ServerResponse<Transaction>>({
     key: ["transactionsWidjet"],
     uri: "/transactions?limit=5",
+    enabled: balanceIsSuccess,
   });
 
   const {
@@ -57,6 +59,7 @@ const Home = (): JSX.Element => {
   } = useGetData<Budget[]>({
     key: ["budgetsWidjet"],
     uri: `/budgets?userId=${userId}`,
+    enabled: balanceIsSuccess,
   });
 
   const {
@@ -67,6 +70,7 @@ const Home = (): JSX.Element => {
   } = useGetData<ServerResponse<Transaction>>({
     key: ["billsWidjet"],
     uri: "/transactions?recurring=true",
+    enabled: balanceIsSuccess,
   });
 
   return (
