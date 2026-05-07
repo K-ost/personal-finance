@@ -10,8 +10,8 @@ import Search from "../components/Search";
 import SummaryBills from "../components/SummaryBills";
 import TotalBills from "../components/TotalBills";
 import TransactionsLoading from "../components/Transactions/Loading";
+import useGetData from "../hooks/useGetData";
 import useRecurringBills from "../hooks/useRecurringBills";
-import useRefresh from "../hooks/useRefresh";
 import { ServerResponse } from "../types/apiTypes";
 import { Transaction } from "../types/types";
 import Error from "../ui/Error";
@@ -24,7 +24,7 @@ const Bills = (): JSX.Element => {
   const [searchParams] = useSearchParams();
   const params = searchParams.toString().length ? "&" + searchParams.toString() : "";
 
-  const { data, isError, isLoading, isSuccess } = useRefresh<ServerResponse<Transaction>>(
+  const { data, isError, isLoading, isSuccess } = useGetData<ServerResponse<Transaction>>(
     {
       key: ["bills", params],
       uri: `/transactions?recurring=true${params}`,

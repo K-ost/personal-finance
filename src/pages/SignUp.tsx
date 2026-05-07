@@ -39,6 +39,9 @@ const SignUp = (): JSX.Element => {
 
   const signUpHandler = (data: FormData) => {
     mutate(data, {
+      onError(error) {
+        setNotification(error.message);
+      },
       onSuccess(data) {
         if (data.msg) {
           setNotification(data.msg);
