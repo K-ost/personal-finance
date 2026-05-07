@@ -2,9 +2,12 @@ import axios from "axios";
 
 import { API_URL } from "../constants/constants";
 import { useAuthStore, useToken } from "../store/useAuthStore";
+import { useNotificationStore } from "../store/useNotificationStore";
 import { API_Method, ErrorResponse } from "../types/apiTypes";
 
 const setToken = useAuthStore.getState().setToken;
+const setLogout = useAuthStore.getState().setLogout;
+const setNotification = useNotificationStore.getState().setNotification;
 
 const http = axios.create({
   baseURL: API_URL,
@@ -51,6 +54,7 @@ http.interceptors.response.use(
   },
   async (error) => {
     const initialRequest = error.config;
+
     if (
       error.status === 401 &&
       error.response?.data.msg === "Invalid token" &&
@@ -61,12 +65,16 @@ http.interceptors.response.use(
         const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
         const accessToken = response.data.accessToken;
         setToken(accessToken);
-        http.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         return http.request(initialRequest);
       } catch (error) {
+        if (axios.isAxiosError(error)) {
+          setLogout();
+          setNotification("Session has expired");
+        }
         return Promise.reject(error);
       }
     }
+
     return Promise.reject(error);
   },
 );
