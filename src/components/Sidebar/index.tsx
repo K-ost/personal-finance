@@ -6,7 +6,7 @@ import logo from "../../assets/logo-large.svg";
 import logoSmall from "../../assets/logo-small.svg";
 import useMutateData from "../../hooks/useMutateData";
 import { useAppStore, useSidebarStore } from "../../store/useAppStore";
-import { useAuthStore } from "../../store/useAuthStore";
+import { useAuthStore, useUserRole } from "../../store/useAuthStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { AuthType } from "../../types/apiTypes";
 import AsideBtn from "./AsideBtn";
@@ -18,6 +18,7 @@ import {
   IconMin,
   IconOverview,
   IconPots,
+  IconProfile,
   IconTransactions,
 } from "./Icons";
 import { Aside, AsideInner, AsideLogo, Nav } from "./styles";
@@ -30,6 +31,7 @@ const Sidebar = () => {
   const setNotification = useNotificationStore((state) => state.setNotification);
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+  const role = useUserRole();
   const { t } = useTranslation();
 
   const { mutate, isPending } = useMutateData<AuthType, undefined>({
@@ -81,6 +83,19 @@ const Sidebar = () => {
                 </ListItem>
               );
             })}
+
+            {role === "admin" && (
+              <ListItem>
+                <AsideBtn component={NavLink} to="/profile" aria-label={t(`nav.profile`)}>
+                  <span className="iconBox">
+                    <IconProfile />
+                  </span>
+                  {sidebar && isTablet && (
+                    <span className="btnTitle">{t(`nav.profile`)}</span>
+                  )}
+                </AsideBtn>
+              </ListItem>
+            )}
 
             <ListItem>
               <AsideBtn

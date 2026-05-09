@@ -1,4 +1,11 @@
-import { AsideIconType } from "./AsideBtn";
+export type AsideIconType =
+  | "min"
+  | "overview"
+  | "transactions"
+  | "budgets"
+  | "pots"
+  | "recurringBills"
+  | "logout";
 
 type NavMenuList = {
   id: number;

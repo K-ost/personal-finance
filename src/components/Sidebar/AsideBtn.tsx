@@ -1,14 +1,5 @@
 import { Button, ButtonProps, styled } from "@mui/material";
 
-export type AsideIconType =
-  | "min"
-  | "overview"
-  | "transactions"
-  | "budgets"
-  | "pots"
-  | "recurringBills"
-  | "logout";
-
 type MinimizeBtnProps = ButtonProps & {
   to?: string;
 };

@@ -6,6 +6,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
 import Styles from "./components/Styles";
 import LoginPage from "./pages/LoginPage";
+import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import { useLanguageStore } from "./store/useAppStore";
 import { useIsLogged } from "./store/useAuthStore";
@@ -47,6 +48,7 @@ function App() {
           <Route path="/budgets" element={<Budgets />} />
           <Route path="/pots" element={<Pots />} />
           <Route path="/bills" element={<Bills />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
       <Suspense fallback={null}>
