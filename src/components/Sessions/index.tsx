@@ -53,6 +53,8 @@ const Sessions = (props: SessionsProps): JSX.Element => {
             size="small"
             onClick={removeSessionsHandler}
             aria-label="Delete all sessions"
+            variant="outlined"
+            color="error"
           >
             {isPending ? "Loading..." : "Delete all sessions"}
           </Btn>
