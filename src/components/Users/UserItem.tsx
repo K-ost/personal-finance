@@ -21,14 +21,13 @@ const UserItem = ({ user }: UserItemProps): JSX.Element => {
     uri: `/users/${user.id}`,
   });
 
-  queryClient.invalidateQueries({
-    queryKey: ["users"],
-  });
-
   const deleteHandler = () => {
     mutate(null, {
       onSuccess(data) {
         setNotification(data.msg);
+        queryClient.invalidateQueries({
+          queryKey: ["users"],
+        });
       },
     });
   };
@@ -39,7 +38,13 @@ const UserItem = ({ user }: UserItemProps): JSX.Element => {
         {user.email} - {user.name}
       </Box>
       {user.role !== "admin" && (
-        <Btn size="small" color="error" variant="outlined" onClick={deleteHandler}>
+        <Btn
+          size="small"
+          color="error"
+          variant="outlined"
+          onClick={deleteHandler}
+          aria-label="Delete user"
+        >
           {isPending ? "Loading..." : "Delete"}
         </Btn>
       )}
