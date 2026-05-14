@@ -42,12 +42,14 @@ const Profile = (): JSX.Element => {
   });
 
   const removeSessionsHandler = () => {
-    mutate(null);
+    mutate(null, {
+      onSuccess() {
+        queryClient.invalidateQueries({
+          queryKey: ["sessions"],
+        });
+      },
+    });
   };
-
-  queryClient.invalidateQueries({
-    queryKey: ["sessions"],
-  });
 
   if (role !== "admin") return <Navigate to={"/"} />;
 
