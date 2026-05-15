@@ -1,17 +1,17 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import LoginLayout from "../components/LoginLayout";
+import PassInput from "../components/PassInput";
 import useMutateData from "../hooks/useMutateData";
 import useFormSettings from "../hooks/useSettings";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { AuthType } from "../types/apiTypes";
 import Btn from "../ui/Btn";
-import CustomInput from "../ui/CustomInput";
 import FormBody from "../ui/FormBody";
-import PassInput from "../ui/PassInput";
+import InputField from "../ui/InputField";
 
 type FormData = {
   name: string;
@@ -56,43 +56,51 @@ const SignUp = (): JSX.Element => {
       <FormBody>
         <Typography variant="h1">{t("signup.title")}</Typography>
         <form onSubmit={handleSubmit(signUpHandler)}>
-          <CustomInput
-            label={t("form.name.label")}
-            slotProps={{
-              input: { ...register("name", settings.name) },
-            }}
-            error={errors.name ? true : false}
-            helperText={errors.name?.message}
-          />
+          <div className="mb-4">
+            <InputField
+              label={t("form.name.label")}
+              inputProps={{
+                "aria-label": t("form.name.label"),
+                ...register("name", settings.name),
+              }}
+              isError={errors.name ? true : false}
+              helper={errors.name?.message}
+            />
+          </div>
 
-          <CustomInput
-            label={t("form.email.label")}
-            type="email"
-            slotProps={{
-              input: { ...register("email", settings.email) },
-            }}
-            error={errors.email ? true : false}
-            helperText={errors.email?.message}
-          />
+          <div className="mb-4">
+            <InputField
+              label={t("form.email.label")}
+              inputProps={{
+                type: "email",
+                "aria-label": t("form.email.label"),
+                ...register("email", settings.email),
+              }}
+              isError={errors.email ? true : false}
+              helper={errors.email?.message}
+            />
+          </div>
 
-          <PassInput
-            label={t("form.createPassword.label")}
-            slotProps={{
-              input: { ...register("password", settings.password) },
-            }}
-            error={errors.password ? true : false}
-            helperText={errors.password?.message ?? t("form.createPassword.helper")}
-            sx={{ mb: "32px" }}
-          />
+          <div className="mb-8">
+            <PassInput
+              label={t("form.createPassword.label")}
+              inputProps={{
+                "aria-label": t("form.createPassword.label"),
+                ...register("password", settings.password),
+              }}
+              isError={errors.password ? true : false}
+              helper={errors.password?.message ?? t("form.createPassword.helper")}
+            />
+          </div>
 
-          <Box sx={{ mb: "32px" }}>
+          <div className="mb-8">
             <Btn color="primary" type="submit" fullWidth>
               {t("signup.btn")}
               {isPending && (
                 <CircularProgress size={24} color="secondary" sx={{ ml: 4 }} />
               )}
             </Btn>
-          </Box>
+          </div>
         </form>
 
         <Typography variant="body1" color="textSecondary" textAlign="center">

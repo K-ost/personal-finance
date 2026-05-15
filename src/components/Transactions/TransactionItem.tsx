@@ -10,6 +10,7 @@ type TransactionItemProps = {
 
 const Item = styled(Box)(({ theme }) => ({
   alignItems: "center",
+  border: 0,
   borderBottomColor: theme.palette.custom.beige300,
   borderBlockWidth: 1,
   borderBottomStyle: "solid",

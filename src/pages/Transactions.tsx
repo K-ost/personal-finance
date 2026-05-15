@@ -1,4 +1,3 @@
-import { useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
@@ -21,8 +20,6 @@ const pageCount = 10;
 const Transactions = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Getting pages
   const currentPage = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
@@ -40,13 +37,7 @@ const Transactions = (): JSX.Element => {
       <Wrap>
         {!isError && isSuccess && (
           <Filter>
-            <Search
-              sx={{
-                m: 0,
-                mr: isMobile ? 0 : theme.spacing(6),
-                mb: isMobile ? theme.spacing(4) : 0,
-              }}
-            />
+            <Search className="mr-0 sm:mr-6 mb-4 sm:mb-0" />
             <Sorting sx={{ ml: "auto" }} />
             <FilterCategory />
           </Filter>

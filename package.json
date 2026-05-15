@@ -19,6 +19,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.9",
     "@mui/x-charts": "^8.27.5",
+    "@tailwindcss/vite": "^4.3.0",
     "@tanstack/react-query": "^5.90.21",
     "axios": "^1.16.0",
     "i18next": "^25.8.18",
@@ -27,6 +28,7 @@
     "react-hook-form": "^7.53.0",
     "react-i18next": "^15.0.2",
     "react-router-dom": "^7.13.1",
+    "tailwindcss": "^4.3.0",
     "zustand": "^5.0.12"
   },
   "devDependencies": {

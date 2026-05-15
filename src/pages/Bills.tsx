@@ -1,4 +1,4 @@
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
@@ -19,8 +19,6 @@ import Wrap from "../ui/Wrap";
 
 const Bills = (): JSX.Element => {
   const { t } = useTranslation();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [searchParams] = useSearchParams();
   const params = searchParams.toString().length ? "&" + searchParams.toString() : "";
 
@@ -40,7 +38,7 @@ const Bills = (): JSX.Element => {
       <Grid container spacing={6}>
         <Grid size={{ xs: 12, md: 4 }}>
           {isSuccess && (
-            <Box>
+            <div>
               <Grid container spacing={6}>
                 <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <TotalBills info={info} />
@@ -49,14 +47,14 @@ const Bills = (): JSX.Element => {
                   <SummaryBills info={info} />
                 </Grid>
               </Grid>
-            </Box>
+            </div>
           )}
         </Grid>
         <Grid size={{ xs: 12, md: 8 }}>
           <Wrap>
             {!isError && isSuccess && (
               <Filter>
-                <Search sx={{ mb: isMobile ? 3 : 0 }} />
+                <Search className="mb-3 sm:mb-0" />
                 <Sorting sx={{ ml: "auto" }} />
               </Filter>
             )}

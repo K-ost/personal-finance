@@ -1,18 +1,18 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import LoginLayout from "../components/LoginLayout";
+import PassInput from "../components/PassInput";
 import useMutateData from "../hooks/useMutateData";
 import useFormSettings from "../hooks/useSettings";
 import { useAuthStore } from "../store/useAuthStore";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { AuthType } from "../types/apiTypes";
 import Btn from "../ui/Btn";
-import CustomInput from "../ui/CustomInput";
 import FormBody from "../ui/FormBody";
-import PassInput from "../ui/PassInput";
+import InputField from "../ui/InputField";
 
 type FormData = {
   email: string;
@@ -64,36 +64,39 @@ const LoginPage = (): JSX.Element => {
       <FormBody>
         <Typography variant="h1">{t("loginPage.title")}</Typography>
         <form onSubmit={handleSubmit(loginHandler)} noValidate>
-          <CustomInput
-            label={t("form.email.label")}
-            type="email"
-            inputProps={{
-              ...register("email", settings.email),
-              "data-testid": "email",
-            }}
-            error={errors.email ? true : false}
-            helperText={errors.email?.message}
-          />
+          <div className="mb-4">
+            <InputField
+              label={t("form.email.label")}
+              isError={errors.email ? true : false}
+              helper={errors.email?.message}
+              inputProps={{
+                type: "email",
+                "aria-label": t("form.email.label"),
+                ...register("email", settings.email),
+              }}
+            />
+          </div>
 
-          <PassInput
-            label={t("form.password.label")}
-            sx={{ mb: "32px" }}
-            inputProps={{
-              ...register("password", settings.password),
-              "data-testid": "password",
-            }}
-            error={errors.password ? true : false}
-            helperText={errors.password?.message}
-          />
+          <div className="mb-8">
+            <PassInput
+              label={t("form.password.label")}
+              inputProps={{
+                "aria-label": t("form.password.label"),
+                ...register("password", settings.password),
+              }}
+              isError={errors.password ? true : false}
+              helper={errors.password?.message}
+            />
+          </div>
 
-          <Box sx={{ mb: "32px" }}>
+          <div className="mb-8">
             <Btn type="submit" color="primary" fullWidth>
               {t("loginPage.btn")}
               {isPending && (
                 <CircularProgress size={24} color="secondary" sx={{ ml: 4 }} />
               )}
             </Btn>
-          </Box>
+          </div>
         </form>
 
         <Typography variant="body1" color="textSecondary" textAlign="center">
