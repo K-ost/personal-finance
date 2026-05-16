@@ -10,8 +10,8 @@ import { useThemesStore } from "../../store/useThemesStore";
 import { Budget } from "../../types/types";
 import Btn from "../../ui/Btn";
 import CustomDialog from "../../ui/CustomDialog";
-import CustomInput from "../../ui/CustomInput";
 import CustomSelect from "../../ui/CustomSelect";
+import InputField from "../../ui/InputField";
 import { potsColorOptions } from "../Pots/constants";
 import { CategoriesOptions } from "./constants";
 
@@ -85,7 +85,21 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           }}
         />
 
-        <CustomInput
+        <div className="mb-4">
+          <InputField
+            label={t("form.maxSpend.label")}
+            leftAdornment="$"
+            inputProps={{
+              type: "number",
+              "aria-label": t("form.maxSpend.label"),
+              ...register("maximum", FORM_SETTINGS.target),
+            }}
+            isError={errors.maximum ? true : false}
+            helper={errors.maximum && errors.maximum.message}
+          />
+        </div>
+
+        {/* <CustomInput
           label={t("form.maxSpend.label")}
           adornment="$"
           type="number"
@@ -94,7 +108,7 @@ const AddBudget = (props: AddBudgetProps): JSX.Element => {
           }}
           error={errors.maximum ? true : false}
           helperText={errors.maximum && errors.maximum.message}
-        />
+        /> */}
 
         <CustomSelect
           label={t("form.theme.label")}

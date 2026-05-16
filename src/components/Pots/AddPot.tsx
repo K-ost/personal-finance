@@ -11,8 +11,8 @@ import { useThemesStore } from "../../store/useThemesStore";
 import { Pot } from "../../types/types";
 import Btn from "../../ui/Btn";
 import CustomDialog from "../../ui/CustomDialog";
-import CustomInput from "../../ui/CustomInput";
 import CustomSelect from "../../ui/CustomSelect";
+import InputField from "../../ui/InputField";
 import { potsColorOptions } from "./constants";
 
 type AddPotProps = {
@@ -69,31 +69,33 @@ const AddPot = (props: AddPotProps): JSX.Element => {
       <Typography variant="body1" color="textSecondary" sx={{ mb: 5 }}>
         {t("pots.addnew.text")}
       </Typography>
-      <form onSubmit={handleSubmit(addHandler)} data-testid="form1">
-        <CustomInput
-          label={t("form.potname.label")}
-          helperText={errors.name ? errors.name.message : t("form.potname.helper")}
-          slotProps={{
-            input: {
-              ...register("name", FORM_SETTINGS.name),
-              "aria-label": "Add Pot Name",
-            },
-          }}
-          error={errors.name ? true : false}
-        />
 
-        <CustomInput
-          type="number"
-          label={t("form.target.label")}
-          adornment="$"
-          slotProps={{
-            input: {
+      <form onSubmit={handleSubmit(addHandler)} data-testid="form1">
+        <div className="mb-4">
+          <InputField
+            label={t("form.potname.label")}
+            inputProps={{
+              "aria-label": t("form.potname.label"),
+              ...register("name", FORM_SETTINGS.name),
+            }}
+            isError={errors.name ? true : false}
+            helper={errors.name && errors.name.message}
+          />
+        </div>
+
+        <div className="mb-4">
+          <InputField
+            label={t("form.target.label")}
+            leftAdornment="$"
+            inputProps={{
+              type: "number",
+              "aria-label": t("form.target.label"),
               ...register("target", FORM_SETTINGS.target),
-            },
-          }}
-          error={errors.target ? true : false}
-          helperText={errors.target && errors.target.message}
-        />
+            }}
+            isError={errors.target ? true : false}
+            helper={errors.target && errors.target.message}
+          />
+        </div>
 
         <CustomSelect
           label={t("form.theme.label")}

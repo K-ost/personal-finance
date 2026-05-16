@@ -10,7 +10,7 @@ import { useNotificationStore } from "../../store/useNotificationStore";
 import { Pot } from "../../types/types";
 import Btn from "../../ui/Btn";
 import CustomDialog from "../../ui/CustomDialog";
-import CustomInput from "../../ui/CustomInput";
+import InputField from "../../ui/InputField";
 import { getLocalPrice } from "../../utils/utils";
 import PotPrice from "./PotPrice";
 import PotProgress from "./PotProgress";
@@ -110,12 +110,13 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
       />
 
       <form onSubmit={handleSubmit(topUpHandler)}>
-        <CustomInput
-          type="number"
-          label={labelText}
-          adornment="$"
-          slotProps={{
-            input: {
+        <div className="mb-8">
+          <InputField
+            label={labelText}
+            leftAdornment="$"
+            inputProps={{
+              type: "number",
+              "aria-label": labelText,
               ...register("total", {
                 ...FORM_SETTINGS.totalChange,
                 max: {
@@ -123,11 +124,12 @@ const ChangeBalance = (props: ChangeBalanceProps): JSX.Element => {
                   message: errorText,
                 },
               }),
-            },
-          }}
-          error={errors.total ? true : false}
-          helperText={errors.total && errors.total.message}
-        />
+            }}
+            isError={errors.total ? true : false}
+            helper={errors.total && errors.total.message}
+          />
+        </div>
+
         <Btn type="submit" fullWidth>
           {isPending ? t("settings.loading") : btnText}
         </Btn>

@@ -11,8 +11,8 @@ import { useThemesStore } from "../../store/useThemesStore";
 import { Pot } from "../../types/types";
 import Btn from "../../ui/Btn";
 import CustomDialog from "../../ui/CustomDialog";
-import CustomInput from "../../ui/CustomInput";
 import CustomSelect from "../../ui/CustomSelect";
+import InputField from "../../ui/InputField";
 import { potsColorOptions } from "./constants";
 
 type EditPotProps = {
@@ -81,20 +81,32 @@ const EditPot = (props: EditPotProps): JSX.Element => {
         {t("pots.edit.text")}
       </Typography>
       <form onSubmit={handleSubmit(editHandler)}>
-        <CustomInput
-          label={t("form.potname.label")}
-          helperText={errors.name ? errors.name.message : t("form.potname.helper")}
-          inputProps={{ ...register("name", FORM_SETTINGS.name) }}
-          error={errors.name ? true : false}
-        />
-        <CustomInput
-          type="number"
-          label={t("form.target.label")}
-          adornment="$"
-          inputProps={{ ...register("target", FORM_SETTINGS.target) }}
-          error={errors.target ? true : false}
-          helperText={errors.target && errors.target.message}
-        />
+        <div className="mb-4">
+          <InputField
+            label={t("form.potname.label")}
+            inputProps={{
+              "aria-label": t("form.potname.label"),
+              ...register("name", FORM_SETTINGS.name),
+            }}
+            isError={errors.name ? true : false}
+            helper={errors.name ? errors.name.message : t("form.potname.helper")}
+          />
+        </div>
+
+        <div className="mb-4">
+          <InputField
+            label={t("form.target.label")}
+            leftAdornment="$"
+            inputProps={{
+              type: "number",
+              "aria-label": t("form.target.label"),
+              ...register("target", FORM_SETTINGS.target),
+            }}
+            isError={errors.target ? true : false}
+            helper={errors.target && errors.target.message}
+          />
+        </div>
+
         <CustomSelect
           label={t("form.theme.label")}
           inputProps={{ ...register("theme") }}
