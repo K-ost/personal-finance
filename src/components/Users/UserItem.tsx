@@ -1,11 +1,9 @@
-import { Box } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 
 import useMutateData from "../../hooks/useMutateData";
 import { useNotificationStore } from "../../store/useNotificationStore";
 import { AuthType, UserType } from "../../types/apiTypes";
 import Btn from "../../ui/Btn";
-import { Item } from "./styles";
 
 type UserItemProps = {
   user: UserType;
@@ -33,10 +31,10 @@ const UserItem = ({ user }: UserItemProps): JSX.Element => {
   };
 
   return (
-    <Item>
-      <Box key={user.id}>
+    <div className="flex items-center justify-between bg-gray-100 min-h-11 rounded-lg mb-2 py-1 pl-4 pr-1">
+      <div key={user.id}>
         {user.email} - {user.name}
-      </Box>
+      </div>
       {user.role !== "admin" && (
         <Btn
           size="small"
@@ -48,7 +46,7 @@ const UserItem = ({ user }: UserItemProps): JSX.Element => {
           {isPending ? "Loading..." : "Delete"}
         </Btn>
       )}
-    </Item>
+    </div>
   );
 };
 

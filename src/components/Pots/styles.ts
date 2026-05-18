@@ -1,10 +1,4 @@
-import {
-  Box,
-  BoxProps,
-  LinearProgress,
-  LinearProgressProps,
-  styled,
-} from "@mui/material";
+import { LinearProgress, LinearProgressProps, styled } from "@mui/material";
 
 export const Progress = styled(LinearProgress)<LinearProgressProps & { range: string }>(
   ({ theme, range }) => ({
@@ -19,12 +13,3 @@ export const Progress = styled(LinearProgress)<LinearProgressProps & { range: st
     },
   }),
 );
-
-export const PotBox = styled(Box)<BoxProps>(({ theme }) => ({
-  backgroundColor: theme.palette.common.white,
-  borderRadius: 12,
-  padding: theme.spacing(6),
-  [theme.breakpoints.down("sm")]: {
-    padding: theme.spacing(5),
-  },
-}));

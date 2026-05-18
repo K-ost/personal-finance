@@ -10,11 +10,13 @@ const UserList = (props: UserListProps): JSX.Element => {
   const { users } = props;
 
   return (
-    <Wrap title="Users" mb={6}>
-      {users.map((user) => (
-        <UserItem key={user.id} user={user} />
-      ))}
-    </Wrap>
+    <div className="mb-6">
+      <Wrap title="Users">
+        {users.map((user) => (
+          <UserItem key={user.id} user={user} />
+        ))}
+      </Wrap>
+    </div>
   );
 };
 

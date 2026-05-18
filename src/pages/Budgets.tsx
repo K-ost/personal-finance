@@ -55,24 +55,11 @@ const Budgets = (): JSX.Element => {
       {isSuccess && !!data.length && (
         <Grid container spacing={6}>
           <Grid size={{ xs: 12, md: 5 }}>
-            <Wrap
-              sx={(theme) => ({
-                display: "flex",
-                flexDirection: "column",
-                position: "sticky",
-                top: 0,
-                pt: 13,
-                [theme.breakpoints.down("md")]: {
-                  flexDirection: "row",
-                },
-                [theme.breakpoints.down("sm")]: {
-                  pt: 10,
-                  flexDirection: "column",
-                },
-              })}
-            >
-              <ChartWidget data={data} />
-            </Wrap>
+            <div className="sticky top-0">
+              <Wrap>
+                <ChartWidget data={data} />
+              </Wrap>
+            </div>
           </Grid>
 
           <Grid size={{ xs: 12, md: 7 }}>

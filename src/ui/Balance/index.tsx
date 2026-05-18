@@ -1,7 +1,6 @@
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import { getLocalPrice } from "../../utils/utils";
-import { Item } from "./styles";
 
 type BalanceProps = {
   title: string;
@@ -15,7 +14,7 @@ const Balance = (props: BalanceProps): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Item bg={dark ? "true" : undefined}>
+    <div className={`bg-${dark ? "primary" : "white"} rounded-xl p-4 sm:p-6`}>
       <Typography
         variant={isMobile ? "body2" : "body1"}
         sx={{ mb: isMobile ? 2 : 3 }}
@@ -23,10 +22,14 @@ const Balance = (props: BalanceProps): JSX.Element => {
       >
         {title}
       </Typography>
-      <Typography variant={isMobile ? "h2" : "h1"} sx={{ m: 0 }}>
+      <Typography
+        variant={isMobile ? "h2" : "h1"}
+        sx={{ m: 0 }}
+        color={dark ? "primary.contrastText" : "primary.white"}
+      >
         {getLocalPrice(amount)}
       </Typography>
-    </Item>
+    </div>
   );
 };
 

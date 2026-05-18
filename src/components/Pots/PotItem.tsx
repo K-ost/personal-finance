@@ -1,4 +1,4 @@
-import { MenuItem, Portal, Stack } from "@mui/material";
+import { MenuItem, Portal } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -12,7 +12,6 @@ import DeletePot from "./DeletePot";
 import EditPot from "./EditPot";
 import PotPrice from "./PotPrice";
 import PotProgress from "./PotProgress";
-import { PotBox } from "./styles";
 
 type PotItemProps = {
   pot: Pot;
@@ -39,8 +38,8 @@ const PotItem = (props: PotItemProps): JSX.Element => {
 
   return (
     <>
-      <PotBox>
-        <Stack direction="row" alignItems="center" mb={8}>
+      <div className="bg-white rounded-xl p-5 sm:p-6">
+        <div className="flex items-center mb-8">
           <IconTitle color={pot.theme} title={pot.name} />
 
           <MenuIcon anchorEl={anchorEl} setAnchorEl={setAnchorEl} id={pot._id}>
@@ -52,9 +51,10 @@ const PotItem = (props: PotItemProps): JSX.Element => {
               {t("pots.delete.menuBtn")}
             </MenuItem>
           </MenuIcon>
-        </Stack>
+        </div>
 
         <PotPrice title={t("pots.total")} total={pot.total} />
+
         <PotProgress
           color={pot.theme}
           target={pot.target}
@@ -64,7 +64,7 @@ const PotItem = (props: PotItemProps): JSX.Element => {
           })}
         />
 
-        <Stack direction="row">
+        <div className="flex">
           <Btn
             color="secondary"
             fullWidth
@@ -82,8 +82,8 @@ const PotItem = (props: PotItemProps): JSX.Element => {
           >
             {t("pots.withdraw.btnTitle")}
           </Btn>
-        </Stack>
-      </PotBox>
+        </div>
+      </div>
 
       <Portal>
         <EditPot close={() => setEditDialog(false)} open={editDialog} pot={pot} />

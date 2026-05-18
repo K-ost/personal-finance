@@ -43,10 +43,10 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
   };
 
   return (
-    <>
-      <Wrap sx={{ mb: 6 }}>
-        <Stack direction="row" alignItems="center">
-          <IconTitle color={budget.theme} title={budget.category} sx={{ mb: 4 }} />
+    <div className="mb-6">
+      <Wrap>
+        <div className="flex items-center">
+          <IconTitle color={budget.theme} title={budget.category} />
           <MenuIcon id={budget._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
             <MenuItem onClick={editHandler}>{t("budgets.edit.title")}</MenuItem>
             <MenuItem
@@ -56,12 +56,14 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
               {t("budgets.delete.item")}
             </MenuItem>
           </MenuIcon>
-        </Stack>
+        </div>
 
         <Typography variant="body1" color="textSecondary" component="div" sx={{ mb: 4 }}>
           {t("budgets.maximum", { amount: getLocalPrice(budget.maximum) })}
         </Typography>
-        <BudgetProgress value={percent} range={budget.theme} sx={{ mb: 4 }} />
+        <div className="mb-4">
+          <BudgetProgress value={percent} range={budget.theme} />
+        </div>
 
         <Stack direction="row">
           <BudgetAmount amount={spent} title={t("budgets.spent")} color={budget.theme} />
@@ -79,13 +81,12 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
       </Wrap>
 
       <EditBudget budget={budget} close={() => setEditDialog(false)} open={editDialog} />
-
       <DeleteBudget
         budget={budget}
         close={() => setDeleteDialog(false)}
         open={deleteDialog}
       />
-    </>
+    </div>
   );
 };
 

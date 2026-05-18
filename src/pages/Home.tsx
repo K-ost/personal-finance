@@ -1,4 +1,4 @@
-import { Box, Grid, Skeleton, Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import MainLayout from "../components/MainLayout";
@@ -75,38 +75,40 @@ const Home = (): JSX.Element => {
 
   return (
     <MainLayout title={t("nav.overview")}>
-      <Grid container spacing={6}>
-        <Grid size={12}>
-          <Typography variant="body1" mb={4}>
-            Hi, {user?.name}, ({user?.email})
-          </Typography>
-          {balanceIsSuccess && <BalanceWidget data={balanceData} />}
-          {balanceIsLoading && <BalanceLoading />}
-          {balanceError && <Error text={balanceError.message} />}
-        </Grid>
-        <Grid size={{ xs: 12, xl: 7 }}>
-          <Box mb={6}>
+      <div className="mb-6">
+        <Typography variant="body1" mb={4}>
+          Hi, {user?.name}, ({user?.email})
+        </Typography>
+        {balanceIsSuccess && <BalanceWidget data={balanceData} />}
+        {balanceIsLoading && <BalanceLoading />}
+        {balanceError && <Error text={balanceError.message} />}
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[7fr_5fr]">
+        <div>
+          <div className="mb-6">
             {potsIsSuccess && <PotsWidjet data={potsData} />}
             {potsIsLoading && <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />}
             {potsError && <Error text={potsError.message} />}
-          </Box>
+          </div>
           {transIsSuccess && <TransActionsWidjet data={transData.data} />}
           {transIsLoading && <Skeleton height={460} variant="rounded" />}
           {transError && <Error text={transError.message} />}
-        </Grid>
-        <Grid size={{ xs: 12, xl: 5 }}>
-          <Box mb={6}>
+        </div>
+
+        <div>
+          <div className="mb-6">
             {budgetsIsSuccess && <BudgetsWidget data={budgetsData} />}
             {budgetsIsLoading && (
               <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />
             )}
             {budgetsError && <Error text={budgetsError.message} />}
-          </Box>
+          </div>
           {billsIsSuccess && <BillsWidget data={billsData.data} />}
           {billsIsLoading && <Skeleton height={320} variant="rounded" />}
           {billsError && <Error text={billsError.message} />}
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </MainLayout>
   );
 };

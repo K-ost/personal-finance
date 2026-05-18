@@ -1,27 +1,14 @@
-import { BoxProps, LinearProgress } from "@mui/material";
-
-import { WrapperProgress } from "./styles";
-
-type BudgetProgressProps = BoxProps & { range: string; value: number };
+type BudgetProgressProps = { range: string; value: number };
 
 const BudgetProgress = (props: BudgetProgressProps): JSX.Element => {
   const { range, value } = props;
   return (
-    <WrapperProgress {...props}>
-      <LinearProgress
-        sx={(theme) => ({
-          backgroundColor: theme.palette.custom.beige100,
-          borderRadius: 1,
-          height: 24,
-          "& .MuiLinearProgress-bar": {
-            backgroundColor: range,
-            borderRadius: 1,
-          },
-        })}
-        value={value}
-        variant="determinate"
-      />
-    </WrapperProgress>
+    <div className="bg-beige-100 rounded-sm h-8 p-1">
+      <div
+        className="rounded-sm h-6"
+        style={{ backgroundColor: range, width: `${value}%` }}
+      ></div>
+    </div>
   );
 };
 

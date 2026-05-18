@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -22,13 +21,11 @@ const PotsList = (props: PotListProps): JSX.Element => {
     );
 
   return (
-    <Grid container spacing={6}>
+    <div className="grid sm:grid-cols-2 gap-6">
       {data.map((pot) => (
-        <Grid key={pot._id} size={{ xs: 12, sm: 6 }}>
-          <PotItem pot={pot} />
-        </Grid>
+        <PotItem key={pot._id} pot={pot} />
       ))}
-    </Grid>
+    </div>
   );
 };
 
