@@ -1,8 +1,7 @@
-import { Box, BoxProps, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { BoxProps, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import icon from "../../assets/icon-pot.svg";
 import { getLocalPrice } from "../../utils/utils";
-import { Div, Line } from "./styles";
 
 type BudgetAmountProps = BoxProps & {
   amount: number;
@@ -17,9 +16,18 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Div big={big}>
-      {big ? <img src={icon} alt="" style={{ marginRight: 20 }} /> : <Line bg={color} />}
-      <Box>
+    <div
+      className={`flex flex-1 relative rounded-xl ${big ? "bg-beige-100 px-6 py-4" : ""}`}
+    >
+      {big ? (
+        <img src={icon} alt="" className="mr-5" />
+      ) : (
+        <div
+          className="rounded-sm min-w-1 mr-4 bg-beige-100"
+          style={{ backgroundColor: color }}
+        ></div>
+      )}
+      <div>
         <Typography
           variant={big ? "body1" : "body2"}
           color="textSecondary"
@@ -37,8 +45,8 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
         >
           {getLocalPrice(amount, big ? true : false)}
         </Typography>
-      </Box>
-    </Div>
+      </div>
+    </div>
   );
 };
 

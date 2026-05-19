@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
+import ProgressBar from "../../ui/ProgressBar";
 import { getProgressValue } from "../../utils/utils";
-import { Progress } from "./styles";
 
 type PotProgressProps = {
   color: string;
@@ -16,7 +16,9 @@ const PotProgress = (props: PotProgressProps): JSX.Element => {
 
   return (
     <>
-      <Progress variant="determinate" value={progressValue} range={color} />
+      <div className="mb-3">
+        <ProgressBar color={color} value={progressValue} />
+      </div>
 
       <div className="text-grey-500 flex items-center justify-between mb-10">
         <Typography variant="body2" component="div" fontWeight={700} color={color}>

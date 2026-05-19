@@ -6,12 +6,12 @@ import { Budget } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
 import IconTitle from "../../ui/IconTitle";
 import MenuIcon from "../../ui/MenuIcon";
+import ProgressBar from "../../ui/ProgressBar";
 import Wrap from "../../ui/Wrap";
 import BudgetService from "../../utils/BudgetService";
 import { getLocalPrice } from "../../utils/utils";
 import TransactionItem from "../Transactions/TransactionItem";
 import BudgetLatest from "./BudgetLatest";
-import BudgetProgress from "./BudgetProgress";
 import DeleteBudget from "./DeleteBudget";
 import EditBudget from "./EditBudget";
 
@@ -62,7 +62,7 @@ const BudgetItem = (props: BudgetItemProps): JSX.Element => {
           {t("budgets.maximum", { amount: getLocalPrice(budget.maximum) })}
         </Typography>
         <div className="mb-4">
-          <BudgetProgress value={percent} range={budget.theme} />
+          <ProgressBar color={budget.theme} value={percent} size="large" />
         </div>
 
         <Stack direction="row">
