@@ -29,12 +29,12 @@ const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
         </div>
       </div>
 
-      <div className="p-4 md:p-0 flex items-center justify-center grow">
+      <main role="main" className="p-4 md:p-0 flex items-center justify-center grow">
         <div className="absolute right-4 top-5 md:top-4">
           <LangSwitcher />
         </div>
         {children}
-      </div>
+      </main>
     </div>
   );
 };

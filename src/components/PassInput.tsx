@@ -23,7 +23,7 @@ const PassInput = (props: PassInputProps): JSX.Element => {
       rightAdornment={
         <button
           type="button"
-          className="w-5 h-8 cursor-pointer border-0 bg-none outline-0 flex items-center justify-center"
+          className="w-8 h-8 cursor-pointer border-0 bg-none outline-0 flex items-center justify-center -mr-2"
           aria-label="toggle password visibility"
           onClick={() => setShowPass(!showPass)}
         >
