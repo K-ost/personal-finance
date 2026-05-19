@@ -30,16 +30,9 @@ const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
       </div>
 
       <div className="p-4 md:p-0 flex items-center justify-center grow">
-        <LangSwitcher
-          sx={(theme) => ({
-            position: "absolute",
-            right: theme.spacing(4),
-            top: theme.spacing(4),
-            [theme.breakpoints.down("md")]: {
-              top: theme.spacing(5),
-            },
-          })}
-        />
+        <div className="absolute right-4 top-5 md:top-4">
+          <LangSwitcher />
+        </div>
         {children}
       </div>
     </div>
