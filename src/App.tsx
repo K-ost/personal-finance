@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
-import Styles from "./components/Styles";
 import LoginPage from "./pages/LoginPage";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
@@ -29,7 +28,6 @@ function App() {
 
   return (
     <>
-      <Styles />
       <Routes>
         <Route element={<PublicRoutes isAuth={isAuth} />}>
           <Route path="/login" element={<LoginPage />} />
