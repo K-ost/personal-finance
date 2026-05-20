@@ -3,7 +3,6 @@ import { Typography } from "@mui/material";
 import { Budget } from "../../types/types";
 import BudgetService from "../../utils/BudgetService";
 import { getLocalPrice } from "../../utils/utils";
-import { Item } from "./styles";
 
 type BudgetLineProps = {
   budget: Budget;
@@ -13,11 +12,14 @@ const budgetService = new BudgetService();
 
 const BudgetLine = (props: BudgetLineProps): JSX.Element => {
   const { budget } = props;
-
   const spent = budgetService.getBudgetSpent(budget);
 
   return (
-    <Item bg={budget.theme}>
+    <div className="flex items-center border-b border-b-gray-100 py-4 relative first:pt-0 last:pb-0 last:border-0">
+      <div
+        className="w-1 h-5 rounded-lg mr-4"
+        style={{ backgroundColor: budget.theme }}
+      ></div>
       <Typography variant="body1" color="textSecondary">
         {budget.category}
       </Typography>
@@ -27,7 +29,7 @@ const BudgetLine = (props: BudgetLineProps): JSX.Element => {
       <Typography variant="body2" color="textSecondary" sx={{ ml: 2 }}>
         {getLocalPrice(budget.maximum)}
       </Typography>
-    </Item>
+    </div>
   );
 };
 

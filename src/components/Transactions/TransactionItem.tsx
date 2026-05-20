@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import { Transaction } from "../../types/types";
 import UserCard from "../../ui/UserCard";
@@ -8,39 +8,20 @@ type TransactionItemProps = {
   transaction: Transaction;
 };
 
-const Item = styled(Box)(({ theme }) => ({
-  alignItems: "center",
-  border: 0,
-  borderBottomColor: theme.palette.custom.beige300,
-  borderBlockWidth: 1,
-  borderBottomStyle: "solid",
-  display: "flex",
-  justifyContent: "space-between",
-  paddingTop: theme.spacing(3),
-  paddingBottom: theme.spacing(3),
-  "&:first-of-type": {
-    paddingTop: 0,
-  },
-  "&:last-of-type": {
-    border: 0,
-    paddingBottom: 0,
-  },
-}));
-
 const TransactionItem = (props: TransactionItemProps): JSX.Element => {
   const { transaction } = props;
   return (
-    <Item>
+    <div className="flex items-center justify-between border-b border-b-beige-300 py-3 first:pt-0 last:pb-0 last:border-0">
       <UserCard avatar={transaction.avatar} name={transaction.name} />
-      <Box textAlign="right">
+      <div className="text-right">
         <Typography variant="body2" component="div" fontWeight={700} sx={{ mb: 1 }}>
           {transactionPrice(transaction.amount)}
         </Typography>
         <Typography variant="body2" component="div" color="textSecondary">
           {createDate(transaction.date)}
         </Typography>
-      </Box>
-    </Item>
+      </div>
+    </div>
   );
 };
 

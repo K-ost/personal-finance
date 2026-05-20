@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
-import BudgetLine from "../../components/BudgetLine";
 import Chart from "../../components/Chart";
 import { Budget } from "../../types/types";
+import BudgetLine from "../../ui/BudgetLine";
 
 type ChartWidgetProps = {
   data: Budget[];
@@ -32,7 +32,7 @@ const ChartWidget = (props: ChartWidgetProps): JSX.Element => {
           },
         })}
       />
-      <Box sx={{ flexGrow: 1 }}>
+      <div>
         <Typography variant="h2" sx={{ mb: 6 }}>
           {t("budgets.summary")}
         </Typography>
@@ -41,7 +41,7 @@ const ChartWidget = (props: ChartWidgetProps): JSX.Element => {
             <BudgetLine key={budget._id} budget={budget} />
           ))}
         </div>
-      </Box>
+      </div>
     </>
   );
 };

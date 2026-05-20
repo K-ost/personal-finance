@@ -1,7 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import { getImageLink } from "../../utils/utils";
-import { Card } from "./styles";
 
 type UserCardProps = {
   avatar: string;
@@ -12,9 +11,14 @@ type UserCardProps = {
 const UserCard = (props: UserCardProps): JSX.Element => {
   const { avatar, name, category } = props;
   return (
-    <Card>
-      <img src={getImageLink(avatar)} alt="" loading="lazy" />
-      <Box>
+    <div className="flex items-center text-primary">
+      <img
+        src={getImageLink(avatar)}
+        alt=""
+        loading="lazy"
+        className="block rounded-[50%] w-10 h-10 mr-4"
+      />
+      <div>
         <Typography variant="body1" sx={{ fontWeight: 700 }}>
           {name}
         </Typography>
@@ -23,8 +27,8 @@ const UserCard = (props: UserCardProps): JSX.Element => {
             {category}
           </Typography>
         )}
-      </Box>
-    </Card>
+      </div>
+    </div>
   );
 };
 

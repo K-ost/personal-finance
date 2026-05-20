@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -53,19 +52,16 @@ const Budgets = (): JSX.Element => {
       {isLoading && <BudgetsLoading />}
       {isError && <Error />}
       {isSuccess && !!data.length && (
-        <Grid container spacing={6}>
-          <Grid size={{ xs: 12, md: 5 }}>
+        <div className="grid gap-6 md:grid-cols-[5fr_7fr]">
+          <div>
             <div className="sticky top-0">
               <Wrap>
                 <ChartWidget data={data} />
               </Wrap>
             </div>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 7 }}>
-            <BudgetsList data={data} />
-          </Grid>
-        </Grid>
+          </div>
+          <BudgetsList data={data} />
+        </div>
       )}
 
       {isSuccess && !data.length && (
