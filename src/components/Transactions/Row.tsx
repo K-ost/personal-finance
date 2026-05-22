@@ -1,4 +1,4 @@
-import { Box, TableRow, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { memo } from "react";
 
 import { Transaction } from "../../types/types";
@@ -18,7 +18,7 @@ const Row = (props: RowProps): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <TableRow>
+    <tr>
       <Cell>
         <UserCard
           avatar={transaction.avatar}
@@ -34,9 +34,9 @@ const Row = (props: RowProps): JSX.Element => {
       )}
       <Cell align="right">
         <Amount amount={transaction.amount} />
-        {(isMobile || min) && <Box sx={{ mt: 2 }}>{createDate(transaction.date)}</Box>}
+        {(isMobile || min) && <div className="mt-2">{createDate(transaction.date)}</div>}
       </Cell>
-    </TableRow>
+    </tr>
   );
 };
 

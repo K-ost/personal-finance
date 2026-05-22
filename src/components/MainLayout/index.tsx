@@ -1,8 +1,5 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-
 import LangSwitcher from "../LangSwitcher";
 import Sidebar from "../Sidebar";
-import { Layout, LayoutBody, LayoutContent, LayoutTop } from "./styles";
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -12,26 +9,19 @@ type MainLayoutProps = {
 
 const MainLayout = (props: MainLayoutProps) => {
   const { children, title, btnSlot } = props;
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Layout>
+    <div className="bg-beige-100 flex h-full flex-col lg:flex-row">
       <Sidebar />
-      <LayoutContent role="main">
-        <LayoutTop>
-          <Typography
-            variant={isMobile ? "h2" : "h1"}
-            sx={{ m: 0, mr: "auto", lineHeight: 1 }}
-          >
-            {title}
-          </Typography>
-          {btnSlot && <Box sx={{ mr: 4 }}>{btnSlot}</Box>}
+      <main className="flex flex-col grow">
+        <div className="flex items-center border-b border-b-beige-300 py-3 px-4 sm:px-10">
+          <h1 className="m-0 mr-auto font-bold text-xl sm:text-3xl">{title}</h1>
+          {btnSlot && <div className="mr-4">{btnSlot}</div>}
           <LangSwitcher />
-        </LayoutTop>
-        <LayoutBody>{children}</LayoutBody>
-      </LayoutContent>
-    </Layout>
+        </div>
+        <div className="grow overflow-auto p-4 sm:py-8 sm:px-10">{children}</div>
+      </main>
+    </div>
   );
 };
 

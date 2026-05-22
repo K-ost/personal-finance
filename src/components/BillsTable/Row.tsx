@@ -1,4 +1,4 @@
-import { Box, TableRow, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import { RecurringBill } from "../../types/types";
 import Cell from "../../ui/Cell";
@@ -16,17 +16,17 @@ const Row = (props: RowProps): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <TableRow>
+    <tr>
       <Cell>
         <UserCard avatar={transaction.avatar} name={transaction.name} />
         {isMobile && (
-          <Box sx={{ mt: 2 }}>
+          <div className="hidden sm:block mt-2">
             <BillsDate
               date={transaction.date}
               isPaid={transaction.isPaid}
               isSoon={transaction.isSoon}
             />
-          </Box>
+          </div>
         )}
       </Cell>
       {!isMobile && (
@@ -47,7 +47,7 @@ const Row = (props: RowProps): JSX.Element => {
           {getLocalPrice(Math.abs(transaction.amount))}
         </Typography>
       </Cell>
-    </TableRow>
+    </tr>
   );
 };
 

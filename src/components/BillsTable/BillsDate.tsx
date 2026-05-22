@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import dueIcon from "../../assets/icon-bill-due.svg";
@@ -17,7 +17,7 @@ const BillsDate = (props: BillsDateProps): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <Stack direction="row" alignItems="center">
+    <div className="flex items-center">
       <Typography
         variant="body2"
         color={isPaid ? "success" : "textSecondary"}
@@ -27,7 +27,7 @@ const BillsDate = (props: BillsDateProps): JSX.Element => {
       </Typography>
       {isPaid && <img src={paidIcon} alt="" />}
       {isSoon && <img src={dueIcon} alt="" />}
-    </Stack>
+    </div>
   );
 };
 

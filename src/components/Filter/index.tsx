@@ -1,12 +1,10 @@
-import { FilterBody } from "./styles";
-
 type FilterProps = {
   children: React.ReactNode;
 };
 
 const Filter = (props: FilterProps): JSX.Element => {
   const { children } = props;
-  return <FilterBody>{children}</FilterBody>;
+  return <div className="block sm:flex items-center sm:mb-6">{children}</div>;
 };
 
 export default Filter;

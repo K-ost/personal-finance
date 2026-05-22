@@ -1,4 +1,3 @@
-import { Table, TableBody, TableContainer, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { Transaction } from "../../types/types";
@@ -13,20 +12,18 @@ type TransactionsTableProps = {
 const TransactionsTable = (props: TransactionsTableProps): JSX.Element => {
   const { list } = props;
   const { t } = useTranslation();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <TableContainer sx={{ mb: 12 }}>
+    <div className="mb-12">
       {list.length > 0 && (
-        <Table>
-          {!isMobile && <Head />}
-          <TableBody>
+        <table className="w-full">
+          <Head />
+          <tbody>
             {list.map((transaction) => (
               <Row key={transaction._id} transaction={transaction} />
             ))}
-          </TableBody>
-        </Table>
+          </tbody>
+        </table>
       )}
       {!list.length && (
         <AlertBox
@@ -38,7 +35,7 @@ const TransactionsTable = (props: TransactionsTableProps): JSX.Element => {
           {t("alerts.notfound.text")}
         </AlertBox>
       )}
-    </TableContainer>
+    </div>
   );
 };
 

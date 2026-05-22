@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
@@ -35,22 +34,18 @@ const Bills = (): JSX.Element => {
 
   return (
     <MainLayout title={t("nav.recurringBills")}>
-      <Grid container spacing={6}>
-        <Grid size={{ xs: 12, md: 4 }}>
+      <div className="grid grid-cols-1 md:grid-cols-[4fr_8fr] gap-6">
+        <div>
           {isSuccess && (
             <div>
-              <Grid container spacing={6}>
-                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-                  <TotalBills info={info} />
-                </Grid>
-                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-                  <SummaryBills info={info} />
-                </Grid>
-              </Grid>
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-1">
+                <TotalBills info={info} />
+                <SummaryBills info={info} />
+              </div>
             </div>
           )}
-        </Grid>
-        <Grid size={{ xs: 12, md: 8 }}>
+        </div>
+        <div>
           <Wrap>
             {!isError && isSuccess && (
               <Filter>
@@ -62,8 +57,8 @@ const Bills = (): JSX.Element => {
             {isError && <Error />}
             {isSuccess && <BillsTable list={bills} />}
           </Wrap>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </MainLayout>
   );
 };

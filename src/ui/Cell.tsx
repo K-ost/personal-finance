@@ -1,31 +1,16 @@
-import { styled, TableCell, TableCellProps } from "@mui/material";
-
-type CellProps = TableCellProps & {
-  sm?: "true";
+type CellProps = React.HTMLAttributes<HTMLTableCellElement> & {
+  align?: "left" | "center" | "right";
+  type?: "td" | "th";
 };
 
-const CustomCell = styled(TableCell)<CellProps>(({ theme, sm }) => ({
-  borderBottomColor: theme.palette.custom.grey100,
-  color: theme.palette.custom.grey500,
-  fontSize: theme.typography.body2.fontSize,
-  fontWeight: theme.typography.body2.fontWeight,
-  lineHeight: theme.typography.body2.lineHeight,
-  paddingLeft: theme.spacing(4),
-  paddingRight: theme.spacing(4),
-  paddingTop: sm ? theme.spacing(2) : theme.spacing(4),
-  paddingBottom: sm ? theme.spacing(2) : theme.spacing(4),
-  [theme.breakpoints.down("sm")]: {
-    paddingLeft: 0,
-    paddingRight: theme.spacing(4),
-    "&:last-child": {
-      paddingRight: 0,
-    },
-  },
-}));
-
 const Cell = (props: CellProps): JSX.Element => {
-  const { sm } = props;
-  return <CustomCell sm={sm} {...props} />;
+  const { align = "left", type = "td" } = props;
+  const textAlign = `text-${align}`;
+  const cellClass = `border-b border-b-grey-100 text-grey-500 font-normal py-2 text-sm ${textAlign} pl-0 pr-4 last:pr-0`;
+
+  if (type === "th") return <th className={cellClass} {...props} />;
+
+  return <td className={cellClass + " sm:py-4"} {...props} />;
 };
 
 export default Cell;
