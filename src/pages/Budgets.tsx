@@ -13,7 +13,6 @@ import { Budget } from "../types/types";
 import AlertBox from "../ui/AlertBox";
 import Btn from "../ui/Btn";
 import Error from "../ui/Error";
-import Wrap from "../ui/Wrap";
 
 const Budgets = (): JSX.Element => {
   const { t } = useTranslation();
@@ -55,9 +54,7 @@ const Budgets = (): JSX.Element => {
         <div className="grid gap-6 md:grid-cols-[5fr_7fr]">
           <div>
             <div className="sticky top-0">
-              <Wrap>
-                <ChartWidget data={data} />
-              </Wrap>
+              <ChartWidget data={data} />
             </div>
           </div>
           <BudgetsList data={data} />

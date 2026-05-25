@@ -1,18 +1,15 @@
 import { Typography } from "@mui/material";
 
 import { Budget } from "../../types/types";
-import BudgetService from "../../utils/BudgetService";
 import { getLocalPrice } from "../../utils/utils";
 
 type BudgetLineProps = {
   budget: Budget;
+  spent: number;
 };
 
-const budgetService = new BudgetService();
-
 const BudgetLine = (props: BudgetLineProps): JSX.Element => {
-  const { budget } = props;
-  const spent = budgetService.getBudgetSpent(budget);
+  const { budget, spent } = props;
 
   return (
     <div className="flex items-center border-b border-b-gray-100 py-4 relative first:pt-0 last:pb-0 last:border-0">

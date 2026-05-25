@@ -1,13 +1,11 @@
-import { BoxProps, Typography } from "@mui/material";
 import { PieChart } from "@mui/x-charts";
 import { useTranslation } from "react-i18next";
 
 import { Budget } from "../../types/types";
 import ChartService from "../../utils/ChartService";
 import { getChartLimit, getLocalPrice } from "../../utils/utils";
-import { ChartContainer, ChartInner, ChartText } from "./styles";
 
-type ChartProps = BoxProps & {
+type ChartProps = {
   data: Budget[];
 };
 
@@ -21,8 +19,9 @@ const Chart = (props: ChartProps): JSX.Element => {
   const allSpent = chartService.getAllSpent(chartData);
 
   return (
-    <ChartContainer {...props}>
-      <ChartInner>
+    <div className="text-center">
+      <div className="inline-flex relative">
+        <div className="bg-white rounded-[50%] h-47 absolute w-47 left-6.5 top-6.5 z-2 opacity-25"></div>
         <PieChart
           series={[
             {
@@ -37,16 +36,16 @@ const Chart = (props: ChartProps): JSX.Element => {
           width={240}
           height={240}
         />
-        <ChartText>
-          <Typography variant="h1" component="div" sx={{ mb: 2 }}>
+        <div className="flex flex-col items-center justify-center w-42.5 h-42.5 absolute left-[50%] top-[50%] z-10 -translate-1/2">
+          <div className="mb-2 text-3xl font-bold text-primary">
             {getLocalPrice(allSpent)}
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
+          </div>
+          <div className="text-sm text-grey-500">
             {t("budgets.limit", { amount: limitAmount })}
-          </Typography>
-        </ChartText>
-      </ChartInner>
-    </ChartContainer>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

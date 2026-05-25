@@ -1,9 +1,8 @@
-import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import Chart from "../../components/Chart";
 import { Budget } from "../../types/types";
 import BudgetAmount from "../../ui/BudgetAmount";
+import Chart from "../../ui/Chart";
 import Wrap from "../../ui/Wrap";
 
 type BudgetsWidgetProps = {
@@ -16,29 +15,24 @@ const BudgetsWidget = (props: BudgetsWidgetProps): JSX.Element => {
 
   return (
     <Wrap title={t("nav.budgets")} alllink="/budgets">
-      <Grid container spacing={5} sx={{ mt: 12, mb: 7 }}>
-        <Grid size={{ xs: 12, sm: 9 }}>
-          <Chart data={data} />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 3 }}>
-          <div>
-            <Grid container spacing={4}>
-              {data
-                .map((budget) => (
-                  <Grid key={budget._id} size={{ xs: 6, sm: 12 }}>
-                    <BudgetAmount
-                      amount={budget.maximum}
-                      title={budget.category}
-                      color={budget.theme}
-                    />
-                  </Grid>
-                ))
-                .slice(0, 5)}
-            </Grid>
-            {data.length > 5 && <p>...</p>}
-          </div>
-        </Grid>
-      </Grid>
+      <div className="mt-12 mb-7 grid grid-cols-1 sm:grid-cols-[9fr_3fr] gap-2">
+        <Chart data={data} />
+
+        <div className="mt-4 sm:mt-0 grid grid-cols-1 gap-4">
+          {data
+            .map((budget) => (
+              <div key={budget._id}>
+                <BudgetAmount
+                  amount={budget.maximum}
+                  title={budget.category}
+                  color={budget.theme}
+                />
+              </div>
+            ))
+            .slice(0, 5)}
+        </div>
+        {data.length > 5 && <p>...</p>}
+      </div>
     </Wrap>
   );
 };

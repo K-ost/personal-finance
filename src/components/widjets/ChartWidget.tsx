@@ -1,48 +1,35 @@
-import { Typography } from "@mui/material";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
-import Chart from "../../components/Chart";
 import { Budget } from "../../types/types";
 import BudgetLine from "../../ui/BudgetLine";
+import Chart from "../../ui/Chart";
+import Wrap from "../../ui/Wrap";
+import BudgetService from "../../utils/BudgetService";
 
 type ChartWidgetProps = {
   data: Budget[];
 };
+
+const budgetService = new BudgetService();
 
 const ChartWidget = (props: ChartWidgetProps): JSX.Element => {
   const { data } = props;
   const { t } = useTranslation();
 
   return (
-    <>
-      <Chart
-        data={data}
-        sx={(theme) => ({
-          mb: 12,
-          [theme.breakpoints.down("md")]: {
-            ml: theme.spacing(7),
-            mr: theme.spacing(12),
-            mb: 0,
-          },
-          [theme.breakpoints.down("sm")]: {
-            ml: 0,
-            mr: 0,
-            mb: 8,
-          },
-        })}
-      />
-      <div>
-        <Typography variant="h2" sx={{ mb: 6 }}>
-          {t("budgets.summary")}
-        </Typography>
+    <Wrap>
+      <Chart data={data} />
+      <div className="mt-8">
+        <div className="text-xl text-primary font-bold mb-6">{t("budgets.summary")}</div>
         <div>
-          {data.map((budget) => (
-            <BudgetLine key={budget._id} budget={budget} />
-          ))}
+          {data.map((budget) => {
+            const spent = budgetService.getBudgetSpent(budget);
+            return <BudgetLine key={budget._id} budget={budget} spent={spent} />;
+          })}
         </div>
       </div>
-    </>
+    </Wrap>
   );
 };
 
