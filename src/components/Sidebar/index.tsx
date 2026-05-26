@@ -1,4 +1,4 @@
-import { Box, ListItem, useMediaQuery, useTheme } from "@mui/material";
+import { ListItem, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
@@ -21,7 +21,7 @@ import {
   IconProfile,
   IconTransactions,
 } from "./Icons";
-import { Aside, AsideInner, AsideLogo, Nav } from "./styles";
+import { Aside, AsideInner, Nav } from "./styles";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -52,11 +52,11 @@ const Sidebar = () => {
   return (
     <Aside open={sidebar}>
       <AsideInner>
-        <Box sx={{ flex: 1 }}>
+        <div className="flex grow">
           {isDesktop && (
-            <AsideLogo>
+            <div className="mb-6 py-10 px-8">
               <img src={sidebar ? logo : logoSmall} alt="" />
-            </AsideLogo>
+            </div>
           )}
 
           <Nav>
@@ -114,7 +114,7 @@ const Sidebar = () => {
               </AsideBtn>
             </ListItem>
           </Nav>
-        </Box>
+        </div>
 
         {isDesktop && (
           <AsideBtn
