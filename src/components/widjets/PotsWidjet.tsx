@@ -1,4 +1,3 @@
-import { Box, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { Pot } from "../../types/types";
@@ -17,24 +16,21 @@ const PotsWidjet = (props: PotsWidjetProps): JSX.Element => {
 
   return (
     <Wrap title={t("nav.pots")} alllink="/pots">
-      <Grid container spacing={5}>
-        <Grid size={{ xs: 12, sm: 5 }}>
-          <BudgetAmount amount={totalSaved} title="Total Saved" big="true" />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 7 }}>
-          <Box>
-            <Grid container spacing={4}>
-              {data
-                .map((pot) => (
-                  <Grid size={6} key={pot._id}>
-                    <BudgetAmount amount={pot.total} title={pot.name} color={pot.theme} />
-                  </Grid>
-                ))
-                .slice(0, 4)}
-            </Grid>
-          </Box>
-        </Grid>
-      </Grid>
+      <div className="grid grid-col-1 sm:grid-cols-[5fr_7fr] gap-5">
+        <BudgetAmount amount={totalSaved} title="Total Saved" big="true" />
+        <div className="grid grid-cols-2 gap-4">
+          {data
+            .map((pot) => (
+              <BudgetAmount
+                key={pot._id}
+                amount={pot.total}
+                title={pot.name}
+                color={pot.theme}
+              />
+            ))
+            .slice(0, 4)}
+        </div>
+      </div>
     </Wrap>
   );
 };
