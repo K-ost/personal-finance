@@ -36,7 +36,7 @@ export const Big: Story = {
   args: {
     amount: 1000,
     title: "Budget",
-    big: "true",
+    big: true,
   },
   argTypes: {
     color: {
