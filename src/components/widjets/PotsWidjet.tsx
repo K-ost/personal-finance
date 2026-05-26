@@ -17,7 +17,7 @@ const PotsWidjet = (props: PotsWidjetProps): JSX.Element => {
   return (
     <Wrap title={t("nav.pots")} alllink="/pots">
       <div className="grid grid-col-1 sm:grid-cols-[5fr_7fr] gap-5">
-        <BudgetAmount amount={totalSaved} title="Total Saved" big="true" />
+        <BudgetAmount amount={totalSaved} title="Total Saved" big />
         <div className="grid grid-cols-2 gap-4">
           {data
             .map((pot) => (

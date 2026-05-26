@@ -1,12 +1,12 @@
-import { BoxProps, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import icon from "../../assets/icon-pot.svg";
 import { getLocalPrice } from "../../utils/utils";
 
-type BudgetAmountProps = BoxProps & {
+type BudgetAmountProps = {
   amount: number;
   title: string;
-  big?: "true";
+  big?: boolean;
   color?: string;
 };
 
@@ -20,7 +20,7 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
       className={`flex flex-1 relative rounded-xl ${big ? "bg-beige-100 px-6 py-4" : ""}`}
     >
       {big ? (
-        <img src={icon} alt="" className="mr-5" />
+        <img src={icon} alt="" className="mr-5 w-10" />
       ) : (
         <div
           className="rounded-sm min-w-1 mr-4 bg-beige-100"
