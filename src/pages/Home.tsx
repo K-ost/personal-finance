@@ -1,4 +1,4 @@
-import { Skeleton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import MainLayout from "../components/MainLayout";
@@ -32,7 +32,6 @@ const Home = (): JSX.Element => {
   const {
     data: potsData,
     error: potsError,
-    isLoading: potsIsLoading,
     isSuccess: potsIsSuccess,
   } = useGetData<Pot[]>({
     key: ["potsWidjet"],
@@ -43,7 +42,6 @@ const Home = (): JSX.Element => {
   const {
     data: transData,
     error: transError,
-    isLoading: transIsLoading,
     isSuccess: transIsSuccess,
   } = useGetData<ServerResponse<Transaction>>({
     key: ["transactionsWidjet"],
@@ -54,7 +52,6 @@ const Home = (): JSX.Element => {
   const {
     data: budgetsData,
     error: budgetsError,
-    isLoading: budgetsIsLoading,
     isSuccess: budgetsIsSuccess,
   } = useGetData<Budget[]>({
     key: ["budgetsWidjet"],
@@ -65,7 +62,6 @@ const Home = (): JSX.Element => {
   const {
     data: billsData,
     error: billsError,
-    isLoading: billsIsLoading,
     isSuccess: billsIsSuccess,
   } = useGetData<ServerResponse<Transaction>>({
     key: ["billsWidjet"],
@@ -84,28 +80,22 @@ const Home = (): JSX.Element => {
         {balanceError && <Error text={balanceError.message} />}
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[7fr_5fr]">
+      <div className="grid gap-6 grid-cols-1 xl:grid-cols-[58%_42%]">
         <div>
           <div className="mb-6">
             {potsIsSuccess && <PotsWidjet data={potsData} />}
-            {potsIsLoading && <Skeleton height={215} variant="rounded" sx={{ mb: 6 }} />}
             {potsError && <Error text={potsError.message} />}
           </div>
           {transIsSuccess && <TransActionsWidjet data={transData.data} />}
-          {transIsLoading && <Skeleton height={460} variant="rounded" />}
           {transError && <Error text={transError.message} />}
         </div>
 
         <div>
           <div className="mb-6">
             {budgetsIsSuccess && <BudgetsWidget data={budgetsData} />}
-            {budgetsIsLoading && (
-              <Skeleton height={350} variant="rounded" sx={{ mb: 6 }} />
-            )}
             {budgetsError && <Error text={budgetsError.message} />}
           </div>
           {billsIsSuccess && <BillsWidget data={billsData.data} />}
-          {billsIsLoading && <Skeleton height={320} variant="rounded" />}
           {billsError && <Error text={billsError.message} />}
         </div>
       </div>

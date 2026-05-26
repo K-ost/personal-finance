@@ -17,10 +17,10 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
 
   return (
     <div
-      className={`flex flex-1 relative rounded-xl ${big ? "bg-beige-100 px-6 py-4" : ""}`}
+      className={`flex flex-1 items-center relative rounded-xl ${big ? "bg-beige-100 px-6 py-4" : ""}`}
     >
       {big ? (
-        <img src={icon} alt="" className="mr-5" width={40} />
+        <img src={icon} alt="" className="mr-5 w-10 h-9" />
       ) : (
         <div
           className="rounded-sm min-w-1 mr-4 bg-beige-100"
