@@ -13,7 +13,7 @@ const MainLayout = (props: MainLayoutProps) => {
   return (
     <div className="bg-beige-100 flex h-full flex-col lg:flex-row">
       <Sidebar />
-      <main className="flex flex-col grow">
+      <main className="flex flex-col grow overflow-hidden">
         <div className="flex items-center border-b border-b-beige-300 py-3 px-4 sm:px-10">
           <h1 className="m-0 mr-auto font-bold text-xl sm:text-3xl">{title}</h1>
           {btnSlot && <div className="mr-4">{btnSlot}</div>}

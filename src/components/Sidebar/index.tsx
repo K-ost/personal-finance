@@ -52,7 +52,7 @@ const Sidebar = () => {
   return (
     <Aside open={sidebar}>
       <AsideInner>
-        <div className="flex grow">
+        <div className="flex flex-col grow">
           {isDesktop && (
             <div className="mb-6 py-10 px-8">
               <img src={sidebar ? logo : logoSmall} alt="" />
