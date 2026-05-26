@@ -16,7 +16,7 @@ const UserCard = (props: UserCardProps): JSX.Element => {
         src={getImageLink(avatar)}
         alt=""
         loading="lazy"
-        className="block rounded-[50%] w-10 h-10 mr-4"
+        className="block rounded-[50%] w-12 h-12 mr-4"
       />
       <div>
         <Typography variant="body1" sx={{ fontWeight: 700 }}>
