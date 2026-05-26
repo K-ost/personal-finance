@@ -29,11 +29,11 @@
   }
 
   body {
-    @apply bg-[#F8F4F0] text-[#201F24] font-sans m-0;
+    @apply bg-beige-100 text-primary font-sans m-0;
   }
 
   a {
-    @apply underline text-[#201F24];
+    @apply underline text-primary;
   }
 
   a:hover {
