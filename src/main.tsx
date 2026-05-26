@@ -1,4 +1,3 @@
-import "./index.css";
 import "./i18n/index.ts";
 
 import { ThemeProvider } from "@mui/material";
