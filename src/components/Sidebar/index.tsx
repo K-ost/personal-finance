@@ -1,134 +1,46 @@
-import { ListItem, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/logo-large.svg";
 import logoSmall from "../../assets/logo-small.svg";
-import useMutateData from "../../hooks/useMutateData";
 import { useAppStore, useSidebarStore } from "../../store/useAppStore";
-import { useAuthStore, useUserRole } from "../../store/useAuthStore";
-import { useNotificationStore } from "../../store/useNotificationStore";
-import { AuthType } from "../../types/apiTypes";
-import AsideBtn from "./AsideBtn";
-import { navMenuList } from "./constants";
-import {
-  IconBills,
-  IconBudgets,
-  IconLogout,
-  IconMin,
-  IconOverview,
-  IconPots,
-  IconProfile,
-  IconTransactions,
-} from "./Icons";
-import { Aside, AsideInner, Nav } from "./styles";
+import Navmenu from "../Navmenu";
+import { navlinkClass } from "../Navmenu/constants";
+import NavmenuItem from "../Navmenu/NavmenuItem";
+
+const sideWidth = 300;
+const sideWidthMin = 75;
 
 const Sidebar = () => {
-  const theme = useTheme();
-  const sidebar = useSidebarStore();
+  const isSidebarFull = useSidebarStore();
   const setSidebar = useAppStore((state) => state.setSidebar);
-  const setLogout = useAuthStore((state) => state.setLogout);
-  const setNotification = useNotificationStore((state) => state.setNotification);
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-  const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
-  const role = useUserRole();
   const { t } = useTranslation();
 
-  const { mutate, isPending } = useMutateData<AuthType, undefined>({
-    key: ["logout"],
-    method: "POST",
-    uri: "/logout",
-  });
-
-  const logoutHandler = () => {
-    mutate(undefined, {
-      onSuccess(data) {
-        setNotification(data.msg);
-        setLogout();
-      },
-    });
-  };
+  const width = isSidebarFull ? sideWidth : sideWidthMin;
 
   return (
-    <Aside open={sidebar}>
-      <AsideInner>
+    <div
+      className="hidden lg:block bg-primary h-full rounded-tr-3xl rounded-br-3xl overflow-hidden slide"
+      style={{ minWidth: width, maxWidth: width }}
+    >
+      <div className={`flex flex-col h-full pb-6 pr-6`} style={{ minWidth: sideWidth }}>
         <div className="flex flex-col grow">
-          {isDesktop && (
-            <div className="mb-6 py-10 px-8">
-              <img src={sidebar ? logo : logoSmall} alt="" />
-            </div>
-          )}
-
-          <Nav>
-            {navMenuList.map((item) => {
-              return (
-                <ListItem key={item.id}>
-                  <AsideBtn
-                    className={sidebar ? "opened" : ""}
-                    component={NavLink}
-                    to={item.link}
-                    aria-label={t(`nav.${item.icon}`)}
-                  >
-                    <span className="iconBox">
-                      {item.icon === "overview" && <IconOverview />}
-                      {item.icon === "transactions" && <IconTransactions />}
-                      {item.icon === "budgets" && <IconBudgets />}
-                      {item.icon === "pots" && <IconPots />}
-                      {item.icon === "recurringBills" && <IconBills />}
-                    </span>
-                    {sidebar && isTablet && (
-                      <span className="btnTitle">{t(`nav.${item.icon}`)}</span>
-                    )}
-                  </AsideBtn>
-                </ListItem>
-              );
-            })}
-
-            {role === "admin" && (
-              <ListItem>
-                <AsideBtn component={NavLink} to="/profile" aria-label={t(`nav.profile`)}>
-                  <span className="iconBox">
-                    <IconProfile />
-                  </span>
-                  {sidebar && isTablet && (
-                    <span className="btnTitle">{t(`nav.profile`)}</span>
-                  )}
-                </AsideBtn>
-              </ListItem>
-            )}
-
-            <ListItem>
-              <AsideBtn
-                onClick={logoutHandler}
-                data-testid="logoutBtn"
-                aria-label={t(`nav.logout`)}
-              >
-                <span className="iconBox">
-                  <IconLogout />
-                </span>
-                {sidebar && isTablet && (
-                  <span className="btnTitle">
-                    {isPending ? "Loading..." : t(`nav.logout`)}
-                  </span>
-                )}
-              </AsideBtn>
-            </ListItem>
-          </Nav>
+          <div className={`mb-6 py-10 px-${isSidebarFull ? "8" : "6"}`}>
+            <img src={isSidebarFull ? logo : logoSmall} alt="" className="h-6" />
+          </div>
+          <Navmenu isHidden={isSidebarFull} />
         </div>
-
-        {isDesktop && (
-          <AsideBtn
-            className={sidebar ? "opened" : ""}
-            onClick={() => setSidebar(!sidebar)}
-          >
-            <span className="iconBox">
-              <IconMin />
-            </span>
-            {sidebar && <span className="btnTitle">{t("settings.hideMenu")}</span>}
-          </AsideBtn>
-        )}
-      </AsideInner>
-    </Aside>
+        <button
+          className={`${navlinkClass} hideSidebar ${isSidebarFull ? "" : "hid"}`}
+          onClick={() => setSidebar(!isSidebarFull)}
+        >
+          <NavmenuItem
+            icon="min"
+            label={t("settings.hideMenu")}
+            isHidden={isSidebarFull}
+          />
+        </button>
+      </div>
+    </div>
   );
 };
 

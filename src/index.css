@@ -16,6 +16,8 @@
   --color-custom-cyan: #82c9d7;
   --color-custom-navy: #626070;
   --color-custom-purple: #826cb0;
+
+  --font-sans: "Public Sans", sans-serif;
 }
 
 @layer base {
@@ -73,4 +75,10 @@
 
 .MuiPaper-root.MuiPopover-paper .MuiMenuItem-root.Mui-selected {
   font-weight: 700;
+}
+
+.slide {
+  transition:
+    min-width 150ms ease-in-out,
+    max-width 150ms ease-in-out;
 }

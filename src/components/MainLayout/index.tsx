@@ -1,4 +1,5 @@
 import LangSwitcher from "../LangSwitcher";
+import Navmenu from "../Navmenu";
 import Sidebar from "../Sidebar";
 
 type MainLayoutProps = {
@@ -20,6 +21,9 @@ const MainLayout = (props: MainLayoutProps) => {
           <LangSwitcher />
         </div>
         <div className="grow overflow-auto p-4 sm:py-8 sm:px-10">{children}</div>
+        <div className="bg-primary rounded-tl-xl rounded-tr-xl lg:hidden">
+          <Navmenu isMobile />
+        </div>
       </main>
     </div>
   );

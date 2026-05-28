@@ -1,4 +1,4 @@
-export const IconOverview = (): JSX.Element => {
+const IconOverview = (): JSX.Element => {
   return (
     <svg
       fill="none"
@@ -15,7 +15,7 @@ export const IconOverview = (): JSX.Element => {
   );
 };
 
-export const IconTransactions = (): JSX.Element => {
+const IconTransactions = (): JSX.Element => {
   return (
     <svg
       fill="none"
@@ -32,7 +32,7 @@ export const IconTransactions = (): JSX.Element => {
   );
 };
 
-export const IconBudgets = (): JSX.Element => {
+const IconBudgets = (): JSX.Element => {
   return (
     <svg
       fill="none"
@@ -49,7 +49,7 @@ export const IconBudgets = (): JSX.Element => {
   );
 };
 
-export const IconPots = (): JSX.Element => {
+const IconPots = (): JSX.Element => {
   return (
     <svg
       fill="none"
@@ -66,7 +66,7 @@ export const IconPots = (): JSX.Element => {
   );
 };
 
-export const IconBills = (): JSX.Element => {
+const IconBills = (): JSX.Element => {
   return (
     <svg
       fill="none"
@@ -83,7 +83,7 @@ export const IconBills = (): JSX.Element => {
   );
 };
 
-export const IconMin = (): JSX.Element => {
+const IconMin = (): JSX.Element => {
   return (
     <svg
       fill="none"
@@ -101,7 +101,7 @@ export const IconMin = (): JSX.Element => {
   );
 };
 
-export const IconProfile = (): JSX.Element => {
+const IconProfile = (): JSX.Element => {
   return (
     <svg fill="#b3b3b3" viewBox="0 0 64 64">
       <g>
@@ -120,7 +120,7 @@ export const IconProfile = (): JSX.Element => {
   );
 };
 
-export const IconLogout = (): JSX.Element => {
+const IconLogout = (): JSX.Element => {
   return (
     <svg
       width="24px"
@@ -144,3 +144,18 @@ export const IconLogout = (): JSX.Element => {
     </svg>
   );
 };
+
+function NavmenuIcons() {
+  return null;
+}
+
+NavmenuIcons.Overview = IconOverview;
+NavmenuIcons.Transactions = IconTransactions;
+NavmenuIcons.Budgets = IconBudgets;
+NavmenuIcons.Pots = IconPots;
+NavmenuIcons.Bills = IconBills;
+NavmenuIcons.Min = IconMin;
+NavmenuIcons.Profile = IconProfile;
+NavmenuIcons.Logout = IconLogout;
+
+export default NavmenuIcons;

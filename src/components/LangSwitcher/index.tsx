@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { useAppStore, useLanguageStore } from "../../store/useAppStore";
 import LangBtn from "./LangBtn";
 
@@ -25,4 +27,4 @@ const LangSwitcher = (): JSX.Element => {
   );
 };
 
-export default LangSwitcher;
+export default memo(LangSwitcher);
