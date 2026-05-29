@@ -14,20 +14,5 @@ export default defineConfig({
   build: {
     sourcemap: false,
     minify: true,
-    // rollupOptions: {
-    //   output: {
-    //     manualChunks(id) {
-    //       if (id.includes("node_modules")) {
-    //         if (id.includes("@mui") || id.includes("@emotion")) {
-    //           return "mui";
-    //         }
-    //         if (id.includes("react")) {
-    //           return "react-vendor";
-    //         }
-    //         return "vendor";
-    //       }
-    //     },
-    //   },
-    // },
   },
 });

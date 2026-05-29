@@ -23,7 +23,7 @@ const BudgetAmount = (props: BudgetAmountProps): JSX.Element => {
         <img src={icon} alt="" className="mr-5 w-10 h-9" />
       ) : (
         <div
-          className="rounded-sm min-w-1 mr-4 bg-beige-100"
+          className="rounded-sm min-w-1 h-10 mr-4 bg-beige-100"
           style={{ backgroundColor: color }}
         ></div>
       )}

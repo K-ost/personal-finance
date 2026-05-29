@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
@@ -75,4 +76,4 @@ const Navmenu = ({ isHidden, isMobile }: NavmenuProps): JSX.Element => {
   );
 };
 
-export default Navmenu;
+export default memo(Navmenu);

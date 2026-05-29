@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import bg from "../../assets/illustration-authentication.svg";
@@ -24,8 +23,8 @@ const LoginLayout = (props: LoginLayoutProps): JSX.Element => {
           <img src={logo} alt="" />
         </div>
         <div className="hidden md:block relative">
-          <Typography variant="h1">{t("loginPage.text")}</Typography>
-          <Typography variant="body1">{t("loginPage.subtext")}</Typography>
+          <h1 className="text-3xl text-white font-bold mb-6">{t("loginPage.text")}</h1>
+          <div className="text-white text-sm">{t("loginPage.subtext")}</div>
         </div>
       </div>
 

@@ -1,17 +1,12 @@
-import { Grid, Skeleton, useMediaQuery, useTheme } from "@mui/material";
+import { Skeleton } from "@mui/material";
 
 const BalanceLoading = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
-    <Grid container spacing={isMobile ? 3 : 6}>
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
       {Array.from(new Array(3)).map((__, index) => (
-        <Grid size={{ xs: 12, sm: 4 }} key={index}>
-          <Skeleton height={120} variant="rounded" />
-        </Grid>
+        <Skeleton key={index} height={120} variant="rounded" />
       ))}
-    </Grid>
+    </div>
   );
 };
 
