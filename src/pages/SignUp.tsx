@@ -7,6 +7,7 @@ import LoginLayout from "../components/LoginLayout";
 import PassInput from "../components/PassInput";
 import useMutateData from "../hooks/useMutateData";
 import useFormSettings from "../hooks/useSettings";
+import { useAuthStore } from "../store/useAuthStore";
 import { useNotificationStore } from "../store/useNotificationStore";
 import { AuthType } from "../types/apiTypes";
 import Btn from "../ui/Btn";
@@ -23,12 +24,13 @@ const SignUp = (): JSX.Element => {
   const { t } = useTranslation();
   const { settings } = useFormSettings();
   const setNotification = useNotificationStore((state) => state.setNotification);
+  const setToken = useAuthStore((state) => state.setToken);
+  const setUser = useAuthStore((state) => state.setUser);
 
   const {
     formState: { errors },
     handleSubmit,
     register,
-    reset,
   } = useForm<FormData>();
 
   const { mutate, isPending } = useMutateData<AuthType, FormData>({
@@ -43,9 +45,10 @@ const SignUp = (): JSX.Element => {
         setNotification(error.message);
       },
       onSuccess(data) {
-        if (data.msg) {
-          setNotification(data.msg);
-          reset();
+        if (data.accessToken && data.user) {
+          setToken(data.accessToken);
+          setUser(data.user);
+          setNotification(`You've been successfully registered and logged`);
         }
       },
     });
